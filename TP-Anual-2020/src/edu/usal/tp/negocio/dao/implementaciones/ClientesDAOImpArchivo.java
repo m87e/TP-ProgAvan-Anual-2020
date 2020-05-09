@@ -47,18 +47,10 @@ public class ClientesDAOImpArchivo implements IClienteDAO {
 	}
 
 	private String SaveCliente(Cliente cliente) {
-		return 		  cliente.getId() + 
-				";" + cliente.getNombre() + 
-				";" + cliente.getApellido() + 
-				";" + cliente.getDni() + 
-				";"	+ cliente.getTel().getID() +
-				";"	+ cliente.getCuit() +
-				";"	+ cliente.getEmail() +
-				";"	+ cliente.getDir().getID() +
-				";"	+ cliente.getFechaNac() +
-				";"	+ cliente.getPas().getNumeroPasaporte() +
-				";"	+ cliente.getPasfre().getNumero() +
-				"\r\n";
+		return cliente.getIdCliente() + ";" + cliente.getNombre() + ";" + cliente.getApellido() + ";" + cliente.getDni()
+				+ ";" + cliente.getTel().getIdTelefono() + ";" + cliente.getCuit() + ";" + cliente.getEmail() + ";"
+				+ cliente.getDir().getIdDirCompleta() + ";" + cliente.getFechaNac() + ";" + cliente.getPas().getNumeroPasaporte()
+				+ ";" + cliente.getPasfre().getNumeroPF() + "\r\n";
 
 	}
 
@@ -68,18 +60,18 @@ public class ClientesDAOImpArchivo implements IClienteDAO {
 
 		for (Cliente c : listadoCliente) {
 
-			if (c.getId() == (cliente.getId())) {
-				c.setId(cliente.getId());
+			if (c.getIdCliente() == (cliente.getIdCliente())) {
+				c.setIdCliente(cliente.getIdCliente());
 				c.setApellido(cliente.getApellido());
 				c.setNombre(cliente.getNombre());
 				c.setDni(cliente.getDni());
-				c.setTelID(cliente.getTel().getID());
+				c.setTelID(cliente.getTel().getIdTelefono());
 				c.setCuit(cliente.getCuit());
 				c.setEmail(cliente.getEmail());
-				c.setDirID(cliente.getDir().getID());
+				c.setDirID(cliente.getDir().getIdDirCompleta());
 				c.setFechaNac(cliente.getFechaNac());
 				c.setPasID(cliente.getPas().getNumeroPasaporte());
-				c.setPasfreID(cliente.getPasfre().getNumero());
+				c.setPasfreID(cliente.getPasfre().getNumeroPF());
 			}
 
 			AgregarCliente(c);
@@ -90,11 +82,10 @@ public class ClientesDAOImpArchivo implements IClienteDAO {
 
 	@Override
 	public void EliminarCliente(Cliente cliente) throws IOException, ParseException {
-		
 
 		List<Cliente> listadoClientes = GetAll();
 
-		listadoClientes.removeIf(o -> o.getId() == cliente.getId());
+		listadoClientes.removeIf(o -> o.getIdCliente() == cliente.getIdCliente());
 
 		for (Cliente c : listadoClientes) {
 
@@ -103,9 +94,9 @@ public class ClientesDAOImpArchivo implements IClienteDAO {
 		}
 
 	}
-	
+
 	@Override
-	public List<Cliente> GetAll() throws IOException, ParseException{
+	public List<Cliente> GetAll() throws IOException, ParseException {
 		// TODO Auto-generated method stub
 
 		archivo = new File(path);
@@ -122,14 +113,14 @@ public class ClientesDAOImpArchivo implements IClienteDAO {
 		return listadoClientes;
 	}
 
-	private Cliente ParseCliente(String linea) throws ParseException{
+	private Cliente ParseCliente(String linea) throws ParseException {
 		// TODO Auto-generated method stub
 
 		String[] atributos = linea.split(";");
 
 		Cliente c = new Cliente();
-		
-		c.setId(Integer.valueOf(atributos[0]));
+
+		c.setIdCliente(Integer.valueOf(atributos[0]));
 		c.setApellido(atributos[1]);
 		c.setNombre(atributos[2]);
 		c.setDni(atributos[3]);
@@ -140,7 +131,7 @@ public class ClientesDAOImpArchivo implements IClienteDAO {
 		c.setFechaNac(new SimpleDateFormat("dd/MM/yyyy").parse(atributos[8]));
 		c.setPasID(atributos[9]);
 		c.setPasfreID(atributos[10]);
-		
+
 		return c;
 	}
 

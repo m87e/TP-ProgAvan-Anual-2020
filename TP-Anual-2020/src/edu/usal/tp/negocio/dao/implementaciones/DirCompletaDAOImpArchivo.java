@@ -44,7 +44,7 @@ public class DirCompletaDAOImpArchivo implements IDirCompletaDAO{
 	}
 
 	private String SaveDirCompleta(DirCompleta dir) {
-		return 		  dir.getID() + 
+		return 		  dir.getIdDirCompleta() + 
 				";" + dir.getCalle() +
 				";" + dir.getAltura() +
 				";" + dir.getCiudad() +
@@ -59,8 +59,8 @@ public class DirCompletaDAOImpArchivo implements IDirCompletaDAO{
 		List<DirCompleta> listadoDirCompleta = GetAll();
 		
 		for (DirCompleta dC : listadoDirCompleta) {
-			if (dC.getID() == dir.getID()) {
-				dC.setID(dir.getID());
+			if (dC.getIdDirCompleta() == dir.getIdDirCompleta()) {
+				dC.setIdDirCompleta(dir.getIdDirCompleta());
 				dC.setCalle(dir.getCalle());
 				dC.setAltura(dir.getAltura());
 				dC.setCiudad(dir.getCiudad());
@@ -76,7 +76,7 @@ public class DirCompletaDAOImpArchivo implements IDirCompletaDAO{
 	public void EliminarTelefono(DirCompleta dir) throws IOException {
 		List<DirCompleta> listadoDirCompleta = GetAll();
 		
-		listadoDirCompleta.removeIf(o -> o.getID() == dir.getID());
+		listadoDirCompleta.removeIf(o -> o.getIdDirCompleta() == dir.getIdDirCompleta());
 		
 		for (DirCompleta dC : listadoDirCompleta) {
 			AgregarTelefono(dC);
@@ -105,7 +105,7 @@ public class DirCompletaDAOImpArchivo implements IDirCompletaDAO{
 		
 		DirCompleta dC = new DirCompleta();
 
-		dC.setID(Integer.valueOf(atributos[0]));
+		dC.setIdDirCompleta(Integer.valueOf(atributos[0]));
 		dC.setCalle(atributos[1]);
 		dC.setAltura(atributos[2]);
 		dC.setCiudad(atributos[3]);

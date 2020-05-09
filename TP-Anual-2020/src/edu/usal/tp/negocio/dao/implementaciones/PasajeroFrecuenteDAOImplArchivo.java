@@ -42,7 +42,7 @@ public class PasajeroFrecuenteDAOImplArchivo implements IPasajeroFrecuenteDAO {
 	}
 
 	private String SavePasajeroFrecuente(PasajeroFrecuente pasFre) {
-		return 		  pasFre.getNumero() +
+		return 		  pasFre.getNumeroPF() +
 				";" + pasFre.getCategoria() + 
 				";" + pasFre.getAlianza()+ 
 				";" + pasFre.getAerolinea().getId()	+ 
@@ -55,8 +55,8 @@ public class PasajeroFrecuenteDAOImplArchivo implements IPasajeroFrecuenteDAO {
 
 		for (PasajeroFrecuente pF : listadoPasajeroFrecuente) {
 
-			if (pF.getNumero()==(pasFre.getNumero())) {
-				pF.setNumero(pasFre.getNumero());
+			if (pF.getNumeroPF()==(pasFre.getNumeroPF())) {
+				pF.setNumeroPF(pasFre.getNumeroPF());
 				pF.setCategoria(pasFre.getCategoria());
 				pF.setCategoria(pasFre.getCategoria());
 				pF.setAerolineaID(pasFre.getAerolinea().getId());
@@ -71,7 +71,7 @@ public class PasajeroFrecuenteDAOImplArchivo implements IPasajeroFrecuenteDAO {
 	public void EliminarPasarporte(PasajeroFrecuente pasFre) throws IOException {
 		List<PasajeroFrecuente> listadoPasajeroFrecuentes = GetAll();
 		
-		listadoPasajeroFrecuentes.removeIf(o -> o.getNumero() == pasFre.getNumero());
+		listadoPasajeroFrecuentes.removeIf(o -> o.getNumeroPF() == pasFre.getNumeroPF());
 		
 		for (PasajeroFrecuente pF : listadoPasajeroFrecuentes) {
 			AgregarPasarporte(pF);
@@ -100,7 +100,7 @@ public class PasajeroFrecuenteDAOImplArchivo implements IPasajeroFrecuenteDAO {
 		
 		PasajeroFrecuente pF = new PasajeroFrecuente();
 
-		pF.setNumero(atributos[0]);
+		pF.setNumeroPF(atributos[0]);
 		pF.setCategoria(atributos[1]);
 		pF.setCategoria(atributos[2]);
 		pF.setAerolineaID(atributos[3]);

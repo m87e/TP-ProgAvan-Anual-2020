@@ -2,7 +2,7 @@ package edu.usal.tp.negocio.dao.dominio;
 
 public class Telefono {
 // agregar at odas las entidaeds ID
-	private int ID;
+	private int idTelefono;
 	private String numPersonal;
 	private String numCelular;
 	private String numLaboral;
@@ -14,12 +14,12 @@ public class Telefono {
 		return numPersonal;
 	}
 
-	public int getID() {
-		return ID;
+	public int getIdTelefono() {
+		return idTelefono;
 	}
 
-	public void setID(int  iD) {
-		ID = iD;
+	public void setID(int idTelefono) {
+		this.idTelefono = idTelefono;
 	}
 
 	public void setNumPersonal(String numPersonal) {
@@ -45,8 +45,8 @@ public class Telefono {
 
 	// Constructor 
 	
-	public Telefono(int ID, String numPersonal, String numCelular, String numLaboral) {
-		this.ID = ID;
+	public Telefono(int idTelefono, String numPersonal, String numCelular, String numLaboral) {
+		this.idTelefono = idTelefono;
 		this.numPersonal = numPersonal;
 		this.numCelular = numCelular;
 		this.numLaboral = numLaboral;

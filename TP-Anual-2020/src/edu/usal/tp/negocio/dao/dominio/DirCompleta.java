@@ -2,7 +2,7 @@ package edu.usal.tp.negocio.dao.dominio;
 
 public class DirCompleta {
 	
-	private int ID;
+	private int idDirCompleta;
 	private String calle;
 	private String altura;
 	private String ciudad;
@@ -16,11 +16,11 @@ public class DirCompleta {
 	public String getCalle() {
 		return calle;
 	}
-	public int getID() {
-		return ID;
+	public int getIdDirCompleta() {
+		return idDirCompleta;
 	}
-	public void setID(int iD) {
-		ID = iD;
+	public void setIdDirCompleta(int idDirCompleta) {
+		this.idDirCompleta = idDirCompleta;
 	}
 	public void setPais(Paises pais) {
 		this.pais = pais;
@@ -53,8 +53,8 @@ public class DirCompleta {
 	
 	//Constructors
 	
-	public DirCompleta(int ID, String calle, String altura, String ciudad, Paises pais, Provincias provincia, String codigoPostal) {
-		this.ID = ID;
+	public DirCompleta(int idDirCompleta, String calle, String altura, String ciudad, Paises pais, Provincias provincia, String codigoPostal) {
+		this.idDirCompleta = idDirCompleta;
 		this.calle = calle;
 		this.altura = altura;
 		this.ciudad = ciudad;

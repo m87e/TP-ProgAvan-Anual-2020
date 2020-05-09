@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Cliente {
 
-	private int id;
+	private int idCliente;
 	private String nombre;
 	private String apellido;
 	private String dni;
@@ -16,12 +16,12 @@ public class Cliente {
 	private PasajeroFrecuente pasfre;
 	private DirCompleta dir;
 
-	public int getId() {
-		return id;
+	public int getIdCliente() {
+		return idCliente;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
 	}
 
 	public String getNombre() {
@@ -91,7 +91,7 @@ public class Cliente {
 	public void setTelID(int id) {
 		this.tel.setID(id);
 	}
-	
+
 	public PasajeroFrecuente getPasfre() {
 		return pasfre;
 	}
@@ -120,10 +120,10 @@ public class Cliente {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cliente(int id, String nombre, String apellido, String dni, Pasaporte pas, String cuit, Date fechaNac,
+	public Cliente(int idCliente, String nombre, String apellido, String dni, Pasaporte pas, String cuit, Date fechaNac,
 			String email, Telefono tel, PasajeroFrecuente pasfre, DirCompleta dir) {
 
-		this.id = id;
+		this.idCliente = idCliente;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;
@@ -136,20 +136,19 @@ public class Cliente {
 		this.dir = dir;
 	}
 
-	
-	public void setDirID(int id) {
-		this.dir.setID(id);
-		
+	public void setDirID(int idDirCompleta) {
+		this.dir.setIdDirCompleta(idDirCompleta);
+
 	}
 
 	public void setPasID(String numeroPasaporte) {
 		this.pas.setNumeroPasaporte(numeroPasaporte);
-		
+
 	}
 
-	public void setPasfreID(String numero) {
-		this.pasfre.setNumero(numero);
-		
+	public void setPasfreID(String numeroPF) {
+		this.pasfre.setNumeroPF(numeroPF);
+
 	}
 
 }

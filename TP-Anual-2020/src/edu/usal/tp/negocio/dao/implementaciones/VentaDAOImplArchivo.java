@@ -48,13 +48,8 @@ public class VentaDAOImplArchivo implements IVentaDAO {
 	}
 
 	private String SaveVenta(Venta venta) {
-		return 		  venta.getId() + 
-				";" + venta.getCliID() + 
-				";" + venta.getVueID() + 
-				";" + venta.getAeroID() + 
-				";"	+ venta.getFechaHoraVenta().toString() + 
-				";" + venta.getFormaPago() + 
-				"\r\n";
+		return venta.getIdVenta() + ";" + venta.getCliID() + ";" + venta.getVueID() + ";" + venta.getAeroID() + ";"
+				+ venta.getFechaHoraVenta().toString() + ";" + venta.getFormaPago() + "\r\n";
 	}
 
 	@Override
@@ -64,9 +59,9 @@ public class VentaDAOImplArchivo implements IVentaDAO {
 		List<Venta> listadoVentas = GetAll();
 
 		for (Venta v : listadoVentas) {
-			if (v.getId() == venta.getId()) {
+			if (v.getIdVenta() == venta.getIdVenta()) {
 
-				v.setId(venta.getId());
+				v.setIdVenta(venta.getIdVenta());
 				v.setCli(venta.getCli());
 				v.setVue(venta.getVue());
 				v.setAero(venta.getAero());
@@ -85,7 +80,7 @@ public class VentaDAOImplArchivo implements IVentaDAO {
 
 		List<Venta> listadoVentas = GetAll();
 
-		listadoVentas.removeIf(o -> o.getId() == venta.getId());
+		listadoVentas.removeIf(o -> o.getIdVenta() == venta.getIdVenta());
 
 		for (Venta v : listadoVentas) {
 
@@ -117,7 +112,7 @@ public class VentaDAOImplArchivo implements IVentaDAO {
 
 		String[] atributos = linea.split(";");
 		Venta venta = new Venta();
-		venta.setId(Integer.valueOf(atributos[0]));
+		venta.setIdVenta(Integer.valueOf(atributos[0]));
 		venta.setCliID(Integer.valueOf(atributos[1]));
 		venta.setVueID(atributos[2]);
 		venta.setAeroID(atributos[3]);
