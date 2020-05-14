@@ -33,7 +33,7 @@ public class Vuelos {
 	}
 
 	public String getAeropuertoSalidaID() {
-		return aeropuertoSalida.getIdAeropuerto();
+		return aeropuertoSalida.getId();
 	}
 
 	public void setAeropuertoSalida(Aeropuerto aeropuertoSalida) {
@@ -41,11 +41,11 @@ public class Vuelos {
 	}
 
 	public void setAeropuertoSalida(String idAeropuerto) {
-		this.aeropuertoSalida.setIdAeropuerto(idAeropuerto);
+		this.aeropuertoSalida.setId(idAeropuerto);
 	}
 
 	public String getAeropuertoLlegadaID() {
-		return aeropuertoLlegada.getIdAeropuerto();
+		return aeropuertoLlegada.getId();
 	}
 
 	public Aeropuerto getAeropuertoLlegada() {
@@ -57,7 +57,7 @@ public class Vuelos {
 	}
 
 	public void setAeropuertoLlegada(String idAeropuerto) {
-		this.aeropuertoLlegada.setIdAeropuerto(idAeropuerto);
+		this.aeropuertoLlegada.setId(idAeropuerto);
 	}
 
 	public Date getFechaHoraSalida() {

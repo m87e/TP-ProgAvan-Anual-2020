@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Cliente {
 
-	private int idCliente;
+	private int id;
 	private String nombre;
 	private String apellido;
 	private String dni;
@@ -16,12 +16,12 @@ public class Cliente {
 	private PasajeroFrecuente pasfre;
 	private DirCompleta dir;
 
-	public int getIdCliente() {
-		return idCliente;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdCliente(int idCliente) {
-		this.idCliente = idCliente;
+	public void setIdCliente(int id) {
+		this.id = id;
 	}
 
 	public String getNombre() {
@@ -120,10 +120,10 @@ public class Cliente {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cliente(int idCliente, String nombre, String apellido, String dni, Pasaporte pas, String cuit, Date fechaNac,
+	public Cliente(int id, String nombre, String apellido, String dni, Pasaporte pas, String cuit, Date fechaNac,
 			String email, Telefono tel, PasajeroFrecuente pasfre, DirCompleta dir) {
 
-		this.idCliente = idCliente;
+		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;
@@ -136,8 +136,8 @@ public class Cliente {
 		this.dir = dir;
 	}
 
-	public void setDirID(int idDirCompleta) {
-		this.dir.setIdDirCompleta(idDirCompleta);
+	public void setDirID(int id) {
+		this.dir.setId(id);
 
 	}
 

@@ -44,9 +44,7 @@ public class AeropuertosDAOImplArchivo implements IAeropuertoDAO {
 
 	private String SaveAeropuerto(Aeropuerto aeropuerto) {
 		// TODO Auto-generated method stub
-		return 		  aeropuerto.getIdAeropuerto() + 
-				";" + aeropuerto.getCiudad() + 
-				"\r\n";
+		return aeropuerto.getId() + ";" + aeropuerto.getCiudad() + "\r\n";
 	}
 
 	@Override
@@ -57,9 +55,9 @@ public class AeropuertosDAOImplArchivo implements IAeropuertoDAO {
 
 		for (Aeropuerto a : listadoAeropuertos) {
 
-			if (a.getIdAeropuerto().equals(oldAeropuerto.getIdAeropuerto())) {
+			if (a.getId().equals(oldAeropuerto.getId())) {
 
-				a.setIdAeropuerto(newAeropuerto.getIdAeropuerto());
+				a.setId(newAeropuerto.getId());
 				a.setCiudad(newAeropuerto.getCiudad());
 
 			}
@@ -75,7 +73,7 @@ public class AeropuertosDAOImplArchivo implements IAeropuertoDAO {
 
 		List<Aeropuerto> listadoAeropuertos = GetAll();
 
-		listadoAeropuertos.removeIf(o -> o.getIdAeropuerto().equals(aeropuerto.getIdAeropuerto()));
+		listadoAeropuertos.removeIf(o -> o.getId().equals(aeropuerto.getId()));
 
 		for (Aeropuerto a : listadoAeropuertos) {
 
@@ -110,7 +108,7 @@ public class AeropuertosDAOImplArchivo implements IAeropuertoDAO {
 		String[] atributos = linea.split(";");
 
 		Aeropuerto aeropuerto = new Aeropuerto();
-		aeropuerto.setIdAeropuerto(atributos[0]);
+		aeropuerto.setId(atributos[0]);
 		aeropuerto.setCiudad(atributos[1]);
 
 		return aeropuerto;

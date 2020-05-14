@@ -2,17 +2,17 @@ package edu.usal.tp.negocio.dao.dominio;
 
 public class PasajeroFrecuente {
 
-	private int idPasFre;
-	private String alianza; // o pasarlo a num
+	private int id;
+	private Alianza alianza;
 	private Aerolinea aerolinea; // ObjetoAerolinea?
 	private String numeroPF;
 	private String categoria;
 
-	public String getAlianza() {
+	public Alianza getAlianza() {
 		return alianza;
 	}
 
-	public void setAlianza(String alianza) {
+	public void setAlianza(Alianza alianza) {
 		this.alianza = alianza;
 	}
 
@@ -40,8 +40,8 @@ public class PasajeroFrecuente {
 		this.categoria = categoria;
 	}
 
-	public PasajeroFrecuente(int idPasFre, String alianza, Aerolinea aerolinea, String numeroPF, String categoria) {
-		this.idPasFre = idPasFre;
+	public PasajeroFrecuente(int id, Alianza alianza, Aerolinea aerolinea, String numeroPF, String categoria) {
+		this.id = id;
 		this.alianza = alianza;
 		this.aerolinea = aerolinea;
 		this.numeroPF = numeroPF;
@@ -57,12 +57,12 @@ public class PasajeroFrecuente {
 
 	}
 
-	public int getIdPasFre() {
-		return idPasFre;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdPasFre(int idPasFre) {
-		this.idPasFre = idPasFre;
+	public void setIdPasFre(int id) {
+		this.id = id;
 	}
 
 }

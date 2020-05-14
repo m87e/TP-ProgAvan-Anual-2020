@@ -4,19 +4,19 @@ import java.util.Date;
 
 public class Venta {
 
-	private int idVenta;
+	private int id;
 	private Cliente cli;
 	private Vuelos vue;
 	private Aerolinea aero;
 	private Date fechaHoraVenta;
 	private String formaPago;
 
-	public int getIdVenta() {
-		return idVenta;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdVenta(int idVenta) {
-		this.idVenta = idVenta;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Cliente getCli() {
@@ -24,7 +24,7 @@ public class Venta {
 	}
 
 	public int getCliID() {
-		return cli.getIdCliente();
+		return cli.getId();
 	}
 
 	public void setCli(Cliente cli) {
@@ -83,9 +83,9 @@ public class Venta {
 		this.formaPago = formaPago;
 	}
 
-	public Venta(int idVenta, Cliente cli, Vuelos vue, Aerolinea aero, Date fechaHoraVenta, String formaPago) {
+	public Venta(int id, Cliente cli, Vuelos vue, Aerolinea aero, Date fechaHoraVenta, String formaPago) {
 
-		this.idVenta = idVenta;
+		this.id = id;
 		this.cli = cli;
 		this.vue = vue;
 		this.aero = aero;

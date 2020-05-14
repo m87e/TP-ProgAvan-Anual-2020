@@ -46,7 +46,7 @@ public class TelefonoDAOImpArchivo implements ITelefonoDAO{
 	}
 
 	private String SaveTelefono(Telefono tel) {
-		return  	  tel.getIdTelefono()  +
+		return  	  tel.getId()  +
 				";" + tel.getNumPersonal() + 
 				";" + tel.getNumLaboral()+
 				";" + tel.getNumCelular() + 
@@ -59,8 +59,8 @@ public class TelefonoDAOImpArchivo implements ITelefonoDAO{
 
 		for (Telefono t : listadoTelefono) {
 
-			if (t.getIdTelefono()==(tel.getIdTelefono())) {
-				t.setID(tel.getIdTelefono());
+			if (t.getId()==(tel.getId())) {
+				t.setID(tel.getId());
 				t.setNumCelular(tel.getNumCelular());
 				t.setNumPersonal(tel.getNumPersonal());
 				t.setNumLaboral(tel.getNumLaboral());
@@ -76,7 +76,7 @@ public class TelefonoDAOImpArchivo implements ITelefonoDAO{
 	public void EliminarTelefono(Telefono tel) throws IOException {
 		List<Telefono> listadoTelefono = GetAll();
 		
-		listadoTelefono.removeIf(o -> o.getIdTelefono()==(tel.getIdTelefono()));
+		listadoTelefono.removeIf(o -> o.getId()==(tel.getId()));
 		
 		for (Telefono t : listadoTelefono) {
 			AgregarTelefono(t);

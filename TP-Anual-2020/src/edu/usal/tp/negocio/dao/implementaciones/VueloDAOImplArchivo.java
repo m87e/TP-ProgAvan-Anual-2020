@@ -48,8 +48,8 @@ public class VueloDAOImplArchivo implements IVuelosDAO {
 	private String SaveVuelos(Vuelos vuelos) {
 		
 		return 		  vuelos.getNumVuelo() + 
-				";" + vuelos.getAeropuertoSalida().getIdAeropuerto() + 
-				";" + vuelos.getAeropuertoLlegada().getIdAeropuerto() + 
+				";" + vuelos.getAeropuertoSalida().getId() + 
+				";" + vuelos.getAeropuertoLlegada().getId() + 
 				";" + vuelos.getFechaHoraSalida().toString() + 
 				";"	+ vuelos.getFechaHoraLlegada().toString() + 
 				";" + vuelos.getTiempoVuelo() + 
