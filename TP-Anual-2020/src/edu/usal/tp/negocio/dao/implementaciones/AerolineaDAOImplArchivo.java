@@ -5,6 +5,7 @@ import java.util.*;
 import java.util.function.Predicate;
 
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
+import edu.usal.tp.negocio.dao.dominio.Alianza;
 import edu.usal.tp.negocio.dao.interfaces.IAerolineaDAO;
 
 public class AerolineaDAOImplArchivo implements IAerolineaDAO {
@@ -37,23 +38,20 @@ public class AerolineaDAOImplArchivo implements IAerolineaDAO {
 	}
 
 	private String SaveAerolinea(Aerolinea aerolinea) {
-		return 	 	  aerolinea.getId() + 
-				";" + aerolinea.getNombre() + 
-				";" + aerolinea.getAlianza() + 
-				"\r\n";
+		return aerolinea.getId() + ";" + aerolinea.getNombre() + ";" + aerolinea.getAlianza() + "\r\n";
 	}
 
 	@Override
-	public void ModificarAerolinea(Aerolinea oldAerolinea, Aerolinea newAerolinea) throws IOException {
+	public void ModificarAerolinea(Aerolinea aerolinea) throws IOException {
 
 		List<Aerolinea> listadoAerolineas = GetAll();
 
 		for (Aerolinea a : listadoAerolineas) {
 
-			if (a.getId().equals(oldAerolinea.getId())) {
-				a.setId(newAerolinea.getId());
-				a.setNombre(newAerolinea.getNombre());
-				a.setAlianza(newAerolinea.getAlianza());
+			if (a.getId().equals(aerolinea.getId())) {
+				a.setId(aerolinea.getId());
+				a.setNombre(aerolinea.getNombre());
+				a.setAlianza(aerolinea.getAlianza());
 			}
 
 			AgregarAerolinea(a);
@@ -100,7 +98,7 @@ public class AerolineaDAOImplArchivo implements IAerolineaDAO {
 		Aerolinea aerolinea = new Aerolinea();
 		aerolinea.setId(atributos[0]);
 		aerolinea.setNombre(atributos[1]);
-		aerolinea.setAlianza(atributos[2]);
+		aerolinea.setAlianza(Alianza.valueOf(atributos[2]));
 
 		return aerolinea;
 	}

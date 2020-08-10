@@ -9,7 +9,7 @@ public interface IAerolineaDAO {
 
 	void AgregarAerolinea(Aerolinea aerolinea) throws IOException;
 
-	void ModificarAerolinea(Aerolinea oldAerolinea, Aerolinea newAerolinea) throws IOException;
+	void ModificarAerolinea(Aerolinea aerolinea) throws IOException;
 
 	void EliminarAerolinea(Aerolinea aerolinea) throws IOException;
 

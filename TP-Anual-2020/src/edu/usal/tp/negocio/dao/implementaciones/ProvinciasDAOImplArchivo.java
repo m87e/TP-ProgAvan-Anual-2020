@@ -45,22 +45,20 @@ public class ProvinciasDAOImplArchivo implements IProvinciasDAO {
 	}
 
 	private String SaveProvincia(Provincias provincia) {
-		return 		  provincia.getId() + 
-				";" + provincia.getNombre() + 
-				"\r\n";
+		return provincia.getId() + ";" + provincia.getNombre() + "\r\n";
 	}
 
 	@Override
-	public void ModificarProvincia(Provincias oldProvincia, Provincias newPovincia) throws IOException {
+	public void ModificarProvincia(Provincias provincia) throws IOException {
 		// TODO Auto-generated method stub
 
 		List<Provincias> listadoProvincias = GetAll();
 
 		for (Provincias p : listadoProvincias) {
 
-			if (p.getId().equals(oldProvincia.getId())) {
-				p.setId(newPovincia.getId());
-				p.setNombre(newPovincia.getNombre());
+			if (p.getId().equals(provincia.getId())) {
+				p.setId(provincia.getId());
+				p.setNombre(provincia.getNombre());
 			}
 
 			AgregarProvincia(p);

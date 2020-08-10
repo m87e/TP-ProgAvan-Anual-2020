@@ -48,17 +48,17 @@ public class AeropuertosDAOImplArchivo implements IAeropuertoDAO {
 	}
 
 	@Override
-	public void ModificarAeropuerto(Aeropuerto oldAeropuerto, Aeropuerto newAeropuerto) throws IOException {
+	public void ModificarAeropuerto(Aeropuerto aeropuerto) throws IOException {
 		// TODO Auto-generated method stub
 
 		List<Aeropuerto> listadoAeropuertos = GetAll();
 
 		for (Aeropuerto a : listadoAeropuertos) {
 
-			if (a.getId().equals(oldAeropuerto.getId())) {
+			if (a.getId().equals(aeropuerto.getId())) {
 
-				a.setId(newAeropuerto.getId());
-				a.setCiudad(newAeropuerto.getCiudad());
+				a.setId(aeropuerto.getId());
+				a.setCiudad(aeropuerto.getCiudad());
 
 			}
 			AgregarAeropuerto(a);

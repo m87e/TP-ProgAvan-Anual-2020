@@ -9,7 +9,7 @@ public interface IAeropuertoDAO {
 
 	void AgregarAeropuerto(Aeropuerto aeropuerto) throws IOException;
 
-	void ModificarAeropuerto(Aeropuerto oldAeropuerto, Aeropuerto newAeropuerto) throws IOException;
+	void ModificarAeropuerto(Aeropuerto aeropuerto) throws IOException;
 
 	void EliminarAeropuerto(Aeropuerto aeropuerto) throws IOException;
 

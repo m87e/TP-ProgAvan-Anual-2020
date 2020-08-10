@@ -30,6 +30,10 @@ public class PropertiesUtil {
 		return properties.getProperty("pathVuelosStream");
 	}
 	
+	public static String obtenerPathAerolineasStream() {
+		return properties.getProperty("pathAerolineasStream");
+	}
+	
 	
 	public static String obtenerSqlUrl() {
 		return properties.getProperty("sqlUrl");

@@ -1,14 +1,13 @@
 package edu.usal.tp.negocio.dao.dominio;
 
+import java.util.List;
+
 public class Aerolinea {
 
 	private String id;
 	private String nombre;
-	private String alianza; // pasarlo a lista (No deberia ser ni un list ni un string
-							// la alianza puede ser solo un nombre, ej OneWorld
-							// y cada aerolinea pertenece a una alianza
-
-	private Vuelos[] vuelo; // pasarlo a lista
+	private Alianza alianza;
+	private List<Vuelos> vuelos;
 
 	public String getId() {
 		return id;
@@ -26,20 +25,20 @@ public class Aerolinea {
 		this.nombre = nombre;
 	}
 
-	public String getAlianza() {
+	public Alianza getAlianza() {
 		return alianza;
 	}
 
-	public void setAlianza(String alianza) {
+	public void setAlianza(Alianza alianza) {
 		this.alianza = alianza;
 	}
 
-	public Vuelos[] getVuelo() {
-		return vuelo;
+	public List<Vuelos> getVuelos() {
+		return vuelos;
 	}
 
-	public void setVuelo(Vuelos[] vuelo) {
-		this.vuelo = vuelo;
+	public void setVuelos(List<Vuelos> vuelo) {
+		this.vuelos = vuelo;
 	}
 
 	public Aerolinea() {
@@ -47,11 +46,11 @@ public class Aerolinea {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Aerolinea(String id, String nombre, String alianza, Vuelos[] vuelo) {
+	public Aerolinea(String id, String nombre, Alianza alianza, List<Vuelos> vuelo) {
 		this.id = id;
 		this.nombre = nombre;
 		this.alianza = alianza;
-		this.vuelo = vuelo;
+		this.vuelos = vuelo;
 	}
 
 }

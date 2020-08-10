@@ -10,7 +10,7 @@ public interface IProvinciasDAO {
 
 	void AgregarProvincia(Provincias provincia) throws IOException;
 
-	void ModificarProvincia(Provincias oldProvincia, Provincias newPovincia) throws IOException;
+	void ModificarProvincia(Provincias provincia) throws IOException;
 
 	void EliminarProvincia(Provincias provincia) throws IOException;
 
