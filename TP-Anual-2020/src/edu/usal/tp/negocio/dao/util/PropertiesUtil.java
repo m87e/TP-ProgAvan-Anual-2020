@@ -24,9 +24,13 @@ public class PropertiesUtil {
 
 	public static String obtenerPathVentasStream() {
 		return properties.getProperty("pathVentasStream");
-
 	}
 
+	public static String obtenerPathVuelosStream() {
+		return properties.getProperty("pathVuelosStream");
+	}
+	
+	
 	public static String obtenerSqlUrl() {
 		return properties.getProperty("sqlUrl");
 	}
