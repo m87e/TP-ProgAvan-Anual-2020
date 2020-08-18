@@ -7,7 +7,6 @@ public class Aerolinea {
 	private String id;
 	private String nombre;
 	private Alianza alianza;
-	private List<Vuelos> vuelos;
 
 	public String getId() {
 		return id;
@@ -33,14 +32,6 @@ public class Aerolinea {
 		this.alianza = alianza;
 	}
 
-	public List<Vuelos> getVuelos() {
-		return vuelos;
-	}
-
-	public void setVuelos(List<Vuelos> vuelo) {
-		this.vuelos = vuelo;
-	}
-
 	public Aerolinea() {
 
 		// TODO Auto-generated constructor stub
@@ -50,7 +41,6 @@ public class Aerolinea {
 		this.id = id;
 		this.nombre = nombre;
 		this.alianza = alianza;
-		this.vuelos = vuelo;
 	}
 
 }
