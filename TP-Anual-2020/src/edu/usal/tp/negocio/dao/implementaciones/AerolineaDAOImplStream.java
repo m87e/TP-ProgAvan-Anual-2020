@@ -52,7 +52,6 @@ public class AerolineaDAOImplStream implements IAerolineaDAO {
 
 				a.setNombre(aerolinea.getNombre());
 				a.setAlianza(aerolinea.getAlianza());
-				a.setVuelos(aerolinea.getVuelos());
 				aux++;
 			}
 		}
