@@ -2,33 +2,12 @@
 CREATE DATABASE TPAnual
 
 
-CREATE TABLE Clientes(
-	cliente_id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	cliente_nombre VARCHAR(255),
-	cliente_apellido VARCHAR(255),
-	cliente_dni INT,
-	cliente_cuit VARCHAR(255),
-	cliente_fechaNac DATE,
-	cliente_email VARCHAR(255),
-	cliente_dirCompletaID INT FOREIGN KEY REFERENCES Direcciones (direccion_id),	
-	cliente_telID INT FOREIGN KEY REFERENCES Telefonos (telefono_id),
-	cliente_pasaporteID INT FOREIGN KEY REFERENCES Pasaportes (pasaporte_id),
-	cliente_pasFreID INT FOREIGN KEY REFERENCES PasajerosFrecuentes (pasajerofrecuente_id)
-);
-
 CREATE TABLE Aerolineas(
 	aerolinea_id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	aerolinea_nombre VARCHAR(255),
 	aerolinea_alianza VARCHAR(255)
 );
 
-CREATE TABLE Aeropuertos(
-	aeropuerto_id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	aeropuerto_codigo VARCHAR(255),
-	aeropuerto_ciudad VARCHAR(255),
-	aeropuerto_provinciaID INT FOREIGN KEY REFERENCES Provincias (provincia_id),
-	aeropuerto_paisID INT FOREIGN KEY REFERENCES Paises (pais_id)
-);
 
 CREATE TABLE Telefonos (
 	telefono_id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
@@ -47,13 +26,12 @@ CREATE TABLE Paises(
 	pais_nombre VARCHAR(255)
 );
 
-CREATE TABLE Ventas(
-	venta_id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	venta_fecha DATE,
-	venta_formaPago VARCHAR(255),
-	venta_clienteID INT FOREIGN KEY REFERENCES Clientes (cliente_id),
-	venta_vueloID INT FOREIGN KEY REFERENCES Vuelos (vuelo_id),
-	venta_aerolineaID INT FOREIGN KEY REFERENCES Aerolineas (aerolinea_id)
+CREATE TABLE Aeropuertos(
+	aeropuerto_id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	aeropuerto_codigo VARCHAR(255),
+	aeropuerto_ciudad VARCHAR(255),
+	aeropuerto_provinciaID INT FOREIGN KEY REFERENCES Provincias (provincia_id),
+	aeropuerto_paisID INT FOREIGN KEY REFERENCES Paises (pais_id)
 );
 
 CREATE TABLE Vuelos(
@@ -94,14 +72,15 @@ CREATE TABLE PasajerosFrecuentes(
 
 	pasajerofrecuente_id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	pasajerofrecuente_alianza VARCHAR(255),
-	pasajerofrecuente_aerolinea INT FOREIGN KEY REFERENCES Aerolineas (aerolinea_id),
+	pasajerofrecuente_aerolineaID INT FOREIGN KEY REFERENCES Aerolineas (aerolinea_id),
 	pasajerofrecuente_numeroPF VARCHAR(255),
 	pasajerofrecuente_categoria VARCHAR(255)
 );
 
 CREATE TABLE Alianzas(
 
-	alianza_nombre VARCHAR(255) IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	alianza_id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	alianza_nombre VARCHAR(255)
 
 );
 
@@ -113,6 +92,28 @@ CREATE TABLE Usuarios(
 	usuario_perfil VARCHAR(255)
 );
 
+CREATE TABLE Clientes(
+	cliente_id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	cliente_nombre VARCHAR(255),
+	cliente_apellido VARCHAR(255),
+	cliente_dni INT,
+	cliente_cuit VARCHAR(255),
+	cliente_fechaNac DATE,
+	cliente_email VARCHAR(255),
+	cliente_dirCompletaID INT FOREIGN KEY REFERENCES Direcciones (direccion_id),	
+	cliente_telID INT FOREIGN KEY REFERENCES Telefonos (telefono_id),
+	cliente_pasaporteID INT FOREIGN KEY REFERENCES Pasaportes (pasaporte_id),
+	cliente_pasFreID INT FOREIGN KEY REFERENCES PasajerosFrecuentes (pasajerofrecuente_id)
+);
+
+CREATE TABLE Ventas(
+	venta_id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	venta_fecha DATE,
+	venta_formaPago VARCHAR(255),
+	venta_clienteID INT FOREIGN KEY REFERENCES Clientes (cliente_id),
+	venta_vueloID INT FOREIGN KEY REFERENCES Vuelos (vuelo_id),
+	venta_aerolineaID INT FOREIGN KEY REFERENCES Aerolineas (aerolinea_id)
+);
 
 
 
