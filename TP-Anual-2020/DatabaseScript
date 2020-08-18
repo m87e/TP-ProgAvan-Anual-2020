@@ -97,7 +97,6 @@ CREATE TABLE PasajerosFrecuentes(
 	pasajerofrecuente_aerolinea INT FOREIGN KEY REFERENCES Aerolineas (aerolinea_id),
 	pasajerofrecuente_numeroPF VARCHAR(255),
 	pasajerofrecuente_categoria VARCHAR(255)
-
 );
 
 CREATE TABLE Alianzas(
