@@ -7,13 +7,13 @@ CREATE TABLE Clientes(
 	cliente_nombre VARCHAR(255),
 	cliente_apellido VARCHAR(255),
 	cliente_dni INT,
-	cliente_pasaporte ??, Hace falta tener una clase pasaporte?
 	cliente_cuit VARCHAR(255),
 	cliente_fechaNac DATE,
 	cliente_email VARCHAR(255),
-	cliente_telID INT FOREIGN KEY REFERENCES Telefonos (telefono_id)
+	cliente_dirCompletaID INT FOREIGN KEY REFERENCES Direcciones (direccion_id),	
+	cliente_telID INT FOREIGN KEY REFERENCES Telefonos (telefono_id),
+	cliente_pasaporteID INT FOREIGN KEY REFERENCES Pasaportes (pasaporte_id),
 	cliente_pasFreID INT FOREIGN KEY REFERENCES PasajerosFrecuentes (pasajerofrecuente_id)
-	cliente_dirCompletaID INT FOREIGN KEY REFERENCES Direcciones (direccion_id)
 );
 
 CREATE TABLE Aerolineas(
@@ -24,6 +24,7 @@ CREATE TABLE Aerolineas(
 
 CREATE TABLE Aeropuertos(
 	aeropuerto_id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	aeropuerto_codigo VARCHAR(255),
 	aeropuerto_ciudad VARCHAR(255),
 	aeropuerto_provinciaID INT FOREIGN KEY REFERENCES Provincias (provincia_id),
 	aeropuerto_paisID INT FOREIGN KEY REFERENCES Paises (pais_id)
@@ -48,11 +49,11 @@ CREATE TABLE Paises(
 
 CREATE TABLE Ventas(
 	venta_id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	venta_clienteId INT FOREIGN KEY REFERENCES Clientes (cliente_id),
-	venta_vueloID INT FOREIGN KEY REFERENCES Vuelos (vuelo_id),
-	venta_aerolineaID INT FOREIGN KEY REFERENCES Aerolineas (aerolinea_id),
 	venta_fecha DATE,
-	venta_formaPago VARCHAR(255)
+	venta_formaPago VARCHAR(255),
+	venta_clienteID INT FOREIGN KEY REFERENCES Clientes (cliente_id),
+	venta_vueloID INT FOREIGN KEY REFERENCES Vuelos (vuelo_id),
+	venta_aerolineaID INT FOREIGN KEY REFERENCES Aerolineas (aerolinea_id)
 );
 
 CREATE TABLE Vuelos(
@@ -60,10 +61,11 @@ CREATE TABLE Vuelos(
 	vuelo_id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	vuelo_numero VARCHAR(255),
 	vuelo_cantAsientos INT,
-	vuelo_aeropuertoSalidaID INT FOREIGN KEY REFERENCES Aeropuertos (aeropuerto_id),
-	vuelo_aeropuertoLlegadaID INT FOREIGN KEY REFERENCES Aeropuertos (aeropuerto_id),
 	vuelo_fechaHoraSalida DATETIME,
-	vuelo_fechaHoraLlegada DATETIME
+	vuelo_fechaHoraLlegada DATETIME,
+	vuelo_aerolineaID INT FOREIGN KEY REFERENCES Aerolineas (aerolinea_id),
+	vuelo_aeropuertoSalidaID INT FOREIGN KEY REFERENCES Aeropuertos (aeropuerto_id),
+	vuelo_aeropuertoLlegadaID INT FOREIGN KEY REFERENCES Aeropuertos (aeropuerto_id)
 	
 );
 
@@ -74,15 +76,25 @@ CREATE TABLE Direcciones(
 	direccion_altura VARCHAR(255),
 	direccion_ciudad VARCHAR(255),
 	direccion_paisID INT FOREIGN KEY REFERENCES Paises (pais_id),
-	direccion_CiudadID INT FOREIGN KEY REFERENCES Provincias (provincia_id),
+	direccion_provinciaID INT FOREIGN KEY REFERENCES Provincias (provincia_id),
 	direccion_codigoPostal VARCHAR(255)
+);
+
+CREATE TABLE Pasaportes(
+
+	pasaporte_id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	pasaporte_numero VARCHAR(255),
+	pasaporte_autEmision VARCHAR(255),
+	pasaporte_fechaEmision DATE,
+	pasaporte_fechaVencimiento DATE,
+	direccion_paisID INT FOREIGN KEY REFERENCES Paises (pais_id)
 );
 
 CREATE TABLE PasajerosFrecuentes(
 
 	pasajerofrecuente_id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	pasajerofrecuente_alianza VARCHAR(255),
-	pasajerofrecuente_aerolinea VARCHAR(255),
+	pasajerofrecuente_aerolinea INT FOREIGN KEY REFERENCES Aerolineas (aerolinea_id),
 	pasajerofrecuente_numeroPF VARCHAR(255),
 	pasajerofrecuente_categoria VARCHAR(255)
 
@@ -94,6 +106,13 @@ CREATE TABLE Alianzas(
 
 );
 
+CREATE TABLE Usuarios(
+
+	usuario_id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	usuario_nombre VARCHAR(255),
+	usuario_clave VARCHAR(255),
+	usuario_perfil VARCHAR(255)
+);
 
 
 
