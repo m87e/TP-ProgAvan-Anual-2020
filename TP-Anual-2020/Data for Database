@@ -48,3 +48,5 @@ VALUES
 	('21', 'Santiago del Estero'),
 	('22', 'Tierra del Fuego'),
 	('23', 'Tucuman');
+	
+SET IDENTITY_INSERT Provincias OFF

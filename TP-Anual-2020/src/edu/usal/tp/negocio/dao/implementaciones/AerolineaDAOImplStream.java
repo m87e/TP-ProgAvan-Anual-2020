@@ -48,7 +48,7 @@ public class AerolineaDAOImplStream implements IAerolineaDAO {
 		List<Aerolinea> listado = GetAll();
 
 		for (Aerolinea a : listado) {
-			if (a.getId().equals(aerolinea.getId())) {
+			if (a.getId() == (aerolinea.getId())) {
 
 				a.setNombre(aerolinea.getNombre());
 				a.setAlianza(aerolinea.getAlianza());

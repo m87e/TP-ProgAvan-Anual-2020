@@ -115,7 +115,7 @@ public class VentaDAOImplArchivo implements IVentaDAO {
 		venta.setId(Integer.valueOf(atributos[0]));
 		venta.setCliID(Integer.valueOf(atributos[1]));
 		venta.setVueID(atributos[2]);
-		venta.setAeroID(atributos[3]);
+		venta.setAeroID(Integer.valueOf(atributos[3]));
 		venta.setFechaHoraVenta(new SimpleDateFormat("dd/MM/yyyy").parse(atributos[4]));
 		venta.setFormaPago(atributos[5]);
 

@@ -2,6 +2,7 @@ package edu.usal.tp.negocio.dao.implementaciones;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,6 +20,39 @@ public class AerolineaDAOImplDatabase implements IAerolineaDAO {
 	public void AgregarAerolinea(Aerolinea aerolinea) throws IOException {
 		// TODO Auto-generated method stub
 
+		Connection con = SQLDatabaseConnection.conectar();
+		PreparedStatement ps = null;
+		Statement stm = null;
+
+		try {
+
+			String sql = "SET IDENTITY_INSERT Aerolineas ON";
+			stm = con.createStatement();
+			stm.execute(sql);
+
+			ps = con.prepareStatement(
+					"INSERT INTO Aerolineas (aerolinea_id, aerolinea_nombre, aerolinea_alianza) values (?,?,?)");
+			ps.setInt(1, aerolinea.getId());
+			ps.setString(2, aerolinea.getNombre());
+			ps.setString(3, aerolinea.getAlianza().toString());
+			ps.executeUpdate();
+
+			String sql1 = "SET IDENTITY_INSERT Aerolineas OFF";
+			stm.execute(sql1);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			try {
+				stm.close();
+				ps.close();
+				con.close();
+				System.out.println("Conexion cerrada");
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
 	}
 
 	@Override
@@ -52,15 +86,13 @@ public class AerolineaDAOImplDatabase implements IAerolineaDAO {
 			while (rs.next()) {
 
 				Aerolinea a = new Aerolinea();
-				a.setId(rs.getString("aerolinea_id"));
+				a.setId(rs.getInt("aerolinea_id"));
 				a.setNombre(rs.getString("aerolinea_nombre"));
-				a.setAlianza(Alianza.valueOf(rs.getString("alianza_id")));
+				a.setAlianza(Alianza.valueOf(rs.getString("aerolinea_alianza")));
 
 				listado.add(a);
 			}
-			stm.close();
-			rs.close();
-			SQLDatabaseConnection.cerrar();
+
 			try {
 				Thread.sleep(8);
 			} catch (InterruptedException e) {
@@ -72,6 +104,15 @@ public class AerolineaDAOImplDatabase implements IAerolineaDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				stm.close();
+				rs.close();
+				con.close();
+				System.out.println("Conexion cerrada");
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 		}
 
 		return listado;

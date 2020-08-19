@@ -21,10 +21,10 @@ public class PasajeroFrecuenteDAOImplArchivo implements IPasajeroFrecuenteDAO {
 	private BufferedWriter archivoBufferWriter;
 	private BufferedReader archivoBufferReader;
 	String path = "C://Users//menrique002//git//USAL-ProgAvanzada-TP-DAO//USAL_TP_ProgAvanz_DAO//PasajeroFrecuente.txt";
-	
+
 	@Override
 	public void AgregarPasarporte(PasajeroFrecuente pasFre) throws IOException {
-		archivo = new File (path);
+		archivo = new File(path);
 
 		if (!archivo.exists()) {
 			archivoWriter = new FileWriter(archivo);
@@ -42,11 +42,8 @@ public class PasajeroFrecuenteDAOImplArchivo implements IPasajeroFrecuenteDAO {
 	}
 
 	private String SavePasajeroFrecuente(PasajeroFrecuente pasFre) {
-		return 		  pasFre.getNumeroPF() +
-				";" + pasFre.getCategoria() + 
-				";" + pasFre.getAlianza()+ 
-				";" + pasFre.getAerolinea().getId()	+ 
-				"\r\n";
+		return pasFre.getNumeroPF() + ";" + pasFre.getCategoria() + ";" + pasFre.getAlianza() + ";"
+				+ pasFre.getAerolinea().getId() + "\r\n";
 	}
 
 	@Override
@@ -55,7 +52,7 @@ public class PasajeroFrecuenteDAOImplArchivo implements IPasajeroFrecuenteDAO {
 
 		for (PasajeroFrecuente pF : listadoPasajeroFrecuente) {
 
-			if (pF.getNumeroPF()==(pasFre.getNumeroPF())) {
+			if (pF.getNumeroPF() == (pasFre.getNumeroPF())) {
 				pF.setNumeroPF(pasFre.getNumeroPF());
 				pF.setCategoria(pasFre.getCategoria());
 				pF.setCategoria(pasFre.getCategoria());
@@ -65,19 +62,21 @@ public class PasajeroFrecuenteDAOImplArchivo implements IPasajeroFrecuenteDAO {
 			AgregarPasarporte(pF);
 
 		}
-		
+
 	}
+
 	@Override
 	public void EliminarPasarporte(PasajeroFrecuente pasFre) throws IOException {
 		List<PasajeroFrecuente> listadoPasajeroFrecuentes = GetAll();
-		
+
 		listadoPasajeroFrecuentes.removeIf(o -> o.getNumeroPF() == pasFre.getNumeroPF());
-		
+
 		for (PasajeroFrecuente pF : listadoPasajeroFrecuentes) {
 			AgregarPasarporte(pF);
 		}
-		
+
 	}
+
 	@Override
 	public List<PasajeroFrecuente> GetAll() throws IOException {
 		archivo = new File(path);
@@ -95,16 +94,16 @@ public class PasajeroFrecuenteDAOImplArchivo implements IPasajeroFrecuenteDAO {
 	}
 
 	private PasajeroFrecuente ParsePasajeroFrecuente(String linea) {
-		
+
 		String[] atributos = linea.split(";");
-		
+
 		PasajeroFrecuente pF = new PasajeroFrecuente();
 
 		pF.setNumeroPF(atributos[0]);
 		pF.setCategoria(atributos[1]);
 		pF.setCategoria(atributos[2]);
-		pF.setAerolineaID(atributos[3]);
-		
+		pF.setAerolineaID(Integer.valueOf(atributos[3]));
+
 		return pF;
 	}
 }

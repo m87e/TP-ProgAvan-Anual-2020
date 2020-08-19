@@ -48,7 +48,7 @@ public class AerolineaDAOImplArchivo implements IAerolineaDAO {
 
 		for (Aerolinea a : listadoAerolineas) {
 
-			if (a.getId().equals(aerolinea.getId())) {
+			if (a.getId() == (aerolinea.getId())) {
 				a.setId(aerolinea.getId());
 				a.setNombre(aerolinea.getNombre());
 				a.setAlianza(aerolinea.getAlianza());
@@ -63,7 +63,7 @@ public class AerolineaDAOImplArchivo implements IAerolineaDAO {
 
 		List<Aerolinea> listadoAerolineas = GetAll();
 
-		listadoAerolineas.removeIf(o -> o.getId().equals(aerolinea.getId()));
+		listadoAerolineas.removeIf(o -> o.getId() == (aerolinea.getId()));
 
 		for (Aerolinea a : listadoAerolineas) {
 
@@ -96,7 +96,7 @@ public class AerolineaDAOImplArchivo implements IAerolineaDAO {
 		String[] atributos = linea.split(";");
 
 		Aerolinea aerolinea = new Aerolinea();
-		aerolinea.setId(atributos[0]);
+		aerolinea.setId(Integer.valueOf(atributos[0]));
 		aerolinea.setNombre(atributos[1]);
 		aerolinea.setAlianza(Alianza.valueOf(atributos[2]));
 

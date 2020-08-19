@@ -55,7 +55,7 @@ public class Venta {
 		return aero;
 	}
 
-	public String getAeroID() {
+	public int getAeroID() {
 		return aero.getId();
 	}
 
@@ -63,7 +63,7 @@ public class Venta {
 		this.aero = aero;
 	}
 
-	public void setAeroID(String id) {
+	public void setAeroID(int id) {
 		this.aero.setId(id);
 	}
 
