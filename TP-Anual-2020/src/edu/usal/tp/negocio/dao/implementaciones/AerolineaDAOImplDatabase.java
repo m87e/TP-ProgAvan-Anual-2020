@@ -59,11 +59,59 @@ public class AerolineaDAOImplDatabase implements IAerolineaDAO {
 	public void ModificarAerolinea(Aerolinea aerolinea) throws IOException {
 		// TODO Auto-generated method stub
 
+		Connection con = SQLDatabaseConnection.conectar();
+		PreparedStatement ps = null;
+
+		try {
+
+			ps = con.prepareStatement(
+					"UPDATE Aerolineas SET aerolinea_nombre=?,aerolinea_alianza=? WHERE aerolinea_id=?");
+
+			ps.setString(1, aerolinea.getNombre());
+			ps.setString(2, aerolinea.getAlianza().toString());
+			ps.setInt(3, aerolinea.getId());
+			ps.executeUpdate();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			try {
+				ps.close();
+				con.close();
+				System.out.println("Conexion cerrada");
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+
 	}
 
 	@Override
 	public void EliminarAerolinea(Aerolinea aerolinea) throws IOException {
 		// TODO Auto-generated method stub
+
+		Connection con = SQLDatabaseConnection.conectar();
+		PreparedStatement ps = null;
+
+		try {
+			ps = con.prepareStatement("DELETE FROM Aerolineas WHERE aerolinea_id=?");
+			ps.setInt(1, aerolinea.getId());
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				con.close();
+				System.out.println("Aerolinea eliminada - Operacion completada");
+
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
 
 	}
 

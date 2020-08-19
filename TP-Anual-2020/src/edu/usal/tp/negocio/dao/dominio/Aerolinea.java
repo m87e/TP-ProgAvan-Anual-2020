@@ -4,15 +4,15 @@ import java.util.List;
 
 public class Aerolinea {
 
-	private String id;
+	private int id;
 	private String nombre;
 	private Alianza alianza;
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -37,7 +37,7 @@ public class Aerolinea {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Aerolinea(String id, String nombre, Alianza alianza, List<Vuelos> vuelo) {
+	public Aerolinea(int id, String nombre, Alianza alianza, List<Vuelos> vuelo) {
 		this.id = id;
 		this.nombre = nombre;
 		this.alianza = alianza;

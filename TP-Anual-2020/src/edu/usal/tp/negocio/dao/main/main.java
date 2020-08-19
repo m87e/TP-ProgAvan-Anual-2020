@@ -29,11 +29,13 @@ public class main {
 		IAerolineaDAO dao = AerolineaFactory.GetImplementatios("database");
 
 		Aerolinea aerolinea = new Aerolinea();
-		aerolinea.setId(3);
-		aerolinea.setNombre("Avianca");
+		aerolinea.setId(2);
+		aerolinea.setNombre("United Airlines");
 		aerolinea.setAlianza(Alianza.StarAlliance);
 
-		dao.AgregarAerolinea(aerolinea);
+		// dao.AgregarAerolinea(aerolinea);
+		// dao.ModificarAerolinea(aerolinea);
+		// dao.EliminarAerolinea(aerolinea);
 
 		List<Aerolinea> listado = dao.GetAll();
 		listado.stream().forEach((p) -> {
