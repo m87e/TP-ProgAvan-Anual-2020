@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Vuelos {
 
+	private int id;
 	private String numVuelo;
 	private Integer cantAsientos;
 	private Aeropuerto aeropuertoSalida;
@@ -11,6 +12,14 @@ public class Vuelos {
 	private Date fechaHoraSalida; // se ingresa
 	private Date fechaHoraLlegada; // se calcula
 	private String tiempoVuelo; // chequearlo con el date que dato suma al date
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getNumVuelo() {
 		return numVuelo;
@@ -89,9 +98,10 @@ public class Vuelos {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Vuelos(String numVuelo, Integer cantAsientos, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoLlegada,
-			Date fechaHoraSalida, Date fechaHoraLlegada, String tiempoVuelo) {
+	public Vuelos(int id, String numVuelo, Integer cantAsientos, Aeropuerto aeropuertoSalida,
+			Aeropuerto aeropuertoLlegada, Date fechaHoraSalida, Date fechaHoraLlegada, String tiempoVuelo) {
 		super();
+		this.id = id;
 		this.numVuelo = numVuelo;
 		this.cantAsientos = cantAsientos;
 		this.aeropuertoSalida = aeropuertoSalida;

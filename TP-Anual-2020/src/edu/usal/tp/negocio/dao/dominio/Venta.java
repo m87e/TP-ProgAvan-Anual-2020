@@ -39,16 +39,16 @@ public class Venta {
 		return vue;
 	}
 
-	public String getVueID() {
-		return vue.getNumVuelo();
+	public int getVueID() {
+		return vue.getId();
 	}
 
 	public void setVue(Vuelos vue) {
 		this.vue = vue;
 	}
 
-	public void setVueID(String id) {
-		this.vue.setNumVuelo(id);
+	public void setVueID(int id) {
+		this.vue.setId(id);
 	}
 
 	public Aerolinea getAero() {

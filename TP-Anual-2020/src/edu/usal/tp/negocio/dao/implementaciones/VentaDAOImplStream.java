@@ -54,7 +54,7 @@ public class VentaDAOImplStream implements IVentaDAO {
 				v.setCli(venta.getCli());
 				v.setFechaHoraVenta(venta.getFechaHoraVenta());
 				v.setFormaPago(venta.getFormaPago());
-				v.setVueID(venta.getVueID());
+				v.setVueID(venta.getId());
 				aux++;
 			}
 		}
