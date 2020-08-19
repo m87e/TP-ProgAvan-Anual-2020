@@ -55,7 +55,7 @@ public class AeropuertosDAOImplArchivo implements IAeropuertoDAO {
 
 		for (Aeropuerto a : listadoAeropuertos) {
 
-			if (a.getId().equals(aeropuerto.getId())) {
+			if (a.getId() == (aeropuerto.getId())) {
 
 				a.setId(aeropuerto.getId());
 				a.setCiudad(aeropuerto.getCiudad());
@@ -73,7 +73,7 @@ public class AeropuertosDAOImplArchivo implements IAeropuertoDAO {
 
 		List<Aeropuerto> listadoAeropuertos = GetAll();
 
-		listadoAeropuertos.removeIf(o -> o.getId().equals(aeropuerto.getId()));
+		listadoAeropuertos.removeIf(o -> o.getId() == (aeropuerto.getId()));
 
 		for (Aeropuerto a : listadoAeropuertos) {
 
@@ -108,7 +108,7 @@ public class AeropuertosDAOImplArchivo implements IAeropuertoDAO {
 		String[] atributos = linea.split(";");
 
 		Aeropuerto aeropuerto = new Aeropuerto();
-		aeropuerto.setId(atributos[0]);
+		aeropuerto.setId(Integer.valueOf(atributos[0]));
 		aeropuerto.setCiudad(atributos[1]);
 
 		return aeropuerto;

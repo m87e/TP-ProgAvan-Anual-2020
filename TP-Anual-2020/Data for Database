@@ -50,3 +50,18 @@ VALUES
 	('23', 'Tucuman');
 	
 SET IDENTITY_INSERT Provincias OFF
+
+SET IDENTITY_INSERT Aeropuertos ON
+
+INSERT INTO Aeropuertos (aeropuerto_id, aeropuerto_codigo, aeropuerto_ciudad, aeropuerto_provinciaID, aeropuerto_paisID)
+VALUES
+('1', 'EZE','Buenos Aires','1','1'),
+('2', 'COR','Ciudad de Cordoba', '5','1'),
+('3', 'BRC','Bariloche','15', '1');
+
+SET IDENTITY_INSERT Aeropuertos OFF
+
+
+
+
+

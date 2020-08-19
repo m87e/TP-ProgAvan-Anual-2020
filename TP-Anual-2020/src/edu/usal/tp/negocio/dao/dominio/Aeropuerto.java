@@ -1,17 +1,17 @@
 package edu.usal.tp.negocio.dao.dominio;
 
 public class Aeropuerto {
-	private String id;
+	private int id;
 	private String codigo;
 	private String ciudad;
 	private Provincias provincia;
 	private Paises pais;
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -47,7 +47,7 @@ public class Aeropuerto {
 		this.pais = pais;
 	}
 
-	public Aeropuerto(String id, String codigo, String ciudad, Provincias provincia, Paises pais) {
+	public Aeropuerto(int id, String codigo, String ciudad, Provincias provincia, Paises pais) {
 
 		this.id = id;
 		this.codigo = codigo;

@@ -23,7 +23,8 @@ public class VueloDAOImplArchivo implements IVuelosDAO {
 	private BufferedWriter archivoBufferWriter;
 	private BufferedReader archivoBufferReader;
 
-	String path = "/Users/juan/Desktop/vuelos.txt"; 
+	String path = "/Users/juan/Desktop/vuelos.txt";
+
 	@Override
 	public void AgregarVuelo(Vuelos vuelos) throws IOException {
 		// TODO Auto-generated method stub
@@ -46,14 +47,10 @@ public class VueloDAOImplArchivo implements IVuelosDAO {
 	}
 
 	private String SaveVuelos(Vuelos vuelos) {
-		
-		return 		  vuelos.getNumVuelo() + 
-				";" + vuelos.getAeropuertoSalida().getId() + 
-				";" + vuelos.getAeropuertoLlegada().getId() + 
-				";" + vuelos.getFechaHoraSalida().toString() + 
-				";"	+ vuelos.getFechaHoraLlegada().toString() + 
-				";" + vuelos.getTiempoVuelo() + 
-				"\r\n";
+
+		return vuelos.getNumVuelo() + ";" + vuelos.getAeropuertoSalida().getId() + ";"
+				+ vuelos.getAeropuertoLlegada().getId() + ";" + vuelos.getFechaHoraSalida().toString() + ";"
+				+ vuelos.getFechaHoraLlegada().toString() + ";" + vuelos.getTiempoVuelo() + "\r\n";
 	}
 
 	@Override
@@ -120,8 +117,8 @@ public class VueloDAOImplArchivo implements IVuelosDAO {
 
 		Vuelos vuelo = new Vuelos();
 		vuelo.setNumVuelo(atributos[0]);
-		vuelo.setAeropuertoSalida(atributos[1]);
-		vuelo.setAeropuertoLlegada(atributos[2]);
+		vuelo.setAeropuertoSalida(Integer.valueOf(atributos[1]));
+		vuelo.setAeropuertoLlegada(Integer.valueOf(atributos[2]));
 		vuelo.setFechaHoraSalida(new SimpleDateFormat("dd/MM/yyyy").parse(atributos[3]));
 		vuelo.setFechaHoraLlegada(new SimpleDateFormat("dd/MM/yyyy").parse(atributos[4]));
 		vuelo.setTiempoVuelo(atributos[5]);

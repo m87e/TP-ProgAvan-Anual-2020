@@ -110,7 +110,6 @@ public class Cliente {
 
 	public void setTelefono(int ID, String numPersonal, String numCelular, String numLaboral) {
 		this.tel.setID(ID);
-		this.tel.setNumPersonal(numPersonal);
 		this.tel.setNumCelular(numCelular);
 		this.tel.setNumLaboral(numLaboral);
 	}
@@ -141,13 +140,12 @@ public class Cliente {
 
 	}
 
-	public void setPasID(String numeroPasaporte) {
-		this.pas.setNumeroPasaporte(numeroPasaporte);
-
+	public void setPasID(int numeroPasaporte) {
+		this.pas.setId(numeroPasaporte);
 	}
 
-	public void setPasfreID(String numeroPF) {
-		this.pasfre.setNumeroPF(numeroPF);
+	public void setPasfreID(int numeroPF) {
+		this.pasfre.setIdPasFre(numeroPF);
 
 	}
 

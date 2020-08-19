@@ -96,7 +96,7 @@ CREATE TABLE Clientes(
 	cliente_id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	cliente_nombre VARCHAR(255),
 	cliente_apellido VARCHAR(255),
-	cliente_dni INT,
+	cliente_dni VARCHAR(255),
 	cliente_cuit VARCHAR(255),
 	cliente_fechaNac DATE,
 	cliente_email VARCHAR(255),

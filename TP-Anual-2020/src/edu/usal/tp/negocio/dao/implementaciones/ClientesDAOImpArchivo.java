@@ -70,8 +70,8 @@ public class ClientesDAOImpArchivo implements IClienteDAO {
 				c.setEmail(cliente.getEmail());
 				c.setDirID(cliente.getDir().getId());
 				c.setFechaNac(cliente.getFechaNac());
-				c.setPasID(cliente.getPas().getNumeroPasaporte());
-				c.setPasfreID(cliente.getPasfre().getNumeroPF());
+				c.setPasID(cliente.getPas().getIdPasaporte());
+				c.setPasfreID(cliente.getPasfre().getId());
 			}
 
 			AgregarCliente(c);
@@ -129,8 +129,8 @@ public class ClientesDAOImpArchivo implements IClienteDAO {
 		c.setEmail(atributos[6]);
 		c.setDirID(Integer.valueOf(atributos[7]));
 		c.setFechaNac(new SimpleDateFormat("dd/MM/yyyy").parse(atributos[8]));
-		c.setPasID(atributos[9]);
-		c.setPasfreID(atributos[10]);
+		c.setPasID(Integer.valueOf(atributos[9]));
+		c.setPasfreID(Integer.valueOf(atributos[10]));
 
 		return c;
 	}
