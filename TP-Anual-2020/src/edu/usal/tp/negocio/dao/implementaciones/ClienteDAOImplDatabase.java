@@ -59,6 +59,7 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 				ps.close();
 				con.close();
 				System.out.println("Cliente agregado - Operacion completada");
+				System.out.println("Conexion cerrada");
 
 			} catch (Exception e2) {
 				// TODO: handle exception
@@ -70,6 +71,40 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 	@Override
 	public void ModificarCliente(Cliente cliente) throws IOException, ParseException {
 		// TODO Auto-generated method stub
+
+		Connection con = SQLDatabaseConnection.conectar();
+		PreparedStatement ps = null;
+
+		try {
+			ps = con.prepareStatement(
+					"UPDATE Clientes SET cliente_nombre=?, cliente_apellido=?, cliente_dni=?, cliente_cuit=?, cliente_fechaNac=?, cliente_email=?, cliente_dirCompletaID=?, cliente_telID=?, cliente_pasaporteID=?, cliente_pasFreID=? WHERE cliente_id=?");
+
+			ps.setString(1, cliente.getNombre());
+			ps.setString(2, cliente.getApellido());
+			ps.setString(3, cliente.getDni());
+			ps.setString(4, cliente.getCuit());
+			ps.setDate(5, (Date) cliente.getFechaNac());
+			ps.setString(6, cliente.getEmail());
+			ps.setInt(7, cliente.getDir().getId());
+			ps.setInt(8, cliente.getTel().getId());
+			ps.setInt(9, cliente.getPas().getIdPasaporte());
+			ps.setInt(10, cliente.getPasfre().getId());
+			ps.setInt(11, cliente.getId());
+			ps.executeUpdate();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			try {
+				ps.close();
+				con.close();
+				System.out.println("Cliente actualizado - Operacion completada");
+				System.out.println("Conexion cerrada");
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
 
 	}
 
@@ -92,6 +127,7 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 				ps.close();
 				con.close();
 				System.out.println("Cliente eliminado - Operacion completada");
+				System.out.println("Conexion cerrada");
 
 			} catch (Exception e2) {
 				// TODO: handle exception
