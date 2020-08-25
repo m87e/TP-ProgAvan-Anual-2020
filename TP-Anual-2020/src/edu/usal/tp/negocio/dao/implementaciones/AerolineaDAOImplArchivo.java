@@ -1,6 +1,7 @@
 package edu.usal.tp.negocio.dao.implementaciones;
 
 import java.io.*;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.function.Predicate;
 
@@ -101,6 +102,12 @@ public class AerolineaDAOImplArchivo implements IAerolineaDAO {
 		aerolinea.setAlianza(Alianza.valueOf(atributos[2]));
 
 		return aerolinea;
+	}
+
+	@Override
+	public Aerolinea ObtenerAerolineaPorID(int aerolineaID) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

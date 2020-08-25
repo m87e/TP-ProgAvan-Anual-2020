@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -120,6 +121,12 @@ public class AerolineaDAOImplStream implements IAerolineaDAO {
 		System.out.println("Aerolineas leidas del archivo: " + lista.size());
 
 		return lista;
+	}
+
+	@Override
+	public Aerolinea ObtenerAerolineaPorID(int aerolineaID) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

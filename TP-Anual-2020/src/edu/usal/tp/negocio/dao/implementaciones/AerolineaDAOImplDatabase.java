@@ -20,12 +20,13 @@ public class AerolineaDAOImplDatabase implements IAerolineaDAO {
 	public void AgregarAerolinea(Aerolinea aerolinea) throws IOException {
 		// TODO Auto-generated method stub
 
-		Connection con = SQLDatabaseConnection.conectar();
+		Connection con = null;
 		PreparedStatement ps = null;
 		Statement stm = null;
 
 		try {
 
+			con = SQLDatabaseConnection.conectar();
 			String sql = "SET IDENTITY_INSERT Aerolineas ON";
 			stm = con.createStatement();
 			stm.execute(sql);
@@ -59,11 +60,11 @@ public class AerolineaDAOImplDatabase implements IAerolineaDAO {
 	public void ModificarAerolinea(Aerolinea aerolinea) throws IOException {
 		// TODO Auto-generated method stub
 
-		Connection con = SQLDatabaseConnection.conectar();
+		Connection con = null;
 		PreparedStatement ps = null;
 
 		try {
-
+			con = SQLDatabaseConnection.conectar();
 			ps = con.prepareStatement(
 					"UPDATE Aerolineas SET aerolinea_nombre=?,aerolinea_alianza=? WHERE aerolinea_id=?");
 
@@ -91,10 +92,12 @@ public class AerolineaDAOImplDatabase implements IAerolineaDAO {
 	public void EliminarAerolinea(Aerolinea aerolinea) throws IOException {
 		// TODO Auto-generated method stub
 
-		Connection con = SQLDatabaseConnection.conectar();
+		Connection con = null;
 		PreparedStatement ps = null;
 
 		try {
+
+			con = SQLDatabaseConnection.conectar();
 			ps = con.prepareStatement("DELETE FROM Aerolineas WHERE aerolinea_id=?");
 			ps.setInt(1, aerolinea.getId());
 			ps.executeUpdate();
@@ -119,7 +122,7 @@ public class AerolineaDAOImplDatabase implements IAerolineaDAO {
 	public List<Aerolinea> GetAll() throws IOException {
 		// TODO Auto-generated method stub
 
-		Connection con = SQLDatabaseConnection.conectar();
+		Connection con = null;
 		List<Aerolinea> listado = new ArrayList<Aerolinea>();
 
 		Statement stm = null;
@@ -128,6 +131,7 @@ public class AerolineaDAOImplDatabase implements IAerolineaDAO {
 		String sql = "SELECT * FROM Aerolineas ORDER BY aerolinea_id";
 
 		try {
+			con = SQLDatabaseConnection.conectar();
 			stm = con.createStatement();
 			rs = stm.executeQuery(sql);
 
@@ -165,6 +169,46 @@ public class AerolineaDAOImplDatabase implements IAerolineaDAO {
 
 		return listado;
 
+	}
+
+	@Override
+	public Aerolinea ObtenerAerolineaPorID(int aerolineaID) throws SQLException {
+		// TODO Auto-generated method stub
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = SQLDatabaseConnection.conectar();
+
+			ps = con.prepareStatement("SELECT * FROM Aerolineas WHERE aerolinea_id=?");
+			ps.setInt(1, aerolineaID);
+			rs = ps.executeQuery();
+
+			Aerolinea a = new Aerolinea();
+			if (rs.next()) {
+				a.setId(rs.getInt("aerolinea_id"));
+				a.setNombre(rs.getString("aerolinea_nombre"));
+				a.setAlianza(Alianza.valueOf(rs.getString("aerolinea_alianza")));
+
+				return a;
+			}
+
+			System.out.println("Aerolinea encontrada - Operacion completada");
+
+		} finally {
+			try {
+				ps.close();
+				rs.close();
+				con.close();
+				System.out.println("La conexión a la DB ha sido cerrada.");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return null;
 	}
 
 }
