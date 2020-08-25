@@ -41,9 +41,9 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 			ps.setString(5, cliente.getCuit());
 			ps.setDate(6, (Date) cliente.getFechaNac());
 			ps.setString(7, cliente.getEmail());
-			ps.setInt(8, cliente.getDir().getId());
+			ps.setInt(8, cliente.getDir().getId()); // llamar a traves de manager (agregar lo del commit adentro del manager), tiene que estar dentro del MVC
 			ps.setInt(9, cliente.getTel().getId());
-			ps.setInt(10, cliente.getPas().getIdPasaporte());
+			ps.setInt(10, cliente.getPas().getIdPasaporte()); // llamar a traves de manager
 			ps.setInt(11, cliente.getPasfre().getId());
 			ps.executeUpdate();
 
