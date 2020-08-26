@@ -2,24 +2,24 @@ package edu.usal.tp.negocio.dao.dominio;
 
 public class Paises {
 
-	private String id;
+	private int id;
 	private String nombre;
 
 	public Paises() {
 
 	}
 
-	public Paises(String id, String nombre) {
+	public Paises(int id, String nombre) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

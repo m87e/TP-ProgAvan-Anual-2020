@@ -135,4 +135,10 @@ public class ClientesDAOImpArchivo implements IClienteDAO {
 		return c;
 	}
 
+	@Override
+	public Cliente ObtenerClientePorDNI(String dni) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

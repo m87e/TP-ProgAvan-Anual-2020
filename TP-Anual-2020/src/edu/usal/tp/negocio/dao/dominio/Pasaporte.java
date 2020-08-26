@@ -52,9 +52,13 @@ public class Pasaporte {
 		this.fechaVencimiento = fechaVencimiento;
 	}
 
-	public void setPaisID(String idPais) {
+	public void setPaisID(int idPais) {
 		this.pais.setId(idPais);
 
+	}
+
+	public int getPaisID() {
+		return this.pais.getId();
 	}
 
 	public int getIdPasaporte() {

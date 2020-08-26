@@ -14,7 +14,7 @@ import edu.usal.tp.negocio.dao.dominio.Cliente;
 import edu.usal.tp.negocio.dao.dominio.Pasaporte;
 import edu.usal.tp.negocio.dao.interfaces.IPasaporteDAO;
 
-public class PasaporteDAOImpArchivo implements IPasaporteDAO{
+public class PasaporteDAOImpArchivo implements IPasaporteDAO {
 
 	private File archivo;
 	private FileWriter archivoWriter;
@@ -22,10 +22,10 @@ public class PasaporteDAOImpArchivo implements IPasaporteDAO{
 	private BufferedWriter archivoBufferWriter;
 	private BufferedReader archivoBufferReader;
 	String path = "C://Users//menrique002//git//USAL-ProgAvanzada-TP-DAO//USAL_TP_ProgAvanz_DAO//Pasaporte.txt";
-	
+
 	@Override
 	public void AgregarPasarporte(Pasaporte pas) throws IOException {
-		archivo = new File (path);
+		archivo = new File(path);
 
 		if (!archivo.exists()) {
 			archivoWriter = new FileWriter(archivo);
@@ -40,22 +40,18 @@ public class PasaporteDAOImpArchivo implements IPasaporteDAO{
 		archivoBufferWriter.write(str);
 		archivoBufferWriter.close();
 		archivoWriter.close();
-		
+
 	}
 
 	private String SavePasaporte(Pasaporte pas) {
-		return		  pas.getNumeroPasaporte() + 
-				";" + pas.getAutoridadEmision() + 
-				";" + pas.getFechaEmision() + 
-				";" + pas.getFechaVencimiento()+
-				";" + pas.getPais().getId()	+ 
-				"\r\n";
+		return pas.getNumeroPasaporte() + ";" + pas.getAutoridadEmision() + ";" + pas.getFechaEmision() + ";"
+				+ pas.getFechaVencimiento() + ";" + pas.getPais().getId() + "\r\n";
 	}
 
 	@Override
 	public void ModificarPasarporte(Pasaporte pas) throws IOException {
 		List<Pasaporte> listadoPasaporte = GetAll();
-		
+
 		for (Pasaporte p : listadoPasaporte) {
 			if (p.getNumeroPasaporte() == pas.getNumeroPasaporte()) {
 				p.setNumeroPasaporte(pas.getNumeroPasaporte());
@@ -65,19 +61,19 @@ public class PasaporteDAOImpArchivo implements IPasaporteDAO{
 				p.setPaisID(pas.getPais().getId());
 			}
 		}
-		
+
 	}
 
 	@Override
 	public void EliminarPasarporte(Pasaporte pas) throws IOException {
 		List<Pasaporte> listadoPasaporte = GetAll();
-		
+
 		listadoPasaporte.removeIf(o -> o.getNumeroPasaporte() == pas.getNumeroPasaporte());
-		
+
 		for (Pasaporte p : listadoPasaporte) {
 			AgregarPasarporte(p);
 		}
-		
+
 	}
 
 	@Override
@@ -99,15 +95,21 @@ public class PasaporteDAOImpArchivo implements IPasaporteDAO{
 
 	private Pasaporte ParsePasaporte(String linea) {
 		String[] atributos = linea.split(";");
-		
+
 		Pasaporte p = new Pasaporte();
 		p.setNumeroPasaporte(atributos[0]);
 		p.setAutoridadEmision(atributos[1]);
 		p.setFechaEmision(Date.valueOf(atributos[2]));
 		p.setFechaVencimiento(Date.valueOf(atributos[3]));
-		p.setPaisID(atributos[4]);
-		
+		p.setPaisID(Integer.valueOf(atributos[4]));
+
 		return p;
+	}
+
+	@Override
+	public Pasaporte ObtenerPasaportePorNumero(String numeroPasaporte) throws IOException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

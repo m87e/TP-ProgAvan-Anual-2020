@@ -65,7 +65,7 @@ CREATE TABLE Pasaportes(
 	pasaporte_autEmision VARCHAR(255),
 	pasaporte_fechaEmision DATE,
 	pasaporte_fechaVencimiento DATE,
-	direccion_paisID INT FOREIGN KEY REFERENCES Paises (pais_id)
+	pasaporte_paisID INT FOREIGN KEY REFERENCES Paises (pais_id)
 );
 
 CREATE TABLE PasajerosFrecuentes(

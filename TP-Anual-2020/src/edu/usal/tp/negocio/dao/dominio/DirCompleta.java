@@ -85,7 +85,7 @@ public class DirCompleta {
 		return provincia;
 	}
 
-	public void setPaisID(String idPais) {
+	public void setPaisID(int idPais) {
 		this.pais.setId(idPais);
 
 	}

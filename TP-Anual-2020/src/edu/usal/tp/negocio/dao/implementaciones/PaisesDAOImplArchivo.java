@@ -36,9 +36,7 @@ public class PaisesDAOImplArchivo implements IPaisesDAO {
 	}
 
 	private String SavePais(Paises pais) {
-		return 		  pais.getId() + 
-				";" + pais.getNombre() + 
-				"\r\n";
+		return pais.getId() + ";" + pais.getNombre() + "\r\n";
 
 	}
 
@@ -49,7 +47,7 @@ public class PaisesDAOImplArchivo implements IPaisesDAO {
 
 		for (Paises p : listadoPaises) {
 
-			if (p.getId().equals(oldPais.getId())) {
+			if (p.getId() == (oldPais.getId())) {
 				p.setId(newPais.getId());
 				p.setNombre(newPais.getNombre());
 			}
@@ -65,7 +63,7 @@ public class PaisesDAOImplArchivo implements IPaisesDAO {
 
 		List<Paises> listadoPaises = GetAll();
 
-		listadoPaises.removeIf(o -> o.getId().equals(pais.getId()));
+		listadoPaises.removeIf(o -> o.getId() == (pais.getId()));
 
 		for (Paises p : listadoPaises) {
 
@@ -98,7 +96,7 @@ public class PaisesDAOImplArchivo implements IPaisesDAO {
 		String[] atributos = linea.split(";");
 
 		Paises pais = new Paises();
-		pais.setId(atributos[0]);
+		pais.setId(Integer.valueOf(atributos[0]));
 		pais.setNombre(atributos[1]);
 
 		return pais;

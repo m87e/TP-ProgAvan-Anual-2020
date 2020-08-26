@@ -5,14 +5,15 @@ import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Pasaporte;
 
-
 public interface IPasaporteDAO {
 
-	void AgregarPasarporte(Pasaporte pas) throws IOException;
+	void AgregarPasarporte(Pasaporte pasaporte) throws IOException;
 
-	void ModificarPasarporte(Pasaporte pas) throws IOException;
+	void ModificarPasarporte(Pasaporte pasaporte) throws IOException;
 
-	void EliminarPasarporte(Pasaporte pas) throws IOException;
+	void EliminarPasarporte(Pasaporte pasaporte) throws IOException;
+
+	Pasaporte ObtenerPasaportePorNumero(String numeroPasaporte) throws IOException;
 
 	List<Pasaporte> GetAll() throws IOException;
 }
