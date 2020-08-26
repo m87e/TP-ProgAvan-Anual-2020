@@ -105,7 +105,7 @@ public class DirCompletaDAOImpArchivo implements IDirCompletaDAO {
 		dC.setCiudad(atributos[3]);
 		dC.setCodigoPostal(atributos[4]);
 		dC.setPaisID(Integer.valueOf(atributos[5]));
-		dC.setProvinciaID(atributos[6]);
+		dC.setProvinciaID(Integer.valueOf(atributos[6]));
 
 		return dC;
 	}

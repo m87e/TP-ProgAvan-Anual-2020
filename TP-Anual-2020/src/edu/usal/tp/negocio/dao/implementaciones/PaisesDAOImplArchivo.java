@@ -103,4 +103,10 @@ public class PaisesDAOImplArchivo implements IPaisesDAO {
 
 	}
 
+	@Override
+	public Paises ObtenerPaisPorID(int id) throws IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

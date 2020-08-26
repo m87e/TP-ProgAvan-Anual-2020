@@ -1,14 +1,15 @@
 package edu.usal.tp.negocio.dao.dominio;
 
 public class Provincias {
-	private String id;
+
+	private int id;
 	private String nombre;
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -20,7 +21,7 @@ public class Provincias {
 		this.nombre = nombre;
 	}
 
-	public Provincias(String id, String nombre) {
+	public Provincias(int id, String nombre) {
 		this.id = id;
 		this.nombre = nombre;
 	}

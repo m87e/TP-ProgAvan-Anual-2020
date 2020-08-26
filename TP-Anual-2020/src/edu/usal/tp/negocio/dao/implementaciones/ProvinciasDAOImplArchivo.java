@@ -56,7 +56,7 @@ public class ProvinciasDAOImplArchivo implements IProvinciasDAO {
 
 		for (Provincias p : listadoProvincias) {
 
-			if (p.getId().equals(provincia.getId())) {
+			if (p.getId() == (provincia.getId())) {
 				p.setId(provincia.getId());
 				p.setNombre(provincia.getNombre());
 			}
@@ -72,7 +72,7 @@ public class ProvinciasDAOImplArchivo implements IProvinciasDAO {
 
 		List<Provincias> listadoProvincias = GetAll();
 
-		listadoProvincias.removeIf(o -> o.getId().equals(provincia.getId()));
+		listadoProvincias.removeIf(o -> o.getId() == (provincia.getId()));
 
 		for (Provincias p : listadoProvincias) {
 			AgregarProvincia(p);
@@ -104,10 +104,16 @@ public class ProvinciasDAOImplArchivo implements IProvinciasDAO {
 		String[] atributos = linea.split(";");
 
 		Provincias provincia = new Provincias();
-		provincia.setId(atributos[0]);
+		provincia.setId(Integer.valueOf(atributos[0]));
 		provincia.setNombre(atributos[1]);
 
 		return provincia;
+	}
+
+	@Override
+	public Provincias ObtenerProvinciaPorID(int id) throws IOException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

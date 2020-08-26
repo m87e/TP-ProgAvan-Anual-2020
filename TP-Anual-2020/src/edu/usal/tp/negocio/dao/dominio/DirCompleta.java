@@ -90,7 +90,7 @@ public class DirCompleta {
 
 	}
 
-	public void setProvinciaID(String idProvincia) {
+	public void setProvinciaID(int idProvincia) {
 		this.provincia.setId(idProvincia);
 
 	}

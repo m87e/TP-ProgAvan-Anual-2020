@@ -13,6 +13,8 @@ public interface IPaisesDAO {
 
 	void EliminarPais(Paises pais) throws IOException;
 
+	Paises ObtenerPaisPorID(int id) throws IOException;
+
 	List<Paises> GetAll() throws IOException;
 
 }

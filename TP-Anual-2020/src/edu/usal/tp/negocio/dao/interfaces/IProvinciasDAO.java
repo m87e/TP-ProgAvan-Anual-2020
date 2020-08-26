@@ -14,6 +14,8 @@ public interface IProvinciasDAO {
 
 	void EliminarProvincia(Provincias provincia) throws IOException;
 
+	Provincias ObtenerProvinciaPorID(int id) throws IOException;
+
 	List<Provincias> GetAll() throws IOException;
 
 }

@@ -228,6 +228,8 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 
 			System.out.println("Cliente encontrado - Operacion completada");
 
+		} catch (Exception e) {
+			// TODO: handle exception
 		} finally {
 			try {
 				ps.close();
