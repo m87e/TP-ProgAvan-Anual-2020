@@ -7,11 +7,11 @@ import edu.usal.tp.negocio.dao.dominio.Pasaporte;
 
 public interface IPasaporteDAO {
 
-	void AgregarPasarporte(Pasaporte pasaporte) throws IOException;
+	void AgregarPasaporte(Pasaporte pasaporte) throws IOException;
 
-	void ModificarPasarporte(Pasaporte pasaporte) throws IOException;
+	void ModificarPasaporte(Pasaporte pasaporte) throws IOException;
 
-	void EliminarPasarporte(Pasaporte pasaporte) throws IOException;
+	void EliminarPasaporte(Pasaporte pasaporte) throws IOException;
 
 	Pasaporte ObtenerPasaportePorNumero(String numeroPasaporte) throws IOException;
 

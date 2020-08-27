@@ -16,7 +16,7 @@ import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 public class PasaporteDAOImplDatabase implements IPasaporteDAO {
 
 	@Override
-	public void AgregarPasarporte(Pasaporte pasaporte) throws IOException {
+	public void AgregarPasaporte(Pasaporte pasaporte) throws IOException {
 		// TODO Auto-generated method stub
 
 		Connection con = SQLDatabaseConnection.conectar();
@@ -62,7 +62,7 @@ public class PasaporteDAOImplDatabase implements IPasaporteDAO {
 	}
 
 	@Override
-	public void ModificarPasarporte(Pasaporte pasaporte) throws IOException {
+	public void ModificarPasaporte(Pasaporte pasaporte) throws IOException {
 		// TODO Auto-generated method stub
 
 		Connection con = null;
@@ -102,7 +102,7 @@ public class PasaporteDAOImplDatabase implements IPasaporteDAO {
 	}
 
 	@Override
-	public void EliminarPasarporte(Pasaporte pasaporte) throws IOException {
+	public void EliminarPasaporte(Pasaporte pasaporte) throws IOException {
 		// TODO Auto-generated method stub
 		Connection con = null;
 		PreparedStatement ps = null;

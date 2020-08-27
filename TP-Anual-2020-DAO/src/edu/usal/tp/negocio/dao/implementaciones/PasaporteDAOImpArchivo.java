@@ -24,7 +24,7 @@ public class PasaporteDAOImpArchivo implements IPasaporteDAO {
 	String path = "C://Users//menrique002//git//USAL-ProgAvanzada-TP-DAO//USAL_TP_ProgAvanz_DAO//Pasaporte.txt";
 
 	@Override
-	public void AgregarPasarporte(Pasaporte pas) throws IOException {
+	public void AgregarPasaporte(Pasaporte pas) throws IOException {
 		archivo = new File(path);
 
 		if (!archivo.exists()) {
@@ -49,7 +49,7 @@ public class PasaporteDAOImpArchivo implements IPasaporteDAO {
 	}
 
 	@Override
-	public void ModificarPasarporte(Pasaporte pas) throws IOException {
+	public void ModificarPasaporte(Pasaporte pas) throws IOException {
 		List<Pasaporte> listadoPasaporte = GetAll();
 
 		for (Pasaporte p : listadoPasaporte) {
@@ -65,13 +65,13 @@ public class PasaporteDAOImpArchivo implements IPasaporteDAO {
 	}
 
 	@Override
-	public void EliminarPasarporte(Pasaporte pas) throws IOException {
+	public void EliminarPasaporte(Pasaporte pas) throws IOException {
 		List<Pasaporte> listadoPasaporte = GetAll();
 
 		listadoPasaporte.removeIf(o -> o.getNumeroPasaporte() == pas.getNumeroPasaporte());
 
 		for (Pasaporte p : listadoPasaporte) {
-			AgregarPasarporte(p);
+			AgregarPasaporte(p);
 		}
 
 	}

@@ -57,6 +57,10 @@ public class PasajeroFrecuente {
 
 	}
 
+	public int getAerolineaID() {
+		return this.aerolinea.getId();
+	}
+
 	public int getId() {
 		return id;
 	}

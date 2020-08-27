@@ -133,4 +133,16 @@ public class VueloDAOImplStream implements IVuelosDAO {
 		return lista;
 	}
 
+	@Override
+	public Vuelos ObtenerVueloPorID(int id) throws IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Vuelos ObtenerVuelosPorNumero(String numVuelo) throws IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

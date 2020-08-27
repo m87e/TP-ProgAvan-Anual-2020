@@ -23,7 +23,7 @@ public class PasajeroFrecuenteDAOImplArchivo implements IPasajeroFrecuenteDAO {
 	String path = "C://Users//menrique002//git//USAL-ProgAvanzada-TP-DAO//USAL_TP_ProgAvanz_DAO//PasajeroFrecuente.txt";
 
 	@Override
-	public void AgregarPasarporte(PasajeroFrecuente pasFre) throws IOException {
+	public void AgregarPasajeroFrecuente(PasajeroFrecuente pasFre) throws IOException {
 		archivo = new File(path);
 
 		if (!archivo.exists()) {
@@ -47,7 +47,7 @@ public class PasajeroFrecuenteDAOImplArchivo implements IPasajeroFrecuenteDAO {
 	}
 
 	@Override
-	public void ModificarPasarporte(PasajeroFrecuente pasFre) throws IOException {
+	public void ModificarPasajeroFrecuente(PasajeroFrecuente pasFre) throws IOException {
 		List<PasajeroFrecuente> listadoPasajeroFrecuente = GetAll();
 
 		for (PasajeroFrecuente pF : listadoPasajeroFrecuente) {
@@ -59,20 +59,20 @@ public class PasajeroFrecuenteDAOImplArchivo implements IPasajeroFrecuenteDAO {
 				pF.setAerolineaID(pasFre.getAerolinea().getId());
 			}
 
-			AgregarPasarporte(pF);
+			AgregarPasajeroFrecuente(pF);
 
 		}
 
 	}
 
 	@Override
-	public void EliminarPasarporte(PasajeroFrecuente pasFre) throws IOException {
+	public void EliminarPasajeroFrecuente(PasajeroFrecuente pasFre) throws IOException {
 		List<PasajeroFrecuente> listadoPasajeroFrecuentes = GetAll();
 
 		listadoPasajeroFrecuentes.removeIf(o -> o.getNumeroPF() == pasFre.getNumeroPF());
 
 		for (PasajeroFrecuente pF : listadoPasajeroFrecuentes) {
-			AgregarPasarporte(pF);
+			AgregarPasajeroFrecuente(pF);
 		}
 
 	}
@@ -105,5 +105,11 @@ public class PasajeroFrecuenteDAOImplArchivo implements IPasajeroFrecuenteDAO {
 		pF.setAerolineaID(Integer.valueOf(atributos[3]));
 
 		return pF;
+	}
+
+	@Override
+	public PasajeroFrecuente ObtenerPasajeroFrecuentePorID(int id) throws IOException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

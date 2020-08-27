@@ -14,6 +14,10 @@ public interface IVuelosDAO {
 
 	void EliminarVuelo(Vuelos vuelos) throws IOException, ParseException;
 
+	Vuelos ObtenerVueloPorID(int id) throws IOException;
+
+	Vuelos ObtenerVuelosPorNumero(String numVuelo) throws IOException;
+
 	List<Vuelos> GetAll() throws IOException, ParseException;
 
 }
