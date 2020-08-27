@@ -130,7 +130,7 @@ public class PasajeroFrecuenteDAOImplDatabase implements IPasajeroFrecuenteDAO {
 	}
 
 	@Override
-	public PasajeroFrecuente ObtenerPasajeroFrecuentePorID(int id) throws IOException, SQLException {
+	public PasajeroFrecuente ObtenerPasajeroFrecuentePorID(int id) throws IOException {
 		// TODO Auto-generated method stub
 
 		Connection con = null;
@@ -158,6 +158,8 @@ public class PasajeroFrecuenteDAOImplDatabase implements IPasajeroFrecuenteDAO {
 			}
 			System.out.println("Pasajero frecuente encontrado - Operacion completada");
 
+		} catch (Exception e) {
+			// TODO: handle exception
 		} finally {
 			try {
 				ps.close();

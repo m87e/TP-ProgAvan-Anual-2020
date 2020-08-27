@@ -39,12 +39,28 @@ public class Aeropuerto {
 		this.provincia = provincia;
 	}
 
+	public void setProvinciaID(int id) {
+		this.provincia.setId(id);
+	}
+
+	public int getProvinciaID() {
+		return this.provincia.getId();
+	}
+
 	public Paises getPais() {
 		return pais;
 	}
 
 	public void setPais(Paises pais) {
 		this.pais = pais;
+	}
+
+	public void setPaisID(int id) {
+		this.pais.setId(id);
+	}
+
+	public int getPaisID() {
+		return this.pais.getId();
 	}
 
 	public Aeropuerto(int id, String codigo, String ciudad, Provincias provincia, Paises pais) {

@@ -114,4 +114,10 @@ public class AeropuertosDAOImplArchivo implements IAeropuertoDAO {
 		return aeropuerto;
 	}
 
+	@Override
+	public Aeropuerto ObtenerAeropuertoPorID(int id) throws IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

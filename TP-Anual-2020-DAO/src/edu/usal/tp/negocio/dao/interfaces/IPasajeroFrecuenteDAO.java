@@ -14,7 +14,7 @@ public interface IPasajeroFrecuenteDAO {
 
 	void EliminarPasajeroFrecuente(PasajeroFrecuente pasFre) throws IOException;
 
-	PasajeroFrecuente ObtenerPasajeroFrecuentePorID(int id) throws IOException, SQLException;
+	PasajeroFrecuente ObtenerPasajeroFrecuentePorID(int id) throws IOException;
 
 	List<PasajeroFrecuente> GetAll() throws IOException;
 }
