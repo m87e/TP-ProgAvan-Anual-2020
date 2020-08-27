@@ -197,6 +197,8 @@ public class AerolineaDAOImplDatabase implements IAerolineaDAO {
 
 			System.out.println("Aerolinea encontrada - Operacion completada");
 
+		} catch (Exception e) {
+			// TODO: handle exception
 		} finally {
 			try {
 				ps.close();

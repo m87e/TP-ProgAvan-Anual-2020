@@ -12,7 +12,7 @@ CREATE TABLE Aerolineas(
 CREATE TABLE Telefonos (
 	telefono_id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	telefono_numPersonal VARCHAR(255),
-	telefono_numPelular VARCHAR(255),
+	telefono_numCelular VARCHAR(255),
 	telefono_numLaboral VARCHAR(255)
 );
 

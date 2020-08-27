@@ -111,4 +111,10 @@ public class TelefonoDAOImpArchivo implements ITelefonoDAO{
 		
 		return telefono;
 	}
+
+	@Override
+	public Telefono ObtenerTelefonoPorID(int id) throws IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

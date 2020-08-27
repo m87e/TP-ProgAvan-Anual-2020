@@ -13,5 +13,7 @@ public interface ITelefonoDAO {
 
 	void EliminarTelefono(Telefono tel) throws IOException;
 
+	Telefono ObtenerTelefonoPorID(int id) throws IOException;
+
 	List<Telefono> GetAll() throws IOException;
 }
