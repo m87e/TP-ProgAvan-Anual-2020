@@ -22,30 +22,23 @@ public class AerolineaDAOImplDatabase implements IAerolineaDAO {
 
 		Connection con = null;
 		PreparedStatement ps = null;
-		Statement stm = null;
 
 		try {
 
 			con = SQLDatabaseConnection.conectar();
-			String sql = "SET IDENTITY_INSERT Aerolineas ON";
-			stm = con.createStatement();
-			stm.execute(sql);
-
+	
 			ps = con.prepareStatement(
-					"INSERT INTO Aerolineas (aerolinea_id, aerolinea_nombre, aerolinea_alianza) values (?,?,?)");
-			ps.setInt(1, aerolinea.getId());
-			ps.setString(2, aerolinea.getNombre());
-			ps.setString(3, aerolinea.getAlianza().toString());
+					"INSERT INTO Aerolineas (aerolinea_nombre, aerolinea_alianza) values (?,?)");
+			
+			ps.setString(1, aerolinea.getNombre());
+			ps.setString(2, aerolinea.getAlianza().toString());
 			ps.executeUpdate();
 
-			String sql1 = "SET IDENTITY_INSERT Aerolineas OFF";
-			stm.execute(sql1);
-
+	
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
 			try {
-				stm.close();
 				ps.close();
 				con.close();
 				System.out.println("Conexion cerrada");

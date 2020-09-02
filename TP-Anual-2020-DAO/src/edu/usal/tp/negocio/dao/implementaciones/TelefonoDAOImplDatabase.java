@@ -21,31 +21,23 @@ public class TelefonoDAOImplDatabase implements ITelefonoDAO {
 
 		Connection con = null;
 		PreparedStatement ps = null;
-		Statement stm = null;
 
 		try {
 
 			con = SQLDatabaseConnection.conectar();
-			String sql = "SET IDENTITY_INSERT Telefonos ON";
-			stm = con.createStatement();
-			stm.execute(sql);
-
+		
 			ps = con.prepareStatement(
-					"INSERT INTO Telefonos (telefono_id, telefono_numPersonal, telefono_numCelular, telefono_numLaboral) values (?,?,?,?)");
-			ps.setInt(1, tel.getId());
-			ps.setString(2, tel.getNumPersonal());
-			ps.setString(3, tel.getNumCelular());
-			ps.setString(4, tel.getNumLaboral());
+					"INSERT INTO Telefonos (telefono_numPersonal, telefono_numCelular, telefono_numLaboral) values (?,?,?)");
+			ps.setString(1, tel.getNumPersonal());
+			ps.setString(2, tel.getNumCelular());
+			ps.setString(3, tel.getNumLaboral());
 			ps.executeUpdate();
 
-			String sql1 = "SET IDENTITY_INSERT Telefonos OFF";
-			stm.execute(sql1);
 
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
 			try {
-				stm.close();
 				ps.close();
 				con.close();
 				System.out.println("Conexion cerrada");

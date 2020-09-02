@@ -24,41 +24,33 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 
 		Connection con = null;
 		PreparedStatement ps = null;
-		Statement stm = null;
+		
 
 		try {
 
-			con = SQLDatabaseConnection.conectar();
-			String sql = "SET IDENTITY_INSERT Clientes ON";
-			stm = con.createStatement();
-			stm.execute(sql);
-
+		
 			ps = con.prepareStatement(
-					"INSERT INTO Clientes (cliente_id, cliente_nombre, cliente_apellido, cliente_dni, cliente_cuit, cliente_fechaNac, cliente_email, cliente_dirCompletaID, cliente_telID, cliente_pasaporteID, cliente_pasFreID) values (?,?,?,?,?,?,?,?,?,?,?)");
+					"INSERT INTO Clientes (cliente_nombre, cliente_apellido, cliente_dni, cliente_cuit, cliente_fechaNac, cliente_email, cliente_dirCompletaID, cliente_telID, cliente_pasaporteID, cliente_pasFreID) values (?,?,?,?,?,?,?,?,?,?)");
 
-			ps.setInt(1, cliente.getId());
-			ps.setString(2, cliente.getNombre());
-			ps.setString(3, cliente.getApellido());
-			ps.setString(4, cliente.getDni());
-			ps.setString(5, cliente.getCuit());
-			ps.setDate(6, (Date) cliente.getFechaNac());
-			ps.setString(7, cliente.getEmail());
-			ps.setInt(8, cliente.getDir().getId()); // llamar a traves de manager (agregar lo del commit adentro del
+			ps.setString(1, cliente.getNombre());
+			ps.setString(2, cliente.getApellido());
+			ps.setString(3, cliente.getDni());
+			ps.setString(4, cliente.getCuit());
+			ps.setDate(5, (Date) cliente.getFechaNac());
+			ps.setString(6, cliente.getEmail());
+			ps.setInt(7, cliente.getDir().getId()); // llamar a traves de manager (agregar lo del commit adentro del
 													// manager), tiene que estar dentro del MVC
-			ps.setInt(9, cliente.getTel().getId());
-			ps.setInt(10, cliente.getPas().getIdPasaporte()); // llamar a traves de manager
-			ps.setInt(11, cliente.getPasfre().getId());
+			ps.setInt(8, cliente.getTel().getId());
+			ps.setInt(9, cliente.getPas().getIdPasaporte()); // llamar a traves de manager
+			ps.setInt(10, cliente.getPasfre().getId());
 			ps.executeUpdate();
 
-			String sql1 = "SET IDENTITY_INSERT Clientes OFF";
-			stm.execute(sql1);
-
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
-				stm.close();
 				ps.close();
 				con.close();
 				System.out.println("Cliente agregado - Operacion completada");
