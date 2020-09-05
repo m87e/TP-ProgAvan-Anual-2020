@@ -5,7 +5,7 @@ import edu.usal.tp.negocio.dao.implementaciones.AeropuertosDAOImplDatabase;
 import edu.usal.tp.negocio.dao.interfaces.IAeropuertoDAO;
 
 public class AeropuertoFactory {
-	public static IAeropuertoDAO GetImplementatios(String source) {
+	public static IAeropuertoDAO GetImplementation(String source) {
 		if (source.equals("Archivo")) {
 			return new AeropuertosDAOImplArchivo();
 		}

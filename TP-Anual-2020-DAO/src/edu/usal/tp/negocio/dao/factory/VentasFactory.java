@@ -5,7 +5,7 @@ import edu.usal.tp.negocio.dao.implementaciones.VentaDAOImplDatabase;
 import edu.usal.tp.negocio.dao.interfaces.IVentaDAO;
 
 public class VentasFactory {
-	public static IVentaDAO GetImplementatios(String source) {
+	public static IVentaDAO GetImplementation(String source) {
 		if (source.equals("Archivo")) {
 			return new VentaDAOImplArchivo();
 		}

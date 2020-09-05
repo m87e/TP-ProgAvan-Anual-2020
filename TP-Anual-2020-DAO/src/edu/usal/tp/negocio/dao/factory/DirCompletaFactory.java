@@ -5,7 +5,7 @@ import edu.usal.tp.negocio.dao.interfaces.IDirCompletaDAO;
 
 public class DirCompletaFactory {
 
-	public static IDirCompletaDAO GetImplementatios (String source) {
+	public static IDirCompletaDAO GetImplementation (String source) {
 		if (source.equals("Archivo")) {
 			return new DirCompletaDAOImpArchivo();
 		}

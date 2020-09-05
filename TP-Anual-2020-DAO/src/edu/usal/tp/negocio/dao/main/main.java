@@ -26,7 +26,7 @@ public class main {
 
 	public static void main(String[] args) throws IOException {
 
-		IAerolineaDAO dao = AerolineaFactory.GetImplementatios("database");
+		IAerolineaDAO dao = AerolineaFactory.GetImplementation("database");
 
 		Aerolinea aerolinea = new Aerolinea();
 		aerolinea.setId(2);

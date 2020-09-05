@@ -5,7 +5,7 @@ import edu.usal.tp.negocio.dao.implementaciones.PasaporteDAOImplDatabase;
 import edu.usal.tp.negocio.dao.interfaces.IPasaporteDAO;
 
 public class PasaporteFactory {
-	public static IPasaporteDAO GetImplementatios(String source) {
+	public static IPasaporteDAO GetImplementation(String source) {
 		if (source.equals("Archivo")) {
 			return new PasaporteDAOImpArchivo();
 		}

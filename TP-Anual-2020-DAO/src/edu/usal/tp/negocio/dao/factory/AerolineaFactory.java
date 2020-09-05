@@ -5,7 +5,7 @@ import edu.usal.tp.negocio.dao.implementaciones.AerolineaDAOImplDatabase;
 import edu.usal.tp.negocio.dao.interfaces.IAerolineaDAO;
 
 public class AerolineaFactory {
-	public static IAerolineaDAO GetImplementatios(String source) {
+	public static IAerolineaDAO GetImplementation(String source) {
 		if (source.equals("Archivo")) {
 			return new AerolineaDAOImplArchivo();
 		}

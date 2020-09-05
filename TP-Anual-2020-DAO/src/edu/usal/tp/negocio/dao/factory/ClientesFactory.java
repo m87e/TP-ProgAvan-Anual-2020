@@ -6,7 +6,7 @@ import edu.usal.tp.negocio.dao.interfaces.IClienteDAO;
 
 public class ClientesFactory {
 
-	public static IClienteDAO GetImplementatios(String source) {
+	public static IClienteDAO GetImplementation(String source) {
 		if (source.equals("Archivo")) {
 			return new ClientesDAOImpArchivo();
 		}
