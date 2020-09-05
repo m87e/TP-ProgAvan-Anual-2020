@@ -1,4 +1,4 @@
-package edu.usal.Controllers;
+package edu.usal.controllers;
 
 public class ClienteController {
 

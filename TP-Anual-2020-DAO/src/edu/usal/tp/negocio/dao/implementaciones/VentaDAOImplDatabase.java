@@ -22,33 +22,27 @@ public class VentaDAOImplDatabase implements IVentaDAO {
 		// TODO Auto-generated method stub
 		Connection con = SQLDatabaseConnection.conectar();
 		PreparedStatement ps = null;
-		Statement stm = null;
+	
 
 		try {
 
-			String sql = "SET IDENTITY_INSERT Ventas ON";
-			stm = con.createStatement();
-			stm.execute(sql);
-
+	
 			ps = con.prepareStatement(
-					"INSERT INTO Ventas (venta_id, venta_fecha, venta_formaPago, venta_clienteID, venta_vueloID, venta_aerolineaID) values (?,?,?,?,?,?)");
+					"INSERT INTO Ventas (venta_fecha, venta_formaPago, venta_clienteID, venta_vueloID, venta_aerolineaID) values (?,?,?,?,?)");
 
-			ps.setInt(1, venta.getId());
-			ps.setDate(2, (Date) venta.getFechaHoraVenta());
-			ps.setString(3, venta.getFormaPago());
-			ps.setInt(4, venta.getCliID());
-			ps.setInt(5, venta.getVueID());
-			ps.setInt(6, venta.getAeroID());
+			ps.setDate(1, (Date) venta.getFechaHoraVenta());
+			ps.setString(2, venta.getFormaPago());
+			ps.setInt(3, venta.getCliID());
+			ps.setInt(4, venta.getVueID());
+			ps.setInt(5, venta.getAeroID());
 			ps.executeUpdate();
 
-			String sql1 = "SET IDENTITY_INSERT Ventas OFF";
-			stm.execute(sql1);
 
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
 			try {
-				stm.close();
+				
 				ps.close();
 				con.close();
 				System.out.println("Venta agregada - Operacion completada");

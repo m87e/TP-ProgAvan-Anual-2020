@@ -21,18 +21,14 @@ public class PasaporteDAOImplDatabase implements IPasaporteDAO {
 
 		Connection con = SQLDatabaseConnection.conectar();
 		PreparedStatement ps = null;
-		Statement stm = null;
 
 		try {
 
-			String sql = "SET IDENTITY_INSERT Pasaportes ON";
-			stm = con.createStatement();
-			stm.execute(sql);
-
+		
 			ps = con.prepareStatement(
-					"INSERT INTO Pasaportes (pasaporte_id, pasaporte_numero, pasaporte_autEmision, pasaporte_fechaEmision, pasaporte_fechaVencimiento, pasaporte_paisID) values (?,?,?,?,?,?)");
+					"INSERT INTO Pasaportes (pasaporte_numero, pasaporte_autEmision, pasaporte_fechaEmision, pasaporte_fechaVencimiento, pasaporte_paisID) values (?,?,?,?,?)");
 
-			ps.setInt(1, pasaporte.getIdPasaporte());
+			
 			ps.setString(2, pasaporte.getNumeroPasaporte());
 			ps.setString(3, pasaporte.getAutoridadEmision());
 			ps.setDate(4, (java.sql.Date) pasaporte.getFechaVencimiento());
@@ -40,14 +36,11 @@ public class PasaporteDAOImplDatabase implements IPasaporteDAO {
 			ps.setInt(6, pasaporte.getPaisID());
 			ps.executeUpdate();
 
-			String sql1 = "SET IDENTITY_INSERT Pasaportes OFF";
-			stm.execute(sql1);
-
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
 			try {
-				stm.close();
 				ps.close();
 				con.close();
 				System.out.println("Pasaporte agregado - Operacion completada");

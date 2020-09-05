@@ -21,34 +21,29 @@ public class PasajeroFrecuenteDAOImplDatabase implements IPasajeroFrecuenteDAO {
 		// TODO Auto-generated method stub
 		Connection con = null;
 		PreparedStatement ps = null;
-		Statement stm = null;
+		
 
 		try {
 
 			con = SQLDatabaseConnection.conectar();
-			String sql = "SET IDENTITY_INSERT PasajerosFrecuentes ON";
-			stm = con.createStatement();
-			stm.execute(sql);
-
+		
 			ps = con.prepareStatement(
-					"INSERT INTO PasajerosFrecuentes (pasajerofrecuente_id, pasajerofrecuente_alianza, pasajerofrecuente_aerolineaID, pasajerofrecuente_numeroPF, pasajerofrecuente_categoria) values (?,?,?,?,?)");
+					"INSERT INTO PasajerosFrecuentes (pasajerofrecuente_alianza, pasajerofrecuente_aerolineaID, pasajerofrecuente_numeroPF, pasajerofrecuente_categoria) values (?,?,?,?)");
 
-			ps.setInt(1, pasFre.getId());
-			ps.setString(2, pasFre.getAlianza().toString());
-			ps.setInt(3, pasFre.getAerolineaID());
-			ps.setString(4, pasFre.getNumeroPF());
-			ps.setString(5, pasFre.getCategoria());
+		
+			ps.setString(1, pasFre.getAlianza().toString());
+			ps.setInt(2, pasFre.getAerolineaID());
+			ps.setString(3, pasFre.getNumeroPF());
+			ps.setString(4, pasFre.getCategoria());
 			ps.executeUpdate();
 
-			String sql1 = "SET IDENTITY_INSERT PasajerosFrecuentes OFF";
-			stm.execute(sql1);
-
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
-				stm.close();
+				
 				ps.close();
 				con.close();
 				System.out.println("Pasajero Frecuente agregado - Operacion completada");
