@@ -21,10 +21,8 @@ public class Manager {
 
 	private void cargarCliente() {
 
-		// Cliente c = new Cliente();
+		// Cliente c = this.
 
-		// c.setNombre(nombre);
-		// c.setApellido(apellido);
 
 		// Pasaporte p =
 		// this.pasaporteDAODatabase.ObtenerPasaportePorNumero(numeroPasaporte);

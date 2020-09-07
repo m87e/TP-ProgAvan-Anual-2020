@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,11 +25,9 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 
 		Connection con = null;
 		PreparedStatement ps = null;
-		
 
 		try {
 
-		
 			ps = con.prepareStatement(
 					"INSERT INTO Clientes (cliente_nombre, cliente_apellido, cliente_dni, cliente_cuit, cliente_fechaNac, cliente_email, cliente_dirCompletaID, cliente_telID, cliente_pasaporteID, cliente_pasFreID) values (?,?,?,?,?,?,?,?,?,?)");
 
@@ -36,7 +35,7 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 			ps.setString(2, cliente.getApellido());
 			ps.setString(3, cliente.getDni());
 			ps.setString(4, cliente.getCuit());
-			ps.setDate(5, (Date) cliente.getFechaNac());
+			ps.setDate(5, java.sql.Date.valueOf(cliente.getFechaNac()));
 			ps.setString(6, cliente.getEmail());
 			ps.setInt(7, cliente.getDir().getId()); // llamar a traves de manager (agregar lo del commit adentro del
 													// manager), tiene que estar dentro del MVC
@@ -45,7 +44,6 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 			ps.setInt(10, cliente.getPasfre().getId());
 			ps.executeUpdate();
 
-		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -80,7 +78,7 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 			ps.setString(2, cliente.getApellido());
 			ps.setString(3, cliente.getDni());
 			ps.setString(4, cliente.getCuit());
-			ps.setDate(5, (Date) cliente.getFechaNac());
+			ps.setDate(5, java.sql.Date.valueOf(cliente.getFechaNac()));
 			ps.setString(6, cliente.getEmail());
 			ps.setInt(7, cliente.getDir().getId());
 			ps.setInt(8, cliente.getTel().getId());
@@ -158,7 +156,7 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 				c.setApellido(rs.getString("cliente_apellido"));
 				c.setDni(rs.getString("cliente_dni"));
 				c.setCuit(rs.getString("cliente_cuit"));
-				c.setFechaNac(rs.getDate("cliente_fechaNac"));
+				c.setFechaNac(rs.getDate("cliente_fechaNac").toLocalDate());
 				c.setEmail(rs.getString("cliente_email"));
 				c.setDirID(rs.getInt("cliente_dirCompletaID"));
 				c.setTelID(rs.getInt("cliente_telID"));
@@ -208,7 +206,7 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 				c.setApellido(rs.getString("cliente_apellido"));
 				c.setDni(rs.getString("cliente_dni"));
 				c.setCuit(rs.getString("cliente_cuit"));
-				c.setFechaNac(rs.getDate("cliente_fechaNac"));
+				c.setFechaNac(rs.getDate("cliente_fechaNac").toLocalDate());
 				c.setEmail(rs.getString("cliente_email"));
 				c.setDirID(rs.getInt("cliente_dirCompletaID"));
 				c.setTelID(rs.getInt("cliente_telID"));

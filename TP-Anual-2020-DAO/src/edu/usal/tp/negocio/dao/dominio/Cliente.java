@@ -1,5 +1,6 @@
 package edu.usal.tp.negocio.dao.dominio;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Cliente {
@@ -10,7 +11,7 @@ public class Cliente {
 	private String dni;
 	private Pasaporte pas;
 	private String cuit;
-	private Date fechaNac;
+	private LocalDate fechaNac;
 	private String email;
 	private Telefono tel;
 	private PasajeroFrecuente pasfre;
@@ -64,11 +65,11 @@ public class Cliente {
 		this.cuit = cuit;
 	}
 
-	public Date getFechaNac() {
+	public LocalDate getFechaNac() {
 		return fechaNac;
 	}
 
-	public void setFechaNac(Date fechaNac) {
+	public void setFechaNac(LocalDate fechaNac) {
 		this.fechaNac = fechaNac;
 	}
 
@@ -119,7 +120,8 @@ public class Cliente {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cliente(int id, String nombre, String apellido, String dni, Pasaporte pas, String cuit, Date fechaNac,
+	public Cliente(int id, String nombre, String apellido, String dni, Pasaporte pas, String cuit,
+			LocalDate fechaNac,
 			String email, Telefono tel, PasajeroFrecuente pasfre, DirCompleta dir) {
 
 		this.id = id;

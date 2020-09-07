@@ -1,6 +1,10 @@
 package edu.usal.controllers;
 
+import edu.usal.views.AerolineaView;
+
 public class AerolineaController {
+	
+	private AerolineaView view;
 
 	private void altaAerolinea() {
 

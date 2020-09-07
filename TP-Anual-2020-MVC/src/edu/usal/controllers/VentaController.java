@@ -1,6 +1,10 @@
 package edu.usal.controllers;
 
+import edu.usal.views.VentaView;
+
 public class VentaController {
+
+	private VentaView view;
 
 	private void altaVenta() {
 

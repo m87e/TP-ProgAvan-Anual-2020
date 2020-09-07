@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,8 +100,8 @@ public class PasaporteDAOImpArchivo implements IPasaporteDAO {
 		Pasaporte p = new Pasaporte();
 		p.setNumeroPasaporte(atributos[0]);
 		p.setAutoridadEmision(atributos[1]);
-		p.setFechaEmision(Date.valueOf(atributos[2]));
-		p.setFechaVencimiento(Date.valueOf(atributos[3]));
+		p.setFechaEmision(LocalDate.parse((atributos[2]).toString()));
+		p.setFechaVencimiento(LocalDate.parse((atributos[3]).toString()));
 		p.setPaisID(Integer.valueOf(atributos[4]));
 
 		return p;

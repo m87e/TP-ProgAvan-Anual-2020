@@ -24,19 +24,16 @@ public class PasaporteDAOImplDatabase implements IPasaporteDAO {
 
 		try {
 
-		
 			ps = con.prepareStatement(
 					"INSERT INTO Pasaportes (pasaporte_numero, pasaporte_autEmision, pasaporte_fechaEmision, pasaporte_fechaVencimiento, pasaporte_paisID) values (?,?,?,?,?)");
 
-			
 			ps.setString(2, pasaporte.getNumeroPasaporte());
 			ps.setString(3, pasaporte.getAutoridadEmision());
-			ps.setDate(4, (java.sql.Date) pasaporte.getFechaVencimiento());
-			ps.setDate(5, (java.sql.Date) pasaporte.getFechaVencimiento());
+			ps.setDate(4, java.sql.Date.valueOf(pasaporte.getFechaVencimiento()));
+			ps.setDate(5, java.sql.Date.valueOf(pasaporte.getFechaVencimiento()));
 			ps.setInt(6, pasaporte.getPaisID());
 			ps.executeUpdate();
 
-			
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
@@ -69,8 +66,8 @@ public class PasaporteDAOImplDatabase implements IPasaporteDAO {
 
 			ps.setString(1, pasaporte.getNumeroPasaporte());
 			ps.setString(2, pasaporte.getAutoridadEmision());
-			ps.setDate(3, (java.sql.Date) pasaporte.getFechaVencimiento());
-			ps.setDate(4, (java.sql.Date) pasaporte.getFechaVencimiento());
+			ps.setDate(3, java.sql.Date.valueOf(pasaporte.getFechaVencimiento()));
+			ps.setDate(4, java.sql.Date.valueOf(pasaporte.getFechaVencimiento()));
 			ps.setInt(5, pasaporte.getPaisID());
 			ps.setInt(6, pasaporte.getIdPasaporte());
 
@@ -147,8 +144,8 @@ public class PasaporteDAOImplDatabase implements IPasaporteDAO {
 				p.setId(rs.getInt("pasaporte_id"));
 				p.setNumeroPasaporte(rs.getString("pasaporte_numero"));
 				p.setAutoridadEmision(rs.getString("pasaporte_autEmision"));
-				p.setFechaEmision(rs.getDate("pasaporte_fechaEmision"));
-				p.setFechaVencimiento(rs.getDate("pasaporte_fechaVencimiento"));
+				p.setFechaEmision(rs.getDate("pasaporte_fechaEmision").toLocalDate());
+				p.setFechaVencimiento(rs.getDate("pasaporte_fechaVencimiento").toLocalDate());
 				p.setPaisID(rs.getInt("pasaporte_paisID"));
 
 				listado.add(p);
@@ -193,8 +190,8 @@ public class PasaporteDAOImplDatabase implements IPasaporteDAO {
 				p.setId(rs.getInt("pasaporte_id"));
 				p.setNumeroPasaporte(rs.getString("pasaporte_numero"));
 				p.setAutoridadEmision(rs.getString("pasaporte_autEmision"));
-				p.setFechaEmision(rs.getDate("pasaporte_fechaEmision"));
-				p.setFechaVencimiento(rs.getDate("pasaporte_fechaVencimiento"));
+				p.setFechaEmision(rs.getDate("pasaporte_fechaEmision").toLocalDate());
+				p.setFechaVencimiento(rs.getDate("pasaporte_fechaVencimiento").toLocalDate());
 				p.setPaisID(rs.getInt("pasaporte_paisID"));
 
 				return p;

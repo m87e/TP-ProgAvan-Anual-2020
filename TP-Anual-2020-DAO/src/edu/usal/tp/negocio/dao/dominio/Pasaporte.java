@@ -1,5 +1,6 @@
 package edu.usal.tp.negocio.dao.dominio;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Pasaporte {
@@ -8,8 +9,8 @@ public class Pasaporte {
 	private String numeroPasaporte;
 	private Paises pais;
 	private String autoridadEmision;
-	private Date fechaEmision;
-	private Date fechaVencimiento;
+	private LocalDate fechaEmision;
+	private LocalDate fechaVencimiento;
 
 	// Getter & Setter
 	public String getNumeroPasaporte() {
@@ -36,19 +37,19 @@ public class Pasaporte {
 		this.autoridadEmision = autoridadEmision;
 	}
 
-	public Date getFechaEmision() {
+	public LocalDate getFechaEmision() {
 		return fechaEmision;
 	}
 
-	public void setFechaEmision(Date fechaEmision) {
+	public void setFechaEmision(LocalDate fechaEmision) {
 		this.fechaEmision = fechaEmision;
 	}
 
-	public Date getFechaVencimiento() {
+	public LocalDate getFechaVencimiento() {
 		return fechaVencimiento;
 	}
 
-	public void setFechaVencimiento(Date fechaVencimiento) {
+	public void setFechaVencimiento(LocalDate fechaVencimiento) {
 		this.fechaVencimiento = fechaVencimiento;
 	}
 
@@ -70,8 +71,8 @@ public class Pasaporte {
 	}
 	// Constructor
 
-	public Pasaporte(int id, String numeroPasaporte, Paises pais, String autoridadEmision, Date fechaEmision,
-			Date fechaVencimiento) {
+	public Pasaporte(int id, String numeroPasaporte, Paises pais, String autoridadEmision, LocalDate fechaEmision,
+			LocalDate fechaVencimiento) {
 		this.id = id;
 		this.numeroPasaporte = numeroPasaporte;
 		this.pais = pais;

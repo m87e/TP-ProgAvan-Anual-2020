@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -128,7 +129,7 @@ public class ClientesDAOImpArchivo implements IClienteDAO {
 		c.setCuit(atributos[5]);
 		c.setEmail(atributos[6]);
 		c.setDirID(Integer.valueOf(atributos[7]));
-		c.setFechaNac(new SimpleDateFormat("dd/MM/yyyy").parse(atributos[8]));
+		c.setFechaNac(LocalDate.parse((atributos[8]).toString()));
 		c.setPasID(Integer.valueOf(atributos[9]));
 		c.setPasfreID(Integer.valueOf(atributos[10]));
 

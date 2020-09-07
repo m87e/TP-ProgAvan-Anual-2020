@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -119,8 +120,10 @@ public class VueloDAOImplArchivo implements IVuelosDAO {
 		vuelo.setNumVuelo(atributos[0]);
 		vuelo.setAeropuertoSalida(Integer.valueOf(atributos[1]));
 		vuelo.setAeropuertoLlegada(Integer.valueOf(atributos[2]));
-		vuelo.setFechaHoraSalida(new SimpleDateFormat("dd/MM/yyyy").parse(atributos[3]));
-		vuelo.setFechaHoraLlegada(new SimpleDateFormat("dd/MM/yyyy").parse(atributos[4]));
+		vuelo.setFechaHoraSalida(LocalDate.parse((atributos[3]).toString()));
+		// vuelo.setFechaHoraSalida(new
+		// SimpleDateFormat("dd/MM/yyyy").parse(atributos[3]));
+		vuelo.setFechaHoraLlegada(LocalDate.parse((atributos[4]).toString()));
 		vuelo.setTiempoVuelo(atributos[5]);
 
 		return vuelo;

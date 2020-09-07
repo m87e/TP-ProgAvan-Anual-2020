@@ -1,5 +1,6 @@
 package edu.usal.tp.negocio.dao.dominio;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Vuelos {
@@ -9,8 +10,8 @@ public class Vuelos {
 	private Integer cantAsientos;
 	private Aeropuerto aeropuertoSalida;
 	private Aeropuerto aeropuertoLlegada;
-	private Date fechaHoraSalida; // se ingresa
-	private Date fechaHoraLlegada; // se calcula
+	private LocalDate fechaHoraSalida; // se ingresa
+	private LocalDate fechaHoraLlegada; // se calcula
 	private String tiempoVuelo; // chequearlo con el date que dato suma al date
 
 	public int getId() {
@@ -69,19 +70,19 @@ public class Vuelos {
 		this.aeropuertoLlegada.setId(idAeropuerto);
 	}
 
-	public Date getFechaHoraSalida() {
+	public LocalDate getFechaHoraSalida() {
 		return fechaHoraSalida;
 	}
 
-	public void setFechaHoraSalida(Date fechaHoraSalida) {
+	public void setFechaHoraSalida(LocalDate fechaHoraSalida) {
 		this.fechaHoraSalida = fechaHoraSalida;
 	}
 
-	public Date getFechaHoraLlegada() {
+	public LocalDate getFechaHoraLlegada() {
 		return fechaHoraLlegada;
 	}
 
-	public void setFechaHoraLlegada(Date fechaHoraLlegada) {
+	public void setFechaHoraLlegada(LocalDate fechaHoraLlegada) {
 		this.fechaHoraLlegada = fechaHoraLlegada;
 	}
 
@@ -99,7 +100,7 @@ public class Vuelos {
 	}
 
 	public Vuelos(int id, String numVuelo, Integer cantAsientos, Aeropuerto aeropuertoSalida,
-			Aeropuerto aeropuertoLlegada, Date fechaHoraSalida, Date fechaHoraLlegada, String tiempoVuelo) {
+			Aeropuerto aeropuertoLlegada, LocalDate fechaHoraSalida, LocalDate fechaHoraLlegada, String tiempoVuelo) {
 		super();
 		this.id = id;
 		this.numVuelo = numVuelo;
