@@ -17,7 +17,7 @@ INSERT INTO Paises (pais_id, pais_nombr
 VALUES 
 	('1', 'Argentina'),
 	('2', 'Austria'),
-	('3', 'Austria');
+	('3', 'Australia');
 	
 SET IDENTITY_INSERT Paises OFF
 
@@ -63,5 +63,7 @@ SET IDENTITY_INSERT Aeropuertos OFF
 
 
 
-
+INSERT INTO Direcciones (direccion_id, direccion_calle, direccion_altura, direccion_ciudad, direccion_paisID, direccion_provinciaID, direccion_codigoPostal)
+VALUES
+('1', 'Test', '2500', 'Capital', '1', '1', '1424');
 

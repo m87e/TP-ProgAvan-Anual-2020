@@ -27,7 +27,7 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 		PreparedStatement ps = null;
 
 		try {
-
+			con = SQLDatabaseConnection.conectar();
 			ps = con.prepareStatement(
 					"INSERT INTO Clientes (cliente_nombre, cliente_apellido, cliente_dni, cliente_cuit, cliente_fechaNac, cliente_email, cliente_dirCompletaID, cliente_telID, cliente_pasaporteID, cliente_pasFreID) values (?,?,?,?,?,?,?,?,?,?)");
 

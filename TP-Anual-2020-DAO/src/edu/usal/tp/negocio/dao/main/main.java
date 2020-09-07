@@ -2,6 +2,8 @@ package edu.usal.tp.negocio.dao.main;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -9,42 +11,74 @@ import java.util.Properties;
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.tp.negocio.dao.dominio.Alianza;
 import edu.usal.tp.negocio.dao.dominio.Cliente;
+import edu.usal.tp.negocio.dao.dominio.DirCompleta;
+import edu.usal.tp.negocio.dao.dominio.Paises;
+import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
+import edu.usal.tp.negocio.dao.dominio.Pasaporte;
 import edu.usal.tp.negocio.dao.dominio.Provincias;
 import edu.usal.tp.negocio.dao.dominio.Telefono;
 import edu.usal.tp.negocio.dao.factory.AerolineaFactory;
 import edu.usal.tp.negocio.dao.factory.ClientesFactory;
+import edu.usal.tp.negocio.dao.factory.PaisesFactory;
 import edu.usal.tp.negocio.dao.factory.ProvinciasFactory;
 import edu.usal.tp.negocio.dao.factory.TelefonoFactory;
 import edu.usal.tp.negocio.dao.implementaciones.AerolineaDAOImplDatabase;
 import edu.usal.tp.negocio.dao.interfaces.IAerolineaDAO;
 import edu.usal.tp.negocio.dao.interfaces.IClienteDAO;
+import edu.usal.tp.negocio.dao.interfaces.IPaisesDAO;
 import edu.usal.tp.negocio.dao.interfaces.IProvinciasDAO;
 import edu.usal.tp.negocio.dao.interfaces.ITelefonoDAO;
 import edu.usal.tp.negocio.dao.util.IOGeneral;
+import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 
 public class main {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ParseException {
 
-		IAerolineaDAO dao = AerolineaFactory.GetImplementation("database");
+		SQLDatabaseConnection sql = new SQLDatabaseConnection();
+		sql.conectar();
 
-		Aerolinea aerolinea = new Aerolinea();
-		aerolinea.setId(2);
-		aerolinea.setNombre("United Airlines");
-		aerolinea.setAlianza(Alianza.StarAlliance);
+		IClienteDAO impCliDAO = ClientesFactory.GetImplementation("database");
 
-		// dao.AgregarAerolinea(aerolinea);
-		// dao.ModificarAerolinea(aerolinea);
-		// dao.EliminarAerolinea(aerolinea);
+		LocalDate d = LocalDate.now();
 
-		List<Aerolinea> listado = dao.GetAll();
-		listado.stream().forEach((p) -> {
-			System.out.println(p.getId());
-			System.out.println(p.getNombre());
-		});
+		Cliente cli1 = new Cliente();
+		Telefono t = new Telefono(1, "123456", "123415", "123452");
+		Paises p = new Paises(1, "Argentina");
+		Provincias prov = new Provincias(1, "Buenos");
+		Pasaporte pas = new Pasaporte(1, "AAA333444", p, "Consulado", d, d);
+		Aerolinea aerolinea = new Aerolinea(1, "American", Alianza.Oneworld);
+		PasajeroFrecuente pasFrec = new PasajeroFrecuente(1, Alianza.Oneworld, aerolinea, "AA88", "Gold");
+		DirCompleta dir = new DirCompleta(1, "Test", "2500", "BA", p, prov, "1424");
+
+		cli1.setNombre("Test");
+		cli1.setApellido("Smith");
+		cli1.setDni("859494854");
+		cli1.setEmail("afdf@rfgerfg.com");
+		cli1.setCuit("12-12346345345-1");
+		cli1.setFechaNac(d);
+		cli1.setTel(t);
+		cli1.setPas(pas);
+		cli1.setPasfre(pasFrec);
+		cli1.setDir(dir);
+
+		
+		impCliDAO.AgregarCliente(cli1);
 
 		/*
-		 * System.out.println("Testing"); System.out.println("1- Provincias");
+		 * IAerolineaDAO dao = AerolineaFactory.GetImplementation("database");
+		 * 
+		 * Aerolinea aerolinea = new Aerolinea(); aerolinea.setId(2);
+		 * aerolinea.setNombre("United Airlines");
+		 * aerolinea.setAlianza(Alianza.StarAlliance);
+		 * 
+		 * // dao.AgregarAerolinea(aerolinea); // dao.ModificarAerolinea(aerolinea); //
+		 * dao.EliminarAerolinea(aerolinea);
+		 * 
+		 * List<Aerolinea> listado = dao.GetAll(); listado.stream().forEach((p) -> {
+		 * System.out.println(p.getId()); System.out.println(p.getNombre()); });
+		 * 
+		 * /* System.out.println("Testing"); System.out.println("1- Provincias");
 		 * System.out.println("2- Telefono"); System.out.println("3- Clientes");
 		 * 
 		 * int op = IOGeneral.leerInt("Opcion", "Error");

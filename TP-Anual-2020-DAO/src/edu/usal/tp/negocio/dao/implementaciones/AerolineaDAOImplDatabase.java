@@ -26,15 +26,13 @@ public class AerolineaDAOImplDatabase implements IAerolineaDAO {
 		try {
 
 			con = SQLDatabaseConnection.conectar();
-	
-			ps = con.prepareStatement(
-					"INSERT INTO Aerolineas (aerolinea_nombre, aerolinea_alianza) values (?,?)");
-			
+
+			ps = con.prepareStatement("INSERT INTO Aerolineas (aerolinea_nombre, aerolinea_alianza) values (?,?)");
+
 			ps.setString(1, aerolinea.getNombre());
 			ps.setString(2, aerolinea.getAlianza().toString());
 			ps.executeUpdate();
 
-	
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {

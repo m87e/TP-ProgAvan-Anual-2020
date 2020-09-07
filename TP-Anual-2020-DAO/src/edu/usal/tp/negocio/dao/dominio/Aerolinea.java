@@ -37,7 +37,7 @@ public class Aerolinea {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Aerolinea(int id, String nombre, Alianza alianza, List<Vuelos> vuelo) {
+	public Aerolinea(int id, String nombre, Alianza alianza) {
 		this.id = id;
 		this.nombre = nombre;
 		this.alianza = alianza;
