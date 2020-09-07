@@ -62,7 +62,7 @@ public class main {
 		cli1.setPasfre(pasFrec);
 		cli1.setDir(dir);
 
-		System.out.println("test clientes");
+		System.out.println("test clientes "); 
 		impCliDAO.AgregarCliente(cli1);
 
 		/*
