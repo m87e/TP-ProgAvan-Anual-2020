@@ -61,9 +61,48 @@ VALUES
 
 SET IDENTITY_INSERT Aeropuertos OFF
 
-
+SET IDENTITY_INSERT Direcciones ON
 
 INSERT INTO Direcciones (direccion_id, direccion_calle, direccion_altura, direccion_ciudad, direccion_paisID, direccion_provinciaID, direccion_codigoPostal)
 VALUES
 ('1', 'Test', '2500', 'Capital', '1', '1', '1424');
+
+SET IDENTITY_INSERT Direcciones OFF
+
+SET IDENTITY_INSERT Telefonos ON
+
+INSERT INTO Telefonos (telefono_id, telefono_numPersonal, telefono_numCelular, telefono_numLaboral)
+VALUES
+('1', '1234-5678', '15-1234-5678', '911-1234-5678');
+
+SET IDENTITY_INSERT Telefonos OFF
+
+SET IDENTITY_INSERT Pasaportes ON
+
+INSERT INTO Pasaportes (pasaporte_id, pasaporte_numero, pasaporte_autEmision, pasaporte_fechaEmision,pasaporte_fechaVencimiento,pasaporte_paisID)
+VALUES
+('1', 'AAA333444', 'Consulado', '11/11/10', '11/11/23', '1');
+
+SET IDENTITY_INSERT Pasaportes OFF
+
+
+SET IDENTITY_INSERT Aerolineas ON
+
+INSERT INTO Aerolineas (aerolinea_id, aerolinea_nombre, aerolinea_alianza)
+VALUES
+('1', 'American', 'Oneworld');
+
+SET IDENTITY_INSERT Aerolineas OFF
+
+
+
+SET IDENTITY_INSERT PasajerosFrecuentes ON
+
+INSERT INTO PasajerosFrecuentes (pasajerofrecuente_id, pasajerofrecuente_alianza, pasajerofrecuente_aerolineaID, pasajerofrecuente_numeroPF,pasajerofrecuente_categoria)
+VALUES
+('1', 'OneWorld', '1', 'AA88', 'Gold');
+
+SET IDENTITY_INSERT PasajerosFrecuentes OFF
+
+
 
