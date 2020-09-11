@@ -1,6 +1,6 @@
 package edu.usal.controllers;
 
-import edu.usal.views.VentaView;
+import edu.usal.views.console.VentaView;
 
 public class VentaController {
 

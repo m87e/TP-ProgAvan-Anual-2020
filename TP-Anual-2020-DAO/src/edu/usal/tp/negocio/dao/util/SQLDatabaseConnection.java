@@ -45,4 +45,11 @@ public class SQLDatabaseConnection {
 		}
 	}
 
+	public static void rollback(Connection con) {
+		try {
+			con.rollback();
+		} catch (Exception e) {
+		}
+	}
+
 }

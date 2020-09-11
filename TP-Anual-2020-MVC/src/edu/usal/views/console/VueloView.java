@@ -1,11 +1,11 @@
-package edu.usal.views;
+package edu.usal.views.console;
 
 import edu.usal.util.IOGeneral;
 
-public class VentaView {
+public class VueloView {
 
 	public int mostrarMenu() {
-		System.out.println("1 - Alta venta");
+		System.out.println("1 - Alta vuelo");
 		return IOGeneral.leerInt("Seleccione opci�n: ", "Debe de ingresar un numero");
 
 	}

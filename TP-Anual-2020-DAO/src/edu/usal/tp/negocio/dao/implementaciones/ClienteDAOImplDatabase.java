@@ -19,6 +19,12 @@ import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 
 public class ClienteDAOImplDatabase implements IClienteDAO {
 
+	final String INSERT = "INSERT INTO Clientes (cliente_nombre, cliente_apellido, cliente_dni, cliente_cuit, cliente_fechaNac, cliente_email, cliente_dirCompletaID, cliente_telID, cliente_pasaporteID, cliente_pasFreID) values (?,?,?,?,?,?,?,?,?,?)";
+	final String UPDATE = "UPDATE Clientes SET cliente_nombre=?, cliente_apellido=?, cliente_dni=?, cliente_cuit=?, cliente_fechaNac=?, cliente_email=?, cliente_dirCompletaID=?, cliente_telID=?, cliente_pasaporteID=?, cliente_pasFreID=? WHERE cliente_id=?";
+	final String DELETE = "DELETE FROM Clientes WHERE cliente_id=?";
+	final String GETONE = "SELECT * FROM Clientes WHERE cliente_dni=?";
+	final String GETALL = "SELECT * FROM Clientes ORDER BY cliente_id";
+
 	@Override
 	public void AgregarCliente(Cliente cliente) throws IOException, ParseException {
 		// TODO Auto-generated method stub
@@ -28,8 +34,8 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 
 		try {
 			con = SQLDatabaseConnection.conectar();
-			ps = con.prepareStatement(
-					"INSERT INTO Clientes (cliente_nombre, cliente_apellido, cliente_dni, cliente_cuit, cliente_fechaNac, cliente_email, cliente_dirCompletaID, cliente_telID, cliente_pasaporteID, cliente_pasFreID) values (?,?,?,?,?,?,?,?,?,?)");
+			con.setAutoCommit(false);
+			ps = con.prepareStatement(INSERT);
 
 			ps.setString(1, cliente.getNombre());
 			ps.setString(2, cliente.getApellido());
@@ -43,10 +49,19 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 			ps.setInt(9, cliente.getPas().getIdPasaporte()); // llamar a traves de manager
 			ps.setInt(10, cliente.getPasfre().getId());
 			ps.executeUpdate();
+			con.commit();
+
+			//
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+
+			if (con != null) {
+				SQLDatabaseConnection.rollback(con);
+				System.err.print("Transaction is being rolled back");
+			}
+
 		} finally {
 			try {
 				ps.close();
@@ -71,8 +86,7 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 		try {
 
 			con = SQLDatabaseConnection.conectar();
-			ps = con.prepareStatement(
-					"UPDATE Clientes SET cliente_nombre=?, cliente_apellido=?, cliente_dni=?, cliente_cuit=?, cliente_fechaNac=?, cliente_email=?, cliente_dirCompletaID=?, cliente_telID=?, cliente_pasaporteID=?, cliente_pasFreID=? WHERE cliente_id=?");
+			ps = con.prepareStatement(UPDATE);
 
 			ps.setString(1, cliente.getNombre());
 			ps.setString(2, cliente.getApellido());
@@ -111,7 +125,7 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 
 		try {
 			con = SQLDatabaseConnection.conectar();
-			ps = con.prepareStatement("DELETE FROM Clientes WHERE cliente_id=?");
+			ps = con.prepareStatement(DELETE);
 			ps.setInt(1, cliente.getId());
 			ps.executeUpdate();
 
@@ -140,7 +154,7 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 		Statement stm = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT * FROM Clientes ORDER BY cliente_id";
+		String sql = GETALL;
 
 		try {
 			con = SQLDatabaseConnection.conectar();
@@ -194,7 +208,7 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 		try {
 			con = SQLDatabaseConnection.conectar();
 
-			ps = con.prepareStatement("SELECT * FROM Clientes WHERE cliente_dni=?");
+			ps = con.prepareStatement(GETONE);
 			ps.setString(1, dni);
 			rs = ps.executeQuery();
 

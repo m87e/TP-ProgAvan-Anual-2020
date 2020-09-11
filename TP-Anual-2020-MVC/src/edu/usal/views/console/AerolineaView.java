@@ -1,4 +1,4 @@
-package edu.usal.views;
+package edu.usal.views.console;
 
 import edu.usal.util.IOGeneral;
 

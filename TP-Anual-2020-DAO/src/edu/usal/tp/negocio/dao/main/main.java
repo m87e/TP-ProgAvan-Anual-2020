@@ -43,26 +43,26 @@ public class main {
 		LocalDate d = LocalDate.now();
 
 		Cliente cli1 = new Cliente();
-		Telefono t = new Telefono(1, "123456", "123415", "123452");
+		Telefono t = new Telefono(1, "23456", "23415", "23452");
 		Paises p = new Paises(1, "Argentina");
 		Provincias prov = new Provincias(1, "Buenos");
 		Pasaporte pas = new Pasaporte(1, "AAA333444", p, "Consulado", d, d);
-		Aerolinea aerolinea = new Aerolinea(1, "American", Alianza.Oneworld);
-		PasajeroFrecuente pasFrec = new PasajeroFrecuente(1, Alianza.Oneworld, aerolinea, "AA88", "Gold");
-		DirCompleta dir = new DirCompleta(1, "Test", "2500", "BA", p, prov, "1424");
+		Aerolinea aerolinea = new Aerolinea(1, "United Airlines", Alianza.StarAlliance);
+		PasajeroFrecuente pasFrec = new PasajeroFrecuente(1, Alianza.StarAlliance, aerolinea, "UA88", "Silver");
+		DirCompleta dir = new DirCompleta(1, "Test", "3500", "BA", p, prov, "1424");
 
-		cli1.setNombre("Test");
-		cli1.setApellido("Smith");
-		cli1.setDni("859494854");
-		cli1.setEmail("afdf@rfgerfg.com");
-		cli1.setCuit("12-12346345345-1");
+		cli1.setNombre("Marcus");
+		cli1.setApellido("Test1");
+		cli1.setDni("59494854");
+		cli1.setEmail("test@rfgerfg.com");
+		cli1.setCuit("22-12346345345-1");
 		cli1.setFechaNac(d);
 		cli1.setTel(t);
 		cli1.setPas(pas);
 		cli1.setPasfre(pasFrec);
 		cli1.setDir(dir);
 
-		System.out.println("test clientes "); 
+		System.out.println("test clientes ");
 		impCliDAO.AgregarCliente(cli1);
 
 		/*

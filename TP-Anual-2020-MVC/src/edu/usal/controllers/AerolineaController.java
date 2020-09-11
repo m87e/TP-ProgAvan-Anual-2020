@@ -1,6 +1,6 @@
 package edu.usal.controllers;
 
-import edu.usal.views.AerolineaView;
+import edu.usal.views.console.AerolineaView;
 
 public class AerolineaController {
 	

@@ -1,13 +1,16 @@
 package edu.usal.controllers;
 
-import edu.usal.views.ClienteView;
+import java.io.IOException;
+import java.text.ParseException;
+
+import edu.usal.managers.ClienteManager;
 
 public class ClienteController {
 
-	private ClienteView view;
+	private ClienteManager manager;
 
-	private void altaCliente() {
-
+	private void altaCliente() throws IOException, ParseException {
+		this.manager.cargarCliente();
 	}
 
 	private void modificarCliente() {

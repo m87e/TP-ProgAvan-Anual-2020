@@ -105,4 +105,12 @@ VALUES
 SET IDENTITY_INSERT PasajerosFrecuentes OFF
 
 
+SET IDENTITY_INSERT Clientes ON
+
+INSERT INTO Clientes (cliente_id, cliente_nombre, cliente_apellido, cliente_dni, cliente_cuit, cliente_fechaNac, cliente_email, cliente_dirCompletaID, cliente_telID, cliente_pasaporteID, cliente_pasFreID)
+VALUES
+('1', 'John', 'Test', '34543543', '20-12346345345-1', '2020-09-11', 'test@fake.com', '1', '1', '1', '1');
+
+SET IDENTITY_INSERT Clientes OFF
+
 
