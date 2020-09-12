@@ -4,12 +4,17 @@ import java.io.IOException;
 import java.text.ParseException;
 
 import edu.usal.managers.ClienteManager;
+import edu.usal.tp.negocio.dao.dominio.Cliente;
+import edu.usal.tp.negocio.dao.dominio.DirCompleta;
+import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
+import edu.usal.tp.negocio.dao.dominio.Pasaporte;
+import edu.usal.tp.negocio.dao.dominio.Telefono;
 import edu.usal.views.console.ClienteView;
 
 public class ClienteController {
 
 	private ClienteView view;
-	private ClienteManager manager = new ClienteManager(view);
+	private ClienteManager manager = new ClienteManager();
 
 	public ClienteController(ClienteView view) {
 		this.view = view;
@@ -35,7 +40,14 @@ public class ClienteController {
 	}
 
 	private void altaCliente() throws IOException, ParseException {
-		this.manager.cargarCliente();
+
+		Cliente c = this.view.cargarCliente();
+		Pasaporte p = this.view.cargarPasaporte();
+		Telefono tel = this.view.cargarTelefono();
+		DirCompleta dir = this.view.cargarDirCompleta();
+		PasajeroFrecuente pasFrec = this.view.cargarPasFrecuente();
+
+		this.manager.cargarCliente(c, p, tel, dir, pasFrec);
 	}
 
 	private void modificarCliente() {

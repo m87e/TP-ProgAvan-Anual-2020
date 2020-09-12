@@ -30,13 +30,9 @@ public class ClienteManager {
 	private ITelefonoDAO telefonoDAODatabase = TelefonoFactory.GetImplementation("database");
 	private IPasajeroFrecuenteDAO pasajeroFrecuenteDAODatabase = PasajeroFrecuenteFactory.GetImplementation("database");
 	private IDirCompletaDAO dirCompletaDAODatabase = DirCompletaFactory.GetImplementation("database");
-	private ClienteView view;
 
-	public ClienteManager(ClienteView view) {
-		this.view = view;
-	}
-
-	public void cargarCliente() throws IOException, ParseException {
+	public void cargarCliente(Cliente c, Pasaporte p, Telefono tel, DirCompleta dir, PasajeroFrecuente pasFrec)
+			throws IOException, ParseException {
 
 		Connection con = null;
 
@@ -44,27 +40,21 @@ public class ClienteManager {
 			con = SQLDatabaseConnection.conectar();
 			con.setAutoCommit(false);
 
-			Cliente c = this.view.cargarCliente();
-
-			Pasaporte p = this.view.cargarPasaporte();
 			this.pasaporteDAODatabase.AgregarPasaporte(p, con);
 			con.commit();
 			c.setPas(p);
 
-			Telefono tel = this.view.cargarTelefono();
 			this.telefonoDAODatabase.AgregarTelefono(tel, con);
 			con.commit();
 			c.setTel(tel);
 
-			DirCompleta dir = this.view.cargarDirCompleta();
 			this.dirCompletaDAODatabase.AgregarDirCompleta(dir, con);
 			con.commit();
 			c.setDir(dir);
 
-			PasajeroFrecuente pas = this.view.cargarPasFrecuente();
-			this.pasajeroFrecuenteDAODatabase.AgregarPasajeroFrecuente(pas, con);
+			this.pasajeroFrecuenteDAODatabase.AgregarPasajeroFrecuente(pasFrec, con);
 			con.commit();
-			c.setPasfre(pas);
+			c.setPasfre(pasFrec);
 
 			this.clienteDAODatabase.AgregarCliente(c, con);
 			con.commit();

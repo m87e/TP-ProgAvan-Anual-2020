@@ -14,7 +14,6 @@ public class MainClass {
 
 		ClienteView vista = new ClienteView();
 		ClienteController controlador = new ClienteController(vista);
-		ClienteManager manager = new ClienteManager(vista);
 		controlador.mostrarMenu();
 
 	}

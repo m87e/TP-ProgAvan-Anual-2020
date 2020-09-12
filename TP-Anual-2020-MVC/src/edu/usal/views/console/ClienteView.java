@@ -45,7 +45,7 @@ public class ClienteView {
 		LocalDate d = LocalDate.now();
 		pas.setNumeroPasaporte(IOGeneral.leerLinea("ingrese numero de pasaporte"));
 		pas.setPais(p);
-		pas.setAutoridadEmision(IOGeneral.leerLinea("ingrese numero de pasaporte"));
+		pas.setAutoridadEmision(IOGeneral.leerLinea("ingrese autoridad de emision"));
 		pas.setFechaEmision(d);
 		pas.setFechaVencimiento(d);
 		return pas;
