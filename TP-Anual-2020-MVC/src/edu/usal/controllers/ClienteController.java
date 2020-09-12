@@ -8,14 +8,14 @@ import edu.usal.views.console.ClienteView;
 
 public class ClienteController {
 
-	private ClienteManager manager;
 	private ClienteView view;
+	private ClienteManager manager = new ClienteManager(view);
 
 	public ClienteController(ClienteView view) {
 		this.view = view;
 	}
 
-	public void mostratMenu() throws ClassNotFoundException, IOException, ParseException {
+	public void mostrarMenu() throws ClassNotFoundException, IOException, ParseException {
 		boolean fin = false;
 		while (!fin) {
 			int opcion = this.view.mostrarMenu();
