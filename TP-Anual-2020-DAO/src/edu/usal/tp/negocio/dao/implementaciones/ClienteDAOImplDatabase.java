@@ -32,7 +32,6 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 		PreparedStatement ps = null;
 
 		try {
-			con = SQLDatabaseConnection.conectar();
 			ps = con.prepareStatement(INSERT);
 
 			ps.setString(1, cliente.getNombre());
