@@ -6,11 +6,11 @@ import java.util.List;
 import edu.usal.tp.negocio.dao.dominio.DirCompleta;;
 
 public interface IDirCompletaDAO {
-	void AgregarTelefono(DirCompleta dir) throws IOException;
+	void AgregarDirCompleta(DirCompleta dir) throws IOException;
 
-	void ModificarTelefono(DirCompleta dir) throws IOException;
+	void ModificarDirCompleta(DirCompleta dir) throws IOException;
 
-	void EliminarTelefono(DirCompleta dir) throws IOException;
+	void EliminarDirCompleta(DirCompleta dir) throws IOException;
 
 	DirCompleta ObtenerDirCompletaPorID(int id) throws IOException;
 

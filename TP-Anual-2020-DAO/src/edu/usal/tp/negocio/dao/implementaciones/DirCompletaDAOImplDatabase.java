@@ -9,19 +9,19 @@ import edu.usal.tp.negocio.dao.interfaces.IDirCompletaDAO;
 public class DirCompletaDAOImplDatabase implements IDirCompletaDAO {
 
 	@Override
-	public void AgregarTelefono(DirCompleta dir) throws IOException {
+	public void AgregarDirCompleta(DirCompleta dir) throws IOException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void ModificarTelefono(DirCompleta dir) throws IOException {
+	public void ModificarDirCompleta(DirCompleta dir) throws IOException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void EliminarTelefono(DirCompleta dir) throws IOException {
+	public void EliminarDirCompleta(DirCompleta dir) throws IOException {
 		// TODO Auto-generated method stub
 
 	}

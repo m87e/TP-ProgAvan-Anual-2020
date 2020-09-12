@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,7 +29,7 @@ public class ClientesDAOImpArchivo implements IClienteDAO {
 	String path = "C://Users//menrique002//git//USAL-ProgAvanzada-TP-DAO//USAL_TP_ProgAvanz_DAO//cliente.txt";
 
 	@Override
-	public void AgregarCliente(Cliente cliente) throws IOException {
+	public void AgregarCliente(Cliente cliente, Connection con) throws IOException {
 		archivo = new File(path);
 
 		if (!archivo.exists()) {
@@ -75,7 +76,7 @@ public class ClientesDAOImpArchivo implements IClienteDAO {
 				c.setPasfreID(cliente.getPasfre().getId());
 			}
 
-			AgregarCliente(c);
+			AgregarCliente(c, null);
 
 		}
 
@@ -90,7 +91,7 @@ public class ClientesDAOImpArchivo implements IClienteDAO {
 
 		for (Cliente c : listadoClientes) {
 
-			AgregarCliente(c);
+			AgregarCliente(c, null);
 
 		}
 

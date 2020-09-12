@@ -3,7 +3,10 @@ package edu.usal.views.console;
 import java.util.Date;
 
 import edu.usal.tp.negocio.dao.dominio.Cliente;
+import edu.usal.tp.negocio.dao.dominio.DirCompleta;
+import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
 import edu.usal.tp.negocio.dao.dominio.Pasaporte;
+import edu.usal.tp.negocio.dao.dominio.Telefono;
 import edu.usal.util.IOGeneral;
 
 public class ClienteView {
@@ -38,17 +41,27 @@ public class ClienteView {
 
 	}
 
-	public int obtenerTelefono() {
+	public Telefono cargarTelefono() {
 
-		int id = IOGeneral.leerInt(("Ingrese id de telefono: "), "dato invalido");
-		return id;
+		Telefono t = new Telefono();
+		t.setNumCelular((IOGeneral.leerLinea("ingrese numero de celular")));
+		t.setNumLaboral((IOGeneral.leerLinea("ingrese numero laboral")));
+		t.setNumPersonal((IOGeneral.leerLinea("ingrese numero personal")));
+		return t;
 
 	}
 
-	public int obtenerDir() {
+	public DirCompleta cargarDirCompleta() {
 
-		int id = IOGeneral.leerInt(("Ingrese id de direccion: "), "dato invalido");
-		return id;
+		DirCompleta dir = new DirCompleta();
+		return dir;
+	}
+
+	public PasajeroFrecuente cargarPasFrecuente() {
+
+		PasajeroFrecuente pas = new PasajeroFrecuente();
+
+		return pas;
 	}
 
 }

@@ -24,7 +24,7 @@ public class DirCompletaDAOImpArchivo implements IDirCompletaDAO {
 	String path = "C://Users//menrique002//git//USAL-ProgAvanzada-TP-DAO//USAL_TP_ProgAvanz_DAO//DirCompleta.txt";
 
 	@Override
-	public void AgregarTelefono(DirCompleta dir) throws IOException {
+	public void AgregarDirCompleta(DirCompleta dir) throws IOException {
 		archivo = new File(path);
 
 		if (!archivo.exists()) {
@@ -49,7 +49,7 @@ public class DirCompletaDAOImpArchivo implements IDirCompletaDAO {
 	}
 
 	@Override
-	public void ModificarTelefono(DirCompleta dir) throws IOException {
+	public void ModificarDirCompleta(DirCompleta dir) throws IOException {
 		List<DirCompleta> listadoDirCompleta = GetAll();
 
 		for (DirCompleta dC : listadoDirCompleta) {
@@ -67,13 +67,13 @@ public class DirCompletaDAOImpArchivo implements IDirCompletaDAO {
 	}
 
 	@Override
-	public void EliminarTelefono(DirCompleta dir) throws IOException {
+	public void EliminarDirCompleta(DirCompleta dir) throws IOException {
 		List<DirCompleta> listadoDirCompleta = GetAll();
 
 		listadoDirCompleta.removeIf(o -> o.getId() == dir.getId());
 
 		for (DirCompleta dC : listadoDirCompleta) {
-			AgregarTelefono(dC);
+			AgregarDirCompleta(dC);
 		}
 
 	}

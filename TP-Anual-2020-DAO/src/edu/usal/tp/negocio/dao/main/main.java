@@ -2,6 +2,8 @@ package edu.usal.tp.negocio.dao.main;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.Date;
@@ -35,8 +37,15 @@ public class main {
 
 	public static void main(String[] args) throws IOException, ParseException {
 
-		SQLDatabaseConnection sql = new SQLDatabaseConnection();
-		sql.conectar();
+		Connection con = null;
+
+		try {
+			con = SQLDatabaseConnection.conectar();
+			con.setAutoCommit(false);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		IClienteDAO impCliDAO = ClientesFactory.GetImplementation("database");
 
@@ -51,11 +60,11 @@ public class main {
 		PasajeroFrecuente pasFrec = new PasajeroFrecuente(1, Alianza.StarAlliance, aerolinea, "UA88", "Silver");
 		DirCompleta dir = new DirCompleta(1, "Test", "3500", "BA", p, prov, "1424");
 
-		cli1.setNombre("Marcus");
-		cli1.setApellido("Test1");
+		cli1.setNombre("TestCommit");
+		cli1.setApellido("TestRollback");
 		cli1.setDni("59494854");
-		cli1.setEmail("test@rfgerfg.com");
-		cli1.setCuit("22-12346345345-1");
+		cli1.setEmail("test@fake.com");
+		cli1.setCuit("20-12346345345-1");
 		cli1.setFechaNac(d);
 		cli1.setTel(t);
 		cli1.setPas(pas);
@@ -63,7 +72,19 @@ public class main {
 		cli1.setDir(dir);
 
 		System.out.println("test clientes ");
-		impCliDAO.AgregarCliente(cli1);
+
+		try {
+			impCliDAO.AgregarCliente(cli1, con);
+
+			con.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			if (con != null) {
+				SQLDatabaseConnection.rollback(con);
+				System.err.print("Transaction is being rolled back");
+			}
+		}
 
 		/*
 		 * IAerolineaDAO dao = AerolineaFactory.GetImplementation("database");

@@ -26,15 +26,13 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 	final String GETALL = "SELECT * FROM Clientes ORDER BY cliente_id";
 
 	@Override
-	public void AgregarCliente(Cliente cliente) throws IOException, ParseException {
+	public void AgregarCliente(Cliente cliente, Connection con) throws IOException, ParseException {
 		// TODO Auto-generated method stub
 
-		Connection con = null;
 		PreparedStatement ps = null;
 
 		try {
 			con = SQLDatabaseConnection.conectar();
-			con.setAutoCommit(false);
 			ps = con.prepareStatement(INSERT);
 
 			ps.setString(1, cliente.getNombre());
@@ -49,18 +47,10 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 			ps.setInt(9, cliente.getPas().getIdPasaporte()); // llamar a traves de manager
 			ps.setInt(10, cliente.getPasfre().getId());
 			ps.executeUpdate();
-			con.commit();
-
-			//
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-
-			if (con != null) {
-				SQLDatabaseConnection.rollback(con);
-				System.err.print("Transaction is being rolled back");
-			}
 
 		} finally {
 			try {
