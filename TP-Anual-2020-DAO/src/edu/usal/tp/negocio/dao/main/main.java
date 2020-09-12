@@ -37,28 +37,29 @@ public class main {
 
 	public static void main(String[] args) throws IOException, ParseException {
 
-		DirCompleta dir = cargarDirCompleta();
+		ITelefonoDAO impTelDAO = TelefonoFactory.GetImplementation("database");
+		Connection con = SQLDatabaseConnection.conectar();
+		try {
+			con.setAutoCommit(false);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Telefono tel = new Telefono();
 
-		if(dir!=null) {
-			System.out.println("test");
+		try {
+			tel.setNumCelular("851123");
+			tel.setNumLaboral("85512314");
+			tel.setNumPersonal("7444149");
+			impTelDAO.AgregarTelefono(tel, con);
+			con.commit();
+			Thread.sleep(8);
+
+			System.out.print(tel.getId());
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 
-	}
-
-	static DirCompleta cargarDirCompleta() {
-
-		// DirCompleta dir = new DirCompleta(1, "Test", "3500", "BA", p, prov, "1424");
-		Paises p = new Paises(1, "Argentina");
-		Provincias prov = new Provincias(1, "Buenos");
-
-		DirCompleta dir = new DirCompleta();
-		dir.setCalle((IOGeneral.leerLinea("ingrese nombre calle")));
-		dir.setAltura((IOGeneral.leerLinea("ingrese altura de la calle")));
-		dir.setCiudad((IOGeneral.leerLinea("ingrese nombre ciudad")));
-		dir.setPais(p);
-		dir.setProvincia(prov);
-		dir.setCodigoPostal((IOGeneral.leerLinea("ingrese codigo postal")));
-		return dir;
 	}
 
 	/*
@@ -134,11 +135,7 @@ public class main {
 	 * tel.setNumCelular("156797679"); tel.setNumLaboral("54544");
 	 * tel.setNumPersonal("564613218");
 	 * 
-	 * ITelefonoDAO impTelDAO = TelefonoFactory.GetImplementation("Archivo");
-	 * 
-	 * try { impTelDAO.AgregarTelefono(tel); tel.setNumCelular("1123");
-	 * tel.setNumLaboral("12314"); tel.setNumPersonal("123148");
-	 * impTelDAO.AgregarTelefono(tel);
+	 *
 	 * 
 	 * List<Telefono> listado = impTelDAO.GetAll();
 	 * 

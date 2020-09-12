@@ -40,6 +40,11 @@ public class ClienteManager {
 			con = SQLDatabaseConnection.conectar();
 			con.setAutoCommit(false);
 
+			this.dirCompletaDAODatabase.AgregarDirCompleta(dir, con);
+			con.commit();
+			System.out.println("Direccion agregada - Operacion completada");
+			c.setDir(dir);
+
 			this.pasaporteDAODatabase.AgregarPasaporte(p, con);
 			con.commit();
 			System.out.println("Pasaporte agregado - Operacion completada");
@@ -49,15 +54,6 @@ public class ClienteManager {
 			con.commit();
 			System.out.println("Telefono agregado - Operacion completada");
 			c.setTel(tel);
-
-			if (dir != null) {
-				System.out.println(dir.getId());
-			}
-
-			this.dirCompletaDAODatabase.AgregarDirCompleta(dir, con);
-			con.commit();
-			System.out.println("Direccion agregada - Operacion completada");
-			c.setDir(dir);
 
 			this.pasajeroFrecuenteDAODatabase.AgregarPasajeroFrecuente(pasFrec, con);
 			con.commit();

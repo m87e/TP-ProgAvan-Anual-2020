@@ -27,11 +27,14 @@ public class ClienteView {
 
 		Cliente c = new Cliente();
 
+		LocalDate d = LocalDate.now();
+
 		c.setNombre(IOGeneral.leerLinea("Ingrese nombre: "));
 		c.setApellido(IOGeneral.leerLinea("Ingrese apellido: "));
 		c.setDni(IOGeneral.leerLinea("Ingrese dni: "));
 		c.setCuit(IOGeneral.leerLinea("Ingrese cuit: "));
 		c.setEmail(IOGeneral.leerLinea("Ingrese email: "));
+		c.setFechaNac(d);
 		return c;
 
 	}

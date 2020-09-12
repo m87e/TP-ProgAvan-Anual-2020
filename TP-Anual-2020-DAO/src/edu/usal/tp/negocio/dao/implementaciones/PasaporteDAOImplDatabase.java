@@ -15,6 +15,8 @@ import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 
 public class PasaporteDAOImplDatabase implements IPasaporteDAO {
 
+	final String INSERT = "INSERT INTO Pasaportes (pasaporte_numero, pasaporte_autEmision, pasaporte_fechaEmision, pasaporte_fechaVencimiento, pasaporte_paisID) values (?,?,?,?,?)";
+
 	@Override
 	public void AgregarPasaporte(Pasaporte pasaporte, Connection con) throws IOException {
 		// TODO Auto-generated method stub
@@ -23,15 +25,19 @@ public class PasaporteDAOImplDatabase implements IPasaporteDAO {
 
 		try {
 
-			ps = con.prepareStatement(
-					"INSERT INTO Pasaportes (pasaporte_numero, pasaporte_autEmision, pasaporte_fechaEmision, pasaporte_fechaVencimiento, pasaporte_paisID) values (?,?,?,?,?)");
+			ps = con.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 
-			ps.setString(2, pasaporte.getNumeroPasaporte());
-			ps.setString(3, pasaporte.getAutoridadEmision());
+			ps.setString(1, pasaporte.getNumeroPasaporte());
+			ps.setString(2, pasaporte.getAutoridadEmision());
+			ps.setDate(3, java.sql.Date.valueOf(pasaporte.getFechaVencimiento()));
 			ps.setDate(4, java.sql.Date.valueOf(pasaporte.getFechaVencimiento()));
-			ps.setDate(5, java.sql.Date.valueOf(pasaporte.getFechaVencimiento()));
-			ps.setInt(6, pasaporte.getPaisID());
+			ps.setInt(5, pasaporte.getPaisID());
 			ps.executeUpdate();
+
+			ResultSet rs = ps.getGeneratedKeys();
+			if (rs.next()) {
+				pasaporte.setId((int) rs.getLong(1));
+			}
 
 		} catch (Exception e) {
 			// TODO: handle exception

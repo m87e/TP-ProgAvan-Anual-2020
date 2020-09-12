@@ -15,6 +15,8 @@ import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 
 public class TelefonoDAOImplDatabase implements ITelefonoDAO {
 
+	final String INSERT = "INSERT INTO Telefonos (telefono_numPersonal, telefono_numCelular, telefono_numLaboral) values (?,?,?)";
+
 	@Override
 	public void AgregarTelefono(Telefono tel, Connection con) throws IOException {
 		// TODO Auto-generated method stub
@@ -23,12 +25,16 @@ public class TelefonoDAOImplDatabase implements ITelefonoDAO {
 
 		try {
 
-			ps = con.prepareStatement(
-					"INSERT INTO Telefonos (telefono_numPersonal, telefono_numCelular, telefono_numLaboral) values (?,?,?)");
+			ps = con.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, tel.getNumPersonal());
 			ps.setString(2, tel.getNumCelular());
 			ps.setString(3, tel.getNumLaboral());
 			ps.executeUpdate();
+
+			ResultSet rs = ps.getGeneratedKeys();
+			if (rs.next()) {
+				tel.setID((int) rs.getLong(1));
+			}
 
 		} catch (Exception e) {
 			// TODO: handle exception

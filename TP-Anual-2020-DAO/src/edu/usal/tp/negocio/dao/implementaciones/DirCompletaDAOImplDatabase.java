@@ -3,6 +3,8 @@ package edu.usal.tp.negocio.dao.implementaciones;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.DirCompleta;
@@ -22,7 +24,7 @@ public class DirCompletaDAOImplDatabase implements IDirCompletaDAO {
 
 		try {
 
-			ps = con.prepareStatement(INSERT);
+			ps = con.prepareStatement(INSERT,Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, dir.getCalle());
 			ps.setString(2, dir.getAltura());
 			ps.setString(3, dir.getCiudad());
@@ -31,6 +33,11 @@ public class DirCompletaDAOImplDatabase implements IDirCompletaDAO {
 			ps.setString(6, dir.getCodigoPostal());
 
 			ps.executeUpdate();
+
+			ResultSet rs = ps.getGeneratedKeys();
+			if (rs.next()) {
+				dir.setId((int) rs.getLong(1));
+			}
 
 		} catch (Exception e) {
 			// TODO: handle exception

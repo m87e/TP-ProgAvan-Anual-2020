@@ -16,6 +16,8 @@ import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 
 public class PasajeroFrecuenteDAOImplDatabase implements IPasajeroFrecuenteDAO {
 
+	final String INSERT = "INSERT INTO PasajerosFrecuentes (pasajerofrecuente_alianza, pasajerofrecuente_aerolineaID, pasajerofrecuente_numeroPF, pasajerofrecuente_categoria) values (?,?,?,?)";
+
 	@Override
 	public void AgregarPasajeroFrecuente(PasajeroFrecuente pasFre, Connection con) throws IOException {
 		// TODO Auto-generated method stub
@@ -24,14 +26,18 @@ public class PasajeroFrecuenteDAOImplDatabase implements IPasajeroFrecuenteDAO {
 
 		try {
 
-			ps = con.prepareStatement(
-					"INSERT INTO PasajerosFrecuentes (pasajerofrecuente_alianza, pasajerofrecuente_aerolineaID, pasajerofrecuente_numeroPF, pasajerofrecuente_categoria) values (?,?,?,?)");
+			ps = con.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 
 			ps.setString(1, pasFre.getAlianza().toString());
 			ps.setInt(2, pasFre.getAerolineaID());
 			ps.setString(3, pasFre.getNumeroPF());
 			ps.setString(4, pasFre.getCategoria());
 			ps.executeUpdate();
+
+			ResultSet rs = ps.getGeneratedKeys();
+			if (rs.next()) {
+				pasFre.setIdPasFre((int) rs.getLong(1));
+			}
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
