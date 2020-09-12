@@ -19,6 +19,7 @@ public class PasajeroFrecuenteDAOImplDatabase implements IPasajeroFrecuenteDAO {
 	@Override
 	public void AgregarPasajeroFrecuente(PasajeroFrecuente pasFre, Connection con) throws IOException {
 		// TODO Auto-generated method stub
+
 		PreparedStatement ps = null;
 
 		try {
@@ -39,9 +40,6 @@ public class PasajeroFrecuenteDAOImplDatabase implements IPasajeroFrecuenteDAO {
 			try {
 
 				ps.close();
-				con.close();
-				System.out.println("Pasajero Frecuente agregado - Operacion completada");
-				System.out.println("Conexion cerrada");
 
 			} catch (Exception e2) {
 				// TODO: handle exception

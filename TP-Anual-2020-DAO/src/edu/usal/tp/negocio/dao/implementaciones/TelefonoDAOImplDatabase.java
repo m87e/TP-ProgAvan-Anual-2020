@@ -35,8 +35,6 @@ public class TelefonoDAOImplDatabase implements ITelefonoDAO {
 		} finally {
 			try {
 				ps.close();
-				con.close();
-				System.out.println("Conexion cerrada");
 
 			} catch (Exception e) {
 				// TODO: handle exception

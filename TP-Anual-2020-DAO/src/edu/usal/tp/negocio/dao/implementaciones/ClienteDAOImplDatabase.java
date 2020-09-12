@@ -54,9 +54,6 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 		} finally {
 			try {
 				ps.close();
-				con.close();
-				System.out.println("Cliente agregado - Operacion completada");
-				System.out.println("Conexion cerrada");
 
 			} catch (Exception e2) {
 				// TODO: handle exception

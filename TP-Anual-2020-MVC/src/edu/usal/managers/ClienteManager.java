@@ -42,22 +42,31 @@ public class ClienteManager {
 
 			this.pasaporteDAODatabase.AgregarPasaporte(p, con);
 			con.commit();
+			System.out.println("Pasaporte agregado - Operacion completada");
 			c.setPas(p);
 
 			this.telefonoDAODatabase.AgregarTelefono(tel, con);
 			con.commit();
+			System.out.println("Telefono agregado - Operacion completada");
 			c.setTel(tel);
+
+			if (dir != null) {
+				System.out.println(dir.getId());
+			}
 
 			this.dirCompletaDAODatabase.AgregarDirCompleta(dir, con);
 			con.commit();
+			System.out.println("Direccion agregada - Operacion completada");
 			c.setDir(dir);
 
 			this.pasajeroFrecuenteDAODatabase.AgregarPasajeroFrecuente(pasFrec, con);
 			con.commit();
+			System.out.println("Pasajero frecuente agregado - Operacion completada");
 			c.setPasfre(pasFrec);
 
 			this.clienteDAODatabase.AgregarCliente(c, con);
 			con.commit();
+			System.out.println("Cliente agregado - Operacion completada");
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -66,6 +75,16 @@ public class ClienteManager {
 				SQLDatabaseConnection.rollback(con);
 				System.err.print("Transaction is being rolled back");
 			}
+		} finally {
+
+			try {
+				con.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 
 	}

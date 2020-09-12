@@ -38,9 +38,6 @@ public class PasaporteDAOImplDatabase implements IPasaporteDAO {
 		} finally {
 			try {
 				ps.close();
-				con.close();
-				System.out.println("Pasaporte agregado - Operacion completada");
-				System.out.println("Conexion cerrada");
 
 			} catch (Exception e2) {
 				// TODO: handle exception
