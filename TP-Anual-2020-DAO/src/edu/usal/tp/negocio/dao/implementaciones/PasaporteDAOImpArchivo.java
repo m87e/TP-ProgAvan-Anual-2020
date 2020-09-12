@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class PasaporteDAOImpArchivo implements IPasaporteDAO {
 	String path = "C://Users//menrique002//git//USAL-ProgAvanzada-TP-DAO//USAL_TP_ProgAvanz_DAO//Pasaporte.txt";
 
 	@Override
-	public void AgregarPasaporte(Pasaporte pas) throws IOException {
+	public void AgregarPasaporte(Pasaporte pas, Connection con) throws IOException {
 		archivo = new File(path);
 
 		if (!archivo.exists()) {
@@ -72,7 +73,7 @@ public class PasaporteDAOImpArchivo implements IPasaporteDAO {
 		listadoPasaporte.removeIf(o -> o.getNumeroPasaporte() == pas.getNumeroPasaporte());
 
 		for (Pasaporte p : listadoPasaporte) {
-			AgregarPasaporte(p);
+			AgregarPasaporte(p, null);
 		}
 
 	}

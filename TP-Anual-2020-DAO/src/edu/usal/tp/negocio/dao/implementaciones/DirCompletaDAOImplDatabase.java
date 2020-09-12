@@ -1,6 +1,7 @@
 package edu.usal.tp.negocio.dao.implementaciones;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.DirCompleta;
@@ -9,7 +10,7 @@ import edu.usal.tp.negocio.dao.interfaces.IDirCompletaDAO;
 public class DirCompletaDAOImplDatabase implements IDirCompletaDAO {
 
 	@Override
-	public void AgregarDirCompleta(DirCompleta dir) throws IOException {
+	public void AgregarDirCompleta(DirCompleta dir, Connection con) throws IOException {
 		// TODO Auto-generated method stub
 
 	}

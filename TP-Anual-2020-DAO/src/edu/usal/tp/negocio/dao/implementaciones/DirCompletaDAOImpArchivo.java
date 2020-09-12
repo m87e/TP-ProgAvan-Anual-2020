@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class DirCompletaDAOImpArchivo implements IDirCompletaDAO {
 	String path = "C://Users//menrique002//git//USAL-ProgAvanzada-TP-DAO//USAL_TP_ProgAvanz_DAO//DirCompleta.txt";
 
 	@Override
-	public void AgregarDirCompleta(DirCompleta dir) throws IOException {
+	public void AgregarDirCompleta(DirCompleta dir, Connection con) throws IOException {
 		archivo = new File(path);
 
 		if (!archivo.exists()) {
@@ -73,7 +74,7 @@ public class DirCompletaDAOImpArchivo implements IDirCompletaDAO {
 		listadoDirCompleta.removeIf(o -> o.getId() == dir.getId());
 
 		for (DirCompleta dC : listadoDirCompleta) {
-			AgregarDirCompleta(dC);
+			AgregarDirCompleta(dC, null);
 		}
 
 	}

@@ -1,13 +1,14 @@
 package edu.usal.tp.negocio.dao.interfaces;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Telefono;
 
 public interface ITelefonoDAO {
 
-	void AgregarTelefono(Telefono tel) throws IOException;
+	void AgregarTelefono(Telefono tel, Connection con) throws IOException;
 
 	void ModificarTelefono(Telefono tel) throws IOException;
 

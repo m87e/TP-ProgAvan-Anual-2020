@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class PasajeroFrecuenteDAOImplArchivo implements IPasajeroFrecuenteDAO {
 	String path = "C://Users//menrique002//git//USAL-ProgAvanzada-TP-DAO//USAL_TP_ProgAvanz_DAO//PasajeroFrecuente.txt";
 
 	@Override
-	public void AgregarPasajeroFrecuente(PasajeroFrecuente pasFre) throws IOException {
+	public void AgregarPasajeroFrecuente(PasajeroFrecuente pasFre, Connection con) throws IOException {
 		archivo = new File(path);
 
 		if (!archivo.exists()) {
@@ -59,7 +60,7 @@ public class PasajeroFrecuenteDAOImplArchivo implements IPasajeroFrecuenteDAO {
 				pF.setAerolineaID(pasFre.getAerolinea().getId());
 			}
 
-			AgregarPasajeroFrecuente(pF);
+			AgregarPasajeroFrecuente(pF, null);
 
 		}
 
@@ -72,7 +73,7 @@ public class PasajeroFrecuenteDAOImplArchivo implements IPasajeroFrecuenteDAO {
 		listadoPasajeroFrecuentes.removeIf(o -> o.getNumeroPF() == pasFre.getNumeroPF());
 
 		for (PasajeroFrecuente pF : listadoPasajeroFrecuentes) {
-			AgregarPasajeroFrecuente(pF);
+			AgregarPasajeroFrecuente(pF, null);
 		}
 
 	}

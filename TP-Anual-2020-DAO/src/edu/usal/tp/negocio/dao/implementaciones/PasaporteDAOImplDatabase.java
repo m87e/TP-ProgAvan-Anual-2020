@@ -16,10 +16,9 @@ import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 public class PasaporteDAOImplDatabase implements IPasaporteDAO {
 
 	@Override
-	public void AgregarPasaporte(Pasaporte pasaporte) throws IOException {
+	public void AgregarPasaporte(Pasaporte pasaporte, Connection con) throws IOException {
 		// TODO Auto-generated method stub
 
-		Connection con = SQLDatabaseConnection.conectar();
 		PreparedStatement ps = null;
 
 		try {

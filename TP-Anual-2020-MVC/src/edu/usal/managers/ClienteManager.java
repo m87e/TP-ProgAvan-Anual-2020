@@ -32,6 +32,10 @@ public class ClienteManager {
 	private IDirCompletaDAO dirCompletaDAODatabase = DirCompletaFactory.GetImplementation("database");
 	private ClienteView view;
 
+	public ClienteManager(ClienteView view) {
+		this.view = view;
+	}
+
 	public void cargarCliente() throws IOException, ParseException {
 
 		Connection con = null;

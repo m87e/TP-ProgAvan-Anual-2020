@@ -17,33 +17,27 @@ import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 public class PasajeroFrecuenteDAOImplDatabase implements IPasajeroFrecuenteDAO {
 
 	@Override
-	public void AgregarPasajeroFrecuente(PasajeroFrecuente pasFre) throws IOException {
+	public void AgregarPasajeroFrecuente(PasajeroFrecuente pasFre, Connection con) throws IOException {
 		// TODO Auto-generated method stub
-		Connection con = null;
 		PreparedStatement ps = null;
-		
 
 		try {
 
-			con = SQLDatabaseConnection.conectar();
-		
 			ps = con.prepareStatement(
 					"INSERT INTO PasajerosFrecuentes (pasajerofrecuente_alianza, pasajerofrecuente_aerolineaID, pasajerofrecuente_numeroPF, pasajerofrecuente_categoria) values (?,?,?,?)");
 
-		
 			ps.setString(1, pasFre.getAlianza().toString());
 			ps.setInt(2, pasFre.getAerolineaID());
 			ps.setString(3, pasFre.getNumeroPF());
 			ps.setString(4, pasFre.getCategoria());
 			ps.executeUpdate();
 
-		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
-				
+
 				ps.close();
 				con.close();
 				System.out.println("Pasajero Frecuente agregado - Operacion completada");
