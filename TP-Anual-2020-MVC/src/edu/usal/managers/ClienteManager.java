@@ -47,22 +47,22 @@ public class ClienteManager {
 			Cliente c = this.view.cargarCliente();
 
 			Pasaporte p = this.view.cargarPasaporte();
-			this.pasaporteDAODatabase.AgregarPasaporte(p);
+			this.pasaporteDAODatabase.AgregarPasaporte(p, con);
 			con.commit();
 			c.setPas(p);
 
 			Telefono tel = this.view.cargarTelefono();
-			this.telefonoDAODatabase.AgregarTelefono(tel);
+			this.telefonoDAODatabase.AgregarTelefono(tel, con);
 			con.commit();
 			c.setTel(tel);
 
 			DirCompleta dir = this.view.cargarDirCompleta();
-			this.dirCompletaDAODatabase.AgregarDirCompleta(dir);
+			this.dirCompletaDAODatabase.AgregarDirCompleta(dir, con);
 			con.commit();
 			c.setDir(dir);
 
 			PasajeroFrecuente pas = this.view.cargarPasFrecuente();
-			this.pasajeroFrecuenteDAODatabase.AgregarPasajeroFrecuente(pas);
+			this.pasajeroFrecuenteDAODatabase.AgregarPasajeroFrecuente(pas, con);
 			con.commit();
 			c.setPasfre(pas);
 
