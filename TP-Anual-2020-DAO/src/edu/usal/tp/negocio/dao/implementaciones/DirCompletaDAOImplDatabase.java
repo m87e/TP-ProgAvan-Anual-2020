@@ -22,10 +22,6 @@ public class DirCompletaDAOImplDatabase implements IDirCompletaDAO {
 
 		try {
 
-			if (dir != null) {
-				System.out.println(dir.getId());
-			}
-
 			ps = con.prepareStatement(INSERT);
 			ps.setString(1, dir.getCalle());
 			ps.setString(2, dir.getAltura());
@@ -41,7 +37,6 @@ public class DirCompletaDAOImplDatabase implements IDirCompletaDAO {
 		} finally {
 			try {
 				ps.close();
-				System.out.println("Direccion agregada - Operacion completada");
 
 			} catch (Exception e2) {
 				// TODO: handle exception
