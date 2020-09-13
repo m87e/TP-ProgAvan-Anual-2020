@@ -41,22 +41,18 @@ public class ClienteManager {
 			con.setAutoCommit(false);
 
 			this.dirCompletaDAODatabase.AgregarDirCompleta(dir, con);
-			con.commit();
 			System.out.println("Direccion agregada - Operacion completada");
 			c.setDir(dir);
 
 			this.pasaporteDAODatabase.AgregarPasaporte(p, con);
-			con.commit();
 			System.out.println("Pasaporte agregado - Operacion completada");
 			c.setPas(p);
 
 			this.telefonoDAODatabase.AgregarTelefono(tel, con);
-			con.commit();
 			System.out.println("Telefono agregado - Operacion completada");
 			c.setTel(tel);
 
 			this.pasajeroFrecuenteDAODatabase.AgregarPasajeroFrecuente(pasFrec, con);
-			con.commit();
 			System.out.println("Pasajero frecuente agregado - Operacion completada");
 			c.setPasfre(pasFrec);
 
