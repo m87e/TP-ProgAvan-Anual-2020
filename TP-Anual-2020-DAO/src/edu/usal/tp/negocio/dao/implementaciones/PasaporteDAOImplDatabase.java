@@ -71,7 +71,7 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 			ps.setDate(3, java.sql.Date.valueOf(pasaporte.getFechaVencimiento()));
 			ps.setDate(4, java.sql.Date.valueOf(pasaporte.getFechaVencimiento()));
 			ps.setInt(5, pasaporte.getPaisID());
-			ps.setInt(6, pasaporte.getIdPasaporte());
+			ps.setInt(6, pasaporte.getId());
 
 			ps.executeUpdate();
 
@@ -102,7 +102,7 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 		try {
 			con = SQLDatabaseConnection.conectar();
 			ps = con.prepareStatement("DELETE FROM Pasaportes WHERE pasaporte_id=?");
-			ps.setInt(1, pasaporte.getIdPasaporte());
+			ps.setInt(1, pasaporte.getId());
 			ps.executeUpdate();
 
 		} catch (SQLException e) {

@@ -46,7 +46,7 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 			ps.setString(6, cliente.getEmail());
 			ps.setInt(7, cliente.getDireccionCompleta().getId());
 			ps.setInt(8, cliente.getTelefono().getId());
-			ps.setInt(9, cliente.getPasaporte().getIdPasaporte());
+			ps.setInt(9, cliente.getPasaporte().getId());
 			ps.setInt(10, cliente.getPasajeroFrecuente().getId());
 			ps.executeUpdate();
 
@@ -87,7 +87,7 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 			ps.setString(6, cliente.getEmail());
 			ps.setInt(7, cliente.getDireccionCompleta().getId());
 			ps.setInt(8, cliente.getTelefono().getId());
-			ps.setInt(9, cliente.getPasaporte().getIdPasaporte());
+			ps.setInt(9, cliente.getPasaporte().getId());
 			ps.setInt(10, cliente.getPasajeroFrecuente().getId());
 			ps.setInt(11, cliente.getId());
 			ps.executeUpdate();

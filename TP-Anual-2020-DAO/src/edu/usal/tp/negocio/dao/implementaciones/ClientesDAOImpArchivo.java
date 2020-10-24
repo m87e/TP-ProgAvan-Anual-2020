@@ -73,7 +73,7 @@ public class ClientesDAOImpArchivo implements ClienteDAO {
 				c.setEmail(cliente.getEmail());
 				c.setDireccionCompletaID(cliente.getDireccionCompleta().getId());
 				c.setFechaNac(cliente.getFechaNac());
-				c.setPasaporteID(cliente.getPasaporte().getIdPasaporte());
+				c.setPasaporteID(cliente.getPasaporte().getId());
 				c.setPasajeroFrecuenteID(cliente.getPasajeroFrecuente().getId());
 			}
 

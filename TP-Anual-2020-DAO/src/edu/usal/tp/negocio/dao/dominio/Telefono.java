@@ -9,16 +9,16 @@ public class Telefono {
 
 	// Getter & Setter
 
-	public String getNumPersonal() {
-		return numPersonal;
-	}
-
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getNumPersonal() {
+		return numPersonal;
 	}
 
 	public void setNumPersonal(String numPersonal) {
