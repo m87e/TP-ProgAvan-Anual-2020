@@ -16,6 +16,10 @@ import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 public class TelefonoDAOImplDatabase implements TelefonoDAO {
 
 	final String INSERT = "INSERT INTO Telefonos (telefono_numPersonal, telefono_numCelular, telefono_numLaboral) values (?,?,?)";
+	final String UPDATE = "UPDATE Telefonos SET telefono_numPersonal=?, telefono_numCelular=?, telefono_numLaboral=? WHERE telefono_id=?";
+	final String DELETE = "DELETE FROM Telefonos WHERE telefono_id=?";
+	final String SELECT_BY_ID = "SELECT * FROM Telefonos WHERE telefono_id=?";
+	final String SELECT_ALL = "SELECT * FROM Telefono ORDER BY telefono_id";
 
 	@Override
 	public void AgregarTelefono(Telefono tel, Connection con) throws IOException {
@@ -59,8 +63,7 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 
 		try {
 			con = SQLDatabaseConnection.conectar();
-			ps = con.prepareStatement(
-					"UPDATE Telefonos SET telefono_numPersonal=?, telefono_numCelular=?, telefono_numLaboral=? WHERE telefono_id=?");
+			ps = con.prepareStatement(UPDATE);
 
 			ps.setString(1, tel.getNumPersonal());
 			ps.setString(2, tel.getNumCelular());
@@ -95,7 +98,7 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 
 		try {
 			con = SQLDatabaseConnection.conectar();
-			ps = con.prepareStatement("DELETE FROM Telefonos WHERE telefono_id=?");
+			ps = con.prepareStatement(DELETE);
 			ps.setInt(1, tel.getId());
 			ps.executeUpdate();
 
@@ -128,7 +131,7 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 		try {
 			con = SQLDatabaseConnection.conectar();
 
-			ps = con.prepareStatement("SELECT * FROM Telefonos WHERE telefono_id=?");
+			ps = con.prepareStatement(SELECT_BY_ID);
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
 
@@ -172,7 +175,7 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 		Statement stm = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT * FROM Telefono ORDER BY telefono_id";
+		String sql = SELECT_ALL;
 
 		try {
 			con = SQLDatabaseConnection.conectar();

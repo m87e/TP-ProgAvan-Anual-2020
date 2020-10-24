@@ -33,7 +33,7 @@ public class AerolineaDAOImplDatabase implements AerolineaDAO {
 
 			con = SQLDatabaseConnection.conectar();
 
-			ps = con.prepareStatement("INSERT");
+			ps = con.prepareStatement(INSERT);
 
 			ps.setString(1, aerolinea.getNombre());
 			ps.setString(2, aerolinea.getAlianza().toString());
@@ -65,7 +65,7 @@ public class AerolineaDAOImplDatabase implements AerolineaDAO {
 
 		try {
 			con = SQLDatabaseConnection.conectar();
-			ps = con.prepareStatement("UPDATE");
+			ps = con.prepareStatement(UPDATE);
 
 			ps.setString(1, aerolinea.getNombre());
 			ps.setString(2, aerolinea.getAlianza().toString());
@@ -99,7 +99,7 @@ public class AerolineaDAOImplDatabase implements AerolineaDAO {
 		try {
 
 			con = SQLDatabaseConnection.conectar();
-			ps = con.prepareStatement("DELETE");
+			ps = con.prepareStatement(DELETE);
 			ps.setInt(1, aerolinea.getId());
 			ps.executeUpdate();
 
@@ -131,7 +131,7 @@ public class AerolineaDAOImplDatabase implements AerolineaDAO {
 		Statement stm = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT_ALL";
+		String sql = SELECT_ALL;
 
 		try {
 			con = SQLDatabaseConnection.conectar();
@@ -187,7 +187,7 @@ public class AerolineaDAOImplDatabase implements AerolineaDAO {
 		try {
 			con = SQLDatabaseConnection.conectar();
 
-			ps = con.prepareStatement("SELECT_BY_ID");
+			ps = con.prepareStatement(SELECT_BY_ID);
 			ps.setInt(1, aerolineaID);
 			rs = ps.executeQuery();
 

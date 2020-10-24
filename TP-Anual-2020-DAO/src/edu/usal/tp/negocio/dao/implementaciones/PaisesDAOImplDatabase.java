@@ -15,6 +15,9 @@ import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 
 public class PaisesDAOImplDatabase implements PaisesDAO {
 
+	final String SELECT_BY_ID = "SELECT * FROM Paises WHERE pais_id=?";
+	final String SELECT_ALL = "SELECT * FROM Paises ORDER BY pais_id";
+
 	@Override
 	public void AgregarPais(Pais pais) throws IOException {
 		// TODO Auto-generated method stub
@@ -44,7 +47,7 @@ public class PaisesDAOImplDatabase implements PaisesDAO {
 		try {
 			con = SQLDatabaseConnection.conectar();
 
-			ps = con.prepareStatement("SELECT * FROM Paises WHERE pais_id=?");
+			ps = con.prepareStatement(SELECT_BY_ID);
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
 
@@ -87,7 +90,7 @@ public class PaisesDAOImplDatabase implements PaisesDAO {
 		Statement stm = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT * FROM Paises ORDER BY pais_id";
+		String sql = SELECT_ALL;
 
 		try {
 			con = SQLDatabaseConnection.conectar();

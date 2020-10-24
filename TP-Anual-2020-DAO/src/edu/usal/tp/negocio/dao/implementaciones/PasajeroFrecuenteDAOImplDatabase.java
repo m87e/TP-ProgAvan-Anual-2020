@@ -17,6 +17,10 @@ import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 
 	final String INSERT = "INSERT INTO PasajerosFrecuentes (pasajerofrecuente_alianza, pasajerofrecuente_aerolineaID, pasajerofrecuente_numeroPF, pasajerofrecuente_categoria) values (?,?,?,?)";
+	final String UPDATE = "UPDATE PasajerosFrecuentes SET pasajerofrecuente_alianza=?, pasajerofrecuente_aerolineaID=?, pasajerofrecuente_numeroPF=?, pasajerofrecuente_categoria=? WHERE pasajerofrecuente_id=?";
+	final String DELETE = "DELETE FROM PasajerosFrecuentes WHERE pasajerofrecuente_id=?";
+	final String SELECT_BY_ID = "SELECT * FROM PasajerosFrecuentes WHERE pasajerofrecuente_id=?";
+	final String SELECT_ALL = "SELECT * FROM PasajerosFrecuentes ORDER BY pasajerofrecuente_id";
 
 	@Override
 	public void AgregarPasajeroFrecuente(PasajeroFrecuente pasFre, Connection con) throws IOException {
@@ -67,8 +71,7 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 		try {
 
 			con = SQLDatabaseConnection.conectar();
-			ps = con.prepareStatement(
-					"UPDATE PasajerosFrecuentes SET pasajerofrecuente_alianza=?, pasajerofrecuente_aerolineaID=?, pasajerofrecuente_numeroPF=?, pasajerofrecuente_categoria=? WHERE pasajerofrecuente_id=?");
+			ps = con.prepareStatement(UPDATE);
 
 			ps.setString(1, pasFre.getAlianza().toString());
 			ps.setInt(2, pasFre.getAerolineaID());
@@ -104,7 +107,7 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 
 		try {
 			con = SQLDatabaseConnection.conectar();
-			ps = con.prepareStatement("DELETE FROM PasajerosFrecuentes WHERE pasajerofrecuente_id=?");
+			ps = con.prepareStatement(DELETE);
 
 			ps.setInt(1, pasFre.getId());
 			ps.executeUpdate();
@@ -139,7 +142,7 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 		try {
 			con = SQLDatabaseConnection.conectar();
 
-			ps = con.prepareStatement("SELECT * FROM PasajerosFrecuentes WHERE pasajerofrecuente_id=?");
+			ps = con.prepareStatement(SELECT_BY_ID);
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
 
@@ -184,7 +187,7 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 		Statement stm = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT * FROM PasajerosFrecuentes ORDER BY pasajerofrecuente_id";
+		String sql = SELECT_ALL;
 
 		try {
 			con = SQLDatabaseConnection.conectar();

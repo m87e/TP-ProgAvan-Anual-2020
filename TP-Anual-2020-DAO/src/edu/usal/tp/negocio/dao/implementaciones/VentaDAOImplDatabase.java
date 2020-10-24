@@ -20,6 +20,11 @@ import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 
 public class VentaDAOImplDatabase implements VentaDAO {
 
+	final String INSERT = "INSERT INTO Ventas (venta_fecha, venta_formaPago, venta_clienteID, venta_vueloID, venta_aerolineaID) values (?,?,?,?,?)";
+	final String UPDATE = "UPDATE Ventas SET venta_fecha=?, venta_formaPago=?, venta_clienteID=?, venta_vueloID=?, venta_aerolineaID?) WHERE venta_id=?";
+	final String DELETE = "DELETE FROM Ventas WHERE venta_id=?";
+	final String SELECT_ALL = "SELECT * FROM Ventas ORDER BY venta_id";
+
 	@Override
 	public void AgregarVenta(Venta venta) throws IOException {
 		// TODO Auto-generated method stub
@@ -28,8 +33,7 @@ public class VentaDAOImplDatabase implements VentaDAO {
 
 		try {
 
-			ps = con.prepareStatement(
-					"INSERT INTO Ventas (venta_fecha, venta_formaPago, venta_clienteID, venta_vueloID, venta_aerolineaID) values (?,?,?,?,?)");
+			ps = con.prepareStatement(INSERT);
 
 			ps.setDate(1, (Date) venta.getFechaHoraVenta());
 			ps.setString(2, venta.getFormaPago());
@@ -64,8 +68,7 @@ public class VentaDAOImplDatabase implements VentaDAO {
 		PreparedStatement ps = null;
 
 		try {
-			ps = con.prepareStatement(
-					"UPDATE Ventas SET venta_fecha=?, venta_formaPago=?, venta_clienteID=?, venta_vueloID=?, venta_aerolineaID?) WHERE venta_id=?");
+			ps = con.prepareStatement(UPDATE);
 
 			ps.setDate(1, (Date) venta.getFechaHoraVenta());
 			ps.setString(2, venta.getFormaPago());
@@ -102,7 +105,7 @@ public class VentaDAOImplDatabase implements VentaDAO {
 		PreparedStatement ps = null;
 
 		try {
-			ps = con.prepareStatement("DELETE FROM Ventas WHERE venta_id=?");
+			ps = con.prepareStatement(DELETE);
 			ps.setInt(1, venta.getId());
 			ps.executeUpdate();
 			System.out.println("Venta eliminada - Operacion completada");
@@ -135,7 +138,7 @@ public class VentaDAOImplDatabase implements VentaDAO {
 		Statement stm = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT * FROM Ventas ORDER BY venta_id";
+		String sql = SELECT_ALL;
 
 		try {
 			stm = con.createStatement();

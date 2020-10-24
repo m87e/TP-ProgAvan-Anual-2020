@@ -16,6 +16,10 @@ import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 public class PasaporteDAOImplDatabase implements PasaporteDAO {
 
 	final String INSERT = "INSERT INTO Pasaportes (pasaporte_numero, pasaporte_autEmision, pasaporte_fechaEmision, pasaporte_fechaVencimiento, pasaporte_paisID) values (?,?,?,?,?)";
+	final String UPDATE = "UPDATE INTO Pasaportes pasaporte_numero=?, pasaporte_autEmision=?, pasaporte_fechaEmision=?, pasaporte_fechaVencimiento=?, pasaporte_paisID=? WHERE pasaporte_id=? ";
+	final String DELETE = "DELETE FROM Pasaportes WHERE pasaporte_id=?";
+	final String SELECT_BY_NUMBER = "SELECT * FROM Pasaportes WHERE pasaporte_numero=?";
+	final String SELECT_ALL = "SELECT * FROM Pasaportes ORDER BY pasaporte_id";
 
 	@Override
 	public void AgregarPasaporte(Pasaporte pasaporte, Connection con) throws IOException {
@@ -63,8 +67,7 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 		try {
 
 			con = SQLDatabaseConnection.conectar();
-			ps = con.prepareStatement(
-					"UPDATE INTO Pasaportes pasaporte_numero=?, pasaporte_autEmision=?, pasaporte_fechaEmision=?, pasaporte_fechaVencimiento=?, pasaporte_paisID=? WHERE pasaporte_id=? ");
+			ps = con.prepareStatement(UPDATE);
 
 			ps.setString(1, pasaporte.getNumeroPasaporte());
 			ps.setString(2, pasaporte.getAutoridadEmision());
@@ -101,7 +104,7 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 
 		try {
 			con = SQLDatabaseConnection.conectar();
-			ps = con.prepareStatement("DELETE FROM Pasaportes WHERE pasaporte_id=?");
+			ps = con.prepareStatement(DELETE);
 			ps.setInt(1, pasaporte.getId());
 			ps.executeUpdate();
 
@@ -134,7 +137,7 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 		Statement stm = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT * FROM Pasaportes ORDER BY pasaporte_id";
+		String sql = SELECT_ALL;
 
 		try {
 			con = SQLDatabaseConnection.conectar();
@@ -185,7 +188,7 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 		try {
 			con = SQLDatabaseConnection.conectar();
 
-			ps = con.prepareStatement("SELECT * FROM Pasaportes WHERE pasaporte_numero=?");
+			ps = con.prepareStatement(SELECT_BY_NUMBER);
 			ps.setString(1, numeroPasaporte);
 			rs = ps.executeQuery();
 
