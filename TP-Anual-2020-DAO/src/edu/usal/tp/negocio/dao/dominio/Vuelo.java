@@ -3,16 +3,18 @@ package edu.usal.tp.negocio.dao.dominio;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class Vuelos {
+public class Vuelo {
 
 	private int id;
 	private String numVuelo;
 	private Integer cantAsientos;
 	private Aeropuerto aeropuertoSalida;
 	private Aeropuerto aeropuertoLlegada;
-	private LocalDate fechaHoraSalida; // se ingresa
-	private LocalDate fechaHoraLlegada; // se calcula
-	private String tiempoVuelo; // chequearlo con el date que dato suma al date
+	private LocalDate fechaHoraSalida;
+	private LocalDate fechaHoraLlegada;
+	private String tiempoVuelo;
+
+	// Getter & Setter
 
 	public int getId() {
 		return id;
@@ -94,12 +96,14 @@ public class Vuelos {
 		this.tiempoVuelo = tiempoVuelo;
 	}
 
-	public Vuelos() {
+	// Constructor
+
+	public Vuelo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Vuelos(int id, String numVuelo, Integer cantAsientos, Aeropuerto aeropuertoSalida,
+	public Vuelo(int id, String numVuelo, Integer cantAsientos, Aeropuerto aeropuertoSalida,
 			Aeropuerto aeropuertoLlegada, LocalDate fechaHoraSalida, LocalDate fechaHoraLlegada, String tiempoVuelo) {
 		super();
 		this.id = id;

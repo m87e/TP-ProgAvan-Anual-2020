@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Cliente;
-import edu.usal.tp.negocio.dao.dominio.DirCompleta;
+import edu.usal.tp.negocio.dao.dominio.DireccionCompleta;
 import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
 import edu.usal.tp.negocio.dao.dominio.Pasaporte;
 import edu.usal.tp.negocio.dao.dominio.Telefono;
@@ -45,7 +45,7 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 			ps.setDate(5, java.sql.Date.valueOf(cliente.getFechaNac()));
 			ps.setString(6, cliente.getEmail());
 			ps.setInt(7, cliente.getDir().getId());
-			ps.setInt(8, cliente.getTel().getId());
+			ps.setInt(8, cliente.getTelefono().getId());
 			ps.setInt(9, cliente.getPasaporte().getIdPasaporte());
 			ps.setInt(10, cliente.getPasajeroFrecuente().getId());
 			ps.executeUpdate();
@@ -84,7 +84,7 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 			ps.setDate(5, java.sql.Date.valueOf(cliente.getFechaNac()));
 			ps.setString(6, cliente.getEmail());
 			ps.setInt(7, cliente.getDir().getId());
-			ps.setInt(8, cliente.getTel().getId());
+			ps.setInt(8, cliente.getTelefono().getId());
 			ps.setInt(9, cliente.getPasaporte().getIdPasaporte());
 			ps.setInt(10, cliente.getPasajeroFrecuente().getId());
 			ps.setInt(11, cliente.getId());
@@ -156,12 +156,12 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 			while (rs.next()) {
 
 				Cliente c = new Cliente();
-				DirCompleta dir = new DirCompleta();
+				DireccionCompleta dir = new DireccionCompleta();
 				Telefono tel = new Telefono();
 				Pasaporte pas = new Pasaporte();
 				PasajeroFrecuente pasFre = new PasajeroFrecuente();
 
-				c.setIdCliente(rs.getInt("cliente_id"));
+				c.setId(rs.getInt("cliente_id"));
 				c.setNombre(rs.getString("cliente_nombre"));
 				c.setApellido(rs.getString("cliente_apellido"));
 				c.setDni(rs.getString("cliente_dni"));
@@ -219,14 +219,14 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 			rs = ps.executeQuery();
 
 			Cliente c = new Cliente();
-			DirCompleta dir = new DirCompleta();
+			DireccionCompleta dir = new DireccionCompleta();
 			Telefono tel = new Telefono();
 			Pasaporte pas = new Pasaporte();
 			PasajeroFrecuente pasFre = new PasajeroFrecuente();
 
 			if (rs.next()) {
 
-				c.setIdCliente(rs.getInt("cliente_id"));
+				c.setId(rs.getInt("cliente_id"));
 				c.setNombre(rs.getString("cliente_nombre"));
 				c.setApellido(rs.getString("cliente_apellido"));
 				c.setDni(rs.getString("cliente_dni"));

@@ -1,9 +1,11 @@
 package edu.usal.tp.negocio.dao.dominio;
 
-public class Provincias {
+public class Pais {
 
 	private int id;
 	private String nombre;
+
+	// Getter & Setter
 
 	public int getId() {
 		return id;
@@ -21,13 +23,15 @@ public class Provincias {
 		this.nombre = nombre;
 	}
 
-	public Provincias(int id, String nombre) {
+	// Constructors
+
+	public Pais() {
+
+	}
+
+	public Pais(int id, String nombre) {
+		super();
 		this.id = id;
 		this.nombre = nombre;
 	}
-
-	public Provincias() {
-		// TODO Auto-generated constructor stub
-	}
-
 }

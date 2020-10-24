@@ -13,15 +13,17 @@ public class Cliente {
 	private String cuit;
 	private LocalDate fechaNac;
 	private String email;
-	private Telefono tel;
+	private Telefono telefono;
 	private PasajeroFrecuente pasajeroFrecuente;
-	private DirCompleta dir;
+	private DireccionCompleta direccionCompleta;
+
+	// Getter & Setter
 
 	public int getId() {
 		return id;
 	}
 
-	public void setIdCliente(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -57,10 +59,6 @@ public class Cliente {
 		this.pasaporte = pasaporte;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getCuit() {
 		return cuit;
 	}
@@ -85,16 +83,16 @@ public class Cliente {
 		this.email = email;
 	}
 
-	public Telefono getTel() {
-		return tel;
+	public Telefono getTelefono() {
+		return telefono;
 	}
 
 	public void setTel(Telefono tel) {
-		this.tel = tel;
+		this.telefono = tel;
 	}
 
 	public void setTelID(int id) {
-		this.tel.setId(id);
+		this.telefono.setId(id);
 	}
 
 	public PasajeroFrecuente getPasajeroFrecuente() {
@@ -105,43 +103,22 @@ public class Cliente {
 		this.pasajeroFrecuente = pasfre;
 	}
 
-	public DirCompleta getDir() {
-		return dir;
+	public DireccionCompleta getDir() {
+		return direccionCompleta;
 	}
 
-	public void setDir(DirCompleta dir) {
-		this.dir = dir;
+	public void setDir(DireccionCompleta dir) {
+		this.direccionCompleta = dir;
 	}
 
 	public void setTelefono(int ID, String numPersonal, String numCelular, String numLaboral) {
-		this.tel.setId(ID);
-		this.tel.setNumCelular(numCelular);
-		this.tel.setNumLaboral(numLaboral);
-	}
-
-	public Cliente() {
-
-		// TODO Auto-generated constructor stub
-	}
-
-	public Cliente(int id, String nombre, String apellido, String dni, Pasaporte pas, String cuit, LocalDate fechaNac,
-			String email, Telefono tel, PasajeroFrecuente pasfre, DirCompleta dir) {
-
-		this.id = id;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.dni = dni;
-		this.pasaporte = pas;
-		this.cuit = cuit;
-		this.fechaNac = fechaNac;
-		this.email = email;
-		this.tel = tel;
-		this.pasajeroFrecuente = pasfre;
-		this.dir = dir;
+		this.telefono.setId(ID);
+		this.telefono.setNumCelular(numCelular);
+		this.telefono.setNumLaboral(numLaboral);
 	}
 
 	public void setDirID(int id) {
-		this.dir.setId(id);
+		this.direccionCompleta.setId(id);
 
 	}
 
@@ -152,6 +129,30 @@ public class Cliente {
 	public void setPasfreID(int numeroPF) {
 		this.pasajeroFrecuente.setId(numeroPF);
 
+	}
+
+	// Constructors
+
+	public Cliente() {
+
+		// TODO Auto-generated constructor stub
+	}
+
+	public Cliente(int id, String nombre, String apellido, String dni, Pasaporte pasaporte, String cuit,
+			LocalDate fechaNac, String email, Telefono telefono, PasajeroFrecuente pasajeroFrecuente,
+			DireccionCompleta direccionCompleta) {
+
+		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.dni = dni;
+		this.pasaporte = pasaporte;
+		this.cuit = cuit;
+		this.fechaNac = fechaNac;
+		this.email = email;
+		this.telefono = telefono;
+		this.pasajeroFrecuente = pasajeroFrecuente;
+		this.direccionCompleta = direccionCompleta;
 	}
 
 }

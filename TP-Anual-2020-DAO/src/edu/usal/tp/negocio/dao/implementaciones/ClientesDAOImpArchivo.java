@@ -50,7 +50,7 @@ public class ClientesDAOImpArchivo implements ClienteDAO {
 
 	private String SaveCliente(Cliente cliente) {
 		return cliente.getId() + ";" + cliente.getNombre() + ";" + cliente.getApellido() + ";" + cliente.getDni() + ";"
-				+ cliente.getTel().getId() + ";" + cliente.getCuit() + ";" + cliente.getEmail() + ";"
+				+ cliente.getTelefono().getId() + ";" + cliente.getCuit() + ";" + cliente.getEmail() + ";"
 				+ cliente.getDir().getId() + ";" + cliente.getFechaNac() + ";"
 				+ cliente.getPasaporte().getNumeroPasaporte() + ";" + cliente.getPasajeroFrecuente().getNumeroPF()
 				+ "\r\n";
@@ -64,11 +64,11 @@ public class ClientesDAOImpArchivo implements ClienteDAO {
 		for (Cliente c : listadoCliente) {
 
 			if (c.getId() == (cliente.getId())) {
-				c.setIdCliente(cliente.getId());
+				c.setId(cliente.getId());
 				c.setApellido(cliente.getApellido());
 				c.setNombre(cliente.getNombre());
 				c.setDni(cliente.getDni());
-				c.setTelID(cliente.getTel().getId());
+				c.setTelID(cliente.getTelefono().getId());
 				c.setCuit(cliente.getCuit());
 				c.setEmail(cliente.getEmail());
 				c.setDirID(cliente.getDir().getId());
@@ -123,7 +123,7 @@ public class ClientesDAOImpArchivo implements ClienteDAO {
 
 		Cliente c = new Cliente();
 
-		c.setIdCliente(Integer.valueOf(atributos[0]));
+		c.setId(Integer.valueOf(atributos[0]));
 		c.setApellido(atributos[1]);
 		c.setNombre(atributos[2]);
 		c.setDni(atributos[3]);

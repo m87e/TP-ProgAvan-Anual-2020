@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 import edu.usal.tp.negocio.dao.dominio.Aeropuerto;
 import edu.usal.tp.negocio.dao.dominio.Venta;
-import edu.usal.tp.negocio.dao.dominio.Vuelos;
+import edu.usal.tp.negocio.dao.dominio.Vuelo;
 import edu.usal.tp.negocio.dao.interfaces.VuelosDAO;
 import edu.usal.tp.negocio.dao.util.PropertiesUtil;
 
@@ -24,10 +24,10 @@ public class VueloDAOImplStream implements VuelosDAO {
 	private ObjectOutputStream oos;
 	private ObjectInputStream ois;
 	private FileInputStream fis;
-	private List<Vuelos> lista;
+	private List<Vuelo> lista;
 
 	@Override
-	public void AgregarVuelo(Vuelos vuelos) throws IOException {
+	public void AgregarVuelo(Vuelo vuelos) throws IOException {
 		// TODO Auto-generated method stub
 
 		this.lista.add(vuelos);
@@ -45,13 +45,13 @@ public class VueloDAOImplStream implements VuelosDAO {
 	}
 
 	@Override
-	public void ModificarVuelo(Vuelos vuelos) throws IOException, ParseException {
+	public void ModificarVuelo(Vuelo vuelos) throws IOException, ParseException {
 		// TODO Auto-generated method stub
 
-		List<Vuelos> listado = GetAll();
+		List<Vuelo> listado = GetAll();
 		int aux = 0;
 
-		for (Vuelos v : listado) {
+		for (Vuelo v : listado) {
 
 			if (v.getNumVuelo().equals(vuelos.getNumVuelo())) {
 
@@ -88,7 +88,7 @@ public class VueloDAOImplStream implements VuelosDAO {
 	}
 
 	@Override
-	public void EliminarVuelo(Vuelos vuelos) throws IOException, ParseException {
+	public void EliminarVuelo(Vuelo vuelos) throws IOException, ParseException {
 		// TODO Auto-generated method stub
 
 		int oriSize = lista.size();
@@ -113,12 +113,12 @@ public class VueloDAOImplStream implements VuelosDAO {
 	}
 
 	@Override
-	public List<Vuelos> GetAll() throws IOException, ParseException {
+	public List<Vuelo> GetAll() throws IOException, ParseException {
 		// TODO Auto-generated method stub
 		fis = new FileInputStream(PropertiesUtil.obtenerPathVuelosStream());
 		ois = new ObjectInputStream(fis);
 		try {
-			lista = (List<Vuelos>) ois.readObject();
+			lista = (List<Vuelo>) ois.readObject();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -134,13 +134,13 @@ public class VueloDAOImplStream implements VuelosDAO {
 	}
 
 	@Override
-	public Vuelos ObtenerVueloPorID(int id) throws IOException {
+	public Vuelo ObtenerVueloPorID(int id) throws IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Vuelos ObtenerVuelosPorNumero(String numVuelo) throws IOException {
+	public Vuelo ObtenerVuelosPorNumero(String numVuelo) throws IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}

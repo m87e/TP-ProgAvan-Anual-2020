@@ -5,11 +5,13 @@ import java.util.Date;
 public class Venta {
 
 	private int id;
-	private Cliente cli;
-	private Vuelos vue;
-	private Aerolinea aero;
+	private Cliente cliente;
+	private Vuelo vuelo;
+	private Aerolinea aerolinea;
 	private Date fechaHoraVenta;
 	private String formaPago;
+
+	// Getter & Setter
 
 	public int getId() {
 		return id;
@@ -19,52 +21,52 @@ public class Venta {
 		this.id = id;
 	}
 
-	public Cliente getCli() {
-		return cli;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public int getCliID() {
-		return cli.getId();
+	public int getClienteID() {
+		return cliente.getId();
 	}
 
-	public void setCli(Cliente cli) {
-		this.cli = cli;
+	public void setCliente(Cliente cli) {
+		this.cliente = cli;
 	}
 
-	public void setCliID(int id) {
-		this.cli.setIdCliente(id);
+	public void setClienteID(int id) {
+		this.cliente.setId(id);
 	}
 
-	public Vuelos getVue() {
-		return vue;
+	public Vuelo getVuelo() {
+		return vuelo;
 	}
 
-	public int getVueID() {
-		return vue.getId();
+	public int getVueloID() {
+		return vuelo.getId();
 	}
 
-	public void setVue(Vuelos vue) {
-		this.vue = vue;
+	public void setVuelo(Vuelo vue) {
+		this.vuelo = vue;
 	}
 
-	public void setVueID(int id) {
-		this.vue.setId(id);
+	public void setVueloID(int id) {
+		this.vuelo.setId(id);
 	}
 
-	public Aerolinea getAero() {
-		return aero;
+	public Aerolinea getAerolinea() {
+		return aerolinea;
 	}
 
-	public int getAeroID() {
-		return aero.getId();
+	public int getAerolineaID() {
+		return aerolinea.getId();
 	}
 
-	public void setAero(Aerolinea aero) {
-		this.aero = aero;
+	public void setAerolinea(Aerolinea aero) {
+		this.aerolinea = aero;
 	}
 
-	public void setAeroID(int id) {
-		this.aero.setId(id);
+	public void setAerolineaID(int id) {
+		this.aerolinea.setId(id);
 	}
 
 	public Date getFechaHoraVenta() {
@@ -83,19 +85,21 @@ public class Venta {
 		this.formaPago = formaPago;
 	}
 
-	public Venta(int id, Cliente cli, Vuelos vue, Aerolinea aero, Date fechaHoraVenta, String formaPago) {
-
-		this.id = id;
-		this.cli = cli;
-		this.vue = vue;
-		this.aero = aero;
-		this.fechaHoraVenta = fechaHoraVenta;
-		this.formaPago = formaPago;
-	}
+	// Constructors
 
 	public Venta() {
 
 		// TODO Auto-generated constructor stub
+	}
+
+	public Venta(int id, Cliente cliente, Vuelo vuelo, Aerolinea aerolinea, Date fechaHoraVenta, String formaPago) {
+
+		this.id = id;
+		this.cliente = cliente;
+		this.vuelo = vuelo;
+		this.aerolinea = aerolinea;
+		this.fechaHoraVenta = fechaHoraVenta;
+		this.formaPago = formaPago;
 	}
 
 }

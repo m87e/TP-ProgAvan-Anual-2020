@@ -4,9 +4,11 @@ public class PasajeroFrecuente {
 
 	private int id;
 	private Alianza alianza;
-	private Aerolinea aerolinea; // ObjetoAerolinea?
+	private Aerolinea aerolinea;
 	private String numeroPF;
 	private String categoria;
+
+	// Getter & Setter
 
 	public Alianza getAlianza() {
 		return alianza;
@@ -40,18 +42,6 @@ public class PasajeroFrecuente {
 		this.categoria = categoria;
 	}
 
-	public PasajeroFrecuente(int id, Alianza alianza, Aerolinea aerolinea, String numeroPF, String categoria) {
-		this.id = id;
-		this.alianza = alianza;
-		this.aerolinea = aerolinea;
-		this.numeroPF = numeroPF;
-		this.categoria = categoria;
-	}
-
-	public PasajeroFrecuente() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public void setAerolineaID(int id) {
 		this.aerolinea.setId(id);
 
@@ -67,6 +57,20 @@ public class PasajeroFrecuente {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	// Constructors
+
+	public PasajeroFrecuente() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public PasajeroFrecuente(int id, Alianza alianza, Aerolinea aerolinea, String numeroPF, String categoria) {
+		this.id = id;
+		this.alianza = alianza;
+		this.aerolinea = aerolinea;
+		this.numeroPF = numeroPF;
+		this.categoria = categoria;
 	}
 
 }

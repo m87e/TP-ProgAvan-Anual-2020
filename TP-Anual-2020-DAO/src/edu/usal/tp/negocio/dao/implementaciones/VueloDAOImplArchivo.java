@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Cliente;
-import edu.usal.tp.negocio.dao.dominio.Vuelos;
+import edu.usal.tp.negocio.dao.dominio.Vuelo;
 import edu.usal.tp.negocio.dao.interfaces.VuelosDAO;
 
 public class VueloDAOImplArchivo implements VuelosDAO {
@@ -27,7 +27,7 @@ public class VueloDAOImplArchivo implements VuelosDAO {
 	String path = "/Users/juan/Desktop/vuelos.txt";
 
 	@Override
-	public void AgregarVuelo(Vuelos vuelos) throws IOException {
+	public void AgregarVuelo(Vuelo vuelos) throws IOException {
 		// TODO Auto-generated method stub
 		archivo = new File(path);
 
@@ -47,7 +47,7 @@ public class VueloDAOImplArchivo implements VuelosDAO {
 
 	}
 
-	private String SaveVuelos(Vuelos vuelos) {
+	private String SaveVuelos(Vuelo vuelos) {
 
 		return vuelos.getNumVuelo() + ";" + vuelos.getAeropuertoSalida().getId() + ";"
 				+ vuelos.getAeropuertoLlegada().getId() + ";" + vuelos.getFechaHoraSalida().toString() + ";"
@@ -55,12 +55,12 @@ public class VueloDAOImplArchivo implements VuelosDAO {
 	}
 
 	@Override
-	public void ModificarVuelo(Vuelos vuelos) throws IOException, ParseException {
+	public void ModificarVuelo(Vuelo vuelos) throws IOException, ParseException {
 		// TODO Auto-generated method stub
 
-		List<Vuelos> listadoVuelos = GetAll();
+		List<Vuelo> listadoVuelos = GetAll();
 
-		for (Vuelos v : listadoVuelos) {
+		for (Vuelo v : listadoVuelos) {
 
 			if (v.getNumVuelo().equals(vuelos.getNumVuelo())) {
 
@@ -80,21 +80,21 @@ public class VueloDAOImplArchivo implements VuelosDAO {
 	}
 
 	@Override
-	public void EliminarVuelo(Vuelos vuelos) throws IOException, ParseException {
+	public void EliminarVuelo(Vuelo vuelos) throws IOException, ParseException {
 		// TODO Auto-generated method stub
 
-		List<Vuelos> listadoVuelos = GetAll();
+		List<Vuelo> listadoVuelos = GetAll();
 
 		listadoVuelos.removeIf(o -> o.getNumVuelo().equals(vuelos.getNumVuelo()));
 
-		for (Vuelos v : listadoVuelos) {
+		for (Vuelo v : listadoVuelos) {
 			AgregarVuelo(v);
 		}
 
 	}
 
 	@Override
-	public List<Vuelos> GetAll() throws IOException, ParseException {
+	public List<Vuelo> GetAll() throws IOException, ParseException {
 		// TODO Auto-generated method stub
 
 		archivo = new File(path);
@@ -102,7 +102,7 @@ public class VueloDAOImplArchivo implements VuelosDAO {
 		archivoBufferReader = new BufferedReader(archivoReader);
 
 		String linea;
-		List<Vuelos> listadoVuelos = new ArrayList<>();
+		List<Vuelo> listadoVuelos = new ArrayList<>();
 
 		while ((linea = archivoBufferReader.readLine()) != null) {
 			listadoVuelos.add(ParseVuelo(linea));
@@ -111,12 +111,12 @@ public class VueloDAOImplArchivo implements VuelosDAO {
 		return listadoVuelos;
 	}
 
-	private Vuelos ParseVuelo(String linea) throws ParseException {
+	private Vuelo ParseVuelo(String linea) throws ParseException {
 		// TODO Auto-generated method stub
 
 		String[] atributos = linea.split(";");
 
-		Vuelos vuelo = new Vuelos();
+		Vuelo vuelo = new Vuelo();
 		vuelo.setNumVuelo(atributos[0]);
 		vuelo.setAeropuertoSalida(Integer.valueOf(atributos[1]));
 		vuelo.setAeropuertoLlegada(Integer.valueOf(atributos[2]));
@@ -130,13 +130,13 @@ public class VueloDAOImplArchivo implements VuelosDAO {
 	}
 
 	@Override
-	public Vuelos ObtenerVueloPorID(int id) throws IOException {
+	public Vuelo ObtenerVueloPorID(int id) throws IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Vuelos ObtenerVuelosPorNumero(String numVuelo) throws IOException {
+	public Vuelo ObtenerVuelosPorNumero(String numVuelo) throws IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}

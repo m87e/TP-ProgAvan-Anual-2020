@@ -32,9 +32,9 @@ public class VentaDAOImplDatabase implements VentaDAO {
 
 			ps.setDate(1, (Date) venta.getFechaHoraVenta());
 			ps.setString(2, venta.getFormaPago());
-			ps.setInt(3, venta.getCliID());
-			ps.setInt(4, venta.getVueID());
-			ps.setInt(5, venta.getAeroID());
+			ps.setInt(3, venta.getClienteID());
+			ps.setInt(4, venta.getVueloID());
+			ps.setInt(5, venta.getAerolineaID());
 			ps.executeUpdate();
 
 
@@ -67,9 +67,9 @@ public class VentaDAOImplDatabase implements VentaDAO {
 
 			ps.setDate(1, (Date) venta.getFechaHoraVenta());
 			ps.setString(2, venta.getFormaPago());
-			ps.setInt(3, venta.getCliID());
-			ps.setInt(4, venta.getVueID());
-			ps.setInt(5, venta.getAeroID());
+			ps.setInt(3, venta.getClienteID());
+			ps.setInt(4, venta.getVueloID());
+			ps.setInt(5, venta.getAerolineaID());
 			ps.setInt(6, venta.getId());
 
 			ps.executeUpdate();
@@ -140,9 +140,9 @@ public class VentaDAOImplDatabase implements VentaDAO {
 				v.setId(rs.getInt("venta_id"));
 				v.setFechaHoraVenta(rs.getDate("venta_fecha"));
 				v.setFormaPago(rs.getString("venta_formaPago"));
-				v.setCliID(rs.getInt("venta_clienteID"));
-				v.setVueID(rs.getInt("venta_vueloID"));
-				v.setAeroID(rs.getInt("venta_aerolineaID"));
+				v.setClienteID(rs.getInt("venta_clienteID"));
+				v.setVueloID(rs.getInt("venta_vueloID"));
+				v.setAerolineaID(rs.getInt("venta_aerolineaID"));
 
 			}
 			System.out.println("Ventas encontrados: " + listado.size());

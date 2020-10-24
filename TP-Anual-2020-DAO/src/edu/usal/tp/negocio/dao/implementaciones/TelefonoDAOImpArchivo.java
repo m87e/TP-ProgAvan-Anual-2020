@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import edu.usal.tp.negocio.dao.dominio.Paises;
-import edu.usal.tp.negocio.dao.dominio.Provincias;
+import edu.usal.tp.negocio.dao.dominio.Pais;
+import edu.usal.tp.negocio.dao.dominio.Provincia;
 import edu.usal.tp.negocio.dao.dominio.Telefono;
 import edu.usal.tp.negocio.dao.interfaces.TelefonoDAO;
 

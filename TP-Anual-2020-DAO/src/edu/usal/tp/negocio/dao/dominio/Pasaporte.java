@@ -7,12 +7,13 @@ public class Pasaporte {
 
 	private int id;
 	private String numeroPasaporte;
-	private Paises pais;
+	private Pais pais;
 	private String autoridadEmision;
 	private LocalDate fechaEmision;
 	private LocalDate fechaVencimiento;
 
 	// Getter & Setter
+
 	public String getNumeroPasaporte() {
 		return numeroPasaporte;
 	}
@@ -21,11 +22,11 @@ public class Pasaporte {
 		this.numeroPasaporte = numeroPasaporte;
 	}
 
-	public Paises getPais() {
+	public Pais getPais() {
 		return pais;
 	}
 
-	public void setPais(Paises pais) {
+	public void setPais(Pais pais) {
 		this.pais = pais;
 	}
 
@@ -69,9 +70,14 @@ public class Pasaporte {
 	public void setId(int id) {
 		this.id = id;
 	}
-	// Constructor
 
-	public Pasaporte(int id, String numeroPasaporte, Paises pais, String autoridadEmision, LocalDate fechaEmision,
+	// Constructors
+
+	public Pasaporte() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Pasaporte(int id, String numeroPasaporte, Pais pais, String autoridadEmision, LocalDate fechaEmision,
 			LocalDate fechaVencimiento) {
 		this.id = id;
 		this.numeroPasaporte = numeroPasaporte;
@@ -79,10 +85,6 @@ public class Pasaporte {
 		this.autoridadEmision = autoridadEmision;
 		this.fechaEmision = fechaEmision;
 		this.fechaVencimiento = fechaVencimiento;
-	}
-
-	public Pasaporte() {
-		// TODO Auto-generated constructor stub
 	}
 
 }

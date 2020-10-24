@@ -1,13 +1,13 @@
 package edu.usal.tp.negocio.dao.dominio;
 
-public class DirCompleta {
+public class DireccionCompleta {
 
 	private int id;
 	private String calle;
 	private String altura;
 	private String ciudad;
-	private Paises pais;
-	private Provincias provincia;
+	private Pais pais;
+	private Provincia provincia;
 	private String codigoPostal;
 
 	// Getter & Setter
@@ -24,11 +24,11 @@ public class DirCompleta {
 		this.id = id;
 	}
 
-	public void setPais(Paises pais) {
+	public void setPais(Pais pais) {
 		this.pais = pais;
 	}
 
-	public void setProvincia(Provincias provincia) {
+	public void setProvincia(Provincia provincia) {
 		this.provincia = provincia;
 	}
 
@@ -60,28 +60,11 @@ public class DirCompleta {
 		this.codigoPostal = codigoPostal;
 	}
 
-	// Constructors
-
-	public DirCompleta(int id, String calle, String altura, String ciudad, Paises pais, Provincias provincia,
-			String codigoPostal) {
-		this.id = id;
-		this.calle = calle;
-		this.altura = altura;
-		this.ciudad = ciudad;
-		this.pais = pais;
-		this.provincia = provincia;
-		this.codigoPostal = codigoPostal;
-	}
-
-	public DirCompleta() {
-
-	}
-
-	public Paises getPais() {
+	public Pais getPais() {
 		return pais;
 	}
 
-	public Provincias getProvincia() {
+	public Provincia getProvincia() {
 		return provincia;
 	}
 
@@ -93,6 +76,23 @@ public class DirCompleta {
 	public void setProvinciaID(int idProvincia) {
 		this.provincia.setId(idProvincia);
 
+	}
+
+	// Constructors
+
+	public DireccionCompleta() {
+
+	}
+
+	public DireccionCompleta(int id, String calle, String altura, String ciudad, Pais pais, Provincia provincia,
+			String codigoPostal) {
+		this.id = id;
+		this.calle = calle;
+		this.altura = altura;
+		this.ciudad = ciudad;
+		this.pais = pais;
+		this.provincia = provincia;
+		this.codigoPostal = codigoPostal;
 	}
 
 }

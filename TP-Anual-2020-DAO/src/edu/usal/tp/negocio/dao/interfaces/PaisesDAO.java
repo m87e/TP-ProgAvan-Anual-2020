@@ -3,18 +3,18 @@ package edu.usal.tp.negocio.dao.interfaces;
 import java.io.*;
 import java.util.List;
 
-import edu.usal.tp.negocio.dao.dominio.Paises;
+import edu.usal.tp.negocio.dao.dominio.Pais;
 
 public interface PaisesDAO {
 
-	void AgregarPais(Paises pais) throws IOException;
+	void AgregarPais(Pais pais) throws IOException;
 
-	void ModificarPais(Paises oldPais, Paises newPais) throws IOException;
+	void ModificarPais(Pais oldPais, Pais newPais) throws IOException;
 
-	void EliminarPais(Paises pais) throws IOException;
+	void EliminarPais(Pais pais) throws IOException;
 
-	Paises ObtenerPaisPorID(int id) throws IOException;
+	Pais ObtenerPaisPorID(int id) throws IOException;
 
-	List<Paises> GetAll() throws IOException;
+	List<Pais> GetAll() throws IOException;
 
 }

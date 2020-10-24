@@ -1,12 +1,12 @@
 package edu.usal.tp.negocio.dao.dominio;
 
-import java.util.List;
-
 public class Aerolinea {
 
 	private int id;
 	private String nombre;
 	private Alianza alianza;
+
+	// Getter & Setter
 
 	public int getId() {
 		return id;
@@ -31,6 +31,8 @@ public class Aerolinea {
 	public void setAlianza(Alianza alianza) {
 		this.alianza = alianza;
 	}
+
+	// Constructors
 
 	public Aerolinea() {
 

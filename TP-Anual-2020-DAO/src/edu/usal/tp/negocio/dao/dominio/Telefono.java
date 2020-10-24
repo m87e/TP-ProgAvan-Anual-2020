@@ -1,7 +1,7 @@
 package edu.usal.tp.negocio.dao.dominio;
 
 public class Telefono {
-// agregar at odas las entidaeds ID
+
 	private int id;
 	private String numPersonal;
 	private String numCelular;
@@ -43,6 +43,10 @@ public class Telefono {
 
 	// Constructor
 
+	public Telefono() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Telefono(int id, String numPersonal, String numCelular, String numLaboral) {
 		this.id = id;
 		this.numPersonal = numPersonal;
@@ -50,7 +54,4 @@ public class Telefono {
 		this.numLaboral = numLaboral;
 	}
 
-	public Telefono() {
-		// TODO Auto-generated constructor stub
-	}
 }

@@ -8,32 +8,32 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.usal.tp.negocio.dao.dominio.Provincias;
+import edu.usal.tp.negocio.dao.dominio.Provincia;
 import edu.usal.tp.negocio.dao.interfaces.ProvinciasDAO;
 import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 
 public class ProvinciasDAOImplDatabase implements ProvinciasDAO {
 
 	@Override
-	public void AgregarProvincia(Provincias provincia) throws IOException {
+	public void AgregarProvincia(Provincia provincia) throws IOException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void ModificarProvincia(Provincias provincia) throws IOException {
+	public void ModificarProvincia(Provincia provincia) throws IOException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void EliminarProvincia(Provincias provincia) throws IOException {
+	public void EliminarProvincia(Provincia provincia) throws IOException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Provincias ObtenerProvinciaPorID(int id) throws IOException {
+	public Provincia ObtenerProvinciaPorID(int id) throws IOException {
 		// TODO Auto-generated method stub
 
 		Connection con = null;
@@ -47,7 +47,7 @@ public class ProvinciasDAOImplDatabase implements ProvinciasDAO {
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
 
-			Provincias p = new Provincias();
+			Provincia p = new Provincia();
 			if (rs.next()) {
 
 				p.setId(rs.getInt("provincia_id"));
@@ -74,11 +74,11 @@ public class ProvinciasDAOImplDatabase implements ProvinciasDAO {
 	}
 
 	@Override
-	public List<Provincias> GetAll() throws IOException {
+	public List<Provincia> GetAll() throws IOException {
 		// TODO Auto-generated method stub
 
 		Connection con = null;
-		List<Provincias> listado = new ArrayList<Provincias>();
+		List<Provincia> listado = new ArrayList<Provincia>();
 
 		Statement stm = null;
 		ResultSet rs = null;
@@ -92,7 +92,7 @@ public class ProvinciasDAOImplDatabase implements ProvinciasDAO {
 
 			while (rs.next()) {
 
-				Provincias p = new Provincias();
+				Provincia p = new Provincia();
 				p.setId(rs.getInt("provincia_id"));
 				p.setNombre(rs.getString("provincia_nombre"));
 				listado.add(p);

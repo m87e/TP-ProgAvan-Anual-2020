@@ -3,7 +3,7 @@ package edu.usal.tp.negocio.dao.implementaciones;
 import java.io.*;
 import java.util.*;
 
-import edu.usal.tp.negocio.dao.dominio.Paises;
+import edu.usal.tp.negocio.dao.dominio.Pais;
 import edu.usal.tp.negocio.dao.interfaces.PaisesDAO;
 
 public class PaisesDAOImplArchivo implements PaisesDAO {
@@ -15,7 +15,7 @@ public class PaisesDAOImplArchivo implements PaisesDAO {
 	private BufferedReader archivoBufferReader;
 
 	@Override
-	public void AgregarPais(Paises pais) throws IOException {
+	public void AgregarPais(Pais pais) throws IOException {
 
 		archivo = new File("/Users/juan/Desktop/paises.txt");
 
@@ -35,17 +35,17 @@ public class PaisesDAOImplArchivo implements PaisesDAO {
 
 	}
 
-	private String SavePais(Paises pais) {
+	private String SavePais(Pais pais) {
 		return pais.getId() + ";" + pais.getNombre() + "\r\n";
 
 	}
 
 	@Override
-	public void ModificarPais(Paises oldPais, Paises newPais) throws IOException {
+	public void ModificarPais(Pais oldPais, Pais newPais) throws IOException {
 
-		List<Paises> listadoPaises = GetAll();
+		List<Pais> listadoPaises = GetAll();
 
-		for (Paises p : listadoPaises) {
+		for (Pais p : listadoPaises) {
 
 			if (p.getId() == (oldPais.getId())) {
 				p.setId(newPais.getId());
@@ -59,13 +59,13 @@ public class PaisesDAOImplArchivo implements PaisesDAO {
 	}
 
 	@Override
-	public void EliminarPais(Paises pais) throws IOException {
+	public void EliminarPais(Pais pais) throws IOException {
 
-		List<Paises> listadoPaises = GetAll();
+		List<Pais> listadoPaises = GetAll();
 
 		listadoPaises.removeIf(o -> o.getId() == (pais.getId()));
 
-		for (Paises p : listadoPaises) {
+		for (Pais p : listadoPaises) {
 
 			AgregarPais(p);
 
@@ -74,14 +74,14 @@ public class PaisesDAOImplArchivo implements PaisesDAO {
 	}
 
 	@Override
-	public List<Paises> GetAll() throws IOException {
+	public List<Pais> GetAll() throws IOException {
 
 		archivo = new File("/Users/juan/Desktop/paises.txt");
 		archivoReader = new FileReader(archivo);
 		archivoBufferReader = new BufferedReader(archivoReader);
 
 		String linea;
-		List<Paises> listadoPaises = new ArrayList<>();
+		List<Pais> listadoPaises = new ArrayList<>();
 
 		while ((linea = archivoBufferReader.readLine()) != null) {
 			listadoPaises.add(ParsePais(linea));
@@ -91,11 +91,11 @@ public class PaisesDAOImplArchivo implements PaisesDAO {
 
 	}
 
-	private Paises ParsePais(String linea) {
+	private Pais ParsePais(String linea) {
 
 		String[] atributos = linea.split(";");
 
-		Paises pais = new Paises();
+		Pais pais = new Pais();
 		pais.setId(Integer.valueOf(atributos[0]));
 		pais.setNombre(atributos[1]);
 
@@ -104,7 +104,7 @@ public class PaisesDAOImplArchivo implements PaisesDAO {
 	}
 
 	@Override
-	public Paises ObtenerPaisPorID(int id) throws IOException {
+	public Pais ObtenerPaisPorID(int id) throws IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}

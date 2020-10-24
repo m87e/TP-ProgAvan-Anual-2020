@@ -11,7 +11,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.usal.tp.negocio.dao.dominio.DirCompleta;
+import edu.usal.tp.negocio.dao.dominio.DireccionCompleta;
 import edu.usal.tp.negocio.dao.dominio.Pasaporte;
 import edu.usal.tp.negocio.dao.interfaces.DirCompletaDAO;
 
@@ -25,7 +25,7 @@ public class DirCompletaDAOImpArchivo implements DirCompletaDAO {
 	String path = "C://Users//menrique002//git//USAL-ProgAvanzada-TP-DAO//USAL_TP_ProgAvanz_DAO//DirCompleta.txt";
 
 	@Override
-	public void AgregarDirCompleta(DirCompleta dir, Connection con) throws IOException {
+	public void AgregarDirCompleta(DireccionCompleta dir, Connection con) throws IOException {
 		archivo = new File(path);
 
 		if (!archivo.exists()) {
@@ -44,16 +44,16 @@ public class DirCompletaDAOImpArchivo implements DirCompletaDAO {
 
 	}
 
-	private String SaveDirCompleta(DirCompleta dir) {
+	private String SaveDirCompleta(DireccionCompleta dir) {
 		return dir.getId() + ";" + dir.getCalle() + ";" + dir.getAltura() + ";" + dir.getCiudad() + ";"
 				+ dir.getCodigoPostal() + ";" + dir.getPais().getId() + ";" + dir.getProvincia().getId() + "\r\n";
 	}
 
 	@Override
-	public void ModificarDirCompleta(DirCompleta dir) throws IOException {
-		List<DirCompleta> listadoDirCompleta = GetAll();
+	public void ModificarDirCompleta(DireccionCompleta dir) throws IOException {
+		List<DireccionCompleta> listadoDirCompleta = GetAll();
 
-		for (DirCompleta dC : listadoDirCompleta) {
+		for (DireccionCompleta dC : listadoDirCompleta) {
 			if (dC.getId() == dir.getId()) {
 				dC.setId(dir.getId());
 				dC.setCalle(dir.getCalle());
@@ -68,25 +68,25 @@ public class DirCompletaDAOImpArchivo implements DirCompletaDAO {
 	}
 
 	@Override
-	public void EliminarDirCompleta(DirCompleta dir) throws IOException {
-		List<DirCompleta> listadoDirCompleta = GetAll();
+	public void EliminarDirCompleta(DireccionCompleta dir) throws IOException {
+		List<DireccionCompleta> listadoDirCompleta = GetAll();
 
 		listadoDirCompleta.removeIf(o -> o.getId() == dir.getId());
 
-		for (DirCompleta dC : listadoDirCompleta) {
+		for (DireccionCompleta dC : listadoDirCompleta) {
 			AgregarDirCompleta(dC, null);
 		}
 
 	}
 
 	@Override
-	public List<DirCompleta> GetAll() throws IOException {
+	public List<DireccionCompleta> GetAll() throws IOException {
 		archivo = new File(path);
 		archivoReader = new FileReader(archivo);
 		archivoBufferReader = new BufferedReader(archivoReader);
 
 		String linea;
-		List<DirCompleta> listadoDirCompleta = new ArrayList<>();
+		List<DireccionCompleta> listadoDirCompleta = new ArrayList<>();
 
 		while ((linea = archivoBufferReader.readLine()) != null) {
 			listadoDirCompleta.add(ParsePasaporte(linea));
@@ -95,10 +95,10 @@ public class DirCompletaDAOImpArchivo implements DirCompletaDAO {
 		return listadoDirCompleta;
 	}
 
-	private DirCompleta ParsePasaporte(String linea) {
+	private DireccionCompleta ParsePasaporte(String linea) {
 		String[] atributos = linea.split(";");
 
-		DirCompleta dC = new DirCompleta();
+		DireccionCompleta dC = new DireccionCompleta();
 
 		dC.setId(Integer.valueOf(atributos[0]));
 		dC.setCalle(atributos[1]);
@@ -112,7 +112,7 @@ public class DirCompletaDAOImpArchivo implements DirCompletaDAO {
 	}
 
 	@Override
-	public DirCompleta ObtenerDirCompletaPorID(int id) throws IOException {
+	public DireccionCompleta ObtenerDirCompletaPorID(int id) throws IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}

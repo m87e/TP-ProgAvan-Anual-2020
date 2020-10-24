@@ -15,7 +15,7 @@ import java.util.List;
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.tp.negocio.dao.dominio.Cliente;
 import edu.usal.tp.negocio.dao.dominio.Venta;
-import edu.usal.tp.negocio.dao.dominio.Vuelos;
+import edu.usal.tp.negocio.dao.dominio.Vuelo;
 import edu.usal.tp.negocio.dao.interfaces.VentaDAO;
 
 public class VentaDAOImplArchivo implements VentaDAO {
@@ -48,7 +48,7 @@ public class VentaDAOImplArchivo implements VentaDAO {
 	}
 
 	private String SaveVenta(Venta venta) {
-		return venta.getId() + ";" + venta.getCliID() + ";" + venta.getVueID() + ";" + venta.getAeroID() + ";"
+		return venta.getId() + ";" + venta.getClienteID() + ";" + venta.getVueloID() + ";" + venta.getAerolineaID() + ";"
 				+ venta.getFechaHoraVenta().toString() + ";" + venta.getFormaPago() + "\r\n";
 	}
 
@@ -62,9 +62,9 @@ public class VentaDAOImplArchivo implements VentaDAO {
 			if (v.getId() == venta.getId()) {
 
 				v.setId(venta.getId());
-				v.setCli(venta.getCli());
-				v.setVue(venta.getVue());
-				v.setAero(venta.getAero());
+				v.setCliente(venta.getCliente());
+				v.setVuelo(venta.getVuelo());
+				v.setAerolinea(venta.getAerolinea());
 				v.setFechaHoraVenta(venta.getFechaHoraVenta());
 				v.setFormaPago(venta.getFormaPago());
 
@@ -113,9 +113,9 @@ public class VentaDAOImplArchivo implements VentaDAO {
 		String[] atributos = linea.split(";");
 		Venta venta = new Venta();
 		venta.setId(Integer.valueOf(atributos[0]));
-		venta.setCliID(Integer.valueOf(atributos[1]));
-		venta.setVueID(Integer.valueOf(atributos[2]));
-		venta.setAeroID(Integer.valueOf(atributos[3]));
+		venta.setClienteID(Integer.valueOf(atributos[1]));
+		venta.setVueloID(Integer.valueOf(atributos[2]));
+		venta.setAerolineaID(Integer.valueOf(atributos[3]));
 		venta.setFechaHoraVenta(new SimpleDateFormat("dd/MM/yyyy").parse(atributos[4]));
 		venta.setFormaPago(atributos[5]);
 

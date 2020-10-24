@@ -1,19 +1,11 @@
 package edu.usal.tp.negocio.dao.dominio;
 
-public class Paises {
+public class Provincia {
 
 	private int id;
 	private String nombre;
 
-	public Paises() {
-
-	}
-
-	public Paises(int id, String nombre) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-	}
+	// Getter & Setter
 
 	public int getId() {
 		return id;
@@ -28,6 +20,17 @@ public class Paises {
 	}
 
 	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	// Constructors
+
+	public Provincia() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Provincia(int id, String nombre) {
+		this.id = id;
 		this.nombre = nombre;
 	}
 

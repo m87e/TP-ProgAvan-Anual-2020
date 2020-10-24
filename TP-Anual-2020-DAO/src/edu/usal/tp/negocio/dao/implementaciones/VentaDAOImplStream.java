@@ -50,11 +50,11 @@ public class VentaDAOImplStream implements VentaDAO {
 		for (Venta v : listado) {
 			if (v.getId() == venta.getId()) {
 
-				v.setAeroID(venta.getAeroID());
-				v.setCli(venta.getCli());
+				v.setAerolineaID(venta.getAerolineaID());
+				v.setCliente(venta.getCliente());
 				v.setFechaHoraVenta(venta.getFechaHoraVenta());
 				v.setFormaPago(venta.getFormaPago());
-				v.setVueID(venta.getId());
+				v.setVueloID(venta.getId());
 				aux++;
 			}
 		}

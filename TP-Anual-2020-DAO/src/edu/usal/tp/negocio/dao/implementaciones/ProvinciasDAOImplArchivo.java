@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import edu.usal.tp.negocio.dao.dominio.Paises;
-import edu.usal.tp.negocio.dao.dominio.Provincias;
+import edu.usal.tp.negocio.dao.dominio.Pais;
+import edu.usal.tp.negocio.dao.dominio.Provincia;
 import edu.usal.tp.negocio.dao.interfaces.ProvinciasDAO;
 
 public class ProvinciasDAOImplArchivo implements ProvinciasDAO {
@@ -24,7 +24,7 @@ public class ProvinciasDAOImplArchivo implements ProvinciasDAO {
 	private BufferedReader archivoBufferReader;
 
 	@Override
-	public void AgregarProvincia(Provincias provincia) throws IOException {
+	public void AgregarProvincia(Provincia provincia) throws IOException {
 
 		archivo = new File("provincias.txt");
 
@@ -44,17 +44,17 @@ public class ProvinciasDAOImplArchivo implements ProvinciasDAO {
 
 	}
 
-	private String SaveProvincia(Provincias provincia) {
+	private String SaveProvincia(Provincia provincia) {
 		return provincia.getId() + ";" + provincia.getNombre() + "\r\n";
 	}
 
 	@Override
-	public void ModificarProvincia(Provincias provincia) throws IOException {
+	public void ModificarProvincia(Provincia provincia) throws IOException {
 		// TODO Auto-generated method stub
 
-		List<Provincias> listadoProvincias = GetAll();
+		List<Provincia> listadoProvincias = GetAll();
 
-		for (Provincias p : listadoProvincias) {
+		for (Provincia p : listadoProvincias) {
 
 			if (p.getId() == (provincia.getId())) {
 				p.setId(provincia.getId());
@@ -68,20 +68,20 @@ public class ProvinciasDAOImplArchivo implements ProvinciasDAO {
 	}
 
 	@Override
-	public void EliminarProvincia(Provincias provincia) throws IOException {
+	public void EliminarProvincia(Provincia provincia) throws IOException {
 
-		List<Provincias> listadoProvincias = GetAll();
+		List<Provincia> listadoProvincias = GetAll();
 
 		listadoProvincias.removeIf(o -> o.getId() == (provincia.getId()));
 
-		for (Provincias p : listadoProvincias) {
+		for (Provincia p : listadoProvincias) {
 			AgregarProvincia(p);
 		}
 
 	}
 
 	@Override
-	public List<Provincias> GetAll() throws IOException {
+	public List<Provincia> GetAll() throws IOException {
 
 		// ajustarlo al config.propiertes
 		archivo = new File(
@@ -90,7 +90,7 @@ public class ProvinciasDAOImplArchivo implements ProvinciasDAO {
 		archivoBufferReader = new BufferedReader(archivoReader);
 
 		String linea;
-		List<Provincias> listadoProvincias = new ArrayList<>();
+		List<Provincia> listadoProvincias = new ArrayList<>();
 
 		while ((linea = archivoBufferReader.readLine()) != null) {
 			listadoProvincias.add(Parse(linea));
@@ -99,11 +99,11 @@ public class ProvinciasDAOImplArchivo implements ProvinciasDAO {
 		return listadoProvincias;
 	}
 
-	private Provincias Parse(String linea) {
+	private Provincia Parse(String linea) {
 
 		String[] atributos = linea.split(";");
 
-		Provincias provincia = new Provincias();
+		Provincia provincia = new Provincia();
 		provincia.setId(Integer.valueOf(atributos[0]));
 		provincia.setNombre(atributos[1]);
 
@@ -111,7 +111,7 @@ public class ProvinciasDAOImplArchivo implements ProvinciasDAO {
 	}
 
 	@Override
-	public Provincias ObtenerProvinciaPorID(int id) throws IOException {
+	public Provincia ObtenerProvinciaPorID(int id) throws IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}

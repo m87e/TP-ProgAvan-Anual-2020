@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.List;
 
-import edu.usal.tp.negocio.dao.dominio.DirCompleta;
+import edu.usal.tp.negocio.dao.dominio.DireccionCompleta;
 import edu.usal.tp.negocio.dao.interfaces.DirCompletaDAO;
 
 public class DirCompletaDAOImplDatabase implements DirCompletaDAO {
@@ -15,7 +15,7 @@ public class DirCompletaDAOImplDatabase implements DirCompletaDAO {
 	final String INSERT = "INSERT INTO Direcciones (direccion_calle, direccion_altura, direccion_ciudad, direccion_paisID, direccion_provinciaID, direccion_codigoPostal) values (?,?,?,?,?,?)";
 
 	@Override
-	public void AgregarDirCompleta(DirCompleta dir, Connection con) throws IOException {
+	public void AgregarDirCompleta(DireccionCompleta dir, Connection con) throws IOException {
 		// TODO Auto-generated method stub
 
 		// DirCompleta dir = new DirCompleta(1, "Test", "3500", "BA", p, prov, "1424");
@@ -53,25 +53,25 @@ public class DirCompletaDAOImplDatabase implements DirCompletaDAO {
 	}
 
 	@Override
-	public void ModificarDirCompleta(DirCompleta dir) throws IOException {
+	public void ModificarDirCompleta(DireccionCompleta dir) throws IOException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void EliminarDirCompleta(DirCompleta dir) throws IOException {
+	public void EliminarDirCompleta(DireccionCompleta dir) throws IOException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public DirCompleta ObtenerDirCompletaPorID(int id) throws IOException {
+	public DireccionCompleta ObtenerDirCompletaPorID(int id) throws IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<DirCompleta> GetAll() throws IOException {
+	public List<DireccionCompleta> GetAll() throws IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}

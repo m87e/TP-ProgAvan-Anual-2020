@@ -4,8 +4,10 @@ public class Aeropuerto {
 	private int id;
 	private String codigo;
 	private String ciudad;
-	private Provincias provincia;
-	private Paises pais;
+	private Provincia provincia;
+	private Pais pais;
+
+	// Getter & Setter
 
 	public int getId() {
 		return id;
@@ -31,27 +33,19 @@ public class Aeropuerto {
 		this.ciudad = ciudad;
 	}
 
-	public Provincias getProvincia() {
+	public Provincia getProvincia() {
 		return provincia;
 	}
 
-	public void setProvincia(Provincias provincia) {
+	public void setProvincia(Provincia provincia) {
 		this.provincia = provincia;
 	}
 
-	public void setProvinciaID(int id) {
-		this.provincia.setId(id);
-	}
-
-	public int getProvinciaID() {
-		return this.provincia.getId();
-	}
-
-	public Paises getPais() {
+	public Pais getPais() {
 		return pais;
 	}
 
-	public void setPais(Paises pais) {
+	public void setPais(Pais pais) {
 		this.pais = pais;
 	}
 
@@ -63,18 +57,28 @@ public class Aeropuerto {
 		return this.pais.getId();
 	}
 
-	public Aeropuerto(int id, String codigo, String ciudad, Provincias provincia, Paises pais) {
+	public void setProvinciaID(int id) {
+		this.provincia.setId(id);
+	}
+
+	public int getProvinciaID() {
+		return this.provincia.getId();
+	}
+
+	// Constructors
+
+	public Aeropuerto() {
+
+		// TODO Auto-generated constructor stub
+	}
+
+	public Aeropuerto(int id, String codigo, String ciudad, Provincia provincia, Pais pais) {
 
 		this.id = id;
 		this.codigo = codigo;
 		this.ciudad = ciudad;
 		this.provincia = provincia;
 		this.pais = pais;
-	}
-
-	public Aeropuerto() {
-
-		// TODO Auto-generated constructor stub
 	}
 
 }

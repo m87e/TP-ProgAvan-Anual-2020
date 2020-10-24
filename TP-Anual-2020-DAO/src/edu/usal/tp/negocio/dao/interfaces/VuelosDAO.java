@@ -4,20 +4,20 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
-import edu.usal.tp.negocio.dao.dominio.Vuelos;
+import edu.usal.tp.negocio.dao.dominio.Vuelo;
 
 public interface VuelosDAO {
 
-	void AgregarVuelo(Vuelos vuelos) throws IOException;
+	void AgregarVuelo(Vuelo vuelos) throws IOException;
 
-	void ModificarVuelo(Vuelos vuelos) throws IOException, ParseException;
+	void ModificarVuelo(Vuelo vuelos) throws IOException, ParseException;
 
-	void EliminarVuelo(Vuelos vuelos) throws IOException, ParseException;
+	void EliminarVuelo(Vuelo vuelos) throws IOException, ParseException;
 
-	Vuelos ObtenerVueloPorID(int id) throws IOException;
+	Vuelo ObtenerVueloPorID(int id) throws IOException;
 
-	Vuelos ObtenerVuelosPorNumero(String numVuelo) throws IOException;
+	Vuelo ObtenerVuelosPorNumero(String numVuelo) throws IOException;
 
-	List<Vuelos> GetAll() throws IOException, ParseException;
+	List<Vuelo> GetAll() throws IOException, ParseException;
 
 }

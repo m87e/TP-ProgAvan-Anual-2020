@@ -4,18 +4,18 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
-import edu.usal.tp.negocio.dao.dominio.Provincias;
+import edu.usal.tp.negocio.dao.dominio.Provincia;
 
 public interface ProvinciasDAO {
 
-	void AgregarProvincia(Provincias provincia) throws IOException;
+	void AgregarProvincia(Provincia provincia) throws IOException;
 
-	void ModificarProvincia(Provincias provincia) throws IOException;
+	void ModificarProvincia(Provincia provincia) throws IOException;
 
-	void EliminarProvincia(Provincias provincia) throws IOException;
+	void EliminarProvincia(Provincia provincia) throws IOException;
 
-	Provincias ObtenerProvinciaPorID(int id) throws IOException;
+	Provincia ObtenerProvinciaPorID(int id) throws IOException;
 
-	List<Provincias> GetAll() throws IOException;
+	List<Provincia> GetAll() throws IOException;
 
 }

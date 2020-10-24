@@ -8,32 +8,32 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.usal.tp.negocio.dao.dominio.Paises;
+import edu.usal.tp.negocio.dao.dominio.Pais;
 import edu.usal.tp.negocio.dao.interfaces.PaisesDAO;
 import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 
 public class PaisesDAOImplDatabase implements PaisesDAO {
 
 	@Override
-	public void AgregarPais(Paises pais) throws IOException {
+	public void AgregarPais(Pais pais) throws IOException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void ModificarPais(Paises oldPais, Paises newPais) throws IOException {
+	public void ModificarPais(Pais oldPais, Pais newPais) throws IOException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void EliminarPais(Paises pais) throws IOException {
+	public void EliminarPais(Pais pais) throws IOException {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Paises ObtenerPaisPorID(int id) throws IOException {
+	public Pais ObtenerPaisPorID(int id) throws IOException {
 		// TODO Auto-generated method stub
 
 		Connection con = null;
@@ -47,7 +47,7 @@ public class PaisesDAOImplDatabase implements PaisesDAO {
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
 
-			Paises p = new Paises();
+			Pais p = new Pais();
 
 			if (rs.next()) {
 
@@ -75,11 +75,11 @@ public class PaisesDAOImplDatabase implements PaisesDAO {
 	}
 
 	@Override
-	public List<Paises> GetAll() throws IOException {
+	public List<Pais> GetAll() throws IOException {
 		// TODO Auto-generated method stub
 
 		Connection con = null;
-		List<Paises> listado = new ArrayList<Paises>();
+		List<Pais> listado = new ArrayList<Pais>();
 
 		Statement stm = null;
 		ResultSet rs = null;
@@ -93,7 +93,7 @@ public class PaisesDAOImplDatabase implements PaisesDAO {
 
 			while (rs.next()) {
 
-				Paises p = new Paises();
+				Pais p = new Pais();
 
 				p.setId(rs.getInt("pais_id"));
 				p.setNombre(rs.getString("pais_nombre"));
