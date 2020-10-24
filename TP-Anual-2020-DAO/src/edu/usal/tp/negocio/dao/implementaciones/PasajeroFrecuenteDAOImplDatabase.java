@@ -36,7 +36,7 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 
 			ResultSet rs = ps.getGeneratedKeys();
 			if (rs.next()) {
-				pasFre.setIdPasFre((int) rs.getLong(1));
+				pasFre.setId((int) rs.getLong(1));
 			}
 
 		} catch (SQLException e) {
@@ -141,7 +141,7 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 
 			if (rs.next()) {
 
-				p.setIdPasFre(rs.getInt("pasajerofrecuente_id"));
+				p.setId(rs.getInt("pasajerofrecuente_id"));
 				p.setAlianza(Alianza.valueOf(rs.getString("pasajerofrecuente_alianza")));
 				p.setAerolineaID(rs.getInt("pasajerofrecuente_aerolineaID"));
 				p.setNumeroPF(rs.getString("pasajerofrecuente_numeroPF"));
@@ -187,7 +187,7 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 			while (rs.next()) {
 
 				PasajeroFrecuente p = new PasajeroFrecuente();
-				p.setIdPasFre(rs.getInt("pasajerofrecuente_id"));
+				p.setId(rs.getInt("pasajerofrecuente_id"));
 				p.setAlianza(Alianza.valueOf(rs.getString("pasajerofrecuente_alianza")));
 				p.setAerolineaID(rs.getInt("pasajerofrecuente_aerolineaID"));
 				p.setNumeroPF(rs.getString("pasajerofrecuente_numeroPF"));

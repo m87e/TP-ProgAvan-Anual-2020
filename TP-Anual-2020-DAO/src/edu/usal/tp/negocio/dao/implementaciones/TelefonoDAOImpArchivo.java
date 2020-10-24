@@ -57,7 +57,7 @@ public class TelefonoDAOImpArchivo implements TelefonoDAO {
 		for (Telefono t : listadoTelefono) {
 
 			if (t.getId() == (tel.getId())) {
-				t.setID(tel.getId());
+				t.setId(tel.getId());
 				t.setNumCelular(tel.getNumCelular());
 				t.setNumPersonal(tel.getNumPersonal());
 				t.setNumLaboral(tel.getNumLaboral());
@@ -101,7 +101,7 @@ public class TelefonoDAOImpArchivo implements TelefonoDAO {
 		String[] atributos = linea.split(";");
 
 		Telefono telefono = new Telefono();
-		telefono.setID(Integer.valueOf(atributos[0]));
+		telefono.setId(Integer.valueOf(atributos[0]));
 		telefono.setNumPersonal(atributos[1]);
 		telefono.setNumLaboral(atributos[2]);
 		telefono.setNumCelular(atributos[3]);

@@ -65,7 +65,7 @@ public class PasajeroFrecuente {
 		return id;
 	}
 
-	public void setIdPasFre(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

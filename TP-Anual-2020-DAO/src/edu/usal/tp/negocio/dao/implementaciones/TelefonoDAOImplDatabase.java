@@ -33,7 +33,7 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 
 			ResultSet rs = ps.getGeneratedKeys();
 			if (rs.next()) {
-				tel.setID((int) rs.getLong(1));
+				tel.setId((int) rs.getLong(1));
 			}
 
 		} catch (Exception e) {
@@ -129,7 +129,7 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 			Telefono t = new Telefono();
 
 			if (rs.next()) {
-				t.setID(rs.getInt("telefono_id"));
+				t.setId(rs.getInt("telefono_id"));
 				t.setNumPersonal(rs.getNString("telefono_numPersonal"));
 				t.setNumCelular(rs.getString("telefono_numCelular"));
 				t.setNumLaboral(rs.getString("telefono_numLaboral"));
@@ -174,7 +174,7 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 
 			while (rs.next()) {
 				Telefono t = new Telefono();
-				t.setID(rs.getInt("telefono_id"));
+				t.setId(rs.getInt("telefono_id"));
 				t.setNumPersonal(rs.getNString("telefono_numPersonal"));
 				t.setNumCelular(rs.getString("telefono_numCelular"));
 				t.setNumLaboral(rs.getString("telefono_numLaboral"));

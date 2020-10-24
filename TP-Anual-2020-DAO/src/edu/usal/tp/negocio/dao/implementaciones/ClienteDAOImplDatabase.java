@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Cliente;
+import edu.usal.tp.negocio.dao.dominio.DirCompleta;
+import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
+import edu.usal.tp.negocio.dao.dominio.Pasaporte;
+import edu.usal.tp.negocio.dao.dominio.Telefono;
 import edu.usal.tp.negocio.dao.interfaces.ClienteDAO;
 import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 
@@ -42,8 +46,8 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 			ps.setString(6, cliente.getEmail());
 			ps.setInt(7, cliente.getDir().getId());
 			ps.setInt(8, cliente.getTel().getId());
-			ps.setInt(9, cliente.getPas().getIdPasaporte());
-			ps.setInt(10, cliente.getPasfre().getId());
+			ps.setInt(9, cliente.getPasaporte().getIdPasaporte());
+			ps.setInt(10, cliente.getPasajeroFrecuente().getId());
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
@@ -81,8 +85,8 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 			ps.setString(6, cliente.getEmail());
 			ps.setInt(7, cliente.getDir().getId());
 			ps.setInt(8, cliente.getTel().getId());
-			ps.setInt(9, cliente.getPas().getIdPasaporte());
-			ps.setInt(10, cliente.getPasfre().getId());
+			ps.setInt(9, cliente.getPasaporte().getIdPasaporte());
+			ps.setInt(10, cliente.getPasajeroFrecuente().getId());
 			ps.setInt(11, cliente.getId());
 			ps.executeUpdate();
 
@@ -152,6 +156,10 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 			while (rs.next()) {
 
 				Cliente c = new Cliente();
+				DirCompleta dir = new DirCompleta();
+				Telefono tel = new Telefono();
+				Pasaporte pas = new Pasaporte();
+				PasajeroFrecuente pasFre = new PasajeroFrecuente();
 
 				c.setIdCliente(rs.getInt("cliente_id"));
 				c.setNombre(rs.getString("cliente_nombre"));
@@ -160,10 +168,18 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 				c.setCuit(rs.getString("cliente_cuit"));
 				c.setFechaNac(rs.getDate("cliente_fechaNac").toLocalDate());
 				c.setEmail(rs.getString("cliente_email"));
-				c.setDirID(rs.getInt("cliente_dirCompletaID"));
-				c.setTelID(rs.getInt("cliente_telID"));
-				c.setPasID(rs.getInt("cliente_pasaporteID"));
-				c.setPasfreID(rs.getInt("cliente_pasFreID"));
+
+				dir.setId(rs.getInt("cliente_dirCompletaID"));
+				c.setDir(dir);
+
+				tel.setId(rs.getInt("cliente_telID"));
+				c.setTel(tel);
+
+				pas.setId(rs.getInt("cliente_pasaporteID"));
+				c.setPasaporte(pas);
+
+				pasFre.setId(rs.getInt("cliente_pasFreID"));
+				c.setPasajeroFrecuente(pasFre);
 
 				listado.add(c);
 			}
@@ -172,6 +188,7 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("Ocurrio un error al leer los datos de la base de datos");
+
 		} finally {
 			try {
 				stm.close();
@@ -202,6 +219,11 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 			rs = ps.executeQuery();
 
 			Cliente c = new Cliente();
+			DirCompleta dir = new DirCompleta();
+			Telefono tel = new Telefono();
+			Pasaporte pas = new Pasaporte();
+			PasajeroFrecuente pasFre = new PasajeroFrecuente();
+
 			if (rs.next()) {
 
 				c.setIdCliente(rs.getInt("cliente_id"));
@@ -211,10 +233,18 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 				c.setCuit(rs.getString("cliente_cuit"));
 				c.setFechaNac(rs.getDate("cliente_fechaNac").toLocalDate());
 				c.setEmail(rs.getString("cliente_email"));
-				c.setDirID(rs.getInt("cliente_dirCompletaID"));
-				c.setTelID(rs.getInt("cliente_telID"));
-				c.setPasID(rs.getInt("cliente_pasaporteID"));
-				c.setPasfreID(rs.getInt("cliente_pasFreID"));
+
+				dir.setId(rs.getInt("cliente_dirCompletaID"));
+				c.setDir(dir);
+
+				tel.setId(rs.getInt("cliente_telID"));
+				c.setTel(tel);
+
+				pas.setId(rs.getInt("cliente_pasaporteID"));
+				c.setPasaporte(pas);
+
+				pasFre.setId(rs.getInt("cliente_pasFreID"));
+				c.setPasajeroFrecuente(pasFre);
 
 				return c;
 			}

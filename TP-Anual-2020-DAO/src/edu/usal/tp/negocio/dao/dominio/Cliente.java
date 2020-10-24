@@ -9,12 +9,12 @@ public class Cliente {
 	private String nombre;
 	private String apellido;
 	private String dni;
-	private Pasaporte pas;
+	private Pasaporte pasaporte;
 	private String cuit;
 	private LocalDate fechaNac;
 	private String email;
 	private Telefono tel;
-	private PasajeroFrecuente pasfre;
+	private PasajeroFrecuente pasajeroFrecuente;
 	private DirCompleta dir;
 
 	public int getId() {
@@ -49,12 +49,16 @@ public class Cliente {
 		this.dni = dni;
 	}
 
-	public Pasaporte getPas() {
-		return pas;
+	public Pasaporte getPasaporte() {
+		return pasaporte;
 	}
 
-	public void setPas(Pasaporte pas) {
-		this.pas = pas;
+	public void setPasaporte(Pasaporte pasaporte) {
+		this.pasaporte = pasaporte;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getCuit() {
@@ -90,15 +94,15 @@ public class Cliente {
 	}
 
 	public void setTelID(int id) {
-		this.tel.setID(id);
+		this.tel.setId(id);
 	}
 
-	public PasajeroFrecuente getPasfre() {
-		return pasfre;
+	public PasajeroFrecuente getPasajeroFrecuente() {
+		return pasajeroFrecuente;
 	}
 
-	public void setPasfre(PasajeroFrecuente pasfre) {
-		this.pasfre = pasfre;
+	public void setPasajeroFrecuente(PasajeroFrecuente pasfre) {
+		this.pasajeroFrecuente = pasfre;
 	}
 
 	public DirCompleta getDir() {
@@ -110,7 +114,7 @@ public class Cliente {
 	}
 
 	public void setTelefono(int ID, String numPersonal, String numCelular, String numLaboral) {
-		this.tel.setID(ID);
+		this.tel.setId(ID);
 		this.tel.setNumCelular(numCelular);
 		this.tel.setNumLaboral(numLaboral);
 	}
@@ -120,20 +124,19 @@ public class Cliente {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cliente(int id, String nombre, String apellido, String dni, Pasaporte pas, String cuit,
-			LocalDate fechaNac,
+	public Cliente(int id, String nombre, String apellido, String dni, Pasaporte pas, String cuit, LocalDate fechaNac,
 			String email, Telefono tel, PasajeroFrecuente pasfre, DirCompleta dir) {
 
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;
-		this.pas = pas;
+		this.pasaporte = pas;
 		this.cuit = cuit;
 		this.fechaNac = fechaNac;
 		this.email = email;
 		this.tel = tel;
-		this.pasfre = pasfre;
+		this.pasajeroFrecuente = pasfre;
 		this.dir = dir;
 	}
 
@@ -143,11 +146,11 @@ public class Cliente {
 	}
 
 	public void setPasID(int numeroPasaporte) {
-		this.pas.setId(numeroPasaporte);
+		this.pasaporte.setId(numeroPasaporte);
 	}
 
 	public void setPasfreID(int numeroPF) {
-		this.pasfre.setIdPasFre(numeroPF);
+		this.pasajeroFrecuente.setId(numeroPF);
 
 	}
 

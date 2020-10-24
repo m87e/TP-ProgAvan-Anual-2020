@@ -51,8 +51,9 @@ public class ClientesDAOImpArchivo implements ClienteDAO {
 	private String SaveCliente(Cliente cliente) {
 		return cliente.getId() + ";" + cliente.getNombre() + ";" + cliente.getApellido() + ";" + cliente.getDni() + ";"
 				+ cliente.getTel().getId() + ";" + cliente.getCuit() + ";" + cliente.getEmail() + ";"
-				+ cliente.getDir().getId() + ";" + cliente.getFechaNac() + ";" + cliente.getPas().getNumeroPasaporte()
-				+ ";" + cliente.getPasfre().getNumeroPF() + "\r\n";
+				+ cliente.getDir().getId() + ";" + cliente.getFechaNac() + ";"
+				+ cliente.getPasaporte().getNumeroPasaporte() + ";" + cliente.getPasajeroFrecuente().getNumeroPF()
+				+ "\r\n";
 
 	}
 
@@ -72,8 +73,8 @@ public class ClientesDAOImpArchivo implements ClienteDAO {
 				c.setEmail(cliente.getEmail());
 				c.setDirID(cliente.getDir().getId());
 				c.setFechaNac(cliente.getFechaNac());
-				c.setPasID(cliente.getPas().getIdPasaporte());
-				c.setPasfreID(cliente.getPasfre().getId());
+				c.setPasID(cliente.getPasaporte().getIdPasaporte());
+				c.setPasfreID(cliente.getPasajeroFrecuente().getId());
 			}
 
 			AgregarCliente(c, null);

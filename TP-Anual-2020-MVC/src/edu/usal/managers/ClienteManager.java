@@ -62,10 +62,10 @@ public class ClienteManager {
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Ocurrio un error al cargar los datos en la base de datos");
 			if (con != null) {
 				SQLDatabaseConnection.rollback(con);
-				System.err.print("Transaction is being rolled back");
+				System.err.print("Se realizo un rollback de la transaccion");
 			}
 		} finally {
 

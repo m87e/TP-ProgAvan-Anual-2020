@@ -38,14 +38,13 @@ public class main {
 	public static void main(String[] args) throws IOException, ParseException {
 
 		TelefonoDAO impTelDAO = TelefonoFactory.GetImplementation("database");
-		
-		Connection con = SQLDatabaseConnection.conectar();
+		ClienteDAO clienteDAO = ClientesFactory.GetImplementation("database");
 
+		// Connection con = SQLDatabaseConnection.conectar();
 
 	}
 
 	/*
-	 * 
 	 * Connection con = null;
 	 * 
 	 * try { con = SQLDatabaseConnection.conectar(); con.setAutoCommit(false); }
