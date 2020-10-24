@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
-import edu.usal.tp.negocio.dao.interfaces.IAerolineaDAO;
+import edu.usal.tp.negocio.dao.interfaces.AerolineaDAO;
 import edu.usal.tp.negocio.dao.util.PropertiesUtil;
 
-public class AerolineaDAOImplStream implements IAerolineaDAO {
+public class AerolineaDAOImplStream implements AerolineaDAO {
 
 	private File file;
 	private FileOutputStream fOut;

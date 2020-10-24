@@ -11,10 +11,10 @@ import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Alianza;
 import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
-import edu.usal.tp.negocio.dao.interfaces.IPasajeroFrecuenteDAO;
+import edu.usal.tp.negocio.dao.interfaces.PasajeroFrecuenteDAO;
 import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 
-public class PasajeroFrecuenteDAOImplDatabase implements IPasajeroFrecuenteDAO {
+public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 
 	final String INSERT = "INSERT INTO PasajerosFrecuentes (pasajerofrecuente_alianza, pasajerofrecuente_aerolineaID, pasajerofrecuente_numeroPF, pasajerofrecuente_categoria) values (?,?,?,?)";
 

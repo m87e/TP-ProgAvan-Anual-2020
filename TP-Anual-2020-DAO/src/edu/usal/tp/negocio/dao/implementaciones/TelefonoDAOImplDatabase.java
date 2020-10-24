@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Telefono;
-import edu.usal.tp.negocio.dao.interfaces.ITelefonoDAO;
+import edu.usal.tp.negocio.dao.interfaces.TelefonoDAO;
 import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 
-public class TelefonoDAOImplDatabase implements ITelefonoDAO {
+public class TelefonoDAOImplDatabase implements TelefonoDAO {
 
 	final String INSERT = "INSERT INTO Telefonos (telefono_numPersonal, telefono_numCelular, telefono_numLaboral) values (?,?,?)";
 

@@ -8,7 +8,7 @@ import java.util.*;
 
 import edu.usal.tp.negocio.dao.dominio.Cliente;
 
-public interface IClienteDAO {
+public interface ClienteDAO {
 
 	void AgregarCliente(Cliente cliente, Connection con) throws IOException, ParseException;
 

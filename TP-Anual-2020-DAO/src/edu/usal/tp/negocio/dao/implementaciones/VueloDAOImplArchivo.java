@@ -14,9 +14,9 @@ import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Cliente;
 import edu.usal.tp.negocio.dao.dominio.Vuelos;
-import edu.usal.tp.negocio.dao.interfaces.IVuelosDAO;
+import edu.usal.tp.negocio.dao.interfaces.VuelosDAO;
 
-public class VueloDAOImplArchivo implements IVuelosDAO {
+public class VueloDAOImplArchivo implements VuelosDAO {
 
 	private File archivo;
 	private FileWriter archivoWriter;

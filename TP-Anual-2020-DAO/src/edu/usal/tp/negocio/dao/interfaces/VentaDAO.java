@@ -6,7 +6,7 @@ import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Venta;
 
-public interface IVentaDAO {
+public interface VentaDAO {
 
 	void AgregarVenta(Venta venta) throws IOException;
 

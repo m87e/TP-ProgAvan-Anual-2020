@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Pasaporte;
-import edu.usal.tp.negocio.dao.interfaces.IPasaporteDAO;
+import edu.usal.tp.negocio.dao.interfaces.PasaporteDAO;
 import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 
-public class PasaporteDAOImplDatabase implements IPasaporteDAO {
+public class PasaporteDAOImplDatabase implements PasaporteDAO {
 
 	final String INSERT = "INSERT INTO Pasaportes (pasaporte_numero, pasaporte_autEmision, pasaporte_fechaEmision, pasaporte_fechaVencimiento, pasaporte_paisID) values (?,?,?,?,?)";
 

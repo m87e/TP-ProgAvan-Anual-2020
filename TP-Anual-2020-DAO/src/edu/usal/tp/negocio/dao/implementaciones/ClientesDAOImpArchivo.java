@@ -17,9 +17,9 @@ import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Cliente;
 import edu.usal.tp.negocio.dao.dominio.Telefono;
-import edu.usal.tp.negocio.dao.interfaces.IClienteDAO;
+import edu.usal.tp.negocio.dao.interfaces.ClienteDAO;
 
-public class ClientesDAOImpArchivo implements IClienteDAO {
+public class ClientesDAOImpArchivo implements ClienteDAO {
 
 	private File archivo;
 	private FileWriter archivoWriter;

@@ -5,7 +5,7 @@ import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Paises;
 
-public interface IPaisesDAO {
+public interface PaisesDAO {
 
 	void AgregarPais(Paises pais) throws IOException;
 

@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Aeropuerto;
-import edu.usal.tp.negocio.dao.interfaces.IAeropuertoDAO;
+import edu.usal.tp.negocio.dao.interfaces.AeropuertoDAO;
 
-public class AeropuertosDAOImplArchivo implements IAeropuertoDAO {
+public class AeropuertosDAOImplArchivo implements AeropuertoDAO {
 
 	private File archivo;
 	private FileWriter archivoWriter;

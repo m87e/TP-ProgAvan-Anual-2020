@@ -6,7 +6,7 @@ import java.util.*;
 
 import edu.usal.tp.negocio.dao.dominio.Aeropuerto;
 
-public interface IAeropuertoDAO {
+public interface AeropuertoDAO {
 
 	void AgregarAeropuerto(Aeropuerto aeropuerto) throws IOException;
 

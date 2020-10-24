@@ -6,7 +6,7 @@ import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Provincias;
 
-public interface IProvinciasDAO {
+public interface ProvinciasDAO {
 
 	void AgregarProvincia(Provincias provincia) throws IOException;
 

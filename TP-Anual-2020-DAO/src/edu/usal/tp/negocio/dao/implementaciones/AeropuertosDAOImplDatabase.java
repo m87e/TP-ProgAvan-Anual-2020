@@ -10,10 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Aeropuerto;
-import edu.usal.tp.negocio.dao.interfaces.IAeropuertoDAO;
+import edu.usal.tp.negocio.dao.interfaces.AeropuertoDAO;
 import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 
-public class AeropuertosDAOImplDatabase implements IAeropuertoDAO {
+public class AeropuertosDAOImplDatabase implements AeropuertoDAO {
+
+	final String SELECT_ALL = "SELECT * FROM Aeropuertos ORDER BY aeropuerto_id";
+	final String SELECT_BY_ID = "SELECT * FROM Aeropuertos WHERE aeropuerto_id=?";
 
 	@Override
 	public void AgregarAeropuerto(Aeropuerto aeropuerto) throws IOException {
@@ -44,7 +47,7 @@ public class AeropuertosDAOImplDatabase implements IAeropuertoDAO {
 		try {
 			con = SQLDatabaseConnection.conectar();
 
-			ps = con.prepareStatement("SELECT * FROM Aeropuertos WHERE aeropuerto_id=?");
+			ps = con.prepareStatement("SELECT_BY_ID");
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
 
@@ -88,7 +91,7 @@ public class AeropuertosDAOImplDatabase implements IAeropuertoDAO {
 		Statement stm = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT * FROM Aeropuertos ORDER BY aeropuerto_id";
+		String sql = "SELECT_ALL";
 
 		try {
 			con = SQLDatabaseConnection.conectar();

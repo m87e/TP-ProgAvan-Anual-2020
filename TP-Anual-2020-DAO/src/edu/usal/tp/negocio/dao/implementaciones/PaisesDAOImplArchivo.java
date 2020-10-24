@@ -4,9 +4,9 @@ import java.io.*;
 import java.util.*;
 
 import edu.usal.tp.negocio.dao.dominio.Paises;
-import edu.usal.tp.negocio.dao.interfaces.IPaisesDAO;
+import edu.usal.tp.negocio.dao.interfaces.PaisesDAO;
 
-public class PaisesDAOImplArchivo implements IPaisesDAO {
+public class PaisesDAOImplArchivo implements PaisesDAO {
 
 	private File archivo;
 	private FileWriter archivoWriter;

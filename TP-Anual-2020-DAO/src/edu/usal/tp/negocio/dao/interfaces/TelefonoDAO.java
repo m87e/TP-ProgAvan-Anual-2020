@@ -6,7 +6,7 @@ import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Telefono;
 
-public interface ITelefonoDAO {
+public interface TelefonoDAO {
 
 	void AgregarTelefono(Telefono tel, Connection con) throws IOException;
 

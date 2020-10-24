@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Provincias;
-import edu.usal.tp.negocio.dao.interfaces.IProvinciasDAO;
+import edu.usal.tp.negocio.dao.interfaces.ProvinciasDAO;
 import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 
-public class ProvinciasDAOImplDatabase implements IProvinciasDAO {
+public class ProvinciasDAOImplDatabase implements ProvinciasDAO {
 
 	@Override
 	public void AgregarProvincia(Provincias provincia) throws IOException {

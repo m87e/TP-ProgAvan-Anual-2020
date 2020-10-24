@@ -13,9 +13,9 @@ import java.util.Properties;
 
 import edu.usal.tp.negocio.dao.dominio.Paises;
 import edu.usal.tp.negocio.dao.dominio.Provincias;
-import edu.usal.tp.negocio.dao.interfaces.IProvinciasDAO;
+import edu.usal.tp.negocio.dao.interfaces.ProvinciasDAO;
 
-public class ProvinciasDAOImplArchivo implements IProvinciasDAO {
+public class ProvinciasDAOImplArchivo implements ProvinciasDAO {
 
 	private File archivo;
 	private FileWriter archivoWriter;

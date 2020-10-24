@@ -6,7 +6,7 @@ import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.DirCompleta;;
 
-public interface IDirCompletaDAO {
+public interface DirCompletaDAO {
 	void AgregarDirCompleta(DirCompleta dir, Connection con) throws IOException;
 
 	void ModificarDirCompleta(DirCompleta dir) throws IOException;

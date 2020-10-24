@@ -14,10 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Cliente;
-import edu.usal.tp.negocio.dao.interfaces.IClienteDAO;
+import edu.usal.tp.negocio.dao.interfaces.ClienteDAO;
 import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 
-public class ClienteDAOImplDatabase implements IClienteDAO {
+public class ClienteDAOImplDatabase implements ClienteDAO {
 
 	final String INSERT = "INSERT INTO Clientes (cliente_nombre, cliente_apellido, cliente_dni, cliente_cuit, cliente_fechaNac, cliente_email, cliente_dirCompletaID, cliente_telID, cliente_pasaporteID, cliente_pasFreID) values (?,?,?,?,?,?,?,?,?,?)";
 	final String UPDATE = "UPDATE Clientes SET cliente_nombre=?, cliente_apellido=?, cliente_dni=?, cliente_cuit=?, cliente_fechaNac=?, cliente_email=?, cliente_dirCompletaID=?, cliente_telID=?, cliente_pasaporteID=?, cliente_pasFreID=? WHERE cliente_id=?";
@@ -40,16 +40,15 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 			ps.setString(4, cliente.getCuit());
 			ps.setDate(5, java.sql.Date.valueOf(cliente.getFechaNac()));
 			ps.setString(6, cliente.getEmail());
-			ps.setInt(7, cliente.getDir().getId()); // llamar a traves de manager (agregar lo del commit adentro del
-													// manager), tiene que estar dentro del MVC
+			ps.setInt(7, cliente.getDir().getId());
 			ps.setInt(8, cliente.getTel().getId());
-			ps.setInt(9, cliente.getPas().getIdPasaporte()); // llamar a traves de manager
+			ps.setInt(9, cliente.getPas().getIdPasaporte());
 			ps.setInt(10, cliente.getPasfre().getId());
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Ocurrio un error al cargar el dato en la base de datos");
 
 		} finally {
 			try {
@@ -87,8 +86,10 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 			ps.setInt(11, cliente.getId());
 			ps.executeUpdate();
 
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			// TODO: handle exception
+			System.out.println("Ocurrio un error al actualizar el dato en la base de datos");
+
 		} finally {
 			try {
 				ps.close();
@@ -117,7 +118,8 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Ocurrio un error al eliminar el dato en la base de datos");
+
 		} finally {
 			try {
 				ps.close();
@@ -169,6 +171,7 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 
 		} catch (Exception e) {
 			// TODO: handle exception
+			System.out.println("Ocurrio un error al leer los datos de la base de datos");
 		} finally {
 			try {
 				stm.close();
@@ -220,6 +223,8 @@ public class ClienteDAOImplDatabase implements IClienteDAO {
 
 		} catch (Exception e) {
 			// TODO: handle exception
+			System.out.println("Ocurrio un error al leer los datos de la base de datos");
+
 		} finally {
 			try {
 				ps.close();

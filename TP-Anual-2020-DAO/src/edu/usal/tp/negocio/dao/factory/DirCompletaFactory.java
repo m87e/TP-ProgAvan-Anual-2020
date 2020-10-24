@@ -2,11 +2,11 @@ package edu.usal.tp.negocio.dao.factory;
 
 import edu.usal.tp.negocio.dao.implementaciones.DirCompletaDAOImpArchivo;
 import edu.usal.tp.negocio.dao.implementaciones.DirCompletaDAOImplDatabase;
-import edu.usal.tp.negocio.dao.interfaces.IDirCompletaDAO;
+import edu.usal.tp.negocio.dao.interfaces.DirCompletaDAO;
 
 public class DirCompletaFactory {
 
-	public static IDirCompletaDAO GetImplementation(String source) {
+	public static DirCompletaDAO GetImplementation(String source) {
 		if (source.equals("Archivo")) {
 			return new DirCompletaDAOImpArchivo();
 		}

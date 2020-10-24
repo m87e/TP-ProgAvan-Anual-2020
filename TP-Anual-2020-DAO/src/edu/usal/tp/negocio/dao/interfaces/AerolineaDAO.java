@@ -6,7 +6,7 @@ import java.util.*;
 
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 
-public interface IAerolineaDAO {
+public interface AerolineaDAO {
 
 	void AgregarAerolinea(Aerolinea aerolinea) throws IOException;
 

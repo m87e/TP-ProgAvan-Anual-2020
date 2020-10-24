@@ -5,9 +5,9 @@ import java.text.ParseException;
 import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Vuelos;
-import edu.usal.tp.negocio.dao.interfaces.IVuelosDAO;
+import edu.usal.tp.negocio.dao.interfaces.VuelosDAO;
 
-public class VueloDAOImplDatabase implements IVuelosDAO {
+public class VueloDAOImplDatabase implements VuelosDAO {
 
 	@Override
 	public void AgregarVuelo(Vuelos vuelos) throws IOException {

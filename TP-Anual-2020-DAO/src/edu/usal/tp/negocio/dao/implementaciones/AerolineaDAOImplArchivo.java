@@ -7,9 +7,9 @@ import java.util.function.Predicate;
 
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.tp.negocio.dao.dominio.Alianza;
-import edu.usal.tp.negocio.dao.interfaces.IAerolineaDAO;
+import edu.usal.tp.negocio.dao.interfaces.AerolineaDAO;
 
-public class AerolineaDAOImplArchivo implements IAerolineaDAO {
+public class AerolineaDAOImplArchivo implements AerolineaDAO {
 
 	private File archivo;
 	private FileWriter archivoWriter;

@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
 import edu.usal.tp.negocio.dao.dominio.Aeropuerto;
 import edu.usal.tp.negocio.dao.dominio.Venta;
 import edu.usal.tp.negocio.dao.dominio.Vuelos;
-import edu.usal.tp.negocio.dao.interfaces.IVuelosDAO;
+import edu.usal.tp.negocio.dao.interfaces.VuelosDAO;
 import edu.usal.tp.negocio.dao.util.PropertiesUtil;
 
-public class VueloDAOImplStream implements IVuelosDAO {
+public class VueloDAOImplStream implements VuelosDAO {
 
 	private File file;
 	private FileOutputStream fOut;

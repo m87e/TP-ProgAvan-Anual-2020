@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Venta;
-import edu.usal.tp.negocio.dao.interfaces.IVentaDAO;
+import edu.usal.tp.negocio.dao.interfaces.VentaDAO;
 import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 
-public class VentaDAOImplDatabase implements IVentaDAO {
+public class VentaDAOImplDatabase implements VentaDAO {
 
 	@Override
 	public void AgregarVenta(Venta venta) throws IOException {

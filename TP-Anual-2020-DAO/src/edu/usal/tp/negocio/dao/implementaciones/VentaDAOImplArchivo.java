@@ -16,9 +16,9 @@ import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.tp.negocio.dao.dominio.Cliente;
 import edu.usal.tp.negocio.dao.dominio.Venta;
 import edu.usal.tp.negocio.dao.dominio.Vuelos;
-import edu.usal.tp.negocio.dao.interfaces.IVentaDAO;
+import edu.usal.tp.negocio.dao.interfaces.VentaDAO;
 
-public class VentaDAOImplArchivo implements IVentaDAO {
+public class VentaDAOImplArchivo implements VentaDAO {
 
 	private File archivo;
 	private FileWriter archivoWriter;

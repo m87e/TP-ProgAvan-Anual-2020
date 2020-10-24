@@ -14,9 +14,9 @@ import java.util.Properties;
 import edu.usal.tp.negocio.dao.dominio.Paises;
 import edu.usal.tp.negocio.dao.dominio.Provincias;
 import edu.usal.tp.negocio.dao.dominio.Telefono;
-import edu.usal.tp.negocio.dao.interfaces.ITelefonoDAO;
+import edu.usal.tp.negocio.dao.interfaces.TelefonoDAO;
 
-public class TelefonoDAOImpArchivo implements ITelefonoDAO {
+public class TelefonoDAOImpArchivo implements TelefonoDAO {
 	private File archivo;
 	private FileWriter archivoWriter;
 	private FileReader archivoReader;

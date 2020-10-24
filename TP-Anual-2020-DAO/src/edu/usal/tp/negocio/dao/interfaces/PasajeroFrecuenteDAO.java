@@ -7,7 +7,7 @@ import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
 
-public interface IPasajeroFrecuenteDAO {
+public interface PasajeroFrecuenteDAO {
 
 	void AgregarPasajeroFrecuente(PasajeroFrecuente pasFre, Connection con) throws IOException;
 

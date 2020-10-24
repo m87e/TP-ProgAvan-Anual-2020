@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import edu.usal.tp.negocio.dao.dominio.Venta;
-import edu.usal.tp.negocio.dao.interfaces.IVentaDAO;
+import edu.usal.tp.negocio.dao.interfaces.VentaDAO;
 import edu.usal.tp.negocio.dao.util.PropertiesUtil;
 
-public class VentaDAOImplStream implements IVentaDAO {
+public class VentaDAOImplStream implements VentaDAO {
 
 	private File file;
 	private FileOutputStream fOut;

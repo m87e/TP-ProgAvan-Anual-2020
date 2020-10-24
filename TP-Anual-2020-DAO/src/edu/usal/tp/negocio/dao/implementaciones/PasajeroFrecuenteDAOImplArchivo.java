@@ -13,9 +13,9 @@ import java.util.List;
 import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
 import edu.usal.tp.negocio.dao.dominio.Pasaporte;
 import edu.usal.tp.negocio.dao.dominio.Telefono;
-import edu.usal.tp.negocio.dao.interfaces.IPasajeroFrecuenteDAO;
+import edu.usal.tp.negocio.dao.interfaces.PasajeroFrecuenteDAO;
 
-public class PasajeroFrecuenteDAOImplArchivo implements IPasajeroFrecuenteDAO {
+public class PasajeroFrecuenteDAOImplArchivo implements PasajeroFrecuenteDAO {
 	private File archivo;
 	private FileWriter archivoWriter;
 	private FileReader archivoReader;

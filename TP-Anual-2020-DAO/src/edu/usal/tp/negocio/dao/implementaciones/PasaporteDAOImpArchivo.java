@@ -14,9 +14,9 @@ import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Cliente;
 import edu.usal.tp.negocio.dao.dominio.Pasaporte;
-import edu.usal.tp.negocio.dao.interfaces.IPasaporteDAO;
+import edu.usal.tp.negocio.dao.interfaces.PasaporteDAO;
 
-public class PasaporteDAOImpArchivo implements IPasaporteDAO {
+public class PasaporteDAOImpArchivo implements PasaporteDAO {
 
 	private File archivo;
 	private FileWriter archivoWriter;

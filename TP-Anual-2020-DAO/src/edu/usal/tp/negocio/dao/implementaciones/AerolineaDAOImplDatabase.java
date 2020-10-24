@@ -11,10 +11,16 @@ import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.tp.negocio.dao.dominio.Alianza;
-import edu.usal.tp.negocio.dao.interfaces.IAerolineaDAO;
+import edu.usal.tp.negocio.dao.interfaces.AerolineaDAO;
 import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 
-public class AerolineaDAOImplDatabase implements IAerolineaDAO {
+public class AerolineaDAOImplDatabase implements AerolineaDAO {
+
+	final String INSERT = "INSERT INTO Aerolineas (aerolinea_nombre, aerolinea_alianza) values (?,?)";
+	final String UPDATE = "UPDATE Aerolineas SET aerolinea_nombre=?,aerolinea_alianza=? WHERE aerolinea_id=?";
+	final String DELETE = "DELETE FROM Aerolineas WHERE aerolinea_id=?";
+	final String SELECT_ALL = "SELECT * FROM Aerolineas ORDER BY aerolinea_id";
+	final String SELECT_BY_ID = "SELECT * FROM Aerolineas WHERE aerolinea_id=?";
 
 	@Override
 	public void AgregarAerolinea(Aerolinea aerolinea) throws IOException {
@@ -27,7 +33,7 @@ public class AerolineaDAOImplDatabase implements IAerolineaDAO {
 
 			con = SQLDatabaseConnection.conectar();
 
-			ps = con.prepareStatement("INSERT INTO Aerolineas (aerolinea_nombre, aerolinea_alianza) values (?,?)");
+			ps = con.prepareStatement("INSERT");
 
 			ps.setString(1, aerolinea.getNombre());
 			ps.setString(2, aerolinea.getAlianza().toString());
@@ -56,8 +62,7 @@ public class AerolineaDAOImplDatabase implements IAerolineaDAO {
 
 		try {
 			con = SQLDatabaseConnection.conectar();
-			ps = con.prepareStatement(
-					"UPDATE Aerolineas SET aerolinea_nombre=?,aerolinea_alianza=? WHERE aerolinea_id=?");
+			ps = con.prepareStatement("UPDATE");
 
 			ps.setString(1, aerolinea.getNombre());
 			ps.setString(2, aerolinea.getAlianza().toString());
@@ -89,7 +94,7 @@ public class AerolineaDAOImplDatabase implements IAerolineaDAO {
 		try {
 
 			con = SQLDatabaseConnection.conectar();
-			ps = con.prepareStatement("DELETE FROM Aerolineas WHERE aerolinea_id=?");
+			ps = con.prepareStatement("DELETE");
 			ps.setInt(1, aerolinea.getId());
 			ps.executeUpdate();
 
@@ -119,7 +124,7 @@ public class AerolineaDAOImplDatabase implements IAerolineaDAO {
 		Statement stm = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT * FROM Aerolineas ORDER BY aerolinea_id";
+		String sql = "SELECT_ALL";
 
 		try {
 			con = SQLDatabaseConnection.conectar();
@@ -173,7 +178,7 @@ public class AerolineaDAOImplDatabase implements IAerolineaDAO {
 		try {
 			con = SQLDatabaseConnection.conectar();
 
-			ps = con.prepareStatement("SELECT * FROM Aerolineas WHERE aerolinea_id=?");
+			ps = con.prepareStatement("SELECT_BY_ID");
 			ps.setInt(1, aerolineaID);
 			rs = ps.executeQuery();
 

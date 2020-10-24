@@ -8,9 +8,9 @@ import java.sql.Statement;
 import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.DirCompleta;
-import edu.usal.tp.negocio.dao.interfaces.IDirCompletaDAO;
+import edu.usal.tp.negocio.dao.interfaces.DirCompletaDAO;
 
-public class DirCompletaDAOImplDatabase implements IDirCompletaDAO {
+public class DirCompletaDAOImplDatabase implements DirCompletaDAO {
 
 	final String INSERT = "INSERT INTO Direcciones (direccion_calle, direccion_altura, direccion_ciudad, direccion_paisID, direccion_provinciaID, direccion_codigoPostal) values (?,?,?,?,?,?)";
 

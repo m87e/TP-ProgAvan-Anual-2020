@@ -13,9 +13,9 @@ import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.DirCompleta;
 import edu.usal.tp.negocio.dao.dominio.Pasaporte;
-import edu.usal.tp.negocio.dao.interfaces.IDirCompletaDAO;
+import edu.usal.tp.negocio.dao.interfaces.DirCompletaDAO;
 
-public class DirCompletaDAOImpArchivo implements IDirCompletaDAO {
+public class DirCompletaDAOImpArchivo implements DirCompletaDAO {
 
 	private File archivo;
 	private FileWriter archivoWriter;

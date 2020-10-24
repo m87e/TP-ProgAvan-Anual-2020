@@ -25,11 +25,11 @@ import edu.usal.tp.negocio.dao.factory.PaisesFactory;
 import edu.usal.tp.negocio.dao.factory.ProvinciasFactory;
 import edu.usal.tp.negocio.dao.factory.TelefonoFactory;
 import edu.usal.tp.negocio.dao.implementaciones.AerolineaDAOImplDatabase;
-import edu.usal.tp.negocio.dao.interfaces.IAerolineaDAO;
-import edu.usal.tp.negocio.dao.interfaces.IClienteDAO;
-import edu.usal.tp.negocio.dao.interfaces.IPaisesDAO;
-import edu.usal.tp.negocio.dao.interfaces.IProvinciasDAO;
-import edu.usal.tp.negocio.dao.interfaces.ITelefonoDAO;
+import edu.usal.tp.negocio.dao.interfaces.AerolineaDAO;
+import edu.usal.tp.negocio.dao.interfaces.ClienteDAO;
+import edu.usal.tp.negocio.dao.interfaces.PaisesDAO;
+import edu.usal.tp.negocio.dao.interfaces.ProvinciasDAO;
+import edu.usal.tp.negocio.dao.interfaces.TelefonoDAO;
 import edu.usal.tp.negocio.dao.util.IOGeneral;
 import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 
@@ -37,28 +37,10 @@ public class main {
 
 	public static void main(String[] args) throws IOException, ParseException {
 
-		ITelefonoDAO impTelDAO = TelefonoFactory.GetImplementation("database");
+		TelefonoDAO impTelDAO = TelefonoFactory.GetImplementation("database");
+		
 		Connection con = SQLDatabaseConnection.conectar();
-		try {
-			con.setAutoCommit(false);
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		Telefono tel = new Telefono();
 
-		try {
-			tel.setNumCelular("851123");
-			tel.setNumLaboral("85512314");
-			tel.setNumPersonal("7444149");
-			impTelDAO.AgregarTelefono(tel, con);
-			con.commit();
-			Thread.sleep(8);
-
-			System.out.print(tel.getId());
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
 
 	}
 
@@ -151,7 +133,7 @@ public class main {
 	 * cli1.setNombre("Pedro"); cli1.setApellido("Smith"); cli1.setDni("859494854");
 	 * cli1.setEmail("afdf@rfgerfg.com");
 	 * 
-	 * IClienteDAO impCliDAO = ClientesFactory.GetImplementatios("Archivo");
+	 * IClienteDAO impCliDAO = ClientesFactory.GetImplementation("Archivo");
 	 * 
 	 * try { impCliDAO.AgregarCliente(cli1); cli1.setNombre("Jonh");
 	 * cli1.setApellido("Smith"); cli1.setDni("123445678");

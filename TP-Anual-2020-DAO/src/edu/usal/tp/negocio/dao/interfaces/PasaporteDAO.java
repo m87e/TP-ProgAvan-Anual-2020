@@ -6,7 +6,7 @@ import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Pasaporte;
 
-public interface IPasaporteDAO {
+public interface PasaporteDAO {
 
 	void AgregarPasaporte(Pasaporte pasaporte, Connection con) throws IOException;
 
