@@ -44,20 +44,8 @@ public class Vuelo {
 		return aeropuertoSalida;
 	}
 
-	public int getAeropuertoSalidaID() {
-		return aeropuertoSalida.getId();
-	}
-
 	public void setAeropuertoSalida(Aeropuerto aeropuertoSalida) {
 		this.aeropuertoSalida = aeropuertoSalida;
-	}
-
-	public void setAeropuertoSalida(int idAeropuerto) {
-		this.aeropuertoSalida.setId(idAeropuerto);
-	}
-
-	public int getAeropuertoLlegadaID() {
-		return aeropuertoLlegada.getId();
 	}
 
 	public Aeropuerto getAeropuertoLlegada() {
@@ -66,10 +54,6 @@ public class Vuelo {
 
 	public void setAeropuertoLlegada(Aeropuerto aeropuertoLlegada) {
 		this.aeropuertoLlegada = aeropuertoLlegada;
-	}
-
-	public void setAeropuertoLlegada(int idAeropuerto) {
-		this.aeropuertoLlegada.setId(idAeropuerto);
 	}
 
 	public LocalDate getFechaHoraSalida() {
