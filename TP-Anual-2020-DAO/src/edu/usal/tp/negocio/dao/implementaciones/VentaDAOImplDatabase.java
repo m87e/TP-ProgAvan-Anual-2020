@@ -37,9 +37,9 @@ public class VentaDAOImplDatabase implements VentaDAO {
 
 			ps.setDate(1, (Date) venta.getFechaHoraVenta());
 			ps.setString(2, venta.getFormaPago());
-			ps.setInt(3, venta.getClienteID());
-			ps.setInt(4, venta.getVueloID());
-			ps.setInt(5, venta.getAerolineaID());
+			ps.setInt(3, venta.getCliente().getId());
+			ps.setInt(4, venta.getVuelo().getId());
+			ps.setInt(5, venta.getAerolinea().getId());
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
@@ -72,9 +72,9 @@ public class VentaDAOImplDatabase implements VentaDAO {
 
 			ps.setDate(1, (Date) venta.getFechaHoraVenta());
 			ps.setString(2, venta.getFormaPago());
-			ps.setInt(3, venta.getClienteID());
-			ps.setInt(4, venta.getVueloID());
-			ps.setInt(5, venta.getAerolineaID());
+			ps.setInt(3, venta.getCliente().getId());
+			ps.setInt(4, venta.getVuelo().getId());
+			ps.setInt(5, venta.getAerolinea().getId());
 			ps.setInt(6, venta.getId());
 
 			ps.executeUpdate();

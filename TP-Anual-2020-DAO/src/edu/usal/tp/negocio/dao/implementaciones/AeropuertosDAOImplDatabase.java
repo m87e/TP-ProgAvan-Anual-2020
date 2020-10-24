@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Aeropuerto;
+import edu.usal.tp.negocio.dao.dominio.Pais;
+import edu.usal.tp.negocio.dao.dominio.Provincia;
 import edu.usal.tp.negocio.dao.interfaces.AeropuertoDAO;
 import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 
@@ -55,11 +57,16 @@ public class AeropuertosDAOImplDatabase implements AeropuertoDAO {
 
 			if (rs.next()) {
 
+				Provincia provincia = new Provincia();
+				Pais pais = new Pais();
+
 				a.setId(rs.getInt("aeropuerto_id"));
 				a.setCodigo(rs.getString("aeropuerto_codigo"));
 				a.setCiudad(rs.getString("aeropuerto_ciudad"));
-				a.setProvinciaID(rs.getInt("aeropuerto_provinciaID"));
-				a.setPaisID(rs.getInt("aeropuerto_paisID"));
+				provincia.setId(rs.getInt("aeropuerto_provinciaID"));
+				a.setProvincia(provincia);
+				pais.setId(rs.getInt("aeropuerto_paisID"));
+				a.setPais(pais);
 
 				return a;
 			}
@@ -101,11 +108,16 @@ public class AeropuertosDAOImplDatabase implements AeropuertoDAO {
 			while (rs.next()) {
 
 				Aeropuerto a = new Aeropuerto();
+				Provincia provincia = new Provincia();
+				Pais pais = new Pais();
+
 				a.setId(rs.getInt("aeropuerto_id"));
 				a.setCodigo(rs.getString("aeropuerto_codigo"));
 				a.setCiudad(rs.getString("aeropuerto_ciudad"));
-				a.setProvinciaID(rs.getInt("aeropuerto_provinciaID"));
-				a.setPaisID(rs.getInt("aeropuerto_paisID"));
+				provincia.setId(rs.getInt("aeropuerto_provinciaID"));
+				a.setProvincia(provincia);
+				pais.setId(rs.getInt("aeropuerto_paisID"));
+				a.setPais(pais);
 
 				listado.add(a);
 			}

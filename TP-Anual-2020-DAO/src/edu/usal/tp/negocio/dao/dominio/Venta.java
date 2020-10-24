@@ -25,48 +25,24 @@ public class Venta {
 		return cliente;
 	}
 
-	public int getClienteID() {
-		return cliente.getId();
-	}
-
 	public void setCliente(Cliente cli) {
 		this.cliente = cli;
-	}
-
-	public void setClienteID(int id) {
-		this.cliente.setId(id);
 	}
 
 	public Vuelo getVuelo() {
 		return vuelo;
 	}
 
-	public int getVueloID() {
-		return vuelo.getId();
-	}
-
 	public void setVuelo(Vuelo vue) {
 		this.vuelo = vue;
-	}
-
-	public void setVueloID(int id) {
-		this.vuelo.setId(id);
 	}
 
 	public Aerolinea getAerolinea() {
 		return aerolinea;
 	}
 
-	public int getAerolineaID() {
-		return aerolinea.getId();
-	}
-
 	public void setAerolinea(Aerolinea aero) {
 		this.aerolinea = aero;
-	}
-
-	public void setAerolineaID(int id) {
-		this.aerolinea.setId(id);
 	}
 
 	public Date getFechaHoraVenta() {

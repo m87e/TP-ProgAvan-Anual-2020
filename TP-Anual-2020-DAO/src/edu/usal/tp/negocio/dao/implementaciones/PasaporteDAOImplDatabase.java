@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.usal.tp.negocio.dao.dominio.Pais;
 import edu.usal.tp.negocio.dao.dominio.Pasaporte;
 import edu.usal.tp.negocio.dao.interfaces.PasaporteDAO;
 import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
@@ -35,7 +36,7 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 			ps.setString(2, pasaporte.getAutoridadEmision());
 			ps.setDate(3, java.sql.Date.valueOf(pasaporte.getFechaVencimiento()));
 			ps.setDate(4, java.sql.Date.valueOf(pasaporte.getFechaVencimiento()));
-			ps.setInt(5, pasaporte.getPaisID());
+			ps.setInt(5, pasaporte.getPais().getId());
 			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();
@@ -73,7 +74,7 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 			ps.setString(2, pasaporte.getAutoridadEmision());
 			ps.setDate(3, java.sql.Date.valueOf(pasaporte.getFechaVencimiento()));
 			ps.setDate(4, java.sql.Date.valueOf(pasaporte.getFechaVencimiento()));
-			ps.setInt(5, pasaporte.getPaisID());
+			ps.setInt(5, pasaporte.getPais().getId());
 			ps.setInt(6, pasaporte.getId());
 
 			ps.executeUpdate();
@@ -147,13 +148,15 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 			while (rs.next()) {
 
 				Pasaporte p = new Pasaporte();
+				Pais pais = new Pais();
 
 				p.setId(rs.getInt("pasaporte_id"));
 				p.setNumeroPasaporte(rs.getString("pasaporte_numero"));
 				p.setAutoridadEmision(rs.getString("pasaporte_autEmision"));
 				p.setFechaEmision(rs.getDate("pasaporte_fechaEmision").toLocalDate());
 				p.setFechaVencimiento(rs.getDate("pasaporte_fechaVencimiento").toLocalDate());
-				p.setPaisID(rs.getInt("pasaporte_paisID"));
+				pais.setId(rs.getInt("pasaporte_paisID"));
+				p.setPais(pais);
 
 				listado.add(p);
 			}
@@ -196,12 +199,15 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 
 			if (rs.next()) {
 
+				Pais pais = new Pais();
+
 				p.setId(rs.getInt("pasaporte_id"));
 				p.setNumeroPasaporte(rs.getString("pasaporte_numero"));
 				p.setAutoridadEmision(rs.getString("pasaporte_autEmision"));
 				p.setFechaEmision(rs.getDate("pasaporte_fechaEmision").toLocalDate());
 				p.setFechaVencimiento(rs.getDate("pasaporte_fechaVencimiento").toLocalDate());
-				p.setPaisID(rs.getInt("pasaporte_paisID"));
+				pais.setId(rs.getInt("pasaporte_paisID"));
+				p.setPais(pais);
 
 				return p;
 			}

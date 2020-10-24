@@ -10,6 +10,14 @@ public class PasajeroFrecuente {
 
 	// Getter & Setter
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public Alianza getAlianza() {
 		return alianza;
 	}
@@ -40,23 +48,6 @@ public class PasajeroFrecuente {
 
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
-	}
-
-	public void setAerolineaID(int id) {
-		this.aerolinea.setId(id);
-
-	}
-
-	public int getAerolineaID() {
-		return this.aerolinea.getId();
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	// Constructors

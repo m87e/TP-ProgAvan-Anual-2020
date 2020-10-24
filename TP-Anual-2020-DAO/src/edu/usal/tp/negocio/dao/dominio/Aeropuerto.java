@@ -49,22 +49,6 @@ public class Aeropuerto {
 		this.pais = pais;
 	}
 
-	public void setPaisID(int id) {
-		this.pais.setId(id);
-	}
-
-	public int getPaisID() {
-		return this.pais.getId();
-	}
-
-	public void setProvinciaID(int id) {
-		this.provincia.setId(id);
-	}
-
-	public int getProvinciaID() {
-		return this.provincia.getId();
-	}
-
 	// Constructors
 
 	public Aeropuerto() {

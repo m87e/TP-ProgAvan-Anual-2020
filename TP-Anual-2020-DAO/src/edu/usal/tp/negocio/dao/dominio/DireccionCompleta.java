@@ -68,16 +68,6 @@ public class DireccionCompleta {
 		return provincia;
 	}
 
-	public void setPaisID(int idPais) {
-		this.pais.setId(idPais);
-
-	}
-
-	public void setProvinciaID(int idProvincia) {
-		this.provincia.setId(idProvincia);
-
-	}
-
 	// Constructors
 
 	public DireccionCompleta() {

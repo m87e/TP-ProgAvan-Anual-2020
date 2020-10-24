@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.tp.negocio.dao.dominio.Alianza;
 import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
 import edu.usal.tp.negocio.dao.interfaces.PasajeroFrecuenteDAO;
@@ -33,7 +34,7 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 			ps = con.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 
 			ps.setString(1, pasFre.getAlianza().toString());
-			ps.setInt(2, pasFre.getAerolineaID());
+			ps.setInt(2, pasFre.getAerolinea().getId());
 			ps.setString(3, pasFre.getNumeroPF());
 			ps.setString(4, pasFre.getCategoria());
 			ps.executeUpdate();
@@ -74,7 +75,7 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 			ps = con.prepareStatement(UPDATE);
 
 			ps.setString(1, pasFre.getAlianza().toString());
-			ps.setInt(2, pasFre.getAerolineaID());
+			ps.setInt(2, pasFre.getAerolinea().getId());
 			ps.setString(3, pasFre.getNumeroPF());
 			ps.setString(4, pasFre.getCategoria());
 			ps.setInt(5, pasFre.getId());
@@ -150,9 +151,11 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 
 			if (rs.next()) {
 
+				Aerolinea a = new Aerolinea();
 				p.setId(rs.getInt("pasajerofrecuente_id"));
 				p.setAlianza(Alianza.valueOf(rs.getString("pasajerofrecuente_alianza")));
-				p.setAerolineaID(rs.getInt("pasajerofrecuente_aerolineaID"));
+				a.setId(rs.getInt("pasajerofrecuente_aerolineaID"));
+				p.setAerolinea(a);
 				p.setNumeroPF(rs.getString("pasajerofrecuente_numeroPF"));
 				p.setCategoria(rs.getString("pasajerofrecuente_categoria"));
 
@@ -197,9 +200,11 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 			while (rs.next()) {
 
 				PasajeroFrecuente p = new PasajeroFrecuente();
+				Aerolinea a = new Aerolinea();
 				p.setId(rs.getInt("pasajerofrecuente_id"));
 				p.setAlianza(Alianza.valueOf(rs.getString("pasajerofrecuente_alianza")));
-				p.setAerolineaID(rs.getInt("pasajerofrecuente_aerolineaID"));
+				a.setId(rs.getInt("pasajerofrecuente_aerolineaID"));
+				p.setAerolinea(a);
 				p.setNumeroPF(rs.getString("pasajerofrecuente_numeroPF"));
 				p.setCategoria(rs.getString("pasajerofrecuente_categoria"));
 

@@ -91,10 +91,6 @@ public class Cliente {
 		this.telefono = telefono;
 	}
 
-	public void setTelefonoID(int id) {
-		this.telefono.setId(id);
-	}
-
 	public PasajeroFrecuente getPasajeroFrecuente() {
 		return pasajeroFrecuente;
 	}
@@ -109,26 +105,6 @@ public class Cliente {
 
 	public void setDireccionCompleta(DireccionCompleta dir) {
 		this.direccionCompleta = dir;
-	}
-
-	public void setTelefono(int ID, String numPersonal, String numCelular, String numLaboral) {
-		this.telefono.setId(ID);
-		this.telefono.setNumCelular(numCelular);
-		this.telefono.setNumLaboral(numLaboral);
-	}
-
-	public void setDireccionCompletaID(int id) {
-		this.direccionCompleta.setId(id);
-
-	}
-
-	public void setPasaporteID(int numeroPasaporte) {
-		this.pasaporte.setId(numeroPasaporte);
-	}
-
-	public void setPasajeroFrecuenteID(int numeroPF) {
-		this.pasajeroFrecuente.setId(numeroPF);
-
 	}
 
 	// Constructors

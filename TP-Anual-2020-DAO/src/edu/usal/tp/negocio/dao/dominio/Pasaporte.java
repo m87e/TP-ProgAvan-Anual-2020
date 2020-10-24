@@ -13,7 +13,7 @@ public class Pasaporte {
 	private LocalDate fechaVencimiento;
 
 	// Getter & Setter
-	
+
 	public int getId() {
 		return id;
 	}
@@ -61,17 +61,6 @@ public class Pasaporte {
 	public void setFechaVencimiento(LocalDate fechaVencimiento) {
 		this.fechaVencimiento = fechaVencimiento;
 	}
-
-	public void setPaisID(int idPais) {
-		this.pais.setId(idPais);
-
-	}
-
-	public int getPaisID() {
-		return this.pais.getId();
-	}
-
-
 
 	// Constructors
 
