@@ -68,6 +68,7 @@ public class ClienteManager {
 				SQLDatabaseConnection.rollback(con);
 				System.err.print("Se realizo un rollback de la transaccion");
 			}
+
 		} finally {
 
 			try {
