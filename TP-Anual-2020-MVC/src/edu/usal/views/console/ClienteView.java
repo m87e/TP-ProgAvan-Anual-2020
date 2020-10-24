@@ -1,18 +1,16 @@
 package edu.usal.views.console;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.tp.negocio.dao.dominio.Alianza;
 import edu.usal.tp.negocio.dao.dominio.Cliente;
-import edu.usal.tp.negocio.dao.dominio.DirCompleta;
-import edu.usal.tp.negocio.dao.dominio.Paises;
+import edu.usal.tp.negocio.dao.dominio.DireccionCompleta;
+import edu.usal.tp.negocio.dao.dominio.Pais;
 import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
 import edu.usal.tp.negocio.dao.dominio.Pasaporte;
-import edu.usal.tp.negocio.dao.dominio.Provincias;
+import edu.usal.tp.negocio.dao.dominio.Provincia;
 import edu.usal.tp.negocio.dao.dominio.Telefono;
-import edu.usal.tp.negocio.dao.factory.PaisesFactory;
 import edu.usal.util.IOGeneral;
 
 public class ClienteView {
@@ -44,7 +42,7 @@ public class ClienteView {
 		// Pasaporte pas = new Pasaporte(1, "AAA333444", p, "Consulado", d, d);
 
 		Pasaporte pas = new Pasaporte();
-		Paises p = new Paises(1, "Argentina");
+		Pais p = new Pais(1, "Argentina");
 		LocalDate d = LocalDate.now();
 		pas.setNumeroPasaporte(IOGeneral.leerLinea("ingrese numero de pasaporte"));
 		pas.setPais(p);
@@ -67,13 +65,13 @@ public class ClienteView {
 
 	}
 
-	public DirCompleta cargarDirCompleta() {
+	public DireccionCompleta cargarDirCompleta() {
 
 		// DirCompleta dir = new DirCompleta(1, "Test", "3500", "BA", p, prov, "1424");
-		Paises p = new Paises(1, "Argentina");
-		Provincias prov = new Provincias(1, "Buenos");
+		Pais p = new Pais(1, "Argentina");
+		Provincia prov = new Provincia(1, "Buenos");
 
-		DirCompleta dir = new DirCompleta();
+		DireccionCompleta dir = new DireccionCompleta();
 		dir.setCalle((IOGeneral.leerLinea("ingrese nombre calle")));
 		dir.setAltura((IOGeneral.leerLinea("ingrese altura de la calle")));
 		dir.setCiudad((IOGeneral.leerLinea("ingrese nombre ciudad")));

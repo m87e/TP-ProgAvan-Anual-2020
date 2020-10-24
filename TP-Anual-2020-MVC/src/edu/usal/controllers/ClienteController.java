@@ -1,11 +1,12 @@
 package edu.usal.controllers;
 
 import java.io.IOException;
+
 import java.text.ParseException;
 
 import edu.usal.managers.ClienteManager;
 import edu.usal.tp.negocio.dao.dominio.Cliente;
-import edu.usal.tp.negocio.dao.dominio.DirCompleta;
+import edu.usal.tp.negocio.dao.dominio.DireccionCompleta;
 import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
 import edu.usal.tp.negocio.dao.dominio.Pasaporte;
 import edu.usal.tp.negocio.dao.dominio.Telefono;
@@ -44,7 +45,7 @@ public class ClienteController {
 		Cliente c = this.view.cargarCliente();
 		Pasaporte p = this.view.cargarPasaporte();
 		Telefono tel = this.view.cargarTelefono();
-		DirCompleta dir = this.view.cargarDirCompleta();
+		DireccionCompleta dir = this.view.cargarDirCompleta();
 		PasajeroFrecuente pasFrec = this.view.cargarPasFrecuente();
 
 		this.manager.cargarCliente(c, p, tel, dir, pasFrec);
