@@ -44,7 +44,7 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 			ps.setString(4, cliente.getCuit());
 			ps.setDate(5, java.sql.Date.valueOf(cliente.getFechaNac()));
 			ps.setString(6, cliente.getEmail());
-			ps.setInt(7, cliente.getDir().getId());
+			ps.setInt(7, cliente.getDireccionCompleta().getId());
 			ps.setInt(8, cliente.getTelefono().getId());
 			ps.setInt(9, cliente.getPasaporte().getIdPasaporte());
 			ps.setInt(10, cliente.getPasajeroFrecuente().getId());
@@ -85,7 +85,7 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 			ps.setString(4, cliente.getCuit());
 			ps.setDate(5, java.sql.Date.valueOf(cliente.getFechaNac()));
 			ps.setString(6, cliente.getEmail());
-			ps.setInt(7, cliente.getDir().getId());
+			ps.setInt(7, cliente.getDireccionCompleta().getId());
 			ps.setInt(8, cliente.getTelefono().getId());
 			ps.setInt(9, cliente.getPasaporte().getIdPasaporte());
 			ps.setInt(10, cliente.getPasajeroFrecuente().getId());
@@ -176,10 +176,10 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 				c.setEmail(rs.getString("cliente_email"));
 
 				dir.setId(rs.getInt("cliente_dirCompletaID"));
-				c.setDir(dir);
+				c.setDireccionCompleta(dir);
 
 				tel.setId(rs.getInt("cliente_telID"));
-				c.setTel(tel);
+				c.setTelefono(tel);
 
 				pas.setId(rs.getInt("cliente_pasaporteID"));
 				c.setPasaporte(pas);
@@ -243,10 +243,10 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 				c.setEmail(rs.getString("cliente_email"));
 
 				dir.setId(rs.getInt("cliente_dirCompletaID"));
-				c.setDir(dir);
+				c.setDireccionCompleta(dir);
 
 				tel.setId(rs.getInt("cliente_telID"));
-				c.setTel(tel);
+				c.setTelefono(tel);
 
 				pas.setId(rs.getInt("cliente_pasaporteID"));
 				c.setPasaporte(pas);

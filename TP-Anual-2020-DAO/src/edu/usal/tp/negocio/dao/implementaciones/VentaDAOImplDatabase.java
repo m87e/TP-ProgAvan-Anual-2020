@@ -11,7 +11,10 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.usal.tp.negocio.dao.dominio.Aerolinea;
+import edu.usal.tp.negocio.dao.dominio.Cliente;
 import edu.usal.tp.negocio.dao.dominio.Venta;
+import edu.usal.tp.negocio.dao.dominio.Vuelo;
 import edu.usal.tp.negocio.dao.interfaces.VentaDAO;
 import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 
@@ -73,13 +76,14 @@ public class VentaDAOImplDatabase implements VentaDAO {
 
 			ps.executeUpdate();
 
+			System.out.println("Venta actualizada - Operacion completada");
+
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
 			try {
 				ps.close();
 				con.close();
-				System.out.println("Venta actualizada - Operacion completada");
 				System.out.println("Conexion cerrada");
 
 			} catch (Exception e) {
@@ -101,6 +105,7 @@ public class VentaDAOImplDatabase implements VentaDAO {
 			ps = con.prepareStatement("DELETE FROM Ventas WHERE venta_id=?");
 			ps.setInt(1, venta.getId());
 			ps.executeUpdate();
+			System.out.println("Venta eliminada - Operacion completada");
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -109,7 +114,6 @@ public class VentaDAOImplDatabase implements VentaDAO {
 			try {
 				ps.close();
 				con.close();
-				System.out.println("Venta eliminada - Operacion completada");
 				System.out.println("Conexion cerrada");
 
 			} catch (Exception e) {
@@ -138,14 +142,20 @@ public class VentaDAOImplDatabase implements VentaDAO {
 			rs = stm.executeQuery(sql);
 
 			while (rs.next()) {
-				Venta v = new Venta();
+				Venta venta = new Venta();
+				Cliente cliente = new Cliente();
+				Vuelo vuelo = new Vuelo();
+				Aerolinea aerolinea = new Aerolinea();
 
-				v.setId(rs.getInt("venta_id"));
-				v.setFechaHoraVenta(rs.getDate("venta_fecha"));
-				v.setFormaPago(rs.getString("venta_formaPago"));
-				v.setClienteID(rs.getInt("venta_clienteID"));
-				v.setVueloID(rs.getInt("venta_vueloID"));
-				v.setAerolineaID(rs.getInt("venta_aerolineaID"));
+				venta.setId(rs.getInt("venta_id"));
+				venta.setFechaHoraVenta(rs.getDate("venta_fecha"));
+				venta.setFormaPago(rs.getString("venta_formaPago"));
+				cliente.setId(rs.getInt("venta_clienteID"));
+				venta.setCliente(cliente);
+				vuelo.setId(rs.getInt("venta_vueloID"));
+				venta.setVuelo(vuelo);
+				aerolinea.setId(rs.getInt("venta_aerolineaID"));
+				venta.setAerolinea(aerolinea);
 
 			}
 			System.out.println("Ventas encontrados: " + listado.size());

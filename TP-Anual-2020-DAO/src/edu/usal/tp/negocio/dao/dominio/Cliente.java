@@ -87,11 +87,11 @@ public class Cliente {
 		return telefono;
 	}
 
-	public void setTel(Telefono tel) {
-		this.telefono = tel;
+	public void setTelefono(Telefono telefono) {
+		this.telefono = telefono;
 	}
 
-	public void setTelID(int id) {
+	public void setTelefonoID(int id) {
 		this.telefono.setId(id);
 	}
 
@@ -103,11 +103,11 @@ public class Cliente {
 		this.pasajeroFrecuente = pasfre;
 	}
 
-	public DireccionCompleta getDir() {
+	public DireccionCompleta getDireccionCompleta() {
 		return direccionCompleta;
 	}
 
-	public void setDir(DireccionCompleta dir) {
+	public void setDireccionCompleta(DireccionCompleta dir) {
 		this.direccionCompleta = dir;
 	}
 
@@ -117,16 +117,16 @@ public class Cliente {
 		this.telefono.setNumLaboral(numLaboral);
 	}
 
-	public void setDirID(int id) {
+	public void setDireccionCompletaID(int id) {
 		this.direccionCompleta.setId(id);
 
 	}
 
-	public void setPasID(int numeroPasaporte) {
+	public void setPasaporteID(int numeroPasaporte) {
 		this.pasaporte.setId(numeroPasaporte);
 	}
 
-	public void setPasfreID(int numeroPF) {
+	public void setPasajeroFrecuenteID(int numeroPF) {
 		this.pasajeroFrecuente.setId(numeroPF);
 
 	}

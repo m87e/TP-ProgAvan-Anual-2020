@@ -51,7 +51,7 @@ public class ClientesDAOImpArchivo implements ClienteDAO {
 	private String SaveCliente(Cliente cliente) {
 		return cliente.getId() + ";" + cliente.getNombre() + ";" + cliente.getApellido() + ";" + cliente.getDni() + ";"
 				+ cliente.getTelefono().getId() + ";" + cliente.getCuit() + ";" + cliente.getEmail() + ";"
-				+ cliente.getDir().getId() + ";" + cliente.getFechaNac() + ";"
+				+ cliente.getDireccionCompleta().getId() + ";" + cliente.getFechaNac() + ";"
 				+ cliente.getPasaporte().getNumeroPasaporte() + ";" + cliente.getPasajeroFrecuente().getNumeroPF()
 				+ "\r\n";
 
@@ -68,13 +68,13 @@ public class ClientesDAOImpArchivo implements ClienteDAO {
 				c.setApellido(cliente.getApellido());
 				c.setNombre(cliente.getNombre());
 				c.setDni(cliente.getDni());
-				c.setTelID(cliente.getTelefono().getId());
+				c.setTelefonoID(cliente.getTelefono().getId());
 				c.setCuit(cliente.getCuit());
 				c.setEmail(cliente.getEmail());
-				c.setDirID(cliente.getDir().getId());
+				c.setDireccionCompletaID(cliente.getDireccionCompleta().getId());
 				c.setFechaNac(cliente.getFechaNac());
-				c.setPasID(cliente.getPasaporte().getIdPasaporte());
-				c.setPasfreID(cliente.getPasajeroFrecuente().getId());
+				c.setPasaporteID(cliente.getPasaporte().getIdPasaporte());
+				c.setPasajeroFrecuenteID(cliente.getPasajeroFrecuente().getId());
 			}
 
 			AgregarCliente(c, null);
@@ -127,13 +127,13 @@ public class ClientesDAOImpArchivo implements ClienteDAO {
 		c.setApellido(atributos[1]);
 		c.setNombre(atributos[2]);
 		c.setDni(atributos[3]);
-		c.setTelID(Integer.valueOf(atributos[4]));
+		c.setTelefonoID(Integer.valueOf(atributos[4]));
 		c.setCuit(atributos[5]);
 		c.setEmail(atributos[6]);
-		c.setDirID(Integer.valueOf(atributos[7]));
+		c.setDireccionCompletaID(Integer.valueOf(atributos[7]));
 		c.setFechaNac(LocalDate.parse((atributos[8]).toString()));
-		c.setPasID(Integer.valueOf(atributos[9]));
-		c.setPasfreID(Integer.valueOf(atributos[10]));
+		c.setPasaporteID(Integer.valueOf(atributos[9]));
+		c.setPasajeroFrecuenteID(Integer.valueOf(atributos[10]));
 
 		return c;
 	}
