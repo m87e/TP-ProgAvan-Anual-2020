@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +59,7 @@ public class PaisesDAOImplDatabase implements PaisesDAO {
 			}
 			System.out.println("Pais encontrado - Operacion completada");
 
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			// TODO: handle exception
 		} finally {
 			try {
@@ -68,6 +69,8 @@ public class PaisesDAOImplDatabase implements PaisesDAO {
 				System.out.println("Conexion cerrada");
 			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 
@@ -102,7 +105,7 @@ public class PaisesDAOImplDatabase implements PaisesDAO {
 			}
 			System.out.println("Paises encontrados: " + listado.size());
 
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			// TODO: handle exception
 		} finally {
 			try {
@@ -112,6 +115,8 @@ public class PaisesDAOImplDatabase implements PaisesDAO {
 				System.out.println("Conexion cerrada");
 			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 

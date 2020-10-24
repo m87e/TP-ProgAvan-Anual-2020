@@ -44,6 +44,8 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 
 			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 	}
@@ -77,6 +79,8 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 
 			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 
@@ -104,8 +108,10 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 				con.close();
 				System.out.println("Telefono eliminado - Operacion completada");
 
-			} catch (Exception e2) {
+			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 
@@ -148,7 +154,8 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 				con.close();
 				System.out.println("La conexión a la DB ha sido cerrada.");
 			} catch (SQLException e) {
-				e.printStackTrace();
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 
@@ -201,6 +208,8 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 				System.out.println("Conexion cerrada");
 			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 

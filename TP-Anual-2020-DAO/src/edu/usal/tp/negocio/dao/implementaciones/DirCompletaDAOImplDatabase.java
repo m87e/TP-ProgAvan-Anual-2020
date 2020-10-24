@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
@@ -18,13 +19,11 @@ public class DirCompletaDAOImplDatabase implements DirCompletaDAO {
 	public void AgregarDirCompleta(DireccionCompleta dir, Connection con) throws IOException {
 		// TODO Auto-generated method stub
 
-		// DirCompleta dir = new DirCompleta(1, "Test", "3500", "BA", p, prov, "1424");
-
 		PreparedStatement ps = null;
 
 		try {
 
-			ps = con.prepareStatement(INSERT,Statement.RETURN_GENERATED_KEYS);
+			ps = con.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, dir.getCalle());
 			ps.setString(2, dir.getAltura());
 			ps.setString(3, dir.getCiudad());
@@ -39,14 +38,15 @@ public class DirCompletaDAOImplDatabase implements DirCompletaDAO {
 				dir.setId((int) rs.getLong(1));
 			}
 
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			// TODO: handle exception
 		} finally {
 			try {
 				ps.close();
 
-			} catch (Exception e2) {
-				// TODO: handle exception
+			} catch (Exception e) {
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 

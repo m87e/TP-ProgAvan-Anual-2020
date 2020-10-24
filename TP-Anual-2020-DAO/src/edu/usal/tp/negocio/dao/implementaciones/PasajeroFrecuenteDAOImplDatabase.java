@@ -47,8 +47,10 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 
 				ps.close();
 
-			} catch (Exception e2) {
+			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 
 		}
@@ -75,7 +77,7 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 			ps.setInt(5, pasFre.getId());
 			ps.executeUpdate();
 
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			// TODO: handle exception
 		} finally {
 			try {
@@ -86,6 +88,8 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 
 			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 
@@ -115,8 +119,10 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 				System.out.println("Pasajero frecuente eliminado - Operacion completada");
 				System.out.println("Conexion cerrada");
 
-			} catch (Exception e2) {
+			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 
@@ -151,7 +157,7 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 			}
 			System.out.println("Pasajero frecuente encontrado - Operacion completada");
 
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			// TODO: handle exception
 		} finally {
 			try {
@@ -159,8 +165,9 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 				rs.close();
 				con.close();
 				System.out.println("La conexión a la DB ha sido cerrada.");
-			} catch (SQLException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 
@@ -197,7 +204,7 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 			}
 			System.out.println("pasajeros encontrados: " + listado.size());
 
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			// TODO: handle exception
 		} finally {
 			try {
@@ -207,6 +214,8 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 				System.out.println("Conexion cerrada");
 			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 

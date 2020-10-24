@@ -41,6 +41,8 @@ public class AerolineaDAOImplDatabase implements AerolineaDAO {
 
 		} catch (Exception e) {
 			// TODO: handle exception
+			System.out.println("Ocurrio un error al cargar el dato en la base de datos");
+
 		} finally {
 			try {
 				ps.close();
@@ -48,7 +50,8 @@ public class AerolineaDAOImplDatabase implements AerolineaDAO {
 				System.out.println("Conexion cerrada");
 
 			} catch (Exception e) {
-				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 	}
@@ -79,6 +82,8 @@ public class AerolineaDAOImplDatabase implements AerolineaDAO {
 
 			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 
@@ -107,8 +112,10 @@ public class AerolineaDAOImplDatabase implements AerolineaDAO {
 				con.close();
 				System.out.println("Aerolinea eliminada - Operacion completada");
 
-			} catch (Exception e2) {
+			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 
@@ -160,6 +167,8 @@ public class AerolineaDAOImplDatabase implements AerolineaDAO {
 				System.out.println("Conexion cerrada");
 			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 
@@ -202,7 +211,8 @@ public class AerolineaDAOImplDatabase implements AerolineaDAO {
 				con.close();
 				System.out.println("La conexión a la DB ha sido cerrada.");
 			} catch (SQLException e) {
-				e.printStackTrace();
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 

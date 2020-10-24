@@ -22,11 +22,9 @@ public class VentaDAOImplDatabase implements VentaDAO {
 		// TODO Auto-generated method stub
 		Connection con = SQLDatabaseConnection.conectar();
 		PreparedStatement ps = null;
-	
 
 		try {
 
-	
 			ps = con.prepareStatement(
 					"INSERT INTO Ventas (venta_fecha, venta_formaPago, venta_clienteID, venta_vueloID, venta_aerolineaID) values (?,?,?,?,?)");
 
@@ -37,19 +35,20 @@ public class VentaDAOImplDatabase implements VentaDAO {
 			ps.setInt(5, venta.getAerolineaID());
 			ps.executeUpdate();
 
-
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			// TODO: handle exception
 		} finally {
 			try {
-				
+
 				ps.close();
 				con.close();
 				System.out.println("Venta agregada - Operacion completada");
 				System.out.println("Conexion cerrada");
 
-			} catch (Exception e2) {
+			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 
@@ -83,8 +82,10 @@ public class VentaDAOImplDatabase implements VentaDAO {
 				System.out.println("Venta actualizada - Operacion completada");
 				System.out.println("Conexion cerrada");
 
-			} catch (Exception e2) {
+			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 
@@ -111,8 +112,10 @@ public class VentaDAOImplDatabase implements VentaDAO {
 				System.out.println("Venta eliminada - Operacion completada");
 				System.out.println("Conexion cerrada");
 
-			} catch (Exception e2) {
+			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 
@@ -157,6 +160,8 @@ public class VentaDAOImplDatabase implements VentaDAO {
 				System.out.println("Conexion cerrada");
 			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 

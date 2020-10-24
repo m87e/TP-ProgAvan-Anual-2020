@@ -115,8 +115,10 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 				System.out.println("Pasaporte eliminado - Operacion completada");
 				System.out.println("Conexion cerrada");
 
-			} catch (Exception e2) {
+			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 
@@ -154,7 +156,7 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 			}
 			System.out.println("Pasaportes encontrados: " + listado.size());
 
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			// TODO: handle exception
 		} finally {
 			try {
@@ -164,6 +166,8 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 				System.out.println("Conexion cerrada");
 			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 
@@ -201,7 +205,7 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 
 			System.out.println("Pasaporte encontrado - Operacion completada");
 
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			// TODO: handle exception
 		} finally {
 			try {
@@ -212,7 +216,8 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 
 		}

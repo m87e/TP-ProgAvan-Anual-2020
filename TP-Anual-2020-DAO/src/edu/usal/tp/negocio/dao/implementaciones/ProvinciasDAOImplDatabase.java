@@ -67,6 +67,8 @@ public class ProvinciasDAOImplDatabase implements ProvinciasDAO {
 				System.out.println("Conexion cerrada");
 			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 
@@ -110,6 +112,8 @@ public class ProvinciasDAOImplDatabase implements ProvinciasDAO {
 				System.out.println("Conexion cerrada");
 			} catch (Exception e) {
 				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
 			}
 		}
 
