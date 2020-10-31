@@ -13,7 +13,7 @@ import edu.usal.tp.negocio.dao.dominio.Aeropuerto;
 import edu.usal.tp.negocio.dao.dominio.Vuelo;
 import edu.usal.tp.negocio.dao.factory.AerolineaFactory;
 import edu.usal.tp.negocio.dao.factory.AeropuertoFactory;
-import edu.usal.tp.negocio.dao.factory.VuelosFactory;
+import edu.usal.tp.negocio.dao.factory.VueloFactory;
 import edu.usal.tp.negocio.dao.interfaces.AerolineaDAO;
 import edu.usal.tp.negocio.dao.interfaces.AeropuertoDAO;
 import edu.usal.tp.negocio.dao.interfaces.VueloDAO;
@@ -21,7 +21,7 @@ import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 
 public class VueloManager {
 
-	private VueloDAO vueloDAODatabase = VuelosFactory.GetImplementation("database");
+	private VueloDAO vueloDAODatabase = VueloFactory.GetImplementation("database");
 	private AeropuertoDAO aeropuertoDAODatabase = AeropuertoFactory.GetImplementation("database");
 	private AerolineaDAO aerolineaDAODatabase = AerolineaFactory.GetImplementation("database");
 

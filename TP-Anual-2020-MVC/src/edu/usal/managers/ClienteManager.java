@@ -11,7 +11,7 @@ import edu.usal.tp.negocio.dao.dominio.DireccionCompleta;
 import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
 import edu.usal.tp.negocio.dao.dominio.Pasaporte;
 import edu.usal.tp.negocio.dao.dominio.Telefono;
-import edu.usal.tp.negocio.dao.factory.ClientesFactory;
+import edu.usal.tp.negocio.dao.factory.ClienteFactory;
 import edu.usal.tp.negocio.dao.factory.DirCompletaFactory;
 import edu.usal.tp.negocio.dao.factory.PasajeroFrecuenteFactory;
 import edu.usal.tp.negocio.dao.factory.PasaporteFactory;
@@ -22,11 +22,10 @@ import edu.usal.tp.negocio.dao.interfaces.PasajeroFrecuenteDAO;
 import edu.usal.tp.negocio.dao.interfaces.PasaporteDAO;
 import edu.usal.tp.negocio.dao.interfaces.TelefonoDAO;
 import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
-import edu.usal.views.console.ClienteView;
 
 public class ClienteManager {
 
-	private ClienteDAO clienteDAODatabase = ClientesFactory.GetImplementation("database");
+	private ClienteDAO clienteDAODatabase = ClienteFactory.GetImplementation("database");
 	private PasaporteDAO pasaporteDAODatabase = PasaporteFactory.GetImplementation("database");
 	private TelefonoDAO telefonoDAODatabase = TelefonoFactory.GetImplementation("database");
 	private PasajeroFrecuenteDAO pasajeroFrecuenteDAODatabase = PasajeroFrecuenteFactory.GetImplementation("database");
