@@ -144,10 +144,11 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 				t.setNumCelular(rs.getString("telefono_numCelular"));
 				t.setNumLaboral(rs.getString("telefono_numLaboral"));
 
+				System.out.println("Telefono encontrado - Operacion completada");
+
 				return t;
 
 			}
-			System.out.println("Telefono encontrado - Operacion completada");
 
 		} catch (Exception e) {
 			// TODO: handle exception

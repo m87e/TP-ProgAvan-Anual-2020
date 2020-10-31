@@ -48,6 +48,7 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 			ps.setInt(8, cliente.getTelefono().getId());
 			ps.setInt(9, cliente.getPasaporte().getId());
 			ps.setInt(10, cliente.getPasajeroFrecuente().getId());
+
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
@@ -68,15 +69,13 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 	}
 
 	@Override
-	public void ModificarCliente(Cliente cliente) throws IOException, ParseException {
+	public void ModificarCliente(Cliente cliente, Connection con) throws IOException, ParseException {
 		// TODO Auto-generated method stub
 
-		Connection con = null;
 		PreparedStatement ps = null;
 
 		try {
 
-			con = SQLDatabaseConnection.conectar();
 			ps = con.prepareStatement(UPDATE);
 
 			ps.setString(1, cliente.getNombre());
@@ -90,6 +89,7 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 			ps.setInt(9, cliente.getPasaporte().getId());
 			ps.setInt(10, cliente.getPasajeroFrecuente().getId());
 			ps.setInt(11, cliente.getId());
+
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
@@ -99,7 +99,6 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 		} finally {
 			try {
 				ps.close();
-				con.close();
 				System.out.println("Cliente actualizado - Operacion completada");
 				System.out.println("Conexion cerrada");
 
@@ -113,13 +112,11 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 	}
 
 	@Override
-	public void EliminarCliente(Cliente cliente) throws IOException, ParseException {
+	public void EliminarCliente(Cliente cliente, Connection con) throws IOException, ParseException {
 		// TODO Auto-generated method stub
-		Connection con = null;
 		PreparedStatement ps = null;
 
 		try {
-			con = SQLDatabaseConnection.conectar();
 			ps = con.prepareStatement(DELETE);
 			ps.setInt(1, cliente.getId());
 			ps.executeUpdate();
@@ -131,7 +128,6 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 		} finally {
 			try {
 				ps.close();
-				con.close();
 				System.out.println("Cliente eliminado - Operacion completada");
 				System.out.println("Conexion cerrada");
 
@@ -254,10 +250,10 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 				pasFre.setId(rs.getInt("cliente_pasFreID"));
 				c.setPasajeroFrecuente(pasFre);
 
+				System.out.println("Cliente encontrado - Operacion completada");
+
 				return c;
 			}
-
-			System.out.println("Cliente encontrado - Operacion completada");
 
 		} catch (Exception e) {
 			// TODO: handle exception

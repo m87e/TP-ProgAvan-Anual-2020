@@ -67,10 +67,10 @@ public class AeropuertosDAOImplDatabase implements AeropuertoDAO {
 				pais.setId(rs.getInt("aeropuerto_paisID"));
 				a.setPais(pais);
 
+				System.out.println("Aeropuerto encontrado - Operacion completada");
+
 				return a;
 			}
-
-			System.out.println("Aeropuerto encontrado - Operacion completada");
 
 		} catch (Exception e) {
 			// TODO: handle exception

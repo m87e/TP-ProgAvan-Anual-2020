@@ -12,9 +12,9 @@ public interface ClienteDAO {
 
 	void AgregarCliente(Cliente cliente, Connection con) throws IOException, ParseException;
 
-	void ModificarCliente(Cliente cliente) throws IOException, ParseException;
+	void ModificarCliente(Cliente cliente, Connection con) throws IOException, ParseException;
 
-	void EliminarCliente(Cliente cliente) throws IOException, ParseException;
+	void EliminarCliente(Cliente cliente, Connection con) throws IOException, ParseException;
 
 	Cliente ObtenerClientePorDNI(String dni) throws SQLException;
 

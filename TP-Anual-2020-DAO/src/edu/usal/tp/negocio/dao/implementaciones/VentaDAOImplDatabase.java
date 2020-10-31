@@ -23,12 +23,12 @@ public class VentaDAOImplDatabase implements VentaDAO {
 	final String INSERT = "INSERT INTO Ventas (venta_fecha, venta_formaPago, venta_clienteID, venta_vueloID, venta_aerolineaID) values (?,?,?,?,?)";
 	final String UPDATE = "UPDATE Ventas SET venta_fecha=?, venta_formaPago=?, venta_clienteID=?, venta_vueloID=?, venta_aerolineaID?) WHERE venta_id=?";
 	final String DELETE = "DELETE FROM Ventas WHERE venta_id=?";
+	final String SELECT_BY_ID = "SELECT * FROM Ventas WHERE venta_id=?";
 	final String SELECT_ALL = "SELECT * FROM Ventas ORDER BY venta_id";
 
 	@Override
-	public void AgregarVenta(Venta venta) throws IOException {
+	public void AgregarVenta(Venta venta, Connection con) throws IOException {
 		// TODO Auto-generated method stub
-		Connection con = SQLDatabaseConnection.conectar();
 		PreparedStatement ps = null;
 
 		try {
@@ -48,7 +48,6 @@ public class VentaDAOImplDatabase implements VentaDAO {
 			try {
 
 				ps.close();
-				con.close();
 				System.out.println("Venta agregada - Operacion completada");
 				System.out.println("Conexion cerrada");
 
@@ -62,9 +61,8 @@ public class VentaDAOImplDatabase implements VentaDAO {
 	}
 
 	@Override
-	public void ModificarVenta(Venta venta) throws IOException, ParseException {
+	public void ModificarVenta(Venta venta, Connection con) throws IOException, ParseException {
 		// TODO Auto-generated method stub
-		Connection con = SQLDatabaseConnection.conectar();
 		PreparedStatement ps = null;
 
 		try {
@@ -86,7 +84,6 @@ public class VentaDAOImplDatabase implements VentaDAO {
 		} finally {
 			try {
 				ps.close();
-				con.close();
 				System.out.println("Conexion cerrada");
 
 			} catch (Exception e) {
@@ -99,9 +96,8 @@ public class VentaDAOImplDatabase implements VentaDAO {
 	}
 
 	@Override
-	public void EliminarVenta(Venta venta) throws IOException, ParseException {
+	public void EliminarVenta(Venta venta, Connection con) throws IOException, ParseException {
 		// TODO Auto-generated method stub
-		Connection con = SQLDatabaseConnection.conectar();
 		PreparedStatement ps = null;
 
 		try {
@@ -116,7 +112,6 @@ public class VentaDAOImplDatabase implements VentaDAO {
 		} finally {
 			try {
 				ps.close();
-				con.close();
 				System.out.println("Conexion cerrada");
 
 			} catch (Exception e) {
@@ -179,6 +174,61 @@ public class VentaDAOImplDatabase implements VentaDAO {
 		}
 
 		return listado;
+	}
+
+	@Override
+	public Venta ObtenerVentaPorID(int id) throws IOException {
+		// TODO Auto-generated method stub
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = SQLDatabaseConnection.conectar();
+
+			ps = con.prepareStatement(SELECT_BY_ID);
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				Venta venta = new Venta();
+				Cliente cliente = new Cliente();
+				Vuelo vuelo = new Vuelo();
+				Aerolinea aerolinea = new Aerolinea();
+
+				venta.setId(rs.getInt("venta_id"));
+				venta.setFechaHoraVenta(rs.getDate("venta_fecha").toLocalDate());
+				venta.setFormaPago(rs.getString("venta_formaPago"));
+				cliente.setId(rs.getInt("venta_clienteID"));
+				venta.setCliente(cliente);
+				vuelo.setId(rs.getInt("venta_vueloID"));
+				venta.setVuelo(vuelo);
+				aerolinea.setId(rs.getInt("venta_aerolineaID"));
+				venta.setAerolinea(aerolinea);
+
+				System.out.println("Venta encontrada - Operacion completada");
+
+				return venta;
+
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			try {
+				ps.close();
+				rs.close();
+				con.close();
+				System.out.println("Conexion cerrada");
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
+			}
+		}
+
+		return null;
 	}
 
 }

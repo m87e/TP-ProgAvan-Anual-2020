@@ -57,9 +57,10 @@ public class ProvinciasDAOImplDatabase implements ProvinciasDAO {
 				p.setId(rs.getInt("provincia_id"));
 				p.setNombre(rs.getString("provincia_nombre"));
 
+				System.out.println("Provincia encontrada - Operacion completada");
+
 				return p;
 			}
-			System.out.println("Provincia encontrada - Operacion completada");
 
 		} catch (Exception e) {
 			// TODO: handle exception

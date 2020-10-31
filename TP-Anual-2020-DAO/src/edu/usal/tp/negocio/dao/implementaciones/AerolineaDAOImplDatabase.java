@@ -23,15 +23,12 @@ public class AerolineaDAOImplDatabase implements AerolineaDAO {
 	final String SELECT_BY_ID = "SELECT * FROM Aerolineas WHERE aerolinea_id=?";
 
 	@Override
-	public void AgregarAerolinea(Aerolinea aerolinea) throws IOException {
+	public void AgregarAerolinea(Aerolinea aerolinea, Connection con) throws IOException {
 		// TODO Auto-generated method stub
 
-		Connection con = null;
 		PreparedStatement ps = null;
 
 		try {
-
-			con = SQLDatabaseConnection.conectar();
 
 			ps = con.prepareStatement(INSERT);
 
@@ -46,7 +43,6 @@ public class AerolineaDAOImplDatabase implements AerolineaDAO {
 		} finally {
 			try {
 				ps.close();
-				con.close();
 				System.out.println("Conexion cerrada");
 
 			} catch (Exception e) {
@@ -57,14 +53,12 @@ public class AerolineaDAOImplDatabase implements AerolineaDAO {
 	}
 
 	@Override
-	public void ModificarAerolinea(Aerolinea aerolinea) throws IOException {
+	public void ModificarAerolinea(Aerolinea aerolinea, Connection con) throws IOException {
 		// TODO Auto-generated method stub
 
-		Connection con = null;
 		PreparedStatement ps = null;
 
 		try {
-			con = SQLDatabaseConnection.conectar();
 			ps = con.prepareStatement(UPDATE);
 
 			ps.setString(1, aerolinea.getNombre());
@@ -77,7 +71,6 @@ public class AerolineaDAOImplDatabase implements AerolineaDAO {
 		} finally {
 			try {
 				ps.close();
-				con.close();
 				System.out.println("Conexion cerrada");
 
 			} catch (Exception e) {
@@ -90,15 +83,13 @@ public class AerolineaDAOImplDatabase implements AerolineaDAO {
 	}
 
 	@Override
-	public void EliminarAerolinea(Aerolinea aerolinea) throws IOException {
+	public void EliminarAerolinea(Aerolinea aerolinea, Connection con) throws IOException {
 		// TODO Auto-generated method stub
 
-		Connection con = null;
 		PreparedStatement ps = null;
 
 		try {
 
-			con = SQLDatabaseConnection.conectar();
 			ps = con.prepareStatement(DELETE);
 			ps.setInt(1, aerolinea.getId());
 			ps.executeUpdate();
@@ -109,7 +100,6 @@ public class AerolineaDAOImplDatabase implements AerolineaDAO {
 		} finally {
 			try {
 				ps.close();
-				con.close();
 				System.out.println("Aerolinea eliminada - Operacion completada");
 
 			} catch (Exception e) {
@@ -197,10 +187,10 @@ public class AerolineaDAOImplDatabase implements AerolineaDAO {
 				a.setNombre(rs.getString("aerolinea_nombre"));
 				a.setAlianza(Alianza.valueOf(rs.getString("aerolinea_alianza")));
 
+				System.out.println("Aerolinea encontrada - Operacion completada");
+
 				return a;
 			}
-
-			System.out.println("Aerolinea encontrada - Operacion completada");
 
 		} catch (Exception e) {
 			// TODO: handle exception

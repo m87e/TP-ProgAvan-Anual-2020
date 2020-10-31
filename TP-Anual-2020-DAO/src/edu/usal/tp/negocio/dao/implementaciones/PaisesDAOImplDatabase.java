@@ -57,9 +57,10 @@ public class PaisesDAOImplDatabase implements PaisesDAO {
 				p.setId(rs.getInt("pais_id"));
 				p.setNombre(rs.getString("pais_nombre"));
 
+				System.out.println("Pais encontrado - Operacion completada");
+
 				return p;
 			}
-			System.out.println("Pais encontrado - Operacion completada");
 
 		} catch (SQLException e) {
 			// TODO: handle exception

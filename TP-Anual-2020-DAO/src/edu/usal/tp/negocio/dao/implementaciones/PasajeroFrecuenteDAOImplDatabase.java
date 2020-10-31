@@ -159,9 +159,10 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 				p.setNumeroPF(rs.getString("pasajerofrecuente_numeroPF"));
 				p.setCategoria(rs.getString("pasajerofrecuente_categoria"));
 
+				System.out.println("Pasajero frecuente encontrado - Operacion completada");
+
 				return p;
 			}
-			System.out.println("Pasajero frecuente encontrado - Operacion completada");
 
 		} catch (SQLException e) {
 			// TODO: handle exception

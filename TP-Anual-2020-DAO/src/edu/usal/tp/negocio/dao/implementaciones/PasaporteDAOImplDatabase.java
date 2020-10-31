@@ -208,10 +208,10 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 				pais.setId(rs.getInt("pasaporte_paisID"));
 				p.setPais(pais);
 
+				System.out.println("Pasaporte encontrado - Operacion completada");
+
 				return p;
 			}
-
-			System.out.println("Pasaporte encontrado - Operacion completada");
 
 		} catch (SQLException e) {
 			// TODO: handle exception
