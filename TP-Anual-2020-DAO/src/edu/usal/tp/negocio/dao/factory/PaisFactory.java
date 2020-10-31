@@ -3,7 +3,7 @@ package edu.usal.tp.negocio.dao.factory;
 import edu.usal.tp.negocio.dao.implementaciones.PaisesDAOImplDatabase;
 import edu.usal.tp.negocio.dao.interfaces.PaisesDAO;
 
-public class PaisesFactory {
+public class PaisFactory {
 
 	public static PaisesDAO GetImplementation(String source) {
 

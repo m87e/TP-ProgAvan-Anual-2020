@@ -20,9 +20,9 @@ import edu.usal.tp.negocio.dao.dominio.Pasaporte;
 import edu.usal.tp.negocio.dao.dominio.Provincia;
 import edu.usal.tp.negocio.dao.dominio.Telefono;
 import edu.usal.tp.negocio.dao.factory.AerolineaFactory;
-import edu.usal.tp.negocio.dao.factory.ClientesFactory;
-import edu.usal.tp.negocio.dao.factory.PaisesFactory;
-import edu.usal.tp.negocio.dao.factory.ProvinciasFactory;
+import edu.usal.tp.negocio.dao.factory.ClienteFactory;
+import edu.usal.tp.negocio.dao.factory.PaisFactory;
+import edu.usal.tp.negocio.dao.factory.ProvinciaFactory;
 import edu.usal.tp.negocio.dao.factory.TelefonoFactory;
 import edu.usal.tp.negocio.dao.implementaciones.AerolineaDAOImplDatabase;
 import edu.usal.tp.negocio.dao.interfaces.AerolineaDAO;
@@ -38,7 +38,7 @@ public class main {
 	public static void main(String[] args) throws IOException, ParseException {
 
 		TelefonoDAO impTelDAO = TelefonoFactory.GetImplementation("database");
-		ClienteDAO clienteDAO = ClientesFactory.GetImplementation("database");
+		ClienteDAO clienteDAO = ClienteFactory.GetImplementation("database");
 
 		// Connection con = SQLDatabaseConnection.conectar();
 
