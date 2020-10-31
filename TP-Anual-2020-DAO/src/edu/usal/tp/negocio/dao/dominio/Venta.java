@@ -1,5 +1,6 @@
 package edu.usal.tp.negocio.dao.dominio;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Venta {
@@ -8,7 +9,7 @@ public class Venta {
 	private Cliente cliente;
 	private Vuelo vuelo;
 	private Aerolinea aerolinea;
-	private Date fechaHoraVenta;
+	private LocalDate fechaHoraVenta;
 	private String formaPago;
 
 	// Getter & Setter
@@ -45,11 +46,11 @@ public class Venta {
 		this.aerolinea = aero;
 	}
 
-	public Date getFechaHoraVenta() {
+	public LocalDate getFechaHoraVenta() {
 		return fechaHoraVenta;
 	}
 
-	public void setFechaHoraVenta(Date fechaHoraVenta) {
+	public void setFechaHoraVenta(LocalDate fechaHoraVenta) {
 		this.fechaHoraVenta = fechaHoraVenta;
 	}
 
@@ -68,7 +69,8 @@ public class Venta {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Venta(int id, Cliente cliente, Vuelo vuelo, Aerolinea aerolinea, Date fechaHoraVenta, String formaPago) {
+	public Venta(int id, Cliente cliente, Vuelo vuelo, Aerolinea aerolinea, LocalDate fechaHoraVenta,
+			String formaPago) {
 
 		this.id = id;
 		this.cliente = cliente;

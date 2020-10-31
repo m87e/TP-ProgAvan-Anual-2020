@@ -147,11 +147,11 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
 
-			PasajeroFrecuente p = new PasajeroFrecuente();
-
 			if (rs.next()) {
 
+				PasajeroFrecuente p = new PasajeroFrecuente();
 				Aerolinea a = new Aerolinea();
+
 				p.setId(rs.getInt("pasajerofrecuente_id"));
 				p.setAlianza(Alianza.valueOf(rs.getString("pasajerofrecuente_alianza")));
 				a.setId(rs.getInt("pasajerofrecuente_aerolineaID"));

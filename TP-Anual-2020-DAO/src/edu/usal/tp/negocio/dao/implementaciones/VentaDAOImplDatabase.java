@@ -35,7 +35,7 @@ public class VentaDAOImplDatabase implements VentaDAO {
 
 			ps = con.prepareStatement(INSERT);
 
-			ps.setDate(1, (Date) venta.getFechaHoraVenta());
+			ps.setDate(1, java.sql.Date.valueOf(venta.getFechaHoraVenta()));
 			ps.setString(2, venta.getFormaPago());
 			ps.setInt(3, venta.getCliente().getId());
 			ps.setInt(4, venta.getVuelo().getId());
@@ -70,7 +70,7 @@ public class VentaDAOImplDatabase implements VentaDAO {
 		try {
 			ps = con.prepareStatement(UPDATE);
 
-			ps.setDate(1, (Date) venta.getFechaHoraVenta());
+			ps.setDate(1, java.sql.Date.valueOf(venta.getFechaHoraVenta()));
 			ps.setString(2, venta.getFormaPago());
 			ps.setInt(3, venta.getCliente().getId());
 			ps.setInt(4, venta.getVuelo().getId());
@@ -151,7 +151,7 @@ public class VentaDAOImplDatabase implements VentaDAO {
 				Aerolinea aerolinea = new Aerolinea();
 
 				venta.setId(rs.getInt("venta_id"));
-				venta.setFechaHoraVenta(rs.getDate("venta_fecha"));
+				venta.setFechaHoraVenta(rs.getDate("venta_fecha").toLocalDate());
 				venta.setFormaPago(rs.getString("venta_formaPago"));
 				cliente.setId(rs.getInt("venta_clienteID"));
 				venta.setCliente(cliente);

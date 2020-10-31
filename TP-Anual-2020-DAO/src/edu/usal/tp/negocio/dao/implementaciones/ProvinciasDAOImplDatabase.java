@@ -50,8 +50,9 @@ public class ProvinciasDAOImplDatabase implements ProvinciasDAO {
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
 
-			Provincia p = new Provincia();
 			if (rs.next()) {
+
+				Provincia p = new Provincia();
 
 				p.setId(rs.getInt("provincia_id"));
 				p.setNombre(rs.getString("provincia_nombre"));

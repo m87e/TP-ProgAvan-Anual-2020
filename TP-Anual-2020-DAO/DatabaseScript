@@ -41,7 +41,6 @@ CREATE TABLE Vuelos(
 	vuelo_cantAsientos INT,
 	vuelo_fechaHoraSalida DATETIME,
 	vuelo_fechaHoraLlegada DATETIME,
-	vuelo_aerolineaID INT FOREIGN KEY REFERENCES Aerolineas (aerolinea_id),
 	vuelo_aeropuertoSalidaID INT FOREIGN KEY REFERENCES Aeropuertos (aeropuerto_id),
 	vuelo_aeropuertoLlegadaID INT FOREIGN KEY REFERENCES Aeropuertos (aeropuerto_id)
 	

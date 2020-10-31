@@ -51,10 +51,9 @@ public class PaisesDAOImplDatabase implements PaisesDAO {
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
 
-			Pais p = new Pais();
-
 			if (rs.next()) {
 
+				Pais p = new Pais();
 				p.setId(rs.getInt("pais_id"));
 				p.setNombre(rs.getString("pais_nombre"));
 

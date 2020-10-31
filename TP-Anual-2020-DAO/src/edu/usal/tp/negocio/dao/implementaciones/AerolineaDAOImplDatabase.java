@@ -191,8 +191,8 @@ public class AerolineaDAOImplDatabase implements AerolineaDAO {
 			ps.setInt(1, aerolineaID);
 			rs = ps.executeQuery();
 
-			Aerolinea a = new Aerolinea();
 			if (rs.next()) {
+				Aerolinea a = new Aerolinea();
 				a.setId(rs.getInt("aerolinea_id"));
 				a.setNombre(rs.getString("aerolinea_nombre"));
 				a.setAlianza(Alianza.valueOf(rs.getString("aerolinea_alianza")));

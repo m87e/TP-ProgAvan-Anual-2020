@@ -195,10 +195,9 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 			ps.setString(1, numeroPasaporte);
 			rs = ps.executeQuery();
 
-			Pasaporte p = new Pasaporte();
-
 			if (rs.next()) {
 
+				Pasaporte p = new Pasaporte();
 				Pais pais = new Pais();
 
 				p.setId(rs.getInt("pasaporte_id"));

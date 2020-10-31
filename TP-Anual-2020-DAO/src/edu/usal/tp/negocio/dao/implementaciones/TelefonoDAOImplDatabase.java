@@ -135,9 +135,10 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
 
-			Telefono t = new Telefono();
-
 			if (rs.next()) {
+
+				Telefono t = new Telefono();
+
 				t.setId(rs.getInt("telefono_id"));
 				t.setNumPersonal(rs.getNString("telefono_numPersonal"));
 				t.setNumCelular(rs.getString("telefono_numCelular"));
@@ -183,7 +184,9 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 			rs = stm.executeQuery(sql);
 
 			while (rs.next()) {
+
 				Telefono t = new Telefono();
+
 				t.setId(rs.getInt("telefono_id"));
 				t.setNumPersonal(rs.getNString("telefono_numPersonal"));
 				t.setNumCelular(rs.getString("telefono_numCelular"));

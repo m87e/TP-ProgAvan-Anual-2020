@@ -53,10 +53,9 @@ public class AeropuertosDAOImplDatabase implements AeropuertoDAO {
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
 
-			Aeropuerto a = new Aeropuerto();
-
 			if (rs.next()) {
 
+				Aeropuerto a = new Aeropuerto();
 				Provincia provincia = new Provincia();
 				Pais pais = new Pais();
 

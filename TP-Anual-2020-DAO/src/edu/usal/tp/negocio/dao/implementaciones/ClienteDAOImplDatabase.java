@@ -226,13 +226,13 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 			ps.setString(1, dni);
 			rs = ps.executeQuery();
 
-			Cliente c = new Cliente();
-			DireccionCompleta dir = new DireccionCompleta();
-			Telefono tel = new Telefono();
-			Pasaporte pas = new Pasaporte();
-			PasajeroFrecuente pasFre = new PasajeroFrecuente();
-
 			if (rs.next()) {
+
+				Cliente c = new Cliente();
+				DireccionCompleta dir = new DireccionCompleta();
+				Telefono tel = new Telefono();
+				Pasaporte pas = new Pasaporte();
+				PasajeroFrecuente pasFre = new PasajeroFrecuente();
 
 				c.setId(rs.getInt("cliente_id"));
 				c.setNombre(rs.getString("cliente_nombre"));
