@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.tp.negocio.dao.dominio.Aeropuerto;
 import edu.usal.tp.negocio.dao.dominio.Vuelo;
 import edu.usal.tp.negocio.dao.interfaces.VuelosDAO;
@@ -60,6 +61,7 @@ public class VueloDAOImplDatabase implements VuelosDAO {
 
 			while (rs.next()) {
 				Vuelo vuelo = new Vuelo();
+				Aerolinea aerolinea = new Aerolinea();
 				Aeropuerto aeropuertoSalida = new Aeropuerto();
 				Aeropuerto aeropuertoLlegada = new Aeropuerto();
 
@@ -68,6 +70,8 @@ public class VueloDAOImplDatabase implements VuelosDAO {
 				vuelo.setCantAsientos(rs.getInt("vuelo_cantAsientos"));
 				vuelo.setFechaHoraSalida(rs.getDate("vuelo_fechaHoraSalida").toLocalDate());
 				vuelo.setFechaHoraLlegada(rs.getDate("vuelo_fechaHoraLlegada").toLocalDate());
+				aerolinea.setId(rs.getInt("vuelo_aerolineaID"));
+				vuelo.setAerolinea(aerolinea);
 				aeropuertoSalida.setId(rs.getInt("vuelo_aeropuertoSalidaID"));
 				vuelo.setAeropuertoSalida(aeropuertoSalida);
 				aeropuertoLlegada.setId(rs.getInt("vuelo_aeropuertoLlegadaID"));
@@ -112,6 +116,7 @@ public class VueloDAOImplDatabase implements VuelosDAO {
 			if (rs.next()) {
 
 				Vuelo vuelo = new Vuelo();
+				Aerolinea aerolinea = new Aerolinea();
 				Aeropuerto aeropuertoSalida = new Aeropuerto();
 				Aeropuerto aeropuertoLlegada = new Aeropuerto();
 
@@ -120,6 +125,8 @@ public class VueloDAOImplDatabase implements VuelosDAO {
 				vuelo.setCantAsientos(rs.getInt("vuelo_cantAsientos"));
 				vuelo.setFechaHoraSalida(rs.getDate("vuelo_fechaHoraSalida").toLocalDate());
 				vuelo.setFechaHoraLlegada(rs.getDate("vuelo_fechaHoraLlegada").toLocalDate());
+				aerolinea.setId(rs.getInt("vuelo_aerolineaID"));
+				vuelo.setAerolinea(aerolinea);
 				aeropuertoSalida.setId(rs.getInt("vuelo_aeropuertoSalidaID"));
 				vuelo.setAeropuertoSalida(aeropuertoSalida);
 				aeropuertoLlegada.setId(rs.getInt("vuelo_aeropuertoLlegadaID"));
@@ -166,6 +173,7 @@ public class VueloDAOImplDatabase implements VuelosDAO {
 			if (rs.next()) {
 
 				Vuelo vuelo = new Vuelo();
+				Aerolinea aerolinea = new Aerolinea();
 				Aeropuerto aeropuertoSalida = new Aeropuerto();
 				Aeropuerto aeropuertoLlegada = new Aeropuerto();
 
@@ -174,6 +182,8 @@ public class VueloDAOImplDatabase implements VuelosDAO {
 				vuelo.setCantAsientos(rs.getInt("vuelo_cantAsientos"));
 				vuelo.setFechaHoraSalida(rs.getDate("vuelo_fechaHoraSalida").toLocalDate());
 				vuelo.setFechaHoraLlegada(rs.getDate("vuelo_fechaHoraLlegada").toLocalDate());
+				aerolinea.setId(rs.getInt("vuelo_aerolineaID"));
+				vuelo.setAerolinea(aerolinea);
 				aeropuertoSalida.setId(rs.getInt("vuelo_aeropuertoSalidaID"));
 				vuelo.setAeropuertoSalida(aeropuertoSalida);
 				aeropuertoLlegada.setId(rs.getInt("vuelo_aeropuertoLlegadaID"));

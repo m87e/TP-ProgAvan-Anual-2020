@@ -8,6 +8,7 @@ public class Vuelo {
 	private int id;
 	private String numVuelo;
 	private Integer cantAsientos;
+	private Aerolinea aerolinea;
 	private Aeropuerto aeropuertoSalida;
 	private Aeropuerto aeropuertoLlegada;
 	private LocalDate fechaHoraSalida;
@@ -38,6 +39,14 @@ public class Vuelo {
 
 	public void setCantAsientos(Integer cantAsientos) {
 		this.cantAsientos = cantAsientos;
+	}
+
+	public Aerolinea getAerolinea() {
+		return aerolinea;
+	}
+
+	public void setAerolinea(Aerolinea aerolinea) {
+		this.aerolinea = aerolinea;
 	}
 
 	public Aeropuerto getAeropuertoSalida() {
@@ -87,12 +96,13 @@ public class Vuelo {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Vuelo(int id, String numVuelo, Integer cantAsientos, Aeropuerto aeropuertoSalida,
+	public Vuelo(int id, String numVuelo, Integer cantAsientos, Aerolinea aerolinea, Aeropuerto aeropuertoSalida,
 			Aeropuerto aeropuertoLlegada, LocalDate fechaHoraSalida, LocalDate fechaHoraLlegada, String tiempoVuelo) {
 		super();
 		this.id = id;
 		this.numVuelo = numVuelo;
 		this.cantAsientos = cantAsientos;
+		this.aerolinea = aerolinea;
 		this.aeropuertoSalida = aeropuertoSalida;
 		this.aeropuertoLlegada = aeropuertoLlegada;
 		this.fechaHoraSalida = fechaHoraSalida;
