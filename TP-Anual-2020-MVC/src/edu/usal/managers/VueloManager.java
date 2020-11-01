@@ -25,8 +25,7 @@ public class VueloManager {
 	private AeropuertoDAO aeropuertoDAODatabase = AeropuertoFactory.GetImplementation("database");
 	private AerolineaDAO aerolineaDAODatabase = AerolineaFactory.GetImplementation("database");
 
-	public void CargarVuelo(Vuelo vuelo, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoLlegada,
-			Aerolinea aerolinea) {
+	public void AltaVuelo(Vuelo vuelo, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoLlegada, Aerolinea aerolinea) {
 
 		Connection con = null;
 
@@ -35,13 +34,13 @@ public class VueloManager {
 			con.setAutoCommit(false);
 
 			Aeropuerto salida = this.aeropuertoDAODatabase.ObtenerAeropuertoPorID(aeropuertoSalida.getId());
-			vuelo.setAeropuertoSalida(aeropuertoSalida);
+			vuelo.setAeropuertoSalida(salida);
 
 			Aeropuerto llegada = this.aeropuertoDAODatabase.ObtenerAeropuertoPorID(aeropuertoLlegada.getId());
 			vuelo.setAeropuertoLlegada(llegada);
 
 			Aerolinea aero = this.aerolineaDAODatabase.ObtenerAerolineaPorID(aerolinea.getId());
-			vuelo.setAerolinea(aerolinea);
+			vuelo.setAerolinea(aero);
 
 			this.vueloDAODatabase.AgregarVuelo(vuelo, con);
 
@@ -52,7 +51,7 @@ public class VueloManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 
-			System.out.println("Ocurrio un error al cargar los datos en la base de datos");
+			System.out.println("Ocurrio un error al cargar los datos");
 			if (con != null) {
 				SQLDatabaseConnection.rollback(con);
 				System.err.print("Se realizo un rollback de la transaccion");

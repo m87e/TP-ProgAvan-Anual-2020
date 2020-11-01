@@ -48,7 +48,7 @@ public class ClienteController {
 		DireccionCompleta dir = this.view.cargarDirCompleta();
 		PasajeroFrecuente pasFrec = this.view.cargarPasFrecuente();
 
-		this.manager.cargarCliente(c, p, tel, dir, pasFrec);
+		this.manager.AltaCliente(c, p, tel, dir, pasFrec);
 	}
 
 	private void modificarCliente() {

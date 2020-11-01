@@ -31,8 +31,8 @@ public class ClienteManager {
 	private PasajeroFrecuenteDAO pasajeroFrecuenteDAODatabase = PasajeroFrecuenteFactory.GetImplementation("database");
 	private DirCompletaDAO dirCompletaDAODatabase = DirCompletaFactory.GetImplementation("database");
 
-	public void cargarCliente(Cliente c, Pasaporte p, Telefono tel, DireccionCompleta dir, PasajeroFrecuente pasFrec)
-			throws IOException, ParseException {
+	public void AltaCliente(Cliente cliente, Pasaporte pasaporte, Telefono telefono, DireccionCompleta direccion,
+			PasajeroFrecuente pasFrec) throws ParseException {
 
 		Connection con = null;
 
@@ -40,29 +40,37 @@ public class ClienteManager {
 			con = SQLDatabaseConnection.conectar();
 			con.setAutoCommit(false);
 
-			this.dirCompletaDAODatabase.AgregarDirCompleta(dir, con);
+			this.dirCompletaDAODatabase.AgregarDirCompleta(direccion, con);
 			System.out.println("Direccion agregada - Operacion completada");
-			c.setDireccionCompleta(dir);
+			cliente.setDireccionCompleta(direccion);
 
-			this.pasaporteDAODatabase.AgregarPasaporte(p, con);
+			this.pasaporteDAODatabase.AgregarPasaporte(pasaporte, con);
 			System.out.println("Pasaporte agregado - Operacion completada");
-			c.setPasaporte(p);
+			cliente.setPasaporte(pasaporte);
 
-			this.telefonoDAODatabase.AgregarTelefono(tel, con);
+			this.telefonoDAODatabase.AgregarTelefono(telefono, con);
 			System.out.println("Telefono agregado - Operacion completada");
-			c.setTelefono(tel);
+			cliente.setTelefono(telefono);
 
 			this.pasajeroFrecuenteDAODatabase.AgregarPasajeroFrecuente(pasFrec, con);
 			System.out.println("Pasajero frecuente agregado - Operacion completada");
-			c.setPasajeroFrecuente(pasFrec);
+			cliente.setPasajeroFrecuente(pasFrec);
 
-			this.clienteDAODatabase.AgregarCliente(c, con);
+			this.clienteDAODatabase.AgregarCliente(cliente, con);
 			con.commit();
 			System.out.println("Cliente agregado - Operacion completada");
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Ocurrio un error al cargar los datos en la base de datos");
+			if (con != null) {
+				SQLDatabaseConnection.rollback(con);
+				System.err.print("Se realizo un rollback de la transaccion");
+			}
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Ocurrio un error al cargar los datos");
 			if (con != null) {
 				SQLDatabaseConnection.rollback(con);
 				System.err.print("Se realizo un rollback de la transaccion");
