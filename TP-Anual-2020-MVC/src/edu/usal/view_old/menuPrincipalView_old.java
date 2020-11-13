@@ -1,4 +1,4 @@
-package edu.usal.view;
+package edu.usal.view_old;
 
 import java.awt.Color;
 import java.awt.EventQueue;
