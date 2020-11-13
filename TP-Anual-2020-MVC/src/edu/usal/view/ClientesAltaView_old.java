@@ -16,7 +16,7 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
-public class ClientesAltaView extends JFrame {
+public class ClientesAltaView_old extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -48,7 +48,7 @@ public class ClientesAltaView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ClientesAltaView frame = new ClientesAltaView();
+					ClientesAltaView_old frame = new ClientesAltaView_old();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -60,7 +60,7 @@ public class ClientesAltaView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ClientesAltaView() {
+	public ClientesAltaView_old() {
 		setTitle("Nuevo cliente");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 625, 550);

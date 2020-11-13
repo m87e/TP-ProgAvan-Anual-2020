@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class menuPrincipalView extends JFrame {
+public class menuPrincipalView_old extends JFrame {
 
 	private JPanel contentPane;
 
@@ -25,7 +25,7 @@ public class menuPrincipalView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					menuPrincipalView frame = new menuPrincipalView();
+					menuPrincipalView_old frame = new menuPrincipalView_old();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +37,7 @@ public class menuPrincipalView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public menuPrincipalView() {
+	public menuPrincipalView_old() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 625, 550);
 		

@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 
-public class ClientePantallaView extends JFrame {
+public class ClientePantallaView_old extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -29,7 +29,7 @@ public class ClientePantallaView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ClientePantallaView frame = new ClientePantallaView();
+					ClientePantallaView_old frame = new ClientePantallaView_old();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class ClientePantallaView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ClientePantallaView() {
+	public ClientePantallaView_old() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 625, 549);
 		contentPane = new JPanel();
