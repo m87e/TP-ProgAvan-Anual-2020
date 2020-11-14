@@ -10,28 +10,31 @@ import edu.usal.tp.negocio.dao.dominio.DireccionCompleta;
 import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
 import edu.usal.tp.negocio.dao.dominio.Pasaporte;
 import edu.usal.tp.negocio.dao.dominio.Telefono;
+import edu.usal.view.ClientesABM_view;
 import edu.usal.views.console.ClienteView;
 
 public class ClienteController {
 
-	private ClienteView view;
+	private ClienteView viewConsola;
+	private ClientesABM_view viewGUI;
+	
 	private ClienteManager manager = new ClienteManager();
 
-	public ClienteController(ClienteView view) {
-		this.view = view;
+	public ClienteController(ClienteView viewConsola) {
+		this.viewConsola = viewConsola;
 	}
 
 	public void mostrarMenu() throws ClassNotFoundException, IOException, ParseException {
 		boolean fin = false;
 		while (!fin) {
-			int opcion = this.view.mostrarMenu();
+			int opcion = this.viewConsola.mostrarMenu();
 			switch (opcion) {
 			case 0:
 				System.out.println("Aplicacion cerrada");
 				fin = true;
 				break;
 			case 1:
-				this.altaCliente();
+				this.altaClienteConsola();
 				break;
 			default:
 				System.out.println("Ingrese una opcion valida");
@@ -40,13 +43,13 @@ public class ClienteController {
 		}
 	}
 
-	private void altaCliente() throws IOException, ParseException {
+	private void altaClienteConsola() throws IOException, ParseException {
 
-		Cliente c = this.view.cargarCliente();
-		Pasaporte p = this.view.cargarPasaporte();
-		Telefono tel = this.view.cargarTelefono();
-		DireccionCompleta dir = this.view.cargarDirCompleta();
-		PasajeroFrecuente pasFrec = this.view.cargarPasFrecuente();
+		Cliente c = this.viewConsola.cargarCliente();
+		Pasaporte p = this.viewConsola.cargarPasaporte();
+		Telefono tel = this.viewConsola.cargarTelefono();
+		DireccionCompleta dir = this.viewConsola.cargarDirCompleta();
+		PasajeroFrecuente pasFrec = this.viewConsola.cargarPasFrecuente();
 
 		this.manager.AltaCliente(c, p, tel, dir, pasFrec);
 	}
@@ -65,5 +68,30 @@ public class ClienteController {
 
 	private void mostrarClientePorPasaporte() {
 
+	}
+	
+	//GUI
+	
+	public ClienteController() {}
+	public ClienteController(ClientesABM_view viewGUI) {
+		this.viewGUI = viewGUI;
+	}
+	
+	private void altaClienteGUI() {
+		
+		Cliente c = this.viewGUI.cargarCliente();
+		Pasaporte p = this.viewGUI.cargarPasaporte();
+		Telefono tel = this.viewGUI.cargarTelefono();
+		DireccionCompleta dir = this.viewGUI.cargarDirCompleta();
+		PasajeroFrecuente pasFrec = this.viewGUI.cargarPasFrecuente();
+	}
+
+	public Cliente MostrarArrayStringCliente() {
+		// TODO Auto-generated method stub
+		
+		Cliente cli;
+		
+		
+		return null;
 	}
 }

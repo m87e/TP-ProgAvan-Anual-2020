@@ -69,14 +69,14 @@ public class Menu_view implements ActionListener{
 		mnCliente = new JMenu("Cliente");
 		menuBar.add(mnCliente);
 		
-		mntmABMCliente = new JMenuItem("Alta");
+		mntmABMCliente = new JMenuItem("Gestion cliente");
 		mnCliente.add(mntmABMCliente);
 		mntmABMCliente.addActionListener(this);
 		
 		mnVentas = new JMenu("Ventas");
 		menuBar.add(mnVentas);
 		
-		mntmABMVenta = new JMenuItem("Alta");
+		mntmABMVenta = new JMenuItem("Gestion venta");
 		mnVentas.add(mntmABMVenta);
 		mntmABMVenta.addActionListener(this);
 		
@@ -84,7 +84,7 @@ public class Menu_view implements ActionListener{
 		mnVuelos = new JMenu("Vuelos");
 		menuBar.add(mnVuelos);
 		
-		mntmABMVuelos = new JMenuItem("Alta");
+		mntmABMVuelos = new JMenuItem("Gestion vuelo");
 		mnVuelos.add(mntmABMVuelos);
 		mntmABMVuelos.addActionListener(this);
 		

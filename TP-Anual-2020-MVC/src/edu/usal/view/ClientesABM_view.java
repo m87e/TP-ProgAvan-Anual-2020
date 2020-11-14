@@ -4,23 +4,43 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.SpringLayout;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
+import javax.swing.AbstractListModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
+
+import java.util.ArrayList;
+
+import edu.usal.controllers.ClienteController;
+import edu.usal.tp.negocio.dao.dominio.Cliente;
+import edu.usal.tp.negocio.dao.dominio.DireccionCompleta;
+import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
+import edu.usal.tp.negocio.dao.dominio.Pasaporte;
+import edu.usal.tp.negocio.dao.dominio.Telefono;
+
 import javax.swing.JList;
 
-public class ClientesABM_view extends JPanel implements ActionListener{
-	private JTextField textField_Nombre;
-	private JTextField textField_Apellido;
+public class ClientesABM_view extends JPanel implements ActionListener,ListSelectionListener{
+	
+	private JTextField textField_nombre;
+	private JTextField textField_apellido;
 	private JTextField textField_DNI;
+	private JTextField textField_cuit;
 	private JTextField textField_email;
 	private JTextField textField_calle;
 	private JTextField textField_altura;
@@ -35,10 +55,47 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 	private JTextField textField_paisEmision;
 	private JTextField textField_categoria;
 	
+	private JButton btnAlta;
+	private JButton btnModificar;
+	private JButton btnBorrar;
+	private JButton btnGuardar;
+	private JButton btnCancelar;
+	
+	private JDateChooser dateChooser_fechaNac, dateChooser_fechaVencimiento , dateChooser_fechaEmision;
+	
+	private JList<String> list;
+	
+	private JScrollPane scrollPane;
+	
+	private final static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+	private final static SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+	
+	private ClienteController clienteController;
+	
 	public ClientesABM_view() {
+		
+		//Instanciazion de objetos controllers
+		clienteController = new ClienteController();
 		
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
+		
+		list = new JList<String>();
+		list.setModel(new AbstractListModel<String>() {
+			String[] values = new String[] {"objet"};
+			@Override
+			public String getElementAt(int index) {
+				// TODO Auto-generated method stub
+				return values[index];
+			}
+			@Override
+			public int getSize() {
+				// TODO Auto-generated method stub
+				return values.length;
+			}
+		});
+		list.addListSelectionListener(this);
+		scrollPane.setViewportView(list);
 		
 		JLabel lblClientes = new JLabel("Clientes");
 		lblClientes.setFont(new Font("Lucida Sans", Font.BOLD, 40));
@@ -46,7 +103,7 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		springLayout.putConstraint(SpringLayout.WEST, lblClientes, 10, SpringLayout.WEST, this);
 		add(lblClientes);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		springLayout.putConstraint(SpringLayout.NORTH, scrollPane, 17, SpringLayout.SOUTH, lblClientes);
 		springLayout.putConstraint(SpringLayout.WEST, scrollPane, 24, SpringLayout.WEST, this);
 		springLayout.putConstraint(SpringLayout.EAST, scrollPane, 730, SpringLayout.WEST, this);
@@ -61,13 +118,13 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		add(panel);
 		panel.setLayout(new GridLayout(3, 1, 0, 0));
 		
-		JButton btnAlta = new JButton("Alta");
+		btnAlta = new JButton("Alta");
 		panel.add(btnAlta);
 		
-		JButton btnModificar = new JButton("Modificar");
+		btnModificar = new JButton("Modificar");
 		panel.add(btnModificar);
 		
-		JButton btnBorrar = new JButton("Borrar");
+		btnBorrar = new JButton("Borrar");
 		panel.add(btnBorrar);
 		
 		JPanel panel_1 = new JPanel();
@@ -79,21 +136,21 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		
 		JPanel panel_2 = new JPanel();
 		panel_1.add(panel_2);
-		panel_2.setLayout(new GridLayout(5, 2, 0, 0));
+		panel_2.setLayout(new GridLayout(6, 2, 0, 0));
 		
 		JLabel varDPnombre = new JLabel("Nombre");
 		panel_2.add(varDPnombre);
 		
-		textField_Nombre = new JTextField();
-		textField_Nombre.setColumns(10);
-		panel_2.add(textField_Nombre);
+		textField_nombre = new JTextField();
+		textField_nombre.setColumns(10);
+		panel_2.add(textField_nombre);
 		
 		JLabel varDPapellido = new JLabel("Apellido");
 		panel_2.add(varDPapellido);
 		
-		textField_Apellido = new JTextField();
-		textField_Apellido.setColumns(10);
-		panel_2.add(textField_Apellido);
+		textField_apellido = new JTextField();
+		textField_apellido.setColumns(10);
+		panel_2.add(textField_apellido);
 		
 		JLabel varDPDNI = new JLabel("DNI");
 		panel_2.add(varDPDNI);
@@ -102,10 +159,18 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		textField_DNI.setColumns(10);
 		panel_2.add(textField_DNI);
 		
+		JLabel varDPCuit = new JLabel("CUIT");
+		panel_2.add(varDPCuit);
+		
+		
+		textField_cuit = new JTextField();
+		panel_2.add(textField_cuit);
+		textField_cuit.setColumns(10);
+		
 		JLabel varDPfechaNacimiento = new JLabel("Fecha de Nacimiento");
 		panel_2.add(varDPfechaNacimiento);
 		
-		JDateChooser dateChooser_fechaNac = new JDateChooser();
+		dateChooser_fechaNac = new JDateChooser();
 		panel_2.add(dateChooser_fechaNac);
 		
 		JLabel varDPemail = new JLabel("Email");
@@ -198,13 +263,13 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		JLabel varPfechaVecimiento = new JLabel("Fecha vecimiento");
 		panel_5.add(varPfechaVecimiento);
 		
-		JDateChooser dateChooser_fechaVencimiento = new JDateChooser();
+		dateChooser_fechaVencimiento = new JDateChooser();
 		panel_5.add(dateChooser_fechaVencimiento);
 		
 		JLabel varPfechaEmision = new JLabel("Fecha de emision");
 		panel_5.add(varPfechaEmision);
 		
-		JDateChooser dateChooser_fechaEmision = new JDateChooser();
+		dateChooser_fechaEmision = new JDateChooser();
 		panel_5.add(dateChooser_fechaEmision);
 		
 		JLabel varPpaisEmision = new JLabel("Pa\u00EDs emisi\u00F3n");
@@ -248,15 +313,18 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		add(panel_7);
 		panel_7.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar = new JButton("Guardar");
 		panel_7.add(btnGuardar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar = new JButton("Cancelar");
 		panel_7.add(btnCancelar);
 		
 		JPanel panel_8 = new JPanel();
 		springLayout.putConstraint(SpringLayout.NORTH, panel_8, -34, SpringLayout.NORTH, panel_1);
 		springLayout.putConstraint(SpringLayout.WEST, panel_8, 0, SpringLayout.WEST, scrollPane);
+		
+		list = new JList();
+		scrollPane.setViewportView(list);
 		springLayout.putConstraint(SpringLayout.SOUTH, panel_8, -6, SpringLayout.NORTH, panel_1);
 		springLayout.putConstraint(SpringLayout.EAST, panel_8, 0, SpringLayout.EAST, panel);
 		add(panel_8);
@@ -283,8 +351,176 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		panel_8.add(lblPasajeroFrecuente);
 	}
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		Cliente cli;
 		
+		if(e.getSource()== btnAlta) {
+			
+		}
+		
+		if(e.getSource()== btnModificar) {
+			
+		}
+
+		if(e.getSource()== btnBorrar) {
+	
+		}
+		
+		if(e.getSource()== btnGuardar) {
+			
+		}
+		
+		if(e.getSource()== btnCancelar){
+			
+		}
 	}
+	
+	private void SaveCliente(Cliente cli) {
+		//Datos personales
+		cli.setNombre(textField_nombre.getText());
+		cli.setApellido(textField_apellido.getText());
+		cli.setDni(textField_DNI.getText());
+		cli.setCuit(textField_cuit.getText());
+		String fechaNac = sdf.format(dateChooser_fechaNac.getDateFormatString());
+		cli.setFechaNac(LocalDate.parse(fechaNac,dtf));
+		cli.setEmail(textField_email.getText());
+		
+		//Direccion complete
+		cli.getDireccionCompleta().setCalle(textField_calle.getText());
+		cli.getDireccionCompleta().setAltura(textField_altura.getText());
+		cli.getDireccionCompleta().setCiudad(textField_ciudad.getText());
+		cli.getDireccionCompleta().setCodigoPostal(textField_CP.getText());
+		//pendiente lista provincia
+		//pendiente lista paises
+		
+		//Telefono
+		cli.getTelefono().setNumPersonal(textField_nroPersonal.getText());
+		cli.getTelefono().setNumCelular(textField_nroCelular.getText());
+		cli.getTelefono().setNumLaboral(textField_nroLaboral.getText());
+		
+		//Pasaporte
+		cli.getPasaporte().setNumeroPasaporte(textField_nroPasaporte.getText());
+		String fechaVen = sdf.format(dateChooser_fechaVencimiento.getDate());
+		cli.getPasaporte().setFechaVencimiento(LocalDate.parse(fechaVen,dtf));
+		String fechaEmi = sdf.format(dateChooser_fechaEmision.getDate());
+		cli.getPasaporte().setFechaEmision(LocalDate.parse(fechaEmi,dtf));
+		//pendiente lista paises
+		
+		//Pasajero frecuente
+		cli.getPasajeroFrecuente().setNumeroPF(textField_numeroPasaFrec.getText());
+		//Setear la alianza
+		//Setear la aerolinea
+		cli.getPasajeroFrecuente().setCategoria(textField_categoria.getText());
+		
+		}
+	
+	public Cliente cargarCliente() {
+		// TODO Auto-generated method stub
+		Cliente c = new Cliente();
+		
+		c.setNombre(textField_nombre.getText());
+		c.setApellido(textField_apellido.getText());
+		c.setDni(textField_DNI.getText());
+		c.setCuit(textField_cuit.getText());
+		String fechaNac = sdf.format(dateChooser_fechaNac.getDateFormatString());
+		c.setFechaNac(LocalDate.parse(fechaNac,dtf));
+		c.setEmail(textField_email.getText());
+		
+		return c;
+	}
+	public Pasaporte cargarPasaporte() {
+		// TODO Auto-generated method stub
+		Pasaporte pas = new Pasaporte();
+		
+		pas.setNumeroPasaporte(textField_nroPasaporte.getText());
+		
+		String fechaVen = sdf.format(dateChooser_fechaVencimiento.getDate());
+		pas.setFechaVencimiento(LocalDate.parse(fechaVen,dtf));
+		
+		String fechaEmi = sdf.format(dateChooser_fechaEmision.getDate());
+		pas.setFechaEmision(LocalDate.parse(fechaEmi,dtf));
+		
+		//pendiente lista paises
+		
+		return pas;
+	}
+	public Telefono cargarTelefono() {
+		// TODO Auto-generated method stub
+		Telefono t = new Telefono();
+		
+		t.setNumPersonal(textField_nroPersonal.getText());
+		t.setNumCelular(textField_nroCelular.getText());
+		t.setNumLaboral(textField_nroLaboral.getText());
+		
+		return t;
+	}
+	public DireccionCompleta cargarDirCompleta() {
+		// TODO Auto-generated method stub
+		DireccionCompleta dir = new DireccionCompleta();
+		
+		dir.setCalle(textField_calle.getText());
+		dir.setAltura(textField_altura.getText());
+		dir.setCiudad(textField_ciudad.getText());
+		dir.setCodigoPostal(textField_CP.getText());
+		//pendiente lista provincia
+		//pendiente lista paises
+		
+		return dir;
+	}
+	public PasajeroFrecuente cargarPasFrecuente() {
+		// TODO Auto-generated method stub
+		PasajeroFrecuente pas = new PasajeroFrecuente();
+		
+		pas.setNumeroPF(textField_numeroPasaFrec.getText());
+		//Setear la alianza
+		//Setear la aerolinea
+		pas.setCategoria(textField_categoria.getText());
+		
+		return pas;
+	}
+	
+	private void MostrarCliente(Cliente c) {
+		textField_nombre.setText(c.getNombre());
+		textField_apellido.setText(c.getApellido());
+		textField_DNI.setText(c.getDni());
+		textField_cuit.setText(c.getCuit());
+		dateChooser_fechaNac.setDate(Date.valueOf(c.getFechaNac()));
+		textField_email.setText(c.getEmail());
+				
+		textField_calle.setText(c.getDireccionCompleta().getCalle());
+		textField_altura.setText(c.getDireccionCompleta().getAltura());
+		textField_ciudad.setText(c.getDireccionCompleta().getCiudad());
+		textField_CP.setText(c.getDireccionCompleta().getCodigoPostal());
+		
+		textField_nroPersonal.setText(c.getTelefono().getNumPersonal());
+		textField_nroCelular.setText(c.getTelefono().getNumCelular());
+		textField_nroLaboral.setText(c.getTelefono().getNumLaboral());
+				
+		textField_nroPasaporte.setText(c.getPasaporte().getNumeroPasaporte());
+		dateChooser_fechaVencimiento.setDate(Date.valueOf(c.getPasaporte().getFechaVencimiento()));
+		dateChooser_fechaEmision.setDate(Date.valueOf(c.getPasaporte().getFechaEmision()));
+		
+		textField_numeroPasaFrec.setText(c.getPasajeroFrecuente().getNumeroPF());
+		textField_categoria.setText(c.getPasajeroFrecuente().getCategoria());
+				
+	}
+	
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		// TODO Auto-generated method stub
+		Cliente cli = null;
+		if(e.getSource()==list) {
+			btnAlta.setEnabled(true);
+			btnModificar.setEnabled(true);
+			btnBorrar.setEnabled(true);
+			
+			String a = (String)list.getSelectedValue();
+			cli = clienteController.MostrarArrayStringCliente();
+			
+			MostrarCliente(cli);
+		}
+	}
+	
+	
 }
