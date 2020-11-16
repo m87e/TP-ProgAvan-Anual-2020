@@ -11,8 +11,11 @@ public class PropertiesUtil {
 	static {
 		properties = new Properties();
 		try {
-			FileInputStream fis = new FileInputStream(
+		/*	FileInputStream fis = new FileInputStream(
 					"C:\\Users\\Magui\\git\\TP-ProgAvan-Anual-2020\\TP-Anual-2020\\src\\resources\\co.properties");
+		*/
+			FileInputStream fis = new FileInputStream(
+					"C:\\Users\\julia\\git\\TP-ProgAvan-Anual-2020\\TP-Anual-2020-DAO\\src\\resources\\co.properties");
 			properties.load(fis);
 			fis.close();
 
