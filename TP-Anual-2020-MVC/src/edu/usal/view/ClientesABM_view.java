@@ -20,6 +20,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import javax.swing.AbstractListModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
@@ -35,7 +36,7 @@ import edu.usal.tp.negocio.dao.dominio.Telefono;
 
 import javax.swing.JList;
 
-public class ClientesABM_view extends JPanel implements ActionListener,ListSelectionListener{
+public class ClientesABM_view extends JPanel implements ActionListener{
 	
 	private JTextField textField_nombre;
 	private JTextField textField_apellido;
@@ -63,7 +64,7 @@ public class ClientesABM_view extends JPanel implements ActionListener,ListSelec
 	
 	private JDateChooser dateChooser_fechaNac, dateChooser_fechaVencimiento , dateChooser_fechaEmision;
 	
-	private JList<String> list;
+	private JList<String> listCliente;
 	
 	private JScrollPane scrollPane;
 	
@@ -72,6 +73,8 @@ public class ClientesABM_view extends JPanel implements ActionListener,ListSelec
 	
 	private ClienteController clienteController;
 	
+	private DefaultListModel<String> modelo;
+	
 	public ClientesABM_view() {
 		
 		//Instanciazion de objetos controllers
@@ -79,23 +82,6 @@ public class ClientesABM_view extends JPanel implements ActionListener,ListSelec
 		
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
-		
-		list = new JList<String>();
-		list.setModel(new AbstractListModel<String>() {
-			String[] values = new String[] {"objet"};
-			@Override
-			public String getElementAt(int index) {
-				// TODO Auto-generated method stub
-				return values[index];
-			}
-			@Override
-			public int getSize() {
-				// TODO Auto-generated method stub
-				return values.length;
-			}
-		});
-		list.addListSelectionListener(this);
-		scrollPane.setViewportView(list);
 		
 		JLabel lblClientes = new JLabel("Clientes");
 		lblClientes.setFont(new Font("Lucida Sans", Font.BOLD, 40));
@@ -323,8 +309,22 @@ public class ClientesABM_view extends JPanel implements ActionListener,ListSelec
 		springLayout.putConstraint(SpringLayout.NORTH, panel_8, -34, SpringLayout.NORTH, panel_1);
 		springLayout.putConstraint(SpringLayout.WEST, panel_8, 0, SpringLayout.WEST, scrollPane);
 		
-		list = new JList();
-		scrollPane.setViewportView(list);
+		listCliente = new JList();
+		listCliente.setFont(new Font("Lucida Sans", Font.PLAIN, 15));
+		listCliente.setModel(new AbstractListModel() {
+			String[] values = new String[] {};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		
+		modelo = new DefaultListModel<>();
+		
+		
+		scrollPane.setViewportView(listCliente);
 		springLayout.putConstraint(SpringLayout.SOUTH, panel_8, -6, SpringLayout.NORTH, panel_1);
 		springLayout.putConstraint(SpringLayout.EAST, panel_8, 0, SpringLayout.EAST, panel);
 		add(panel_8);
@@ -350,6 +350,17 @@ public class ClientesABM_view extends JPanel implements ActionListener,ListSelec
 		lblPasajeroFrecuente.setFont(new Font("Lucida Sans", Font.BOLD, 15));
 		panel_8.add(lblPasajeroFrecuente);
 	}
+	
+	public void ListarProducto() {
+		initComponents();
+		listCliente.setModel(modelo);
+		modelo.addElement("HOLA MUNDO");
+	}
+	private void initComponents() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -506,21 +517,6 @@ public class ClientesABM_view extends JPanel implements ActionListener,ListSelec
 				
 	}
 	
-	@Override
-	public void valueChanged(ListSelectionEvent e) {
-		// TODO Auto-generated method stub
-		Cliente cli = null;
-		if(e.getSource()==list) {
-			btnAlta.setEnabled(true);
-			btnModificar.setEnabled(true);
-			btnBorrar.setEnabled(true);
-			
-			String a = (String)list.getSelectedValue();
-			cli = clienteController.MostrarArrayStringCliente();
-			
-			MostrarCliente(cli);
-		}
-	}
 	
 	
 }

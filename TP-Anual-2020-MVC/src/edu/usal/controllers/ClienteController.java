@@ -3,6 +3,8 @@ package edu.usal.controllers;
 import java.io.IOException;
 
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import edu.usal.managers.ClienteManager;
 import edu.usal.tp.negocio.dao.dominio.Cliente;
@@ -10,6 +12,7 @@ import edu.usal.tp.negocio.dao.dominio.DireccionCompleta;
 import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
 import edu.usal.tp.negocio.dao.dominio.Pasaporte;
 import edu.usal.tp.negocio.dao.dominio.Telefono;
+import edu.usal.tp.negocio.dao.interfaces.ClienteDAO;
 import edu.usal.view.ClientesABM_view;
 import edu.usal.views.console.ClienteView;
 
@@ -86,12 +89,4 @@ public class ClienteController {
 		PasajeroFrecuente pasFrec = this.viewGUI.cargarPasFrecuente();
 	}
 
-	public Cliente MostrarArrayStringCliente() {
-		// TODO Auto-generated method stub
-		
-		Cliente cli;
-		
-		
-		return null;
-	}
 }
