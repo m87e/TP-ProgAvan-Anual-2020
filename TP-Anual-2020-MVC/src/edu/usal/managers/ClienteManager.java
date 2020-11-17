@@ -91,9 +91,68 @@ public class ClienteManager {
 		}
 
 	}
-	
+
+	public void ActualizarCliente(Cliente cliente, Pasaporte pasaporte, Telefono telefono, DireccionCompleta direccion,
+			PasajeroFrecuente pasFrec) throws ParseException {
+
+		Connection con = null;
+
+		try {
+			con = SQLDatabaseConnection.conectar();
+			con.setAutoCommit(false);
+
+			this.dirCompletaDAODatabase.ModificarDirCompleta(direccion, con);
+			System.out.println("Direccion modificada - Operacion completada");
+			cliente.setDireccionCompleta(direccion);
+
+			this.pasaporteDAODatabase.ModificarPasaporte(pasaporte, con);
+			System.out.println("Pasaporte actualizado - Operacion completada");
+			cliente.setPasaporte(pasaporte);
+
+			this.telefonoDAODatabase.ModificarTelefono(telefono, con);
+			System.out.println("Telefono actualizado - Operacion completada");
+			cliente.setTelefono(telefono);
+
+			this.pasajeroFrecuenteDAODatabase.ModificarPasajeroFrecuente(pasFrec, con);
+			System.out.println("Pasajero frecuente actualizado - Operacion completada");
+			cliente.setPasajeroFrecuente(pasFrec);
+
+			this.clienteDAODatabase.ModificarCliente(cliente, con);
+			con.commit();
+			System.out.println("Cliente actualizado - Operacion completada");
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Ocurrio un error al cargar los datos en la base de datos");
+			if (con != null) {
+				SQLDatabaseConnection.rollback(con);
+				System.err.print("Se realizo un rollback de la transaccion");
+			}
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Ocurrio un error al cargar los datos");
+			if (con != null) {
+				SQLDatabaseConnection.rollback(con);
+				System.err.print("Se realizo un rollback de la transaccion");
+			}
+
+		} finally {
+
+			try {
+				con.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
+	}
+
 	public List<Cliente> MostrarClientes() {
-		
+
 		List<Cliente> listadoClientes = null;
 		try {
 			listadoClientes = clienteDAODatabase.GetAll();
@@ -104,7 +163,7 @@ public class ClienteManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return listadoClientes;
 	}
 
