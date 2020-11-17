@@ -331,7 +331,7 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		
 		listCliente = new JList();
 		listCliente.setFont(new Font("Lucida Sans", Font.PLAIN, 15));
-		/*listCliente.setModel(new AbstractListModel() {
+		/*	listCliente.setModel(new AbstractListModel() {
 			String[] values = new String[] {"item1", "item2", "item3", "item4", "item5", "item6"};
 			public int getSize() {
 				return values.length;
@@ -341,8 +341,8 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 			}
 		});*/
 				
-	//	initComponents();
-		/*	listCliente.setModel(new AbstractListModel() {
+			initComponents();
+			listCliente.setModel(new AbstractListModel() {
 			String[] values = new String[] {};
 			public int getSize() {
 				return values.length;
@@ -352,7 +352,7 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 			}
 		});
 		modelo.addElement("HOLA MUNDO");
-		*/
+		
 		ArrayList<Cliente> listaAux = (ArrayList<Cliente>) clienteController.mostrarTodo();
 		
 		for (int i = 0; i < listaAux.size(); i++) {
