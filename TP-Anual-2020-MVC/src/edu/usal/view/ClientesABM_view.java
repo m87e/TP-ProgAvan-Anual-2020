@@ -15,6 +15,7 @@ import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -28,11 +29,13 @@ import com.toedter.calendar.JDateChooser;
 import java.util.ArrayList;
 
 import edu.usal.controllers.ClienteController;
+import edu.usal.controllers.GUI.ClienteController_GUI;
 import edu.usal.tp.negocio.dao.dominio.Cliente;
 import edu.usal.tp.negocio.dao.dominio.DireccionCompleta;
 import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
 import edu.usal.tp.negocio.dao.dominio.Pasaporte;
 import edu.usal.tp.negocio.dao.dominio.Telefono;
+import util.EstadoDePanel;
 
 import javax.swing.JList;
 
@@ -62,6 +65,8 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 	private JButton btnGuardar;
 	private JButton btnCancelar;
 	
+	private static EstadoDePanel estadoPanel = EstadoDePanel.NADA;
+	
 	private JDateChooser dateChooser_fechaNac, dateChooser_fechaVencimiento , dateChooser_fechaEmision;
 	
 	private JList<String> listCliente;
@@ -71,14 +76,14 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 	private final static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 	private final static SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 	
-	private ClienteController clienteController;
+	private ClienteController_GUI clienteController;
 	
 	private DefaultListModel<String> modelo;
 	
 	public ClientesABM_view() {
 		
 		//Instanciazion de objetos controllers
-		clienteController = new ClienteController();
+		clienteController = new ClienteController_GUI();
 		
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
@@ -309,20 +314,34 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		springLayout.putConstraint(SpringLayout.NORTH, panel_8, -34, SpringLayout.NORTH, panel_1);
 		springLayout.putConstraint(SpringLayout.WEST, panel_8, 0, SpringLayout.WEST, scrollPane);
 		
+		modelo = new DefaultListModel<>();
+		
 		listCliente = new JList();
 		listCliente.setFont(new Font("Lucida Sans", Font.PLAIN, 15));
-		listCliente.setModel(new AbstractListModel() {
-			String[] values = new String[] {};
+		/*listCliente.setModel(new AbstractListModel() {
+			String[] values = new String[] {"rebeca1", "rebeca2", "rebeca3", "rebeca4", "rebeca5", "rebeca6"};
 			public int getSize() {
 				return values.length;
 			}
 			public Object getElementAt(int index) {
 				return values[index];
 			}
-		});
+		});*/
+				
+	//	initComponents();
+		listCliente.setModel(modelo);
+		//modelo.addElement("HOLA MUNDO");
 		
-		modelo = new DefaultListModel<>();
+		ArrayList<Cliente> listaAux = (ArrayList<Cliente>) clienteController.mostrarTodo();
 		
+		for (int i = 0; i < listaAux.size(); i++) {
+			modelo.addElement(listaAux.get(i).getNombre()+" | "+
+							  listaAux.get(i).getApellido()+" | "+
+							  listaAux.get(i).getDni()+" | "+
+							  listaAux.get(i).getEmail()
+							  );
+		}
+	 //clienteController
 		
 		scrollPane.setViewportView(listCliente);
 		springLayout.putConstraint(SpringLayout.SOUTH, panel_8, -6, SpringLayout.NORTH, panel_1);
@@ -338,7 +357,7 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		lblDireccion.setFont(new Font("Lucida Sans", Font.BOLD, 15));
 		panel_8.add(lblDireccion);
 		
-		JLabel lblTelefonos = new JLabel("Telef\u00F3nos");
+		JLabel lblTelefonos = new JLabel("Telefonos");
 		lblTelefonos.setFont(new Font("Lucida Sans", Font.BOLD, 15));
 		panel_8.add(lblTelefonos);
 		
@@ -351,11 +370,7 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		panel_8.add(lblPasajeroFrecuente);
 	}
 	
-	public void ListarProducto() {
-		initComponents();
-		listCliente.setModel(modelo);
-		modelo.addElement("HOLA MUNDO");
-	}
+
 	private void initComponents() {
 		// TODO Auto-generated method stub
 		
@@ -364,14 +379,23 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		Cliente cli;
+		//Cliente cli;
 		
 		if(e.getSource()== btnAlta) {
+			btnAlta.setEnabled(false);
+			btnBorrar.setEnabled(false);
+			btnGuardar.setEnabled(true);
+			btnCancelar.setEnabled(true);
 			
+			//cli = new Cliente();
+			//clienteController.altaCliente();
+			
+			estadoPanel = EstadoDePanel.ALTA;
+			//Menu_view.RecargarPanelCambiante(this);
 		}
 		
 		if(e.getSource()== btnModificar) {
-			
+		
 		}
 
 		if(e.getSource()== btnBorrar) {
@@ -380,7 +404,26 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		
 		if(e.getSource()== btnGuardar) {
 			
-		}
+			if(estadoPanel == EstadoDePanel.ALTA) {
+			
+				cargarCliente();
+				cargarDirCompleta();
+				cargarPasaporte();
+				cargarPasFrecuente();
+				cargarTelefono();
+				System.out.println("guardar");
+				try {
+					System.out.println("procesando alta...");
+					clienteController.altaCliente();
+					System.out.println("alta realizada!");
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				Menu_view.RecargarPanelCambiante(this);
+
+			}
+					}
 		
 		if(e.getSource()== btnCancelar){
 			

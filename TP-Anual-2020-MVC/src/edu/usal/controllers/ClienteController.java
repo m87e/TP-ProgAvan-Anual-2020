@@ -72,21 +72,4 @@ public class ClienteController {
 	private void mostrarClientePorPasaporte() {
 
 	}
-	
-	//GUI
-	
-	public ClienteController() {}
-	public ClienteController(ClientesABM_view viewGUI) {
-		this.viewGUI = viewGUI;
-	}
-	
-	private void altaClienteGUI() {
-		
-		Cliente c = this.viewGUI.cargarCliente();
-		Pasaporte p = this.viewGUI.cargarPasaporte();
-		Telefono tel = this.viewGUI.cargarTelefono();
-		DireccionCompleta dir = this.viewGUI.cargarDirCompleta();
-		PasajeroFrecuente pasFrec = this.viewGUI.cargarPasFrecuente();
-	}
-
 }

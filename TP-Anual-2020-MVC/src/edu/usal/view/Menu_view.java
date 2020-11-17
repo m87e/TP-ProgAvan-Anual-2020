@@ -118,6 +118,23 @@ public class Menu_view implements ActionListener{
 		
 	}
 
+	public static void RecargarPanelCambiante(JPanel jp) {
+		
+		panelPivot.removeAll();
+		
+		try {
+			panelPivot.add(jp.getClass().newInstance());
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		panelPivot.setVisible(true);
+		panelPivot.validate();
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

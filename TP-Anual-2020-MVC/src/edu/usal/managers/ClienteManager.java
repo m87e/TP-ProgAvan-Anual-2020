@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Cliente;
 import edu.usal.tp.negocio.dao.dominio.DireccionCompleta;
@@ -88,6 +90,22 @@ public class ClienteManager {
 
 		}
 
+	}
+	
+	public List<Cliente> MostrarClientes() {
+		
+		List<Cliente> listadoClientes = null;
+		try {
+			listadoClientes = clienteDAODatabase.GetAll();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return listadoClientes;
 	}
 
 }
