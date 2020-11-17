@@ -79,8 +79,7 @@ public class VueloManager {
 
 	}
 
-	public void ModificacionVuelo(Vuelo vuelo, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoLlegada,
-			Aerolinea aerolinea) {
+	public void ModificacionVuelo(Vuelo vuelo) {
 
 		Connection con = null;
 
@@ -88,13 +87,14 @@ public class VueloManager {
 			con = SQLDatabaseConnection.conectar();
 			con.setAutoCommit(false);
 
-			Aeropuerto salida = this.aeropuertoDAODatabase.ObtenerAeropuertoPorID(aeropuertoSalida.getId());
+			Aeropuerto salida = this.aeropuertoDAODatabase.ObtenerAeropuertoPorID(vuelo.getAeropuertoSalida().getId());
 			vuelo.setAeropuertoSalida(salida);
 
-			Aeropuerto llegada = this.aeropuertoDAODatabase.ObtenerAeropuertoPorID(aeropuertoLlegada.getId());
+			Aeropuerto llegada = this.aeropuertoDAODatabase
+					.ObtenerAeropuertoPorID(vuelo.getAeropuertoLlegada().getId());
 			vuelo.setAeropuertoLlegada(llegada);
 
-			Aerolinea aero = this.aerolineaDAODatabase.ObtenerAerolineaPorID(aerolinea.getId());
+			Aerolinea aero = this.aerolineaDAODatabase.ObtenerAerolineaPorID(vuelo.getAerolinea().getId());
 			vuelo.setAerolinea(aero);
 
 			this.vueloDAODatabase.ModificarVuelo(vuelo, con);
@@ -146,7 +146,7 @@ public class VueloManager {
 			con = SQLDatabaseConnection.conectar();
 			con.setAutoCommit(false);
 
-			this.vueloDAODatabase.AgregarVuelo(vuelo, con);
+			this.vueloDAODatabase.EliminarVuelo(vuelo, con);
 
 			con.commit();
 			System.out.println("Vuelo eliminado - Operacion completada");
@@ -167,6 +167,13 @@ public class VueloManager {
 				System.err.print("Se realizo un rollback de la transaccion");
 			}
 
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Ocurrio un error al parsear los datos en la base de datos");
+			if (con != null) {
+				SQLDatabaseConnection.rollback(con);
+				System.err.print("Se realizo un rollback de la transaccion");
+			}
 		} finally {
 
 			try {

@@ -84,9 +84,7 @@ public class VentaManager {
 
 	}
 
-	public void ModificacionVenta(Venta venta, Cliente cliente, Vuelo vuelo, Aerolinea aerolinea,
-			LocalDate fechaHoraVenta, String formaPago) {
-
+	public void ModificacionVenta(Venta venta) {
 		Connection con = null;
 
 		try {
@@ -94,17 +92,14 @@ public class VentaManager {
 			con = SQLDatabaseConnection.conectar();
 			con.setAutoCommit(false);
 
-			Cliente c = this.clienteDAODatabase.ObtenerClientePorDNI(cliente.getDni());
-			venta.setCliente(c);
+			Cliente cliente = this.clienteDAODatabase.ObtenerClientePorDNI(venta.getCliente().getDni());
+			venta.setCliente(cliente);
 
-			Vuelo v = this.vueloDAODatabase.ObtenerVuelosPorNumero(vuelo.getNumVuelo());
-			venta.setVuelo(v);
+			Vuelo vuelo = this.vueloDAODatabase.ObtenerVuelosPorNumero(venta.getVuelo().getNumVuelo());
+			venta.setVuelo(vuelo);
 
-			Aerolinea a = this.aerolineaDAODatabase.ObtenerAerolineaPorID(aerolinea.getId());
-			venta.setAerolinea(a);
-
-			venta.setFechaHoraVenta(fechaHoraVenta);
-			venta.setFormaPago(formaPago);
+			Aerolinea aerolinea = this.aerolineaDAODatabase.ObtenerAerolineaPorID(venta.getAerolinea().getId());
+			venta.setAerolinea(aerolinea);
 
 			this.ventaDAODatabase.ModificarVenta(venta, con);
 			con.commit();
