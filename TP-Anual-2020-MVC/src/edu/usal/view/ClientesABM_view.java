@@ -11,7 +11,6 @@ import javax.swing.JScrollPane;
 
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
@@ -20,7 +19,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -28,18 +26,29 @@ import com.toedter.calendar.JDateChooser;
 
 import java.util.ArrayList;
 
-import edu.usal.controllers.ClienteController;
+
 import edu.usal.controllers.GUI.ClienteController_GUI;
+import edu.usal.tp.negocio.dao.dominio.Aerolinea;
+import edu.usal.tp.negocio.dao.dominio.Alianza;
 import edu.usal.tp.negocio.dao.dominio.Cliente;
 import edu.usal.tp.negocio.dao.dominio.DireccionCompleta;
+import edu.usal.tp.negocio.dao.dominio.Pais;
 import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
 import edu.usal.tp.negocio.dao.dominio.Pasaporte;
+import edu.usal.tp.negocio.dao.dominio.Provincia;
 import edu.usal.tp.negocio.dao.dominio.Telefono;
 import util.EstadoDePanel;
 
 import javax.swing.JList;
+import javax.swing.AbstractListModel;
 
 public class ClientesABM_view extends JPanel implements ActionListener{
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	private JTextField textField_nombre;
 	private JTextField textField_apellido;
@@ -76,14 +85,14 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 	private final static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 	private final static SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 	
-	private ClienteController_GUI clienteController;
+	private ClienteController_GUI clienteController = new ClienteController_GUI(ClientesABM_view.this);
 	
 	private DefaultListModel<String> modelo;
 	
 	public ClientesABM_view() {
 		
 		//Instanciazion de objetos controllers
-		clienteController = new ClienteController_GUI();
+		//ClienteController_GUI	clienteController;
 		
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
@@ -110,6 +119,8 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		panel.setLayout(new GridLayout(3, 1, 0, 0));
 		
 		btnAlta = new JButton("Alta");
+		panel.add(btnAlta);
+		btnAlta.addActionListener(this);
 		panel.add(btnAlta);
 		
 		btnModificar = new JButton("Modificar");
@@ -306,6 +317,8 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		
 		btnGuardar = new JButton("Guardar");
 		panel_7.add(btnGuardar);
+		btnGuardar.addActionListener(this);
+		panel_7.add(btnGuardar);
 		
 		btnCancelar = new JButton("Cancelar");
 		panel_7.add(btnCancelar);
@@ -319,7 +332,7 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		listCliente = new JList();
 		listCliente.setFont(new Font("Lucida Sans", Font.PLAIN, 15));
 		/*listCliente.setModel(new AbstractListModel() {
-			String[] values = new String[] {"rebeca1", "rebeca2", "rebeca3", "rebeca4", "rebeca5", "rebeca6"};
+			String[] values = new String[] {"item1", "item2", "item3", "item4", "item5", "item6"};
 			public int getSize() {
 				return values.length;
 			}
@@ -329,10 +342,18 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		});*/
 				
 	//	initComponents();
-		listCliente.setModel(modelo);
-		//modelo.addElement("HOLA MUNDO");
+		listCliente.setModel(new AbstractListModel() {
+			String[] values = new String[] {};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		modelo.addElement("HOLA MUNDO");
 		
-		ArrayList<Cliente> listaAux = (ArrayList<Cliente>) clienteController.mostrarTodo();
+		/*ArrayList<Cliente> listaAux = (ArrayList<Cliente>) clienteController.mostrarTodo();
 		
 		for (int i = 0; i < listaAux.size(); i++) {
 			modelo.addElement(listaAux.get(i).getNombre()+" | "+
@@ -340,8 +361,8 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 							  listaAux.get(i).getDni()+" | "+
 							  listaAux.get(i).getEmail()
 							  );
-		}
-	 //clienteController
+		}*/
+
 		
 		scrollPane.setViewportView(listCliente);
 		springLayout.putConstraint(SpringLayout.SOUTH, panel_8, -6, SpringLayout.NORTH, panel_1);
@@ -382,11 +403,12 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		//Cliente cli;
 		
 		if(e.getSource()== btnAlta) {
-			btnAlta.setEnabled(false);
+			System.out.println("seteando alta...");
+			btnModificar.setEnabled(false);
 			btnBorrar.setEnabled(false);
 			btnGuardar.setEnabled(true);
 			btnCancelar.setEnabled(true);
-			
+			System.out.println("botones deshabilitados..");
 			//cli = new Cliente();
 			//clienteController.altaCliente();
 			
@@ -404,8 +426,9 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		
 		if(e.getSource()== btnGuardar) {
 			
-			if(estadoPanel == EstadoDePanel.ALTA) {
+			/*if(estadoPanel == EstadoDePanel.ALTA) {
 			
+				System.out.println("iniciando carga");
 				cargarCliente();
 				cargarDirCompleta();
 				cargarPasaporte();
@@ -422,8 +445,12 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 				}
 				Menu_view.RecargarPanelCambiante(this);
 
+			}*/
+			
+			clienteController.altaCliente(ClienteController_GUI.this);
+			
+			
 			}
-					}
 		
 		if(e.getSource()== btnCancelar){
 			
@@ -477,8 +504,10 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		c.setApellido(textField_apellido.getText());
 		c.setDni(textField_DNI.getText());
 		c.setCuit(textField_cuit.getText());
-		String fechaNac = sdf.format(dateChooser_fechaNac.getDateFormatString());
-		c.setFechaNac(LocalDate.parse(fechaNac,dtf));
+		//String fechaNac = sdf.format(dateChooser_fechaNac.getDateFormatString());
+		//c.setFechaNac(LocalDate.parse(fechaNac,dtf));
+		c.setFechaNac(null);
+		
 		c.setEmail(textField_email.getText());
 		
 		return c;
@@ -488,12 +517,15 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		Pasaporte pas = new Pasaporte();
 		
 		pas.setNumeroPasaporte(textField_nroPasaporte.getText());
+		Pais p = new Pais(1, "Argentina");
+		pas.setPais(p);
+	//	String fechaVen = sdf.format(dateChooser_fechaVencimiento.getDate());
+	//	pas.setFechaVencimiento(LocalDate.parse(fechaVen,dtf));
+		pas.setFechaVencimiento(null);
 		
-		String fechaVen = sdf.format(dateChooser_fechaVencimiento.getDate());
-		pas.setFechaVencimiento(LocalDate.parse(fechaVen,dtf));
-		
-		String fechaEmi = sdf.format(dateChooser_fechaEmision.getDate());
-		pas.setFechaEmision(LocalDate.parse(fechaEmi,dtf));
+	//	String fechaEmi = sdf.format(dateChooser_fechaEmision.getDate());
+	//	pas.setFechaEmision(LocalDate.parse(fechaEmi,dtf));
+		pas.setFechaEmision(null);
 		
 		//pendiente lista paises
 		
@@ -513,19 +545,28 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		// TODO Auto-generated method stub
 		DireccionCompleta dir = new DireccionCompleta();
 		
+		Pais p = new Pais(1, "Argentina");
+		Provincia prov = new Provincia(1, "Buenos");
+
+		
 		dir.setCalle(textField_calle.getText());
 		dir.setAltura(textField_altura.getText());
 		dir.setCiudad(textField_ciudad.getText());
 		dir.setCodigoPostal(textField_CP.getText());
 		//pendiente lista provincia
+		dir.setPais(p);
 		//pendiente lista paises
-		
+		dir.setProvincia(prov);
 		return dir;
 	}
 	public PasajeroFrecuente cargarPasFrecuente() {
 		// TODO Auto-generated method stub
 		PasajeroFrecuente pas = new PasajeroFrecuente();
 		
+		Aerolinea aerolinea = new Aerolinea(1, "United Airlines", Alianza.StarAlliance);
+
+		pas.setAlianza(Alianza.StarAlliance);
+		pas.setAerolinea(aerolinea);
 		pas.setNumeroPF(textField_numeroPasaFrec.getText());
 		//Setear la alianza
 		//Setear la aerolinea

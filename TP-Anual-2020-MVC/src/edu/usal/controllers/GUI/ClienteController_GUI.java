@@ -6,6 +6,8 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.DefaultListModel;
+
 import edu.usal.managers.ClienteManager;
 import edu.usal.tp.negocio.dao.dominio.Cliente;
 import edu.usal.tp.negocio.dao.dominio.DireccionCompleta;
@@ -24,7 +26,7 @@ public class ClienteController_GUI {
 	private ClienteManager manager = new ClienteManager();
 //	private ClienteDAOImplDatabase cliImpl = ClienteFactory.GetImplementation("database");
 	
-	public ClienteController_GUI() {}
+	//public ClienteController_GUI() {}
 	
 	public ClienteController_GUI(ClientesABM_view viewGUI) {
 		this.viewGUI = viewGUI;
@@ -61,6 +63,9 @@ public class ClienteController_GUI {
 		
 		List<Cliente> listadoClientes = new ArrayList();
 		listadoClientes = this.manager.MostrarClientes();
+		
+		DefaultListModel<String> modelo = new DefaultListModel<String>();
+		
 		
 		return listadoClientes;
 	}

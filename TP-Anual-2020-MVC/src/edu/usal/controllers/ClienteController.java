@@ -19,7 +19,6 @@ import edu.usal.views.console.ClienteView;
 public class ClienteController {
 
 	private ClienteView viewConsola;
-	private ClientesABM_view viewGUI;
 	
 	private ClienteManager manager = new ClienteManager();
 
