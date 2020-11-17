@@ -64,8 +64,6 @@ public class ClienteController_GUI {
 		List<Cliente> listadoClientes = new ArrayList();
 		listadoClientes = this.manager.MostrarClientes();
 		
-		DefaultListModel<String> modelo = new DefaultListModel<String>();
-		
 		
 		return listadoClientes;
 	}
