@@ -85,7 +85,7 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 	private final static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 	private final static SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 	
-	private ClienteController_GUI clienteController = new ClienteController_GUI(ClientesABM_view.this);
+	private ClienteController_GUI clienteController = new ClienteController_GUI(this);
 	
 	private DefaultListModel<String> modelo;
 	
@@ -342,7 +342,7 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		});*/
 				
 	//	initComponents();
-		listCliente.setModel(new AbstractListModel() {
+		/*	listCliente.setModel(new AbstractListModel() {
 			String[] values = new String[] {};
 			public int getSize() {
 				return values.length;
@@ -352,8 +352,8 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 			}
 		});
 		modelo.addElement("HOLA MUNDO");
-		
-		/*ArrayList<Cliente> listaAux = (ArrayList<Cliente>) clienteController.mostrarTodo();
+		*/
+		ArrayList<Cliente> listaAux = (ArrayList<Cliente>) clienteController.mostrarTodo();
 		
 		for (int i = 0; i < listaAux.size(); i++) {
 			modelo.addElement(listaAux.get(i).getNombre()+" | "+
@@ -361,7 +361,7 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 							  listaAux.get(i).getDni()+" | "+
 							  listaAux.get(i).getEmail()
 							  );
-		}*/
+		}
 
 		
 		scrollPane.setViewportView(listCliente);
@@ -447,8 +447,13 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 
 			}*/
 			
-			clienteController.altaCliente(ClienteController_GUI.this);
-			
+			try {
+				clienteController.altaCliente();
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			Menu_view.RecargarPanelCambiante(this);
 			
 			}
 		
@@ -506,7 +511,9 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		c.setCuit(textField_cuit.getText());
 		//String fechaNac = sdf.format(dateChooser_fechaNac.getDateFormatString());
 		//c.setFechaNac(LocalDate.parse(fechaNac,dtf));
-		c.setFechaNac(null);
+		
+		LocalDate d = LocalDate.now();
+		c.setFechaNac(d);
 		
 		c.setEmail(textField_email.getText());
 		
@@ -519,13 +526,14 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		pas.setNumeroPasaporte(textField_nroPasaporte.getText());
 		Pais p = new Pais(1, "Argentina");
 		pas.setPais(p);
+		LocalDate d = LocalDate.now();
 	//	String fechaVen = sdf.format(dateChooser_fechaVencimiento.getDate());
 	//	pas.setFechaVencimiento(LocalDate.parse(fechaVen,dtf));
-		pas.setFechaVencimiento(null);
+		pas.setFechaVencimiento(d);
 		
 	//	String fechaEmi = sdf.format(dateChooser_fechaEmision.getDate());
 	//	pas.setFechaEmision(LocalDate.parse(fechaEmi,dtf));
-		pas.setFechaEmision(null);
+		pas.setFechaEmision(d);
 		
 		//pendiente lista paises
 		
