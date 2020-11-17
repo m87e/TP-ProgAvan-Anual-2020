@@ -92,8 +92,8 @@ public class ClienteManager {
 
 	}
 
-	public void ActualizarCliente(Cliente cliente, Pasaporte pasaporte, Telefono telefono, DireccionCompleta direccion,
-			PasajeroFrecuente pasFrec) throws ParseException {
+	public void ModificacionCliente(Cliente cliente, Pasaporte pasaporte, Telefono telefono,
+			DireccionCompleta direccion, PasajeroFrecuente pasFrec) throws ParseException {
 
 		Connection con = null;
 
