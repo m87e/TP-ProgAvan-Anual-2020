@@ -11,9 +11,9 @@ public interface PasajeroFrecuenteDAO {
 
 	void AgregarPasajeroFrecuente(PasajeroFrecuente pasFre, Connection con) throws IOException;
 
-	void ModificarPasajeroFrecuente(PasajeroFrecuente pasFre) throws IOException;
+	void ModificarPasajeroFrecuente(PasajeroFrecuente pasFre, Connection con) throws IOException;
 
-	void EliminarPasajeroFrecuente(PasajeroFrecuente pasFre) throws IOException;
+	void EliminarPasajeroFrecuente(PasajeroFrecuente pasFre, Connection con) throws IOException;
 
 	PasajeroFrecuente ObtenerPasajeroFrecuentePorID(int id) throws IOException;
 

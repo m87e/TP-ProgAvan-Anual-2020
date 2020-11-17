@@ -17,6 +17,8 @@ import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 public class DirCompletaDAOImplDatabase implements DirCompletaDAO {
 
 	final String INSERT = "INSERT INTO Direcciones (direccion_calle, direccion_altura, direccion_ciudad, direccion_paisID, direccion_provinciaID, direccion_codigoPostal) values (?,?,?,?,?,?)";
+	final String UPDATE = "UPDATE Direcciones direccion_calle=?, direccion_altura=?, direccion_ciudad=?, direccion_paisID=?, direccion_provinciaID=?, direccion_codigoPostal=? WHERE direccion_id=?";
+	final String DELETE = "DELETE FROM Direcciones WHERE direccion_id=?";
 	final String SELECT_BY_ID = "SELECT * FROM Direcciones WHERE direccion_id=?";
 
 	@Override
@@ -47,6 +49,7 @@ public class DirCompletaDAOImplDatabase implements DirCompletaDAO {
 		} finally {
 			try {
 				ps.close();
+				System.out.println("Direccion agregada - Operacion completada");
 
 			} catch (Exception e) {
 				System.out.println("Ocurrio un error al cerrar la base de datos");
@@ -57,15 +60,67 @@ public class DirCompletaDAOImplDatabase implements DirCompletaDAO {
 	}
 
 	@Override
-	public void ModificarDirCompleta(DireccionCompleta dir) throws IOException {
+	public void ModificarDirCompleta(DireccionCompleta dir, Connection con) throws IOException {
 		// TODO Auto-generated method stub
+
+		PreparedStatement ps = null;
+
+		try {
+
+			ps = con.prepareStatement(UPDATE);
+			ps.setString(1, dir.getCalle());
+			ps.setString(2, dir.getAltura());
+			ps.setString(3, dir.getCiudad());
+			ps.setInt(4, dir.getPais().getId());
+			ps.setInt(5, dir.getProvincia().getId());
+			ps.setString(6, dir.getCodigoPostal());
+			ps.setInt(7, dir.getId());
+
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO: handle exception
+			System.out.println("Ocurrio un error al actualizar el dato en la base de datos");
+
+		} finally {
+			try {
+				ps.close();
+				System.out.println("Direccion agregada - Operacion completada");
+
+			} catch (Exception e) {
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
+			}
+		}
 
 	}
 
 	@Override
-	public void EliminarDirCompleta(DireccionCompleta dir) throws IOException {
+	public void EliminarDirCompleta(DireccionCompleta dir, Connection con) throws IOException {
 		// TODO Auto-generated method stub
+		PreparedStatement ps = null;
 
+		try {
+			ps = con.prepareStatement(DELETE);
+			ps.setInt(1, dir.getId());
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Ocurrio un error al eliminar el dato en la base de datos");
+
+		} finally {
+			try {
+				ps.close();
+				System.out.println("Direccion eliminada - Operacion completada");
+				System.out.println("Conexion cerrada");
+
+			} catch (Exception e2) {
+				// TODO: handle exception
+				System.out.println("Ocurrio un error al cerrar la base de datos");
+
+			}
+		}
 	}
 
 	@Override

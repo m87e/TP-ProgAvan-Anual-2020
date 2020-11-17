@@ -51,6 +51,7 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 			try {
 
 				ps.close();
+				System.out.println("Pasajero frecuente agregado - Operacion completada");
 
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -63,15 +64,13 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 	}
 
 	@Override
-	public void ModificarPasajeroFrecuente(PasajeroFrecuente pasFre) throws IOException {
+	public void ModificarPasajeroFrecuente(PasajeroFrecuente pasFre, Connection con) throws IOException {
 		// TODO Auto-generated method stub
 
-		Connection con = null;
 		PreparedStatement ps = null;
 
 		try {
 
-			con = SQLDatabaseConnection.conectar();
 			ps = con.prepareStatement(UPDATE);
 
 			ps.setString(1, pasFre.getAlianza().toString());
@@ -86,9 +85,7 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 		} finally {
 			try {
 				ps.close();
-				con.close();
 				System.out.println("Pasajero Frecuente actualizado - Operacion completada");
-				System.out.println("Conexion cerrada");
 
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -100,14 +97,12 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 	}
 
 	@Override
-	public void EliminarPasajeroFrecuente(PasajeroFrecuente pasFre) throws IOException {
+	public void EliminarPasajeroFrecuente(PasajeroFrecuente pasFre, Connection con) throws IOException {
 		// TODO Auto-generated method stub
 
-		Connection con = null;
 		PreparedStatement ps = null;
 
 		try {
-			con = SQLDatabaseConnection.conectar();
 			ps = con.prepareStatement(DELETE);
 
 			ps.setInt(1, pasFre.getId());
@@ -119,9 +114,7 @@ public class PasajeroFrecuenteDAOImplDatabase implements PasajeroFrecuenteDAO {
 		} finally {
 			try {
 				ps.close();
-				con.close();
 				System.out.println("Pasajero frecuente eliminado - Operacion completada");
-				System.out.println("Conexion cerrada");
 
 			} catch (Exception e) {
 				// TODO: handle exception

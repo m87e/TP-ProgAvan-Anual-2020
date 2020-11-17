@@ -58,6 +58,7 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 		} finally {
 			try {
 				ps.close();
+				System.out.println("Cliente agregado - Operacion completada");
 
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -100,7 +101,6 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 			try {
 				ps.close();
 				System.out.println("Cliente actualizado - Operacion completada");
-				System.out.println("Conexion cerrada");
 
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -129,7 +129,6 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 			try {
 				ps.close();
 				System.out.println("Cliente eliminado - Operacion completada");
-				System.out.println("Conexion cerrada");
 
 			} catch (Exception e2) {
 				// TODO: handle exception

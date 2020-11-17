@@ -49,7 +49,6 @@ public class VentaDAOImplDatabase implements VentaDAO {
 
 				ps.close();
 				System.out.println("Venta agregada - Operacion completada");
-				System.out.println("Conexion cerrada");
 
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -77,14 +76,12 @@ public class VentaDAOImplDatabase implements VentaDAO {
 
 			ps.executeUpdate();
 
-			System.out.println("Venta actualizada - Operacion completada");
-
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
 			try {
 				ps.close();
-				System.out.println("Conexion cerrada");
+				System.out.println("Venta actualizada - Operacion completada");
 
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -104,7 +101,6 @@ public class VentaDAOImplDatabase implements VentaDAO {
 			ps = con.prepareStatement(DELETE);
 			ps.setInt(1, venta.getId());
 			ps.executeUpdate();
-			System.out.println("Venta eliminada - Operacion completada");
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -112,7 +108,7 @@ public class VentaDAOImplDatabase implements VentaDAO {
 		} finally {
 			try {
 				ps.close();
-				System.out.println("Conexion cerrada");
+				System.out.println("Venta eliminada - Operacion completada");
 
 			} catch (Exception e) {
 				// TODO: handle exception

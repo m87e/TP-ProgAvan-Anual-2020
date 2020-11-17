@@ -9,9 +9,9 @@ import edu.usal.tp.negocio.dao.dominio.DireccionCompleta;;
 public interface DirCompletaDAO {
 	void AgregarDirCompleta(DireccionCompleta dir, Connection con) throws IOException;
 
-	void ModificarDirCompleta(DireccionCompleta dir) throws IOException;
+	void ModificarDirCompleta(DireccionCompleta dir, Connection con) throws IOException;
 
-	void EliminarDirCompleta(DireccionCompleta dir) throws IOException;
+	void EliminarDirCompleta(DireccionCompleta dir, Connection con) throws IOException;
 
 	DireccionCompleta ObtenerDirCompletaPorID(int id) throws IOException;
 

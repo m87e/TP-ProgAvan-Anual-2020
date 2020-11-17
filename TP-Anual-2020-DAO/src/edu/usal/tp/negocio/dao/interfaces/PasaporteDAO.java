@@ -10,9 +10,9 @@ public interface PasaporteDAO {
 
 	void AgregarPasaporte(Pasaporte pasaporte, Connection con) throws IOException;
 
-	void ModificarPasaporte(Pasaporte pasaporte) throws IOException;
+	void ModificarPasaporte(Pasaporte pasaporte, Connection con) throws IOException;
 
-	void EliminarPasaporte(Pasaporte pasaporte) throws IOException;
+	void EliminarPasaporte(Pasaporte pasaporte, Connection con) throws IOException;
 
 	Pasaporte ObtenerPasaportePorNumero(String numeroPasaporte) throws IOException;
 

@@ -49,6 +49,7 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 		} finally {
 			try {
 				ps.close();
+				System.out.println("Pasaporte agregado - Operacion completada");
 
 			} catch (Exception e2) {
 				// TODO: handle exception
@@ -59,15 +60,13 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 	}
 
 	@Override
-	public void ModificarPasaporte(Pasaporte pasaporte) throws IOException {
+	public void ModificarPasaporte(Pasaporte pasaporte, Connection con) throws IOException {
 		// TODO Auto-generated method stub
 
-		Connection con = null;
 		PreparedStatement ps = null;
 
 		try {
 
-			con = SQLDatabaseConnection.conectar();
 			ps = con.prepareStatement(UPDATE);
 
 			ps.setString(1, pasaporte.getNumeroPasaporte());
@@ -84,9 +83,7 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 		} finally {
 			try {
 				ps.close();
-				con.close();
 				System.out.println("Pasaporte modificado - Operacion completada");
-				System.out.println("Conexion cerrada");
 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -98,13 +95,11 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 	}
 
 	@Override
-	public void EliminarPasaporte(Pasaporte pasaporte) throws IOException {
+	public void EliminarPasaporte(Pasaporte pasaporte, Connection con) throws IOException {
 		// TODO Auto-generated method stub
-		Connection con = null;
 		PreparedStatement ps = null;
 
 		try {
-			con = SQLDatabaseConnection.conectar();
 			ps = con.prepareStatement(DELETE);
 			ps.setInt(1, pasaporte.getId());
 			ps.executeUpdate();
@@ -115,9 +110,7 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 		} finally {
 			try {
 				ps.close();
-				con.close();
 				System.out.println("Pasaporte eliminado - Operacion completada");
-				System.out.println("Conexion cerrada");
 
 			} catch (Exception e) {
 				// TODO: handle exception

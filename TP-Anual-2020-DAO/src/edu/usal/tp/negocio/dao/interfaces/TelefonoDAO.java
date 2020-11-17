@@ -10,9 +10,9 @@ public interface TelefonoDAO {
 
 	void AgregarTelefono(Telefono tel, Connection con) throws IOException;
 
-	void ModificarTelefono(Telefono tel) throws IOException;
+	void ModificarTelefono(Telefono tel, Connection con) throws IOException;
 
-	void EliminarTelefono(Telefono tel) throws IOException;
+	void EliminarTelefono(Telefono tel, Connection con) throws IOException;
 
 	Telefono ObtenerTelefonoPorID(int id) throws IOException;
 

@@ -45,6 +45,7 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 		} finally {
 			try {
 				ps.close();
+				System.out.println("Telefono agregado - Operacion completada");
 
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -55,14 +56,12 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 	}
 
 	@Override
-	public void ModificarTelefono(Telefono tel) throws IOException {
+	public void ModificarTelefono(Telefono tel, Connection con) throws IOException {
 		// TODO Auto-generated method stub
 
-		Connection con = null;
 		PreparedStatement ps = null;
 
 		try {
-			con = SQLDatabaseConnection.conectar();
 			ps = con.prepareStatement(UPDATE);
 
 			ps.setString(1, tel.getNumPersonal());
@@ -77,8 +76,7 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 		} finally {
 			try {
 				ps.close();
-				con.close();
-				System.out.println("Conexion cerrada");
+				System.out.println("Telefono actualizado - Operacion completada");
 
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -90,14 +88,12 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 	}
 
 	@Override
-	public void EliminarTelefono(Telefono tel) throws IOException {
+	public void EliminarTelefono(Telefono tel, Connection con) throws IOException {
 		// TODO Auto-generated method stub
 
-		Connection con = null;
 		PreparedStatement ps = null;
 
 		try {
-			con = SQLDatabaseConnection.conectar();
 			ps = con.prepareStatement(DELETE);
 			ps.setInt(1, tel.getId());
 			ps.executeUpdate();
@@ -108,7 +104,6 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 		} finally {
 			try {
 				ps.close();
-				con.close();
 				System.out.println("Telefono eliminado - Operacion completada");
 
 			} catch (Exception e) {
