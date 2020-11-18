@@ -207,11 +207,11 @@ public class ClienteManager {
 		return tel;
 	}
 
-	public Pasaporte ObtenerPasaporte(String numeroPas) {
+	public Pasaporte ObtenerPasaporte(int id) {
 		Pasaporte pas = new Pasaporte();
 
 		try {
-			pas = this.pasaporteDAODatabase.ObtenerPasaportePorNumero(numeroPas);
+			pas = this.pasaporteDAODatabase.ObtenerPasaportePorID(id);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

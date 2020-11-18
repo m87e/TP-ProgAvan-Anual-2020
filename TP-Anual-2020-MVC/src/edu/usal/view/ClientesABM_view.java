@@ -65,7 +65,7 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 	private JTextField textField_nroPasaporte;
 	private JTextField textField_numeroPasaFrec;
 	private JTextField textField_alianza;
-	private JTextField textField_paisEmision;
+	private JTextField textField_Pas_pais;
 	private JTextField textField_categoria;
 	
 	private JButton btnAlta;
@@ -88,6 +88,7 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 	private ClienteController_GUI clienteController = new ClienteController_GUI(this);
 	
 	private DefaultListModel<String> modelo;
+	private JTextField textField_autEmision;
 	
 	public ClientesABM_view() {
 		
@@ -257,7 +258,7 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		
 		JPanel panel_5 = new JPanel();
 		panel_1.add(panel_5);
-		panel_5.setLayout(new GridLayout(4, 2, 0, 0));
+		panel_5.setLayout(new GridLayout(5, 2, 0, 0));
 		
 		JLabel varPnroPasaporte = new JLabel("Nro. Pasaporte");
 		panel_5.add(varPnroPasaporte);
@@ -278,12 +279,19 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		dateChooser_fechaEmision = new JDateChooser();
 		panel_5.add(dateChooser_fechaEmision);
 		
-		JLabel varPpaisEmision = new JLabel("Pa\u00EDs emisi\u00F3n");
-		panel_5.add(varPpaisEmision);
+		JLabel varPpais = new JLabel("Pa\u00EDs");
+		panel_5.add(varPpais);
 		
-		textField_paisEmision = new JTextField();
-		panel_5.add(textField_paisEmision);
-		textField_paisEmision.setColumns(10);
+		textField_Pas_pais = new JTextField();
+		panel_5.add(textField_Pas_pais);
+		textField_Pas_pais.setColumns(10);
+		
+		JLabel varPautEmision = new JLabel("Aut. Emision");
+		panel_5.add(varPautEmision);
+		
+		textField_autEmision = new JTextField();
+		panel_5.add(textField_autEmision);
+		textField_autEmision.setColumns(10);
 		
 		JPanel panel_6 = new JPanel();
 		panel_1.add(panel_6);
@@ -483,9 +491,16 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 				
 				}		
 			if(estadoPanel == EstadoDePanel.MODIFICACION) {
-				String a = (String) listCliente.getSelectedValue();
-				clienteController.mostrarClientePorDni(a);
+			//	String a = (String) listCliente.getSelectedValue();
+				try {
+					
+					clienteController.modificarCliente();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
+				Menu_view.RecargarPanelCambiante(this);
 			}
 			}
 		
@@ -567,7 +582,7 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 	//	String fechaEmi = sdf.format(dateChooser_fechaEmision.getDate());
 	//	pas.setFechaEmision(LocalDate.parse(fechaEmi,dtf));
 		pas.setFechaEmision(d);
-		
+		pas.setAutoridadEmision(textField_autEmision.getText());
 		//pendiente lista paises
 		
 		return pas;
@@ -623,6 +638,7 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		Pasaporte pasAux = new Pasaporte();
 		PasajeroFrecuente pasFreAux = new PasajeroFrecuente();
 		
+		
 		textField_nombre.setText(c.getNombre());
 		textField_apellido.setText(c.getApellido());
 		textField_DNI.setText(c.getDni());
@@ -638,24 +654,25 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		textField_ciudad.setText(dirAux.getCiudad());
 		textField_CP.setText(dirAux.getCodigoPostal());
 		
-		System.out.println(c.getTelefono().getId());
+	
 		telAux = clienteController.mostrarTelefono(c.getTelefono().getId());
-		
-		System.out.println(telAux);
-		System.out.println(telAux.getId());
 		
 		textField_nroPersonal.setText(telAux.getNumPersonal());
 		textField_nroCelular.setText(telAux.getNumCelular());
 		textField_nroLaboral.setText(telAux.getNumLaboral());
 		
-		//pasAux = clienteController.mostrarPasaporte(c.getPasaporte().getNumeroPasaporte());
+		pasAux = clienteController.mostrarPasaporte(c.getPasaporte().getId());
 				
 		textField_nroPasaporte.setText(pasAux.getNumeroPasaporte());
 		//dateChooser_fechaVencimiento.setDate(Date.valueOf(c.getPasaporte().getFechaVencimiento()));
 		//dateChooser_fechaEmision.setDate(Date.valueOf(c.getPasaporte().getFechaEmision()));
 		dateChooser_fechaVencimiento.setDate(Date.valueOf(d));
 		dateChooser_fechaEmision.setDate(Date.valueOf(d));
-		textField_paisEmision.setText(pasAux.getAutoridadEmision());
+		//textField_Pas_pais.setText(pasAux.getPais().getNombre());
+		System.out.println(pasAux.getPais().getId());
+		textField_Pas_pais.setText("Argentina");
+		textField_autEmision.setText(pasAux.getAutoridadEmision());
+		
 		
 		pasFreAux = clienteController.mostrasPasFre(c.getPasajeroFrecuente().getId());
 		
@@ -664,7 +681,4 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		textField_alianza.setText(pasFreAux.getAlianza().toString());
 				
 	}
-	
-	
-	
 }

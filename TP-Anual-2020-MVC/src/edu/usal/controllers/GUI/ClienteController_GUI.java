@@ -75,10 +75,10 @@ public class ClienteController_GUI {
 		System.out.println("controller"+id);
 		return tel;
 	}
-	public Pasaporte mostrarPasaporte (String numeroPas) {
+	public Pasaporte mostrarPasaporte (int id) {
 		Pasaporte pas = new Pasaporte();
 		
-		pas = this.manager.ObtenerPasaporte(numeroPas);
+		pas = this.manager.ObtenerPasaporte(id);
 		
 		return pas;
 	}
