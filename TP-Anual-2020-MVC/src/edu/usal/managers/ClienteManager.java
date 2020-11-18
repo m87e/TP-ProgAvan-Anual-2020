@@ -92,7 +92,8 @@ public class ClienteManager {
 
 	}
 
-	public void ModificacionCliente(Cliente cliente) throws ParseException {
+	public void ModificacionCliente(Cliente cliente, Pasaporte pasaporte, Telefono telefono,
+			DireccionCompleta direccion, PasajeroFrecuente pasFrec) throws ParseException {
 
 		Connection con = null;
 
@@ -100,25 +101,18 @@ public class ClienteManager {
 			con = SQLDatabaseConnection.conectar();
 			con.setAutoCommit(false);
 
-			DireccionCompleta direccion = dirCompletaDAODatabase
-					.ObtenerDirCompletaPorID(cliente.getDireccionCompleta().getId());
 			this.dirCompletaDAODatabase.ModificarDirCompleta(direccion, con);
 			System.out.println("Direccion modificada - Operacion completada");
 			cliente.setDireccionCompleta(direccion);
 
-			Pasaporte pasaporte = pasaporteDAODatabase
-					.ObtenerPasaportePorNumero(cliente.getPasaporte().getNumeroPasaporte());
 			this.pasaporteDAODatabase.ModificarPasaporte(pasaporte, con);
 			System.out.println("Pasaporte actualizado - Operacion completada");
 			cliente.setPasaporte(pasaporte);
 
-			Telefono telefono = telefonoDAODatabase.ObtenerTelefonoPorID(cliente.getTelefono().getId());
 			this.telefonoDAODatabase.ModificarTelefono(telefono, con);
 			System.out.println("Telefono actualizado - Operacion completada");
 			cliente.setTelefono(telefono);
 
-			PasajeroFrecuente pasFrec = pasajeroFrecuenteDAODatabase
-					.ObtenerPasajeroFrecuentePorID(cliente.getPasajeroFrecuente().getId());
 			this.pasajeroFrecuenteDAODatabase.ModificarPasajeroFrecuente(pasFrec, con);
 			System.out.println("Pasajero frecuente actualizado - Operacion completada");
 			cliente.setPasajeroFrecuente(pasFrec);
@@ -172,70 +166,69 @@ public class ClienteManager {
 
 		return listadoClientes;
 	}
-	
+
 	public Cliente ObtenerCliente(String dni) {
 		Cliente cli = new Cliente();
-		
+
 		try {
 			cli = this.clienteDAODatabase.ObtenerClientePorDNI(dni);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 
-		 return cli;
+
+		return cli;
 	}
-	
+
 	public DireccionCompleta ObtenerDirCompleta(int id) {
 		DireccionCompleta dir = new DireccionCompleta();
-		
-		
+
 		try {
 			dir = this.dirCompletaDAODatabase.ObtenerDirCompletaPorID(id);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-				 
-		 return dir;
+
+		return dir;
 	}
-	
-	public Telefono ObtenerTelefono (int id) {
-		Telefono tel = new Telefono ();
-		
+
+	public Telefono ObtenerTelefono(int id) {
+		Telefono tel = new Telefono();
+
 		try {
 			tel = this.telefonoDAODatabase.ObtenerTelefonoPorID(id);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return tel;
 	}
-	
-	public Pasaporte ObtenerPasaporte (String numeroPas) {
+
+	public Pasaporte ObtenerPasaporte(String numeroPas) {
 		Pasaporte pas = new Pasaporte();
-		
+
 		try {
 			pas = this.pasaporteDAODatabase.ObtenerPasaportePorNumero(numeroPas);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return pas;
 	}
-	
-	public PasajeroFrecuente ObtenerPasFrecuente (int id) {
+
+	public PasajeroFrecuente ObtenerPasFrecuente(int id) {
 		PasajeroFrecuente pasFre = new PasajeroFrecuente();
-		
+
 		try {
 			pasFre = this.pasajeroFrecuenteDAODatabase.ObtenerPasajeroFrecuentePorID(id);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return pasFre;
 	}
 
