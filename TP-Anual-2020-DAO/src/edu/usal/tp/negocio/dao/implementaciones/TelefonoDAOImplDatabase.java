@@ -18,7 +18,7 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 	final String INSERT = "INSERT INTO Telefonos (telefono_numPersonal, telefono_numCelular, telefono_numLaboral) values (?,?,?)";
 	final String UPDATE = "UPDATE Telefonos SET telefono_numPersonal=?, telefono_numCelular=?, telefono_numLaboral=? WHERE telefono_id=?";
 	final String DELETE = "DELETE FROM Telefonos WHERE telefono_id=?";
-	final String SELECT_BY_ID = "SELECT * FROM Telefonos WHERE telefono_id=?";
+	final String SELECT_BY_ID = "SELECT * FROM [TPAnual].[dbo].Telefonos WHERE telefono_id=?";
 	final String SELECT_ALL = "SELECT * FROM Telefono ORDER BY telefono_id";
 
 	@Override
@@ -122,21 +122,22 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-
+		
 		System.out.println("ID tel: "+id);
 		try {
 			con = SQLDatabaseConnection.conectar();
-
+			
+			
 			ps = con.prepareStatement(SELECT_BY_ID);
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
-
+			
 			if (rs.next()) {
 
 				Telefono t = new Telefono();
 
 				t.setId(rs.getInt("telefono_id"));
-				t.setNumPersonal(rs.getNString("telefono_numPersonal"));
+				t.setNumPersonal(rs.getString("telefono_numPersonal"));
 				t.setNumCelular(rs.getString("telefono_numCelular"));
 				t.setNumLaboral(rs.getString("telefono_numLaboral"));
 

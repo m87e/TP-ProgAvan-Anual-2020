@@ -19,7 +19,7 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 	final String INSERT = "INSERT INTO Pasaportes (pasaporte_numero, pasaporte_autEmision, pasaporte_fechaEmision, pasaporte_fechaVencimiento, pasaporte_paisID) values (?,?,?,?,?)";
 	final String UPDATE = "UPDATE INTO Pasaportes pasaporte_numero=?, pasaporte_autEmision=?, pasaporte_fechaEmision=?, pasaporte_fechaVencimiento=?, pasaporte_paisID=? WHERE pasaporte_id=? ";
 	final String DELETE = "DELETE FROM Pasaportes WHERE pasaporte_id=?";
-	final String SELECT_BY_NUMBER = "SELECT * FROM Pasaportes WHERE pasaporte_numero=?";
+	final String SELECT_BY_ID = "SELECT * FROM Pasaportes WHERE pasaporte_id=?";
 	final String SELECT_ALL = "SELECT * FROM Pasaportes ORDER BY pasaporte_id";
 
 	@Override
@@ -174,7 +174,7 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 	}
 
 	@Override
-	public Pasaporte ObtenerPasaportePorNumero(String numeroPasaporte) throws IOException {
+	public Pasaporte ObtenerPasaportePorID(int id) throws IOException {
 		// TODO Auto-generated method stub
 
 		Connection con = null;
@@ -184,8 +184,8 @@ public class PasaporteDAOImplDatabase implements PasaporteDAO {
 		try {
 			con = SQLDatabaseConnection.conectar();
 
-			ps = con.prepareStatement(SELECT_BY_NUMBER);
-			ps.setString(1, numeroPasaporte);
+			ps = con.prepareStatement(SELECT_BY_ID);
+			ps.setInt(1, id);
 			rs = ps.executeQuery();
 
 			if (rs.next()) {

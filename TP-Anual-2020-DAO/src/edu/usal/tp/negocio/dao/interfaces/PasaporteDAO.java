@@ -14,7 +14,7 @@ public interface PasaporteDAO {
 
 	void EliminarPasaporte(Pasaporte pasaporte, Connection con) throws IOException;
 
-	Pasaporte ObtenerPasaportePorNumero(String numeroPasaporte) throws IOException;
+	Pasaporte ObtenerPasaportePorID(int id) throws IOException;
 
 	List<Pasaporte> GetAll() throws IOException;
 }

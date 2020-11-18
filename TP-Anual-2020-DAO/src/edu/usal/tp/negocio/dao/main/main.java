@@ -2,6 +2,7 @@ package edu.usal.tp.negocio.dao.main;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.DirectoryIteratorException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -21,12 +22,15 @@ import edu.usal.tp.negocio.dao.dominio.Provincia;
 import edu.usal.tp.negocio.dao.dominio.Telefono;
 import edu.usal.tp.negocio.dao.factory.AerolineaFactory;
 import edu.usal.tp.negocio.dao.factory.ClienteFactory;
+import edu.usal.tp.negocio.dao.factory.DirCompletaFactory;
 import edu.usal.tp.negocio.dao.factory.PaisFactory;
 import edu.usal.tp.negocio.dao.factory.ProvinciaFactory;
 import edu.usal.tp.negocio.dao.factory.TelefonoFactory;
 import edu.usal.tp.negocio.dao.implementaciones.AerolineaDAOImplDatabase;
+import edu.usal.tp.negocio.dao.implementaciones.TelefonoDAOImplDatabase;
 import edu.usal.tp.negocio.dao.interfaces.AerolineaDAO;
 import edu.usal.tp.negocio.dao.interfaces.ClienteDAO;
+import edu.usal.tp.negocio.dao.interfaces.DirCompletaDAO;
 import edu.usal.tp.negocio.dao.interfaces.PaisesDAO;
 import edu.usal.tp.negocio.dao.interfaces.ProvinciasDAO;
 import edu.usal.tp.negocio.dao.interfaces.TelefonoDAO;
@@ -39,9 +43,23 @@ public class main {
 
 		TelefonoDAO impTelDAO = TelefonoFactory.GetImplementation("database");
 		ClienteDAO clienteDAO = ClienteFactory.GetImplementation("database");
-
+		DirCompletaDAO dirDAO = DirCompletaFactory.GetImplementation("database");
 		// Connection con = SQLDatabaseConnection.conectar();
 
+		Telefono tel = new Telefono();
+		DireccionCompleta dir = new DireccionCompleta();
+		TelefonoDAO telDAO = TelefonoFactory.GetImplementation("database");
+		
+		dir = dirDAO.ObtenerDirCompletaPorID(3);
+		System.out.println(dir.getId());
+		
+		tel = telDAO.ObtenerTelefonoPorID(4);
+		System.out.println(tel.getId());
+		
+	
+		
+
+		
 	}
 
 	/*
@@ -151,4 +169,6 @@ public class main {
 	 * 
 	 * default: break; }
 	 */
+	
+	
 }
