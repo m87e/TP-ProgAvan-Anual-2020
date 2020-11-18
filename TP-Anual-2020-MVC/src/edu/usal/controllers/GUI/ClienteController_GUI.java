@@ -39,7 +39,7 @@ public class ClienteController_GUI {
 		DireccionCompleta dir = this.viewGUI.cargarDirCompleta();
 		PasajeroFrecuente pasFrec = this.viewGUI.cargarPasFrecuente();
 		
-		this.manager.ActualizarCliente(c, p, tel, dir, pasFrec);
+		this.manager.ModificacionCliente(c, p, tel, dir, pasFrec);
 	}
 
 	private void bajaCliente() {
@@ -72,7 +72,7 @@ public class ClienteController_GUI {
 		Telefono tel = new Telefono();
 		
 		tel = this.manager.ObtenerTelefono(id);
-		
+		System.out.println("controller"+id);
 		return tel;
 	}
 	public Pasaporte mostrarPasaporte (String numeroPas) {

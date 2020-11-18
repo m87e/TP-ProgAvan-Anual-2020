@@ -638,13 +638,17 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		textField_ciudad.setText(dirAux.getCiudad());
 		textField_CP.setText(dirAux.getCodigoPostal());
 		
+		System.out.println(c.getTelefono().getId());
 		telAux = clienteController.mostrarTelefono(c.getTelefono().getId());
+		
+		System.out.println(telAux);
+		System.out.println(telAux.getId());
 		
 		textField_nroPersonal.setText(telAux.getNumPersonal());
 		textField_nroCelular.setText(telAux.getNumCelular());
 		textField_nroLaboral.setText(telAux.getNumLaboral());
 		
-		pasAux = clienteController.mostrarPasaporte(c.getPasaporte().getNumeroPasaporte());
+		//pasAux = clienteController.mostrarPasaporte(c.getPasaporte().getNumeroPasaporte());
 				
 		textField_nroPasaporte.setText(pasAux.getNumeroPasaporte());
 		//dateChooser_fechaVencimiento.setDate(Date.valueOf(c.getPasaporte().getFechaVencimiento()));

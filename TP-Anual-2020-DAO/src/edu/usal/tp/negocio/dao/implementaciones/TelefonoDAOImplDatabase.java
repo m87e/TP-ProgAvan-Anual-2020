@@ -123,6 +123,7 @@ public class TelefonoDAOImplDatabase implements TelefonoDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
+		System.out.println("ID tel: "+id);
 		try {
 			con = SQLDatabaseConnection.conectar();
 

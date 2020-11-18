@@ -198,6 +198,7 @@ public class ClienteManager {
 
 		try {
 			tel = this.telefonoDAODatabase.ObtenerTelefonoPorID(id);
+			System.out.println("manager"+id);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
