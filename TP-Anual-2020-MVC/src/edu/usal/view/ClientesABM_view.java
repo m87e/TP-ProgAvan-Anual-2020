@@ -448,7 +448,7 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 			String dniToSearch = (partes[2]).trim().replace(" ", "");
 			
 			cli = clienteController.mostrarClientePorDni(dniToSearch);
-			
+			System.out.println("Cliente a modificar: "+cli.getId());
 			MostrarCliente(cli);
 		
 		}
@@ -470,26 +470,6 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		
 		if(e.getSource()== btnGuardar) {
 			
-			/*if(estadoPanel == EstadoDePanel.ALTA) {
-			
-				System.out.println("iniciando carga");
-				cargarCliente();
-				cargarDirCompleta();
-				cargarPasaporte();
-				cargarPasFrecuente();
-				cargarTelefono();
-				System.out.println("guardar");
-				try {
-					System.out.println("procesando alta...");
-					clienteController.altaCliente();
-					System.out.println("alta realizada!");
-				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				Menu_view.RecargarPanelCambiante(this);
-
-			}*/
 			if(estadoPanel == EstadoDePanel.ALTA) {
 				try {
 					clienteController.altaCliente();
@@ -501,14 +481,16 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 				
 				}		
 			if(estadoPanel == EstadoDePanel.MODIFICACION) {
-			//	String a = (String) listCliente.getSelectedValue();
-				try {
-					
-					clienteController.modificarCliente();
-				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				String cliSelect = (String) listCliente.getSelectedValue();
+				String[] partes = cliSelect.split("\\|");
+				//String dniToSearch = ("'"+partes[2]+"'").trim().replace(" ", "");
+				String dniToSearch = (partes[2]).trim().replace(" ", "");
+				
+				cli = clienteController.mostrarClientePorDni(dniToSearch);
+				
+				//clienteController.modificarCliente();
+				
+				ModificarCliente(cli.getId(),cli);
 				
 				Menu_view.RecargarPanelCambiante(this);
 			}
@@ -657,5 +639,13 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 	
 	private void BorrarCliente(Cliente cli) {
 		clienteController.bajaCliente(cli);
+	}
+	private void ModificarCliente(int cliID,Cliente cliObj) {
+		try {
+			clienteController.modificarCliente(cliID,cliObj);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

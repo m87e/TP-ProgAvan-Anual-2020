@@ -32,13 +32,26 @@ public class ClienteController_GUI {
 		this.viewGUI = viewGUI;
 	}
 
-	public void modificarCliente() throws ParseException {
+	public void modificarCliente(int cliID, Cliente cli) throws ParseException {
 		Cliente c = this.viewGUI.cargarCliente();
 		Pasaporte p = this.viewGUI.cargarPasaporte();
 		Telefono tel = this.viewGUI.cargarTelefono();
 		DireccionCompleta dir = this.viewGUI.cargarDirCompleta();
 		PasajeroFrecuente pasFrec = this.viewGUI.cargarPasFrecuente();
 		
+		c.setId(cliID);
+		
+		
+		dir.setId(cli.getDireccionCompleta().getId());
+		p.setId(cli.getPasaporte().getId());
+		tel.setId(cli.getTelefono().getId());
+		pasFrec.setId(cli.getPasajeroFrecuente().getId());
+		
+		
+		System.out.println(c.getApellido());
+		System.out.println(c.getDni());
+		System.out.println(dir.getId());
+		System.out.println(dir.getAltura());
 		this.manager.ModificacionCliente(c, p, tel, dir, pasFrec);
 	}
 
