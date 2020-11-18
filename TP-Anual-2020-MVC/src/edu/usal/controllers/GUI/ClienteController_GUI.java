@@ -91,9 +91,6 @@ public class ClienteController_GUI {
 	}
 	
 	
-	private void mostrarClientePorPasaporte() {
-
-	}
 	
 	public void altaCliente() throws ParseException {
 		

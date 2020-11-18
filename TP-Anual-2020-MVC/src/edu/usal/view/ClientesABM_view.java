@@ -355,7 +355,7 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 			}
 		});*/
 				
-			initComponents();
+		/*	initComponents();
 			listCliente.setModel(new AbstractListModel() {
 			String[] values = new String[] {};
 			public int getSize() {
@@ -364,8 +364,7 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 			public Object getElementAt(int index) {
 				return values[index];
 			}
-		});
-	//	modelo.addElement("HOLA MUNDO");
+		});*/
 		
 		ArrayList<Cliente> listaAux = (ArrayList<Cliente>) clienteController.mostrarTodo();
 		
@@ -521,44 +520,7 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		}
 	}
 	
-	private void SaveCliente(Cliente cli) {
-		//Datos personales
-		cli.setNombre(textField_nombre.getText());
-		cli.setApellido(textField_apellido.getText());
-		cli.setDni(textField_DNI.getText());
-		cli.setCuit(textField_cuit.getText());
-		String fechaNac = sdf.format(dateChooser_fechaNac.getDateFormatString());
-		cli.setFechaNac(LocalDate.parse(fechaNac,dtf));
-		cli.setEmail(textField_email.getText());
-		
-		//Direccion complete
-		cli.getDireccionCompleta().setCalle(textField_calle.getText());
-		cli.getDireccionCompleta().setAltura(textField_altura.getText());
-		cli.getDireccionCompleta().setCiudad(textField_ciudad.getText());
-		cli.getDireccionCompleta().setCodigoPostal(textField_CP.getText());
-		//pendiente lista provincia
-		//pendiente lista paises
-		
-		//Telefono
-		cli.getTelefono().setNumPersonal(textField_nroPersonal.getText());
-		cli.getTelefono().setNumCelular(textField_nroCelular.getText());
-		cli.getTelefono().setNumLaboral(textField_nroLaboral.getText());
-		
-		//Pasaporte
-		cli.getPasaporte().setNumeroPasaporte(textField_nroPasaporte.getText());
-		String fechaVen = sdf.format(dateChooser_fechaVencimiento.getDate());
-		cli.getPasaporte().setFechaVencimiento(LocalDate.parse(fechaVen,dtf));
-		String fechaEmi = sdf.format(dateChooser_fechaEmision.getDate());
-		cli.getPasaporte().setFechaEmision(LocalDate.parse(fechaEmi,dtf));
-		//pendiente lista paises
-		
-		//Pasajero frecuente
-		cli.getPasajeroFrecuente().setNumeroPF(textField_numeroPasaFrec.getText());
-		//Setear la alianza
-		//Setear la aerolinea
-		cli.getPasajeroFrecuente().setCategoria(textField_categoria.getText());
-		
-		}
+
 	
 	public Cliente cargarCliente() {
 		// TODO Auto-generated method stub

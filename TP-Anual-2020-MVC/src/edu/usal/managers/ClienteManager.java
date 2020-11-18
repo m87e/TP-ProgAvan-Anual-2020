@@ -159,6 +159,8 @@ public class ClienteManager {
 			
 			
 			this.clienteDAODatabase.EliminarCliente(cli, con);
+			con.commit();
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
