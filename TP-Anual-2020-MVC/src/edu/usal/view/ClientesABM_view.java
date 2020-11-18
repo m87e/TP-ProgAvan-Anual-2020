@@ -456,6 +456,17 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 
 		if(e.getSource()== btnBorrar) {
 		
+			estadoPanel = EstadoDePanel.BAJA;
+			
+			String cliSelect = (String) listCliente.getSelectedValue();
+			String[] partes = cliSelect.split("\\|");
+			String dniToSearch = (partes[2]).trim().replace(" ", "");
+			
+			cli = clienteController.mostrarClientePorDni(dniToSearch);
+			//Agregar pantalla emergente que solicite confirmacion
+			
+			BorrarCliente(cli);
+			Menu_view.RecargarPanelCambiante(this);
 		}
 		
 		if(e.getSource()== btnGuardar) {
@@ -680,5 +691,9 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		textField_categoria.setText(pasFreAux.getCategoria());
 		textField_alianza.setText(pasFreAux.getAlianza().toString());
 				
+	}
+	
+	private void BorrarCliente(Cliente cli) {
+		clienteController.bajaCliente(cli);
 	}
 }

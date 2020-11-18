@@ -42,8 +42,8 @@ public class ClienteController_GUI {
 		this.manager.ModificacionCliente(c, p, tel, dir, pasFrec);
 	}
 
-	private void bajaCliente() {
-
+	public void bajaCliente(Cliente cli) {
+		this.manager.BajaCliente(cli);
 	}
 
 	public Cliente mostrarClientePorDni(String dni) {

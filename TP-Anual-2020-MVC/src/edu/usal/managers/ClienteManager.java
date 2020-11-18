@@ -150,6 +150,47 @@ public class ClienteManager {
 		}
 
 	}
+	public void BajaCliente(Cliente cli) {
+		Connection con = null;
+
+		try {
+			con = SQLDatabaseConnection.conectar();
+			con.setAutoCommit(false);
+			
+			
+			this.clienteDAODatabase.EliminarCliente(cli, con);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Ocurrio un error al cargar los datos en la base de datos");
+			if (con != null) {
+				SQLDatabaseConnection.rollback(con);
+				System.err.print("Se realizo un rollback de la transaccion");
+			}
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Ocurrio un error al cargar los datos");
+			if (con != null) {
+				SQLDatabaseConnection.rollback(con);
+				System.err.print("Se realizo un rollback de la transaccion");
+			}
+
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+
+			try {
+				con.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+	}
 
 	public List<Cliente> MostrarClientes() {
 
