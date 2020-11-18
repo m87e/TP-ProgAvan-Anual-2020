@@ -618,7 +618,10 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 	
 	private void MostrarCliente(Cliente c) {
 		LocalDate d = LocalDate.now();
-		DireccionCompleta dirAux = new DireccionCompleta();				
+		DireccionCompleta dirAux = new DireccionCompleta();		
+		Telefono telAux = new Telefono();
+		Pasaporte pasAux = new Pasaporte();
+		PasajeroFrecuente pasFreAux = new PasajeroFrecuente();
 		
 		textField_nombre.setText(c.getNombre());
 		textField_apellido.setText(c.getApellido());
@@ -635,20 +638,26 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		textField_ciudad.setText(dirAux.getCiudad());
 		textField_CP.setText(dirAux.getCodigoPostal());
 		
-		textField_nroPersonal.setText(c.getTelefono().getNumPersonal());
-		textField_nroCelular.setText(c.getTelefono().getNumCelular());
-		textField_nroLaboral.setText(c.getTelefono().getNumLaboral());
+		telAux = clienteController.mostrarTelefono(c.getTelefono().getId());
+		
+		textField_nroPersonal.setText(telAux.getNumPersonal());
+		textField_nroCelular.setText(telAux.getNumCelular());
+		textField_nroLaboral.setText(telAux.getNumLaboral());
+		
+		pasAux = clienteController.mostrarPasaporte(c.getPasaporte().getNumeroPasaporte());
 				
-		textField_nroPasaporte.setText(c.getPasaporte().getNumeroPasaporte());
+		textField_nroPasaporte.setText(pasAux.getNumeroPasaporte());
 		//dateChooser_fechaVencimiento.setDate(Date.valueOf(c.getPasaporte().getFechaVencimiento()));
 		//dateChooser_fechaEmision.setDate(Date.valueOf(c.getPasaporte().getFechaEmision()));
 		dateChooser_fechaVencimiento.setDate(Date.valueOf(d));
 		dateChooser_fechaEmision.setDate(Date.valueOf(d));
+		textField_paisEmision.setText(pasAux.getAutoridadEmision());
 		
+		pasFreAux = clienteController.mostrasPasFre(c.getPasajeroFrecuente().getId());
 		
-		
-		textField_numeroPasaFrec.setText(c.getPasajeroFrecuente().getNumeroPF());
-		textField_categoria.setText(c.getPasajeroFrecuente().getCategoria());
+		textField_numeroPasaFrec.setText(pasFreAux.getNumeroPF());
+		textField_categoria.setText(pasFreAux.getCategoria());
+		textField_alianza.setText(pasFreAux.getAlianza().toString());
 				
 	}
 	

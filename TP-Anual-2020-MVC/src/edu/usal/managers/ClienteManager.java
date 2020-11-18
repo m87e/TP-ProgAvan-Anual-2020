@@ -193,5 +193,44 @@ public class ClienteManager {
 				 
 		 return dir;
 	}
+	
+	public Telefono ObtenerTelefono (int id) {
+		Telefono tel = new Telefono ();
+		
+		try {
+			tel = this.telefonoDAODatabase.ObtenerTelefonoPorID(id);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return tel;
+	}
+	
+	public Pasaporte ObtenerPasaporte (String numeroPas) {
+		Pasaporte pas = new Pasaporte();
+		
+		try {
+			pas = this.pasaporteDAODatabase.ObtenerPasaportePorNumero(numeroPas);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return pas;
+	}
+	
+	public PasajeroFrecuente ObtenerPasFrecuente (int id) {
+		PasajeroFrecuente pasFre = new PasajeroFrecuente();
+		
+		try {
+			pasFre = this.pasajeroFrecuenteDAODatabase.ObtenerPasajeroFrecuentePorID(id);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return pasFre;
+	}
 
 }

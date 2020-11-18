@@ -68,6 +68,29 @@ public class ClienteController_GUI {
 		
 		return dir;
 	}
+	public Telefono mostrarTelefono(int id) {
+		Telefono tel = new Telefono();
+		
+		tel = this.manager.ObtenerTelefono(id);
+		
+		return tel;
+	}
+	public Pasaporte mostrarPasaporte (String numeroPas) {
+		Pasaporte pas = new Pasaporte();
+		
+		pas = this.manager.ObtenerPasaporte(numeroPas);
+		
+		return pas;
+	}
+	public PasajeroFrecuente mostrasPasFre (int id) {
+		PasajeroFrecuente pasFre = new PasajeroFrecuente();
+		
+		pasFre = this.manager.ObtenerPasFrecuente(id);
+		
+		return pasFre;
+	}
+	
+	
 	private void mostrarClientePorPasaporte() {
 
 	}
