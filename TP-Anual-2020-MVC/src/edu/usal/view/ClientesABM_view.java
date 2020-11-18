@@ -125,8 +125,12 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		
 		btnModificar = new JButton("Modificar");
 		panel.add(btnModificar);
+		btnModificar.addActionListener(this);
+		panel.add(btnModificar);
 		
 		btnBorrar = new JButton("Borrar");
+		panel.add(btnBorrar);
+		btnBorrar.addActionListener(this);
 		panel.add(btnBorrar);
 		
 		JPanel panel_1 = new JPanel();
@@ -322,6 +326,8 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		
 		btnCancelar = new JButton("Cancelar");
 		panel_7.add(btnCancelar);
+		btnCancelar.addActionListener(this);
+		panel_7.add(btnCancelar);
 		
 		JPanel panel_8 = new JPanel();
 		springLayout.putConstraint(SpringLayout.NORTH, panel_8, -34, SpringLayout.NORTH, panel_1);
@@ -351,7 +357,7 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 				return values[index];
 			}
 		});
-		modelo.addElement("HOLA MUNDO");
+	//	modelo.addElement("HOLA MUNDO");
 		
 		ArrayList<Cliente> listaAux = (ArrayList<Cliente>) clienteController.mostrarTodo();
 		
@@ -362,7 +368,8 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 							  listaAux.get(i).getEmail()
 							  );
 		}
-
+		
+		listCliente.setModel(modelo);
 		
 		scrollPane.setViewportView(listCliente);
 		springLayout.putConstraint(SpringLayout.SOUTH, panel_8, -6, SpringLayout.NORTH, panel_1);
@@ -389,6 +396,9 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		JLabel lblPasajeroFrecuente = new JLabel("Pasajero Frecuente");
 		lblPasajeroFrecuente.setFont(new Font("Lucida Sans", Font.BOLD, 15));
 		panel_8.add(lblPasajeroFrecuente);
+		
+		btnGuardar.setEnabled(false);
+		btnCancelar.setEnabled(false);
 	}
 	
 
@@ -400,7 +410,7 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		//Cliente cli;
+		Cliente cli = null;
 		
 		if(e.getSource()== btnAlta) {
 			System.out.println("seteando alta...");
@@ -417,11 +427,27 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 		}
 		
 		if(e.getSource()== btnModificar) {
+			System.out.println("Seteando update...");
+			estadoPanel = EstadoDePanel.MODIFICACION;
+			
+			btnAlta.setEnabled(false);
+			btnBorrar.setEnabled(false);
+			btnGuardar.setEnabled(true);
+			btnCancelar.setEnabled(true);
+			
+			String cliSelect = (String) listCliente.getSelectedValue();
+			String[] partes = cliSelect.split("\\|");
+			//String dniToSearch = ("'"+partes[2]+"'").trim().replace(" ", "");
+			String dniToSearch = (partes[2]).trim().replace(" ", "");
+			
+			cli = clienteController.mostrarClientePorDni(dniToSearch);
+			
+			MostrarCliente(cli);
 		
 		}
 
 		if(e.getSource()== btnBorrar) {
-	
+		
 		}
 		
 		if(e.getSource()== btnGuardar) {
@@ -446,19 +472,26 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 				Menu_view.RecargarPanelCambiante(this);
 
 			}*/
-			
-			try {
-				clienteController.altaCliente();
-			} catch (ParseException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			if(estadoPanel == EstadoDePanel.ALTA) {
+				try {
+					clienteController.altaCliente();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				Menu_view.RecargarPanelCambiante(this);
+				
+				}		
+			if(estadoPanel == EstadoDePanel.MODIFICACION) {
+				String a = (String) listCliente.getSelectedValue();
+				clienteController.mostrarClientePorDni(a);
+				
 			}
-			Menu_view.RecargarPanelCambiante(this);
-			
 			}
 		
 		if(e.getSource()== btnCancelar){
-			
+			Menu_view.RecargarPanelCambiante(this);
+			estadoPanel = EstadoDePanel.NADA;
 		}
 	}
 	
@@ -584,25 +617,35 @@ public class ClientesABM_view extends JPanel implements ActionListener{
 	}
 	
 	private void MostrarCliente(Cliente c) {
+		LocalDate d = LocalDate.now();
+		DireccionCompleta dirAux = new DireccionCompleta();				
+		
 		textField_nombre.setText(c.getNombre());
 		textField_apellido.setText(c.getApellido());
 		textField_DNI.setText(c.getDni());
 		textField_cuit.setText(c.getCuit());
-		dateChooser_fechaNac.setDate(Date.valueOf(c.getFechaNac()));
+		//dateChooser_fechaNac.setDate(Date.valueOf(c.getFechaNac()));
+		dateChooser_fechaNac.setDate(Date.valueOf(d));
 		textField_email.setText(c.getEmail());
 				
-		textField_calle.setText(c.getDireccionCompleta().getCalle());
-		textField_altura.setText(c.getDireccionCompleta().getAltura());
-		textField_ciudad.setText(c.getDireccionCompleta().getCiudad());
-		textField_CP.setText(c.getDireccionCompleta().getCodigoPostal());
+		dirAux = clienteController.mostrarDirCompleta(c.getDireccionCompleta().getId());
+		
+		textField_calle.setText(dirAux.getCalle());
+		textField_altura.setText(dirAux.getAltura());
+		textField_ciudad.setText(dirAux.getCiudad());
+		textField_CP.setText(dirAux.getCodigoPostal());
 		
 		textField_nroPersonal.setText(c.getTelefono().getNumPersonal());
 		textField_nroCelular.setText(c.getTelefono().getNumCelular());
 		textField_nroLaboral.setText(c.getTelefono().getNumLaboral());
 				
 		textField_nroPasaporte.setText(c.getPasaporte().getNumeroPasaporte());
-		dateChooser_fechaVencimiento.setDate(Date.valueOf(c.getPasaporte().getFechaVencimiento()));
-		dateChooser_fechaEmision.setDate(Date.valueOf(c.getPasaporte().getFechaEmision()));
+		//dateChooser_fechaVencimiento.setDate(Date.valueOf(c.getPasaporte().getFechaVencimiento()));
+		//dateChooser_fechaEmision.setDate(Date.valueOf(c.getPasaporte().getFechaEmision()));
+		dateChooser_fechaVencimiento.setDate(Date.valueOf(d));
+		dateChooser_fechaEmision.setDate(Date.valueOf(d));
+		
+		
 		
 		textField_numeroPasaFrec.setText(c.getPasajeroFrecuente().getNumeroPF());
 		textField_categoria.setText(c.getPasajeroFrecuente().getCategoria());

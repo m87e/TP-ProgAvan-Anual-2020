@@ -26,8 +26,8 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 	final String INSERT = "INSERT INTO Clientes (cliente_nombre, cliente_apellido, cliente_dni, cliente_cuit, cliente_fechaNac, cliente_email, cliente_dirCompletaID, cliente_telID, cliente_pasaporteID, cliente_pasFreID) values (?,?,?,?,?,?,?,?,?,?)";
 	final String UPDATE = "UPDATE Clientes SET cliente_nombre=?, cliente_apellido=?, cliente_dni=?, cliente_cuit=?, cliente_fechaNac=?, cliente_email=?, cliente_dirCompletaID=?, cliente_telID=?, cliente_pasaporteID=?, cliente_pasFreID=? WHERE cliente_id=?";
 	final String DELETE = "DELETE FROM Clientes WHERE cliente_id=?";
-	final String SELECT_BY_DNI = "SELECT * FROM Clientes WHERE cliente_dni=?";
-	final String SELECT_ALL = "SELECT * FROM Clientes ORDER BY cliente_id";
+	final String SELECT_BY_DNI = "SELECT * FROM [TPAnual].[dbo].[Clientes] WHERE cliente_dni=?";
+	final String SELECT_ALL = "SELECT * FROM [TPAnual].[dbo].[Clientes] ORDER BY cliente_id";
 
 	@Override
 	public void AgregarCliente(Cliente cliente, Connection con) throws IOException, ParseException {
@@ -219,10 +219,11 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 
 			ps = con.prepareStatement(SELECT_BY_DNI);
 			ps.setString(1, dni);
+			System.out.println(ps);
 			rs = ps.executeQuery();
+			System.out.println(rs);
 
 			if (rs.next()) {
-
 				Cliente c = new Cliente();
 				DireccionCompleta dir = new DireccionCompleta();
 				Telefono tel = new Telefono();

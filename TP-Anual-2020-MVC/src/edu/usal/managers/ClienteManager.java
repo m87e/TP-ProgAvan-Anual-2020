@@ -166,5 +166,32 @@ public class ClienteManager {
 
 		return listadoClientes;
 	}
+	
+	public Cliente ObtenerCliente(String dni) {
+		Cliente cli = new Cliente();
+		
+		try {
+			cli = this.clienteDAODatabase.ObtenerClientePorDNI(dni);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+		 return cli;
+	}
+	
+	public DireccionCompleta ObtenerDirCompleta(int id) {
+		DireccionCompleta dir = new DireccionCompleta();
+		
+		
+		try {
+			dir = this.dirCompletaDAODatabase.ObtenerDirCompletaPorID(id);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				 
+		 return dir;
+	}
 
 }
