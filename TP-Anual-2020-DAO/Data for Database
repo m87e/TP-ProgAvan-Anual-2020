@@ -13,7 +13,7 @@ SET IDENTITY_INSERT Alianzas OFF
 
 SET IDENTITY_INSERT Paises ON
 
-INSERT INTO Paises (pais_id, pais_nombr	
+INSERT INTO Paises (pais_id, pais_nombre)
 VALUES 
 	('1', 'Argentina'),
 	('2', 'Austria'),
