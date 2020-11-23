@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
 
+import edu.usal.controllers.GUI.AerolineaController_GUI;
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.tp.negocio.dao.dominio.Alianza;
 import edu.usal.view.AerolineaAlta_view;
@@ -11,6 +12,8 @@ import edu.usal.view.AerolineaAlta_view;
 public class AerolineaEvents implements ActionListener {
 
 	private AerolineaAlta_view view;
+	// private AerolineaController_GUI aerolineaController = new
+	// AerolineaController_GUI(this);
 
 	public AerolineaEvents(AerolineaAlta_view view) {
 		this.view = view;
@@ -28,8 +31,7 @@ public class AerolineaEvents implements ActionListener {
 
 			aerolinea.setAlianza(Alianza.valueOf(alianza));
 
-			this.view.setAerolinea(aerolinea);
-
+			// controller.cargarAerolinea(aerolinea);
 		}
 
 		if (arg0.getSource() == this.view.getBtnCancel()) {

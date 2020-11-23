@@ -1,12 +1,12 @@
 package edu.usal.view;
 
-import javax.swing.JPanel;
 import javax.swing.JLabel;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
 
+import edu.usal.controllers.GUI.AerolineaController_GUI;
 import edu.usal.events.AerolineaEvents;
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 
@@ -15,13 +15,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class AerolineaAlta_view extends JFrame {
+
 	private JTextField textNombre;
 	private JTextField textAlianza;
 	private JLabel lblNombre;
 	private JLabel lblAlianza;
 	private JButton btnCancel;
 	private JButton btnSubmit;
-	private Aerolinea aerolinea;
 
 	public AerolineaAlta_view() {
 		setLayout(new FormLayout(
@@ -58,14 +58,6 @@ public class AerolineaAlta_view extends JFrame {
 	}
 
 	// Getter & setters
-
-	public Aerolinea getAerolinea() {
-		return aerolinea;
-	}
-
-	public void setAerolinea(Aerolinea aerolinea) {
-		this.aerolinea = aerolinea;
-	}
 
 	public JTextField getTextNombre() {
 		return textNombre;
