@@ -58,4 +58,12 @@ public class AerolineaManager {
 
 	}
 
+	public void ModificacionAerolinea(Aerolinea aerolinea) {
+
+	}
+
+	public void BajaAerolinea(Aerolinea aerolinea) {
+
+	}
+
 }

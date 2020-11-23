@@ -8,6 +8,7 @@ import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
 
 import edu.usal.events.AerolineaEvents;
+import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -20,6 +21,7 @@ public class AerolineaAlta_view extends JFrame {
 	private JLabel lblAlianza;
 	private JButton btnCancel;
 	private JButton btnSubmit;
+	private Aerolinea aerolinea;
 
 	public AerolineaAlta_view() {
 		setLayout(new FormLayout(
@@ -46,6 +48,8 @@ public class AerolineaAlta_view extends JFrame {
 
 		btnCancel = new JButton("Cancel");
 		add(btnCancel, "1, 10");
+		// agregar logica para regresar a la pantalla anterior
+		// getBtnCancel().addActionListener();
 
 		btnSubmit = new JButton("Submit");
 		add(btnSubmit, "2, 10");
@@ -54,6 +58,14 @@ public class AerolineaAlta_view extends JFrame {
 	}
 
 	// Getter & setters
+
+	public Aerolinea getAerolinea() {
+		return aerolinea;
+	}
+
+	public void setAerolinea(Aerolinea aerolinea) {
+		this.aerolinea = aerolinea;
+	}
 
 	public JTextField getTextNombre() {
 		return textNombre;

@@ -1,8 +1,11 @@
 package edu.usal.events;
 
 import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
 
+import edu.usal.tp.negocio.dao.dominio.Aerolinea;
+import edu.usal.tp.negocio.dao.dominio.Alianza;
 import edu.usal.view.AerolineaAlta_view;
 
 public class AerolineaEvents implements ActionListener {
@@ -10,7 +13,6 @@ public class AerolineaEvents implements ActionListener {
 	private AerolineaAlta_view view;
 
 	public AerolineaEvents(AerolineaAlta_view view) {
-		super();
 		this.view = view;
 	}
 
@@ -20,10 +22,13 @@ public class AerolineaEvents implements ActionListener {
 
 		if (arg0.getSource() == this.view.getBtnSubmit()) {
 
-			String nombre = this.view.getTextNombre().getText();
 			String alianza = this.view.getTextAlianza().getText();
+			Aerolinea aerolinea = new Aerolinea();
+			aerolinea.setNombre(this.view.getTextNombre().getText());
 
-			// llamo a aerolinea controller y vista
+			aerolinea.setAlianza(Alianza.valueOf(alianza));
+
+			this.view.setAerolinea(aerolinea);
 
 		}
 
