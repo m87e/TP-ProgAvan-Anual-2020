@@ -20,21 +20,23 @@ public class AerolineaController_GUI {
 		this.viewAlta = viewAlta;
 	}
 
-	public void altaAerolinea() {
+	public AerolineaController_GUI() {
 
-		// Aerolinea aerolinea = this.viewAlta.CargarAerolinea();
-		// this.manager.AltaAerolinea(aerolinea);
 	}
 
-	public void modificarAerolinea() {
+	public void AltaAerolinea(Aerolinea aerolinea) {
 
-		// Aerolinea aerolinea = this.viewGUI.cargarAerolinea();
-		// this.manager.ModificacionAerolinea();
+		this.manager.AltaAerolinea(aerolinea);
 	}
 
-	public void bajaAerolinea() {
+	public void ModificarAerolinea(Aerolinea aerolinea) {
 
-		// this.manager.BajaAerolinea();
+		this.manager.ModificacionAerolinea(aerolinea);
+	}
+
+	public void BajaAerolinea(Aerolinea aerolinea) {
+
+		this.manager.BajaAerolinea(aerolinea);
 	}
 
 }

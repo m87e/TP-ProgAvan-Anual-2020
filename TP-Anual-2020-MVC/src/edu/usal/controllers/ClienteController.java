@@ -19,11 +19,15 @@ import edu.usal.views.console.ClienteView;
 public class ClienteController {
 
 	private ClienteView viewConsola;
-	
+
 	private ClienteManager manager = new ClienteManager();
 
 	public ClienteController(ClienteView viewConsola) {
 		this.viewConsola = viewConsola;
+	}
+
+	public ClienteController() {
+
 	}
 
 	public void mostrarMenu() throws ClassNotFoundException, IOException, ParseException {

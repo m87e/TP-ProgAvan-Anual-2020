@@ -60,10 +60,90 @@ public class AerolineaManager {
 
 	public void ModificacionAerolinea(Aerolinea aerolinea) {
 
+		Connection con = null;
+
+		try {
+
+			con = SQLDatabaseConnection.conectar();
+			con.setAutoCommit(false);
+
+			this.aerolineaDAODatabase.ModificarAerolinea(aerolinea, con);
+
+			con.commit();
+			System.out.println("Aerolinea modificada - Operacion completada");
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Ocurrio un error al cargar los datos");
+			if (con != null) {
+				SQLDatabaseConnection.rollback(con);
+				System.err.print("Se realizo un rollback de la transaccion");
+			}
+		}
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Ocurrio un error al cargar los datos en la base de datos");
+			if (con != null) {
+				SQLDatabaseConnection.rollback(con);
+				System.err.print("Se realizo un rollback de la transaccion");
+			}
+
+		} finally {
+
+			try {
+				con.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
 	}
 
 	public void BajaAerolinea(Aerolinea aerolinea) {
+		Connection con = null;
 
+		try {
+
+			con = SQLDatabaseConnection.conectar();
+			con.setAutoCommit(false);
+
+			this.aerolineaDAODatabase.EliminarAerolinea(aerolinea, con);
+
+			con.commit();
+			System.out.println("Aerolinea eliminada - Operacion completada");
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Ocurrio un error al cargar los datos");
+			if (con != null) {
+				SQLDatabaseConnection.rollback(con);
+				System.err.print("Se realizo un rollback de la transaccion");
+			}
+		}
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Ocurrio un error al cargar los datos en la base de datos");
+			if (con != null) {
+				SQLDatabaseConnection.rollback(con);
+				System.err.print("Se realizo un rollback de la transaccion");
+			}
+
+		} finally {
+
+			try {
+				con.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
 	}
 
 }

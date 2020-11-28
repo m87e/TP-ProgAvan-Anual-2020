@@ -26,10 +26,10 @@ public class ClienteController_GUI {
 	private ClientesView clientesView;
 	private ClienteManager manager = new ClienteManager();
 //	private ClienteDAOImplDatabase cliImpl = ClienteFactory.GetImplementation("database");
-	//private ClienteDAOImplDatabase clienteDAODatabase;
+	// private ClienteDAOImplDatabase clienteDAODatabase;
 	private ClienteDAO clienteDAODatabase = ClienteFactory.GetImplementation("database");
-	//public ClienteController_GUI() {}
-	
+	// public ClienteController_GUI() {}
+
 	public ClienteController_GUI(ClientesABM_view viewGUI) {
 		this.viewGUI = viewGUI;
 	}
@@ -38,22 +38,35 @@ public class ClienteController_GUI {
 		this.clientesView = clientesView;
 	}
 
+	public ClienteController_GUI() {
+
+	}
+
+	public void altaCliente() throws ParseException {
+
+		Cliente c = this.viewGUI.cargarCliente();
+		Pasaporte p = this.viewGUI.cargarPasaporte();
+		Telefono tel = this.viewGUI.cargarTelefono();
+		DireccionCompleta dir = this.viewGUI.cargarDirCompleta();
+		PasajeroFrecuente pasFrec = this.viewGUI.cargarPasFrecuente();
+
+		this.manager.AltaCliente(c, p, tel, dir, pasFrec);
+	}
+
 	public void modificarCliente(int cliID, Cliente cli) throws ParseException {
 		Cliente c = this.viewGUI.cargarCliente();
 		Pasaporte p = this.viewGUI.cargarPasaporte();
 		Telefono tel = this.viewGUI.cargarTelefono();
 		DireccionCompleta dir = this.viewGUI.cargarDirCompleta();
 		PasajeroFrecuente pasFrec = this.viewGUI.cargarPasFrecuente();
-		
+
 		c.setId(cliID);
-		
-		
+
 		dir.setId(cli.getDireccionCompleta().getId());
 		p.setId(cli.getPasaporte().getId());
 		tel.setId(cli.getTelefono().getId());
 		pasFrec.setId(cli.getPasajeroFrecuente().getId());
-		
-		
+
 		System.out.println(c.getApellido());
 		System.out.println(c.getDni());
 		System.out.println(dir.getId());
@@ -66,68 +79,57 @@ public class ClienteController_GUI {
 	}
 
 	public Cliente mostrarClientePorDni(String dni) {
-		//dni = dni.substring(dni.indexOf("ID:")+3);
+		// dni = dni.substring(dni.indexOf("ID:")+3);
 		Cliente cli = new Cliente();
-		//cli = this.manager.ObtenerCliente(dni);
-		
+		// cli = this.manager.ObtenerCliente(dni);
+
 		try {
 			cli = this.clienteDAODatabase.ObtenerClientePorDNI(dni);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return cli;
 	}
 
-	public DireccionCompleta mostrarDirCompleta (int id) {
+	public DireccionCompleta mostrarDirCompleta(int id) {
 		DireccionCompleta dir = new DireccionCompleta();
-		
+
 		dir = this.manager.ObtenerDirCompleta(id);
-		
+
 		return dir;
 	}
+
 	public Telefono mostrarTelefono(int id) {
 		Telefono tel = new Telefono();
-		
+
 		tel = this.manager.ObtenerTelefono(id);
-		System.out.println("controller"+id);
+		System.out.println("controller" + id);
 		return tel;
 	}
-	public Pasaporte mostrarPasaporte (int id) {
+
+	public Pasaporte mostrarPasaporte(int id) {
 		Pasaporte pas = new Pasaporte();
-		
+
 		pas = this.manager.ObtenerPasaporte(id);
-		
+
 		return pas;
 	}
-	public PasajeroFrecuente mostrasPasFre (int id) {
+
+	public PasajeroFrecuente mostrasPasFre(int id) {
 		PasajeroFrecuente pasFre = new PasajeroFrecuente();
-		
+
 		pasFre = this.manager.ObtenerPasFrecuente(id);
-		
+
 		return pasFre;
 	}
-	
-	
-	
-	public void altaCliente() throws ParseException {
-		
-		Cliente c = this.viewGUI.cargarCliente();
-		Pasaporte p = this.viewGUI.cargarPasaporte();
-		Telefono tel = this.viewGUI.cargarTelefono();
-		DireccionCompleta dir = this.viewGUI.cargarDirCompleta();
-		PasajeroFrecuente pasFrec = this.viewGUI.cargarPasFrecuente();
-		
-		this.manager.AltaCliente(c, p, tel, dir, pasFrec);
-	}
-	
+
 	public List<Cliente> mostrarTodo() {
-		
+
 		List<Cliente> listadoClientes = new ArrayList();
 		listadoClientes = this.manager.MostrarClientes();
-		
-		
+
 		return listadoClientes;
 	}
 

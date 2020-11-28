@@ -12,8 +12,7 @@ import edu.usal.view.AerolineaAlta_view;
 public class AerolineaEvents implements ActionListener {
 
 	private AerolineaAlta_view view;
-	// private AerolineaController_GUI aerolineaController = new
-	// AerolineaController_GUI(this);
+	private AerolineaController_GUI aerolineaController = new AerolineaController_GUI();
 
 	public AerolineaEvents(AerolineaAlta_view view) {
 		this.view = view;
@@ -25,19 +24,27 @@ public class AerolineaEvents implements ActionListener {
 
 		if (arg0.getSource() == this.view.getBtnSubmit()) {
 
-			String alianza = this.view.getTextAlianza().getText();
-			Aerolinea aerolinea = new Aerolinea();
-			aerolinea.setNombre(this.view.getTextNombre().getText());
+			Aerolinea aerolinea = CargarAerolinea();
 
-			aerolinea.setAlianza(Alianza.valueOf(alianza));
-
-			// controller.cargarAerolinea(aerolinea);
+			aerolineaController.AltaAerolinea(aerolinea);
 		}
 
 		if (arg0.getSource() == this.view.getBtnCancel()) {
 
-			// retorno a la pagina anterior
+			// retorno a la pagina anterior o cerrar modal
 		}
+	}
+
+	private Aerolinea CargarAerolinea() {
+		// TODO Auto-generated method stub
+		Aerolinea aerolinea = new Aerolinea();
+		String alianza = this.view.getTextAlianza().getText();
+
+		aerolinea.setNombre(this.view.getTextNombre().getText());
+
+		aerolinea.setAlianza(Alianza.valueOf(alianza));
+
+		return aerolinea;
 	}
 
 }
