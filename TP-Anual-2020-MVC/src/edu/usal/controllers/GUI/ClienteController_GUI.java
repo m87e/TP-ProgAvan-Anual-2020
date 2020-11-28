@@ -18,10 +18,12 @@ import edu.usal.tp.negocio.dao.factory.ClienteFactory;
 import edu.usal.tp.negocio.dao.implementaciones.ClienteDAOImplDatabase;
 import edu.usal.tp.negocio.dao.interfaces.ClienteDAO;
 import edu.usal.view.ClientesABM_view;
+import edu.usal.view.ClientesView;
 
 public class ClienteController_GUI {
 
 	private ClientesABM_view viewGUI;
+	private ClientesView clientesView;
 	private ClienteManager manager = new ClienteManager();
 //	private ClienteDAOImplDatabase cliImpl = ClienteFactory.GetImplementation("database");
 	//private ClienteDAOImplDatabase clienteDAODatabase;
@@ -30,6 +32,10 @@ public class ClienteController_GUI {
 	
 	public ClienteController_GUI(ClientesABM_view viewGUI) {
 		this.viewGUI = viewGUI;
+	}
+
+	public ClienteController_GUI(ClientesView clientesView) {
+		this.clientesView = clientesView;
 	}
 
 	public void modificarCliente(int cliID, Cliente cli) throws ParseException {

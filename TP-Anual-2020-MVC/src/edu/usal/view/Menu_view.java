@@ -22,6 +22,7 @@ public class Menu_view implements ActionListener{
 	
 	private JMenu mnCliente;
 	private JMenuItem mntmABMCliente;
+	private JMenuItem mntmCliente;
 	
 	private JMenu mnVuelos;
 	private JMenuItem mntmABMVuelos;
@@ -72,6 +73,10 @@ public class Menu_view implements ActionListener{
 		mntmABMCliente = new JMenuItem("Gestion cliente");
 		mnCliente.add(mntmABMCliente);
 		mntmABMCliente.addActionListener(this);
+		
+		mntmCliente = new JMenuItem("Listado cliente");
+		mnCliente.add(mntmCliente);
+		mntmCliente.addActionListener(this);
 		
 		mnVentas = new JMenu("Ventas");
 		menuBar.add(mnVentas);
@@ -149,6 +154,15 @@ public class Menu_view implements ActionListener{
 			panelPivot.setVisible(true);
 			panelPivot.validate();
 		}
+		
+		if(e.getSource() == mntmCliente) {
+			panelCliente = new ClientesView();
+			panelPivot.removeAll();
+			panelPivot.add(panelCliente);
+			panelPivot.setVisible(true);
+			panelPivot.validate();
+		}
+		
 		
 		if(e.getSource() == mntmABMVenta) {
 			panelVenta = new VentasABM_view();

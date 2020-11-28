@@ -144,8 +144,7 @@ public class ClientesABM_view extends JPanel implements ActionListener {
 		panel_1.add(panel_2);
 		panel_2.setLayout(new GridLayout(6, 2, 0, 0));
 
-		JLabel varDPnombre = new JLabel("Nombre");
-		panel_2.add(varDPnombre);
+		
 
 		textField_nombre = new JTextField();
 		textField_nombre.setColumns(10);
