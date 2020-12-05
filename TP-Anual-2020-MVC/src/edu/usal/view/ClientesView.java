@@ -1,54 +1,28 @@
 package edu.usal.view;
 
 import javax.swing.JPanel;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.SpringLayout;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
-
-import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
-
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Vector;
-
 import edu.usal.controllers.GUI.ClienteController_GUI;
-import edu.usal.tp.negocio.dao.dominio.Aerolinea;
-import edu.usal.tp.negocio.dao.dominio.Alianza;
+import edu.usal.events.ClienteEvents;
 import edu.usal.tp.negocio.dao.dominio.Cliente;
-import edu.usal.tp.negocio.dao.dominio.DireccionCompleta;
-import edu.usal.tp.negocio.dao.dominio.Pais;
-import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
-import edu.usal.tp.negocio.dao.dominio.Pasaporte;
-import edu.usal.tp.negocio.dao.dominio.Provincia;
-import edu.usal.tp.negocio.dao.dominio.Telefono;
-import util.EstadoDePanel;
 import util.BuildTableModel;
-
 import javax.swing.JList;
-import javax.swing.AbstractListModel;
 import javax.swing.JTable;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ClientesView extends JPanel{
 
@@ -61,16 +35,10 @@ public class ClientesView extends JPanel{
 	private JButton btnModificar;
 	private JButton btnBorrar;
 
-	private static EstadoDePanel estadoPanel = EstadoDePanel.NADA;
-
 	private JScrollPane scrollPaneDatosPersonales;
-
-	private final static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-	private final static SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 
 	private ClienteController_GUI clienteController = new ClienteController_GUI(this);
 
-	private DefaultListModel<String> modelo;
 	private JTable table;
 	private JPanel panelDatosSec;
 	private JPanel panelDireccion;
@@ -96,6 +64,8 @@ public class ClientesView extends JPanel{
 	JTextField textField_categoria;
 	JTextField textField_autEmision;
 	JDateChooser dateChooser_fechaNac, dateChooser_fechaVencimiento, dateChooser_fechaEmision;
+	private JLabel varPFAerolinea;
+	private JTextField textField_aerolinea;
 
 	public ClientesView() {
 
@@ -139,9 +109,28 @@ public class ClientesView extends JPanel{
 					datosCargar.get(i).getFechaNac(), 
 					datosCargar.get(i).getEmail(),
 					datosCargar.get(i).getDireccionCompleta().getId(),
+					datosCargar.get(i).getDireccionCompleta().getCalle(),
+					datosCargar.get(i).getDireccionCompleta().getAltura(),
+					datosCargar.get(i).getDireccionCompleta().getCiudad(),
+					datosCargar.get(i).getDireccionCompleta().getCodigoPostal(),
 					datosCargar.get(i).getTelefono().getId(),
+					datosCargar.get(i).getTelefono().getNumPersonal(),
+					datosCargar.get(i).getTelefono().getNumCelular(),
+					datosCargar.get(i).getTelefono().getNumLaboral(),
 					datosCargar.get(i).getPasaporte().getId(),
-					datosCargar.get(i).getPasajeroFrecuente().getId()});
+					datosCargar.get(i).getPasaporte().getNumeroPasaporte(),
+					datosCargar.get(i).getPasaporte().getFechaVencimiento(),
+					datosCargar.get(i).getPasaporte().getFechaEmision(),
+					datosCargar.get(i).getPasaporte().getPais().getNombre(),
+					datosCargar.get(i).getPasaporte().getAutoridadEmision(),
+					datosCargar.get(i).getPasajeroFrecuente().getId(),
+					datosCargar.get(i).getPasajeroFrecuente().getNumeroPF(),
+					datosCargar.get(i).getPasajeroFrecuente().getAlianza().Oneworld,
+					datosCargar.get(i).getPasajeroFrecuente().getCategoria(),
+					datosCargar.get(i).getPasajeroFrecuente().getAerolinea().getNombre(),
+					
+			
+			});
 		}
 		
 		String[] header1 = {"id",
@@ -151,22 +140,54 @@ public class ClientesView extends JPanel{
 				  "CUIT", 
 				  "Fecha de nacimiento", 
 				  "e-mail",
-				  /*"Direccion", 
+				/*  "Direccion_ID",
+				  "Direccion_CALLE",
+				  "Direccion_ALTURA",
+				  "CIUDAD",
 				  "Telefono", 
 				  "Pasaporte",
-				  "Pasajero Frecuente"*/};
+				  "Pasajero Frecuente"
+				*/  
+				  };
 		
 		TableModel model = new BuildTableModel(data, header1);		
 		
 		
+		
 		table = new JTable(model);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AbstractTableModel model = (AbstractTableModel) table.getModel();
+				int selectedRowIndex = table.getSelectedRow();
+				
+				textField_calle.setText((String) model.getValueAt(selectedRowIndex, 8).toString());
+				textField_altura.setText((String) model.getValueAt(selectedRowIndex, 9).toString());
+				textField_ciudad.setText((String) model.getValueAt(selectedRowIndex, 10).toString());
+				
+				textField_nroPersonal.setText((String) model.getValueAt(selectedRowIndex, 12).toString());
+				textField_nroCelular.setText((String) model.getValueAt(selectedRowIndex, 13).toString());
+				textField_nroLaboral.setText((String) model.getValueAt(selectedRowIndex, 14).toString());
+				
+				textField_nroPasaporte.setText((String) model.getValueAt(selectedRowIndex, 16).toString());
+				//Fecha vencimiento
+				//Fecha emision
+				textField_Pas_pais.setText((String) model.getValueAt(selectedRowIndex, 19).toString());
+				textField_autEmision.setText((String) model.getValueAt(selectedRowIndex, 20).toString());
+				
+				textField_nroPasaporte.setText((String) model.getValueAt(selectedRowIndex, 22).toString());
+				textField_alianza.setText((String) model.getValueAt(selectedRowIndex, 23).toString());
+				textField_categoria.setText((String) model.getValueAt(selectedRowIndex, 24).toString());
+				textField_aerolinea.setText((String) model.getValueAt(selectedRowIndex, 25).toString());
+			}
+		});
 		scrollPaneDatosPersonales.setViewportView(table);
 		add(panel);
 		panel.setLayout(new GridLayout(3, 1, 0, 0));
 
 		btnAlta = new JButton("Alta");
 		panel.add(btnAlta);
-	//	btnAlta.addActionListener(this);
+		btnAlta.addActionListener(new ClienteEvents(this));
 		panel.add(btnAlta);
 
 		btnModificar = new JButton("Modificar");
@@ -202,7 +223,7 @@ public class ClientesView extends JPanel{
 		
 		panelPasFrecuente = new JPanel();
 		panelDatosSec.add(panelPasFrecuente);
-		panelPasFrecuente.setLayout(new GridLayout(4, 2, 0, 0));
+		panelPasFrecuente.setLayout(new GridLayout(5, 2, 0, 0));
 		
 		//Panel Direccion
 		JLabel lblDireccion = new JLabel("Direccion");
@@ -358,5 +379,289 @@ public class ClientesView extends JPanel{
 		textField_categoria = new JTextField();
 		panelPasFrecuente.add(textField_categoria);
 		textField_categoria.setColumns(10);
+		
+		varPFAerolinea = new JLabel("Aerolinea");
+		panelPasFrecuente.add(varPFAerolinea);
+		
+		textField_aerolinea = new JTextField();
+		panelPasFrecuente.add(textField_aerolinea);
+		textField_aerolinea.setColumns(10);
+	}
+	
+	// Getter & setters
+	public JButton getBtnAlta() {
+		return btnAlta;
+	}
+
+	public void setBtnAlta(JButton btnAlta) {
+		this.btnAlta = btnAlta;
+	}
+
+	public JButton getBtnModificar() {
+		return btnModificar;
+	}
+
+	public void setBtnModificar(JButton btnModificar) {
+		this.btnModificar = btnModificar;
+	}
+
+	public JButton getBtnBorrar() {
+		return btnBorrar;
+	}
+
+	public void setBtnBorrar(JButton btnBorrar) {
+		this.btnBorrar = btnBorrar;
+	}
+
+	public JScrollPane getScrollPaneDatosPersonales() {
+		return scrollPaneDatosPersonales;
+	}
+
+	public void setScrollPaneDatosPersonales(JScrollPane scrollPaneDatosPersonales) {
+		this.scrollPaneDatosPersonales = scrollPaneDatosPersonales;
+	}
+
+	public ClienteController_GUI getClienteController() {
+		return clienteController;
+	}
+
+	public void setClienteController(ClienteController_GUI clienteController) {
+		this.clienteController = clienteController;
+	}
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+
+	public JPanel getPanelDatosSec() {
+		return panelDatosSec;
+	}
+
+	public void setPanelDatosSec(JPanel panelDatosSec) {
+		this.panelDatosSec = panelDatosSec;
+	}
+
+	public JPanel getPanelDireccion() {
+		return panelDireccion;
+	}
+
+	public void setPanelDireccion(JPanel panelDireccion) {
+		this.panelDireccion = panelDireccion;
+	}
+
+	public JPanel getPanelTelefono() {
+		return panelTelefono;
+	}
+
+	public void setPanelTelefono(JPanel panelTelefono) {
+		this.panelTelefono = panelTelefono;
+	}
+
+	public JPanel getPanelPasaporte() {
+		return panelPasaporte;
+	}
+
+	public void setPanelPasaporte(JPanel panelPasaporte) {
+		this.panelPasaporte = panelPasaporte;
+	}
+
+	public JPanel getPanelPasFrecuente() {
+		return panelPasFrecuente;
+	}
+
+	public void setPanelPasFrecuente(JPanel panelPasFrecuente) {
+		this.panelPasFrecuente = panelPasFrecuente;
+	}
+
+	public JTextField getTextField_nombre() {
+		return textField_nombre;
+	}
+
+	public void setTextField_nombre(JTextField textField_nombre) {
+		this.textField_nombre = textField_nombre;
+	}
+
+	public JTextField getTextField_apellido() {
+		return textField_apellido;
+	}
+
+	public void setTextField_apellido(JTextField textField_apellido) {
+		this.textField_apellido = textField_apellido;
+	}
+
+	public JTextField getTextField_DNI() {
+		return textField_DNI;
+	}
+
+	public void setTextField_DNI(JTextField textField_DNI) {
+		this.textField_DNI = textField_DNI;
+	}
+
+	public JTextField getTextField_cuit() {
+		return textField_cuit;
+	}
+
+	public void setTextField_cuit(JTextField textField_cuit) {
+		this.textField_cuit = textField_cuit;
+	}
+
+	public JTextField getTextField_email() {
+		return textField_email;
+	}
+
+	public void setTextField_email(JTextField textField_email) {
+		this.textField_email = textField_email;
+	}
+
+	public JTextField getTextField_calle() {
+		return textField_calle;
+	}
+
+	public void setTextField_calle(JTextField textField_calle) {
+		this.textField_calle = textField_calle;
+	}
+
+	public JTextField getTextField_altura() {
+		return textField_altura;
+	}
+
+	public void setTextField_altura(JTextField textField_altura) {
+		this.textField_altura = textField_altura;
+	}
+
+	public JTextField getTextField_ciudad() {
+		return textField_ciudad;
+	}
+
+	public void setTextField_ciudad(JTextField textField_ciudad) {
+		this.textField_ciudad = textField_ciudad;
+	}
+
+	public JTextField getTextField_CP() {
+		return textField_CP;
+	}
+
+	public void setTextField_CP(JTextField textField_CP) {
+		this.textField_CP = textField_CP;
+	}
+
+	public JTextField getTextField_nroPersonal() {
+		return textField_nroPersonal;
+	}
+
+	public void setTextField_nroPersonal(JTextField textField_nroPersonal) {
+		this.textField_nroPersonal = textField_nroPersonal;
+	}
+
+	public JTextField getTextField_nroCelular() {
+		return textField_nroCelular;
+	}
+
+	public void setTextField_nroCelular(JTextField textField_nroCelular) {
+		this.textField_nroCelular = textField_nroCelular;
+	}
+
+	public JTextField getTextField_nroLaboral() {
+		return textField_nroLaboral;
+	}
+
+	public void setTextField_nroLaboral(JTextField textField_nroLaboral) {
+		this.textField_nroLaboral = textField_nroLaboral;
+	}
+
+	public JTextField getTextField_nroPasaporte() {
+		return textField_nroPasaporte;
+	}
+
+	public void setTextField_nroPasaporte(JTextField textField_nroPasaporte) {
+		this.textField_nroPasaporte = textField_nroPasaporte;
+	}
+
+	public JTextField getTextField_numeroPasaFrec() {
+		return textField_numeroPasaFrec;
+	}
+
+	public void setTextField_numeroPasaFrec(JTextField textField_numeroPasaFrec) {
+		this.textField_numeroPasaFrec = textField_numeroPasaFrec;
+	}
+
+	public JTextField getTextField_alianza() {
+		return textField_alianza;
+	}
+
+	public void setTextField_alianza(JTextField textField_alianza) {
+		this.textField_alianza = textField_alianza;
+	}
+
+	public JTextField getTextField_Pas_pais() {
+		return textField_Pas_pais;
+	}
+
+	public void setTextField_Pas_pais(JTextField textField_Pas_pais) {
+		this.textField_Pas_pais = textField_Pas_pais;
+	}
+
+	public JTextField getTextField_categoria() {
+		return textField_categoria;
+	}
+
+	public void setTextField_categoria(JTextField textField_categoria) {
+		this.textField_categoria = textField_categoria;
+	}
+
+	public JTextField getTextField_autEmision() {
+		return textField_autEmision;
+	}
+
+	public void setTextField_autEmision(JTextField textField_autEmision) {
+		this.textField_autEmision = textField_autEmision;
+	}
+
+	public JDateChooser getDateChooser_fechaNac() {
+		return dateChooser_fechaNac;
+	}
+
+	public void setDateChooser_fechaNac(JDateChooser dateChooser_fechaNac) {
+		this.dateChooser_fechaNac = dateChooser_fechaNac;
+	}
+
+	public JDateChooser getDateChooser_fechaVencimiento() {
+		return dateChooser_fechaVencimiento;
+	}
+
+	public void setDateChooser_fechaVencimiento(JDateChooser dateChooser_fechaVencimiento) {
+		this.dateChooser_fechaVencimiento = dateChooser_fechaVencimiento;
+	}
+
+	public JDateChooser getDateChooser_fechaEmision() {
+		return dateChooser_fechaEmision;
+	}
+
+	public void setDateChooser_fechaEmision(JDateChooser dateChooser_fechaEmision) {
+		this.dateChooser_fechaEmision = dateChooser_fechaEmision;
+	}
+
+	public JLabel getVarPFAerolinea() {
+		return varPFAerolinea;
+	}
+
+	public void setVarPFAerolinea(JLabel varPFAerolinea) {
+		this.varPFAerolinea = varPFAerolinea;
+	}
+
+	public JTextField getTextField_aerolinea() {
+		return textField_aerolinea;
+	}
+
+	public void setTextField_aerolinea(JTextField textField_aerolinea) {
+		this.textField_aerolinea = textField_aerolinea;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 }

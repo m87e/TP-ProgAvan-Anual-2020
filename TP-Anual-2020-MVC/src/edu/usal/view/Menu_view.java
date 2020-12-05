@@ -115,7 +115,7 @@ public class Menu_view implements ActionListener{
 		panelPivot.setLayout(new CardLayout(0,0));
 		
 		
-		panelCliente = new ClientesABM_view();
+		panelCliente = new ClientesView();
 		panelPivot.add(panelCliente);
 		panelPivot.setVisible(true);
 		panelPivot.validate();

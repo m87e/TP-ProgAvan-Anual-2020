@@ -90,7 +90,7 @@ public class ClientesABM_view extends JPanel implements ActionListener {
 	private JTextField textField_autEmision;
 
 	public ClientesABM_view() {
-
+		
 		// Instanciazion de objetos controllers
 		// ClienteController_GUI clienteController;
 
@@ -573,7 +573,7 @@ public class ClientesABM_view extends JPanel implements ActionListener {
 	}
 
 	private void MostrarCliente(Cliente c) {
-		LocalDate d = LocalDate.now();
+/*		LocalDate d = LocalDate.now();
 		DireccionCompleta dirAux = new DireccionCompleta();
 		Telefono telAux = new Telefono();
 		Pasaporte pasAux = new Pasaporte();
@@ -617,7 +617,7 @@ public class ClientesABM_view extends JPanel implements ActionListener {
 		textField_numeroPasaFrec.setText(pasFreAux.getNumeroPF());
 		textField_categoria.setText(pasFreAux.getCategoria());
 		textField_alianza.setText(pasFreAux.getAlianza().toString());
-
+	*/	 
 	}
 
 	private void BorrarCliente(Cliente cli) {

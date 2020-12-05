@@ -1,5 +1,6 @@
 package edu.usal.events;
 
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -7,13 +8,15 @@ import java.text.ParseException;
 import edu.usal.controllers.GUI.ClienteController_GUI;
 import edu.usal.tp.negocio.dao.dominio.Cliente;
 import edu.usal.view.ClientesABM_view;
+import edu.usal.view.ClientesAlta_view;
+import edu.usal.view.ClientesView;
 
 public class ClienteEvents implements ActionListener {
 
-	private ClientesABM_view view;
+	private ClientesView view;
 	private ClienteController_GUI clienteController = new ClienteController_GUI();
 
-	public ClienteEvents(ClientesABM_view view) {
+	public ClienteEvents(ClientesView view) {
 		this.view = view;
 	}
 
@@ -23,15 +26,13 @@ public class ClienteEvents implements ActionListener {
 
 		// Este boton deberia ser el Submit del modal
 		if (e.getSource() == this.view.getBtnAlta()) {
+			EventQueue.invokeLater(new Runnable() {
 
-			Cliente cliente = CargarCliente();
-
-			try {
-				this.clienteController.altaCliente();
-			} catch (ParseException e1) {
-				// TODO Auto-generated catch block
-				System.out.println("Ocurrio un error parseando los datos del cliente");
-			}
+	            @Override
+	            public void run() {
+	                ClientesAlta_view.display();
+	            }
+	        });
 		}
 		if (e.getSource() == this.view.getBtnModificar()) {
 

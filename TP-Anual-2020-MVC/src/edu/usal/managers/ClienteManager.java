@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Cliente;
@@ -199,6 +198,42 @@ public class ClienteManager {
 		List<Cliente> listadoClientes = null;
 		try {
 			listadoClientes = clienteDAODatabase.GetAll();
+			
+			for (int i = 0; i < listadoClientes.size(); i++) {
+				//Dirreccion
+				int idDir = listadoClientes.get(i).getDireccionCompleta().getId();
+				DireccionCompleta dirAux = ObtenerDirCompleta(idDir);
+				listadoClientes.get(i).getDireccionCompleta().setAltura(dirAux.getAltura());
+				listadoClientes.get(i).getDireccionCompleta().setCalle(dirAux.getCalle());
+				listadoClientes.get(i).getDireccionCompleta().setCiudad(dirAux.getCiudad());
+				listadoClientes.get(i).getDireccionCompleta().setCodigoPostal(dirAux.getCodigoPostal());
+				listadoClientes.get(i).getDireccionCompleta().setPais(dirAux.getPais());
+				listadoClientes.get(i).getDireccionCompleta().setProvincia(dirAux.getProvincia());
+				
+				//Telefono
+				int idTel = listadoClientes.get(i).getTelefono().getId();
+				Telefono telAux = ObtenerTelefono(idTel);
+				listadoClientes.get(i).getTelefono().setNumCelular(telAux.getNumCelular());
+				listadoClientes.get(i).getTelefono().setNumLaboral(telAux.getNumLaboral());
+				listadoClientes.get(i).getTelefono().setNumPersonal(telAux.getNumPersonal());
+				
+				//Pasaporte
+				int idPas = listadoClientes.get(i).getPasaporte().getId();
+				Pasaporte pasAux = ObtenerPasaporte(idPas);
+				listadoClientes.get(i).getPasaporte().setAutoridadEmision(pasAux.getAutoridadEmision());
+				listadoClientes.get(i).getPasaporte().setFechaEmision(pasAux.getFechaEmision());
+				listadoClientes.get(i).getPasaporte().setFechaVencimiento(pasAux.getFechaVencimiento());
+				listadoClientes.get(i).getPasaporte().setNumeroPasaporte(pasAux.getNumeroPasaporte());
+				listadoClientes.get(i).getPasaporte().setPais(pasAux.getPais());
+				
+				//PasajeroFrecuente
+				int idPasFre = listadoClientes.get(i).getPasajeroFrecuente().getId();
+				PasajeroFrecuente pasFreAux = ObtenerPasFrecuente(idPasFre);
+				listadoClientes.get(i).getPasajeroFrecuente().setAerolinea(pasFreAux.getAerolinea());
+				listadoClientes.get(i).getPasajeroFrecuente().setAerolinea(pasFreAux.getAerolinea());
+				listadoClientes.get(i).getPasajeroFrecuente().setCategoria(pasFreAux.getCategoria());
+				listadoClientes.get(i).getPasajeroFrecuente().setNumeroPF(pasFreAux.getNumeroPF());
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -241,7 +276,6 @@ public class ClienteManager {
 
 		try {
 			tel = this.telefonoDAODatabase.ObtenerTelefonoPorID(id);
-			System.out.println("manager"+id);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -263,17 +297,14 @@ public class ClienteManager {
 		return pas;
 	}
 
-	public PasajeroFrecuente ObtenerPasFrecuente(int id) {
+	private PasajeroFrecuente ObtenerPasFrecuente(int id) {
 		PasajeroFrecuente pasFre = new PasajeroFrecuente();
-
 		try {
 			pasFre = this.pasajeroFrecuenteDAODatabase.ObtenerPasajeroFrecuentePorID(id);
-		} catch (IOException e) {
+	} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return pasFre;
 	}
-
 }
