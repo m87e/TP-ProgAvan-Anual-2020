@@ -1,37 +1,43 @@
 package edu.usal.controllers.GUI;
 
-import java.io.IOException;import java.security.AlgorithmConstraints;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.usal.managers.ClienteManager;
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
-import edu.usal.tp.negocio.dao.dominio.Alianza;
+import edu.usal.tp.negocio.dao.dominio.Cliente;
+import edu.usal.tp.negocio.dao.dominio.DireccionCompleta;
 import edu.usal.tp.negocio.dao.dominio.Pais;
+import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
+import edu.usal.tp.negocio.dao.dominio.Pasaporte;
 import edu.usal.tp.negocio.dao.dominio.Provincia;
+import edu.usal.tp.negocio.dao.dominio.Telefono;
 import edu.usal.tp.negocio.dao.factory.AerolineaFactory;
 import edu.usal.tp.negocio.dao.factory.PaisFactory;
 import edu.usal.tp.negocio.dao.factory.ProvinciaFactory;
-import edu.usal.tp.negocio.dao.implementaciones.ProvinciasDAOImplDatabase;
 import edu.usal.tp.negocio.dao.interfaces.AerolineaDAO;
 import edu.usal.tp.negocio.dao.interfaces.PaisesDAO;
 import edu.usal.tp.negocio.dao.interfaces.ProvinciasDAO;
-import edu.usal.view.ClientesAlta_view;
+import edu.usal.view.ClientesAltaView;
 
 public class ClienteAltaController_GUI {
-	private ClientesAlta_view clientesAlta_view;
+	private ClientesAltaView clientesAltaView;
 	private PaisesDAO paisesDAODatabase = PaisFactory.GetImplementation("database");
 	private ProvinciasDAO provinciasDAODatabase = ProvinciaFactory.GetImplementation("database");
 	private AerolineaDAO aerolineaDAODatabase = AerolineaFactory.GetImplementation("database");
+	private ClienteManager manager = new ClienteManager();
 	
 	public ClienteAltaController_GUI() {}
 	
-	public ClienteAltaController_GUI(ClientesAlta_view clientesAlta_view) {
-		this.clientesAlta_view = clientesAlta_view;
+	public ClienteAltaController_GUI(ClientesAltaView clientesAltaView) {
+		this.clientesAltaView = clientesAltaView;
 	}
 
-	public void altaCliente() throws ParseException {
+	public void altaCliente(Cliente c, Pasaporte p, Telefono tel, DireccionCompleta dir, PasajeroFrecuente pasFrec) throws ParseException {
 
+		this.manager.AltaCliente(c, p, tel, dir, pasFrec);
 	}
 	
 	public List<Pais> mostrarPaises(){

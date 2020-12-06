@@ -22,7 +22,8 @@ public class Menu_view implements ActionListener{
 	
 	private JMenu mnCliente;
 	private JMenuItem mntmABMCliente;
-	private JMenuItem mntmCliente;
+	private JMenuItem mntmAltaCliente;
+	private JMenuItem mntmListadoCliente;
 	
 	private JMenu mnVuelos;
 	private JMenuItem mntmABMVuelos;
@@ -74,9 +75,13 @@ public class Menu_view implements ActionListener{
 		mnCliente.add(mntmABMCliente);
 		mntmABMCliente.addActionListener(this);
 		
-		mntmCliente = new JMenuItem("Listado cliente");
-		mnCliente.add(mntmCliente);
-		mntmCliente.addActionListener(this);
+		mntmListadoCliente = new JMenuItem("Consulta de Clientes");
+		mnCliente.add(mntmListadoCliente);
+		mntmListadoCliente.addActionListener(this);
+		
+		mntmAltaCliente = new JMenuItem("Nuevo Cliente");
+		mnCliente.add(mntmAltaCliente);
+		mntmAltaCliente.addActionListener(this);
 		
 		mnVentas = new JMenu("Ventas");
 		menuBar.add(mnVentas);
@@ -114,8 +119,7 @@ public class Menu_view implements ActionListener{
 		frame.getContentPane().add(panelPivot);
 		panelPivot.setLayout(new CardLayout(0,0));
 		
-		
-		panelCliente = new ClientesView();
+		panelCliente = new ClientesAltaView();
 		panelPivot.add(panelCliente);
 		panelPivot.setVisible(true);
 		panelPivot.validate();
@@ -123,6 +127,7 @@ public class Menu_view implements ActionListener{
 		
 	}
 
+	@SuppressWarnings("deprecation")
 	public static void RecargarPanelCambiante(JPanel jp) {
 		
 		panelPivot.removeAll();
@@ -155,14 +160,20 @@ public class Menu_view implements ActionListener{
 			panelPivot.validate();
 		}
 		
-		if(e.getSource() == mntmCliente) {
+		if(e.getSource() == mntmListadoCliente) {
 			panelCliente = new ClientesView();
 			panelPivot.removeAll();
 			panelPivot.add(panelCliente);
 			panelPivot.setVisible(true);
 			panelPivot.validate();
 		}
-		
+		if(e.getSource() == mntmAltaCliente) {
+			panelCliente = new ClientesAltaView();
+			panelPivot.removeAll();
+			panelPivot.add(panelCliente);
+			panelPivot.setVisible(true);
+			panelPivot.validate();
+		}
 		
 		if(e.getSource() == mntmABMVenta) {
 			panelVenta = new VentasABM_view();

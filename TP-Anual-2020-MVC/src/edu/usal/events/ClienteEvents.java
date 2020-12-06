@@ -8,7 +8,6 @@ import java.text.ParseException;
 import edu.usal.controllers.GUI.ClienteController_GUI;
 import edu.usal.tp.negocio.dao.dominio.Cliente;
 import edu.usal.view.ClientesABM_view;
-import edu.usal.view.ClientesAlta_view;
 import edu.usal.view.ClientesView;
 
 public class ClienteEvents implements ActionListener {
@@ -26,13 +25,6 @@ public class ClienteEvents implements ActionListener {
 
 		// Este boton deberia ser el Submit del modal
 		if (e.getSource() == this.view.getBtnAlta()) {
-			EventQueue.invokeLater(new Runnable() {
-
-	            @Override
-	            public void run() {
-	                ClientesAlta_view.display();
-	            }
-	        });
 		}
 		if (e.getSource() == this.view.getBtnModificar()) {
 
@@ -42,13 +34,4 @@ public class ClienteEvents implements ActionListener {
 		}
 
 	}
-
-	private Cliente CargarCliente() {
-		// TODO Auto-generated method stub
-
-		Cliente cliente = new Cliente();
-
-		return cliente;
-	}
-
 }

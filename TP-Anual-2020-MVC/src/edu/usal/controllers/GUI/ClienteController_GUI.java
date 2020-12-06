@@ -25,7 +25,7 @@ import edu.usal.tp.negocio.dao.interfaces.ClienteDAO;
 import edu.usal.tp.negocio.dao.interfaces.PaisesDAO;
 import edu.usal.tp.negocio.dao.interfaces.ProvinciasDAO;
 import edu.usal.view.ClientesABM_view;
-import edu.usal.view.ClientesAlta_view;
+import edu.usal.view.ClientesAltaView;
 import edu.usal.view.ClientesView;
 
 public class ClienteController_GUI {

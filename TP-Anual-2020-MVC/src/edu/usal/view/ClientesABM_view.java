@@ -276,7 +276,7 @@ public class ClientesABM_view extends JPanel implements ActionListener {
 		dateChooser_fechaEmision = new JDateChooser();
 		panel_5.add(dateChooser_fechaEmision);
 
-		JLabel varPpais = new JLabel("Pa\u00EDs");
+		JLabel varPpais = new JLabel("Paises");
 		panel_5.add(varPpais);
 
 		textField_Pas_pais = new JTextField();
