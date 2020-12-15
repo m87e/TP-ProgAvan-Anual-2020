@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 
 import edu.usal.managers.ClienteManager;
+import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.tp.negocio.dao.dominio.Cliente;
 import edu.usal.tp.negocio.dao.dominio.DireccionCompleta;
 import edu.usal.tp.negocio.dao.dominio.Pais;
@@ -16,11 +17,13 @@ import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
 import edu.usal.tp.negocio.dao.dominio.Pasaporte;
 import edu.usal.tp.negocio.dao.dominio.Provincia;
 import edu.usal.tp.negocio.dao.dominio.Telefono;
+import edu.usal.tp.negocio.dao.factory.AerolineaFactory;
 import edu.usal.tp.negocio.dao.factory.ClienteFactory;
 import edu.usal.tp.negocio.dao.factory.PaisFactory;
 import edu.usal.tp.negocio.dao.factory.ProvinciaFactory;
 import edu.usal.tp.negocio.dao.implementaciones.ClienteDAOImplDatabase;
 import edu.usal.tp.negocio.dao.implementaciones.PaisesDAOImplDatabase;
+import edu.usal.tp.negocio.dao.interfaces.AerolineaDAO;
 import edu.usal.tp.negocio.dao.interfaces.ClienteDAO;
 import edu.usal.tp.negocio.dao.interfaces.PaisesDAO;
 import edu.usal.tp.negocio.dao.interfaces.ProvinciasDAO;
@@ -36,6 +39,7 @@ public class ClienteController_GUI {
 	private ClienteDAO clienteDAODatabase = ClienteFactory.GetImplementation("database");
 	private PaisesDAO paisesDAODatabase = PaisFactory.GetImplementation("database");
 	private ProvinciasDAO provinciasDAODatabase = ProvinciaFactory.GetImplementation("database");
+	private AerolineaDAO aerolineaDAODatabase = AerolineaFactory.GetImplementation("database");
 	
 	public ClienteController_GUI(ClientesABM_view viewGUI) {
 		this.viewGUI = viewGUI;
@@ -50,13 +54,6 @@ public class ClienteController_GUI {
 	}
 
 	public void altaCliente() throws ParseException {
-		Cliente c = this.viewGUI.cargarCliente();
-		Pasaporte p = this.viewGUI.cargarPasaporte();
-		Telefono tel = this.viewGUI.cargarTelefono();
-		DireccionCompleta dir = this.viewGUI.cargarDirCompleta();
-		PasajeroFrecuente pasFrec = this.viewGUI.cargarPasFrecuente();
-
-		this.manager.AltaCliente(c, p, tel, dir, pasFrec);
 	}
 
 	public void modificarCliente(int cliID, Cliente cli) throws ParseException {
@@ -126,5 +123,18 @@ public class ClienteController_GUI {
 		}
 		
 		return listadoProvincias;
+	}
+	
+	public List<Aerolinea> mostrarAerolinea(){
+		List<Aerolinea> listadoAerolinea = new ArrayList();
+		
+		try {
+			listadoAerolinea = aerolineaDAODatabase.GetAll();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Aerolinea no encontrada");
+		}
+		
+		return listadoAerolinea;
 	}
 }

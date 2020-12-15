@@ -1,7 +1,6 @@
 package util;
 
 import java.util.ArrayList;
-
 import javax.swing.table.AbstractTableModel;
 
 import edu.usal.tp.negocio.dao.dominio.Cliente;

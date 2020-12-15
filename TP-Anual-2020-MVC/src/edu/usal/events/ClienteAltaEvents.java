@@ -23,6 +23,8 @@ import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
 import edu.usal.tp.negocio.dao.dominio.Pasaporte;
 import edu.usal.tp.negocio.dao.dominio.Provincia;
 import edu.usal.tp.negocio.dao.dominio.Telefono;
+import edu.usal.tp.negocio.dao.factory.AerolineaFactory;
+import edu.usal.tp.negocio.dao.interfaces.AerolineaDAO;
 import edu.usal.view.ClientesAltaView;
 import edu.usal.view.ClientesView;
 import edu.usal.view.Menu_view;
@@ -36,7 +38,7 @@ public class ClienteAltaEvents implements ActionListener{
 	
 	private ClientesAltaView viewAltaCliente;
 	private ClienteAltaController_GUI clienteAltaController = new ClienteAltaController_GUI();
-
+	private AerolineaDAO aerolineaDAODatabase = AerolineaFactory.GetImplementation("database");
 	
 	public ClienteAltaEvents(ClientesAltaView viewAltaCliente) {
 		this.viewAltaCliente = viewAltaCliente;

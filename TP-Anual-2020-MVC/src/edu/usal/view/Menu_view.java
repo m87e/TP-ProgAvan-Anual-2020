@@ -119,7 +119,7 @@ public class Menu_view implements ActionListener{
 		frame.getContentPane().add(panelPivot);
 		panelPivot.setLayout(new CardLayout(0,0));
 		
-		panelCliente = new ClientesAltaView();
+		panelCliente = new ClientesView();
 		panelPivot.add(panelCliente);
 		panelPivot.setVisible(true);
 		panelPivot.validate();
