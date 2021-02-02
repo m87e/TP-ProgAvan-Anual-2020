@@ -28,7 +28,7 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 	final String DELETE = "DELETE FROM Clientes WHERE cliente_id=?";
 	final String SELECT_BY_DNI = "SELECT * FROM [TPAnual].[dbo].[Clientes] WHERE cliente_dni=?";
 	final String SELECT_ALL = "SELECT * FROM [TPAnual].[dbo].[Clientes] ORDER BY cliente_id";
-
+	final String SELECT_ALL_COMPLETE = "SELECT * FROM Clientes INNER JOIN Direcciones ON Clientes.cliente_dirCompletaID = Direcciones.direccion_id	INNER JOIN Paises ON direccion_paisID = Paises.pais_id	INNER JOIN Provincias ON direccion_provinciaID = Provincias.provincia_id INNER JOIN Telefonos ON Clientes.cliente_telID = Telefonos.telefono_id INNER JOIN Pasaportes ON Clientes.cliente_pasaporteID = Pasaportes.pasaporte_id INNER JOIN Paises AS paisPasa ON Pasaportes.pasaporte_paisID = paisPasa.pais_id INNER JOIN PasajerosFrecuentes ON Clientes.cliente_pasFreID = PasajerosFrecuentes.pasajerofrecuente_id INNER JOIN Aerolineas ON PasajerosFrecuentes.pasajerofrecuente_id = Aerolineas.aerolinea_id";
 	@Override
 	public void AgregarCliente(Cliente cliente, Connection con) throws IOException, ParseException {
 		// TODO Auto-generated method stub
@@ -273,6 +273,74 @@ public class ClienteDAOImplDatabase implements ClienteDAO {
 
 		return null;
 
+	}
+
+	@Override
+	public List<Cliente> GetAllComplete() {
+		// TODO Auto-generated method stub
+				Connection con = null;
+				List<Cliente> listado = new ArrayList<Cliente>();
+
+				Statement stm = null;
+				ResultSet rs = null;
+
+				String sql = SELECT_ALL_COMPLETE;
+
+				try {
+					con = SQLDatabaseConnection.conectar();
+					stm = con.createStatement();
+					rs = stm.executeQuery(sql);
+
+					while (rs.next()) {
+
+						Cliente c = new Cliente();
+						DireccionCompleta dir = new DireccionCompleta();
+						Telefono tel = new Telefono();
+						Pasaporte pas = new Pasaporte();
+						PasajeroFrecuente pasFre = new PasajeroFrecuente();
+
+						c.setId(rs.getInt("cliente_id"));
+						c.setNombre(rs.getString("cliente_nombre"));
+						c.setApellido(rs.getString("cliente_apellido"));
+						c.setDni(rs.getString("cliente_dni"));
+						c.setCuit(rs.getString("cliente_cuit"));
+						c.setFechaNac(rs.getDate("cliente_fechaNac").toLocalDate());
+						c.setEmail(rs.getString("cliente_email"));
+
+						dir.setId(rs.getInt("cliente_dirCompletaID"));
+						c.setDireccionCompleta(dir);
+
+						tel.setId(rs.getInt("cliente_telID"));
+						c.setTelefono(tel);
+
+						pas.setId(rs.getInt("cliente_pasaporteID"));
+						c.setPasaporte(pas);
+
+						pasFre.setId(rs.getInt("cliente_pasFreID"));
+						c.setPasajeroFrecuente(pasFre);
+
+						listado.add(c);
+					}
+					System.out.println("Clientes encontrados: " + listado.size());
+
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println("Ocurrio un error al leer los datos de la base de datos");
+
+				} finally {
+					try {
+						stm.close();
+						rs.close();
+						con.close();
+						System.out.println("Conexion cerrada");
+					} catch (Exception e) {
+						// TODO: handle exception
+						System.out.println("Ocurrio un error al cerrar la base de datos");
+
+					}
+				}
+
+				return listado;
 	}
 
 }
