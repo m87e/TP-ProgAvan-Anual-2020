@@ -189,7 +189,9 @@ public class ClientesView extends JPanel{
 
 		btnAlta = new JButton("Nuevo Cliente");
 		panel.add(btnAlta);
+		System.out.println("Generando nuevo cliente...");
 		btnAlta.addActionListener(new ClienteEvents(this));
+		System.out.println("... Procensando ...");
 		panel.add(btnAlta);
 
 		btnModificar = new JButton("Modificar");

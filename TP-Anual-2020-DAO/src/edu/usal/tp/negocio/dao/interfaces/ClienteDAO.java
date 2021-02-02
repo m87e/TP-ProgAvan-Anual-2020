@@ -19,5 +19,6 @@ public interface ClienteDAO {
 	Cliente ObtenerClientePorDNI(String dni) throws SQLException;
 
 	List<Cliente> GetAll() throws IOException, ParseException;
-
+	
+	List<Cliente> GetAllComplete();
 }
