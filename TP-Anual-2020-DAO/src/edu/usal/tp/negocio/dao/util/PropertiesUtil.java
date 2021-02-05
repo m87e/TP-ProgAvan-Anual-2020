@@ -1,3 +1,5 @@
+
+
 package edu.usal.tp.negocio.dao.util;
 
 import java.io.FileInputStream;
@@ -15,7 +17,9 @@ public class PropertiesUtil {
 					"C:\\Users\\Magui\\git\\TP-ProgAvan-Anual-2020\\TP-Anual-2020\\src\\resources\\co.properties");
 		*/
 			FileInputStream fis = new FileInputStream(
-					"C:\\Users\\julia\\git\\TP-ProgAvan-Anual-2020\\TP-Anual-2020-MVC\\src\\co.properties");
+					//"C:\\Users\\julia\\git\\TP-ProgAvan-Anual-2020\\TP-Anual-2020-MVC\\src\\co.properties");
+			
+					"C:\\Users\\matia\\git\\TP-ProgAvan-Anual-2020\\TP-Anual-2020-MVC\\src\\co.properties");
 			properties.load(fis);
 			fis.close();
 

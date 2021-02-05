@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -50,15 +51,20 @@ public class main {
 		DireccionCompleta dir = new DireccionCompleta();
 		TelefonoDAO telDAO = TelefonoFactory.GetImplementation("database");
 		
-		dir = dirDAO.ObtenerDirCompletaPorID(3);
+		/*
+		 * dir = dirDAO.ObtenerDirCompletaPorID(3);
 		System.out.println(dir.getId());
 		
 		tel = telDAO.ObtenerTelefonoPorID(4);
 		System.out.println(tel.getId());
+		*/
 		
 	
-		
-
+		ArrayList<Cliente> c = (ArrayList<Cliente>) clienteDAO.GetAllComplete();
+		System.out.println("hola");
+		for (int i = 0; i < c.size(); i++) {
+			System.out.println(c.get(i).toString());
+		}
 		
 	}
 
