@@ -13,7 +13,7 @@ import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
 import edu.usal.tp.negocio.dao.dominio.Pasaporte;
 import edu.usal.tp.negocio.dao.dominio.Telefono;
 import edu.usal.tp.negocio.dao.interfaces.ClienteDAO;
-import edu.usal.view.ClientesABM_view;
+import edu.usal.view_old.ClientesABM_view;
 import edu.usal.views.console.ClienteView;
 
 public class ClienteController {

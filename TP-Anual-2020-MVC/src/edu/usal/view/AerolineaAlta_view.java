@@ -1,21 +1,29 @@
 package edu.usal.view;
 
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
 
 import edu.usal.controllers.GUI.AerolineaController_GUI;
+import edu.usal.events.AerolineaAltaEvents;
 import edu.usal.events.AerolineaEvents;
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 public class AerolineaAlta_view extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textNombre;
 	private JTextField textAlianza;
 	private JLabel lblNombre;
@@ -24,40 +32,41 @@ public class AerolineaAlta_view extends JFrame {
 	private JButton btnSubmit;
 
 	public AerolineaAlta_view() {
-		setLayout(new FormLayout(
-				new ColumnSpec[] { ColumnSpec.decode("161px"), ColumnSpec.decode("61px:grow"),
-						FormSpecs.RELATED_GAP_COLSPEC, ColumnSpec.decode("61px"), },
-				new RowSpec[] { FormSpecs.RELATED_GAP_ROWSPEC, RowSpec.decode("16px"), FormSpecs.RELATED_GAP_ROWSPEC,
-						FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC,
-						FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC,
-						FormSpecs.DEFAULT_ROWSPEC, }));
+		getContentPane().setLayout(null);
 
 		lblNombre = new JLabel("Nombre");
-		add(lblNombre, "1, 4, right, top");
+		lblNombre.setBounds(32, 31, 106, 14);
+		getContentPane().add(lblNombre);
 
 		textNombre = new JTextField();
-		add(textNombre, "2, 4, fill, default");
+		textNombre.setBounds(161, 28, 206, 20);
+		getContentPane().add(textNombre);
 		textNombre.setColumns(10);
 
 		lblAlianza = new JLabel("Alianza");
-		add(lblAlianza, "1, 6, right, top");
+		lblAlianza.setBounds(32, 56, 106, 14);
+		getContentPane().add(lblAlianza);
 
 		textAlianza = new JTextField();
-		add(textAlianza, "2, 6, fill, default");
+		textAlianza.setBounds(161, 54, 206, 20);
+		getContentPane().add(textAlianza);
 		textAlianza.setColumns(10);
 
 		btnCancel = new JButton("Cancel");
-		add(btnCancel, "1, 10");
-		// agregar logica para regresar a la pantalla anterior
-		// getBtnCancel().addActionListener();
+		btnCancel.setBounds(0, 105, 161, 23);
+		getContentPane().add(btnCancel);
+		getBtnCancel().addActionListener(new AerolineaAltaEvents(this));
 
 		btnSubmit = new JButton("Submit");
-		add(btnSubmit, "2, 10");
-		getBtnSubmit().addActionListener(new AerolineaEvents(this));
+		btnSubmit.setBounds(161, 105, 206, 23);
+		getContentPane().add(btnSubmit);
+		getBtnSubmit().addActionListener(new AerolineaAltaEvents(this));
 
 	}
 
 	// Getter & setters
+
+	
 
 	public JTextField getTextNombre() {
 		return textNombre;

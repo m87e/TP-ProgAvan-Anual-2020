@@ -4,47 +4,58 @@ import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
+
 import edu.usal.controllers.GUI.AerolineaController_GUI;
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
-import edu.usal.tp.negocio.dao.dominio.Alianza;
 import edu.usal.view.AerolineaAlta_view;
+import edu.usal.view.AerolineasView;
 
 public class AerolineaEvents implements ActionListener {
 
-	private AerolineaAlta_view view;
+	private AerolineasView view;
 	private AerolineaController_GUI aerolineaController = new AerolineaController_GUI();
-
-	public AerolineaEvents(AerolineaAlta_view view) {
+		public AerolineaEvents(AerolineasView view) {
 		this.view = view;
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
-		if (arg0.getSource() == this.view.getBtnSubmit()) {
-
-			Aerolinea aerolinea = CargarAerolinea();
-
-			aerolineaController.AltaAerolinea(aerolinea);
+		if (e.getSource() == this.view.getBtnAlta()) {
+			
+			AerolineaAlta_view tV = new AerolineaAlta_view();
+			tV.setVisible(true);
+			
+		}
+		
+		if (e.getSource() == this.view.getBtnBorrar()) {
+			int filaSeleccionada = this.view.getTable().getRowCount();
+			
+			if (filaSeleccionada == -1) {
+				JOptionPane.showMessageDialog(null, "Seleccione una fila para eliminar");
+			}
+			else {
+				TableModel m = this.view.getTable().getModel();
+				Object id = m.getValueAt(filaSeleccionada, 0); 
+				//Integer id = (Integer) m.getValueAt(filaSeleccionada, 0);
+				
+				System.out.println(id);
+			//	aerolineaController.BajaAerolinea(BuscarAerolinea(id));
+				
+			}
+			
+			
 		}
 
-		if (arg0.getSource() == this.view.getBtnCancel()) {
-
-			// retorno a la pagina anterior o cerrar modal
-		}
 	}
 
-	private Aerolinea CargarAerolinea() {
-		// TODO Auto-generated method stub
-		Aerolinea aerolinea = new Aerolinea();
-		String alianza = this.view.getTextAlianza().getText();
-
-		aerolinea.setNombre(this.view.getTextNombre().getText());
-
-		aerolinea.setAlianza(Alianza.valueOf(alianza));
-
-		return aerolinea;
+	private Aerolinea BuscarAerolinea(int id) {
+		Aerolinea a = new Aerolinea();
+		a.setId(129);
+		return a;
 	}
 
 }

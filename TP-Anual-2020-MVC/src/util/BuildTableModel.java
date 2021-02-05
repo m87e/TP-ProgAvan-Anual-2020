@@ -53,5 +53,6 @@ public class BuildTableModel extends AbstractTableModel{
 		
 		return lineas[columnIndex];
 	}
+	
 
 }

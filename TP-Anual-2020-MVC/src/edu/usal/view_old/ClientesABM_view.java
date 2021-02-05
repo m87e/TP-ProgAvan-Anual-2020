@@ -1,4 +1,4 @@
-package edu.usal.view;
+package edu.usal.view_old;
 
 import javax.swing.JPanel;
 import com.jgoodies.forms.layout.FormLayout;
@@ -37,6 +37,7 @@ import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
 import edu.usal.tp.negocio.dao.dominio.Pasaporte;
 import edu.usal.tp.negocio.dao.dominio.Provincia;
 import edu.usal.tp.negocio.dao.dominio.Telefono;
+import edu.usal.view.Menu_view;
 import util.EstadoDePanel;
 
 import javax.swing.JList;

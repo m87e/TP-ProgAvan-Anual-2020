@@ -10,6 +10,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import edu.usal.view_old.ClientesABM_view;
+
 
 public class Menu_view implements ActionListener{
 
@@ -119,7 +121,8 @@ public class Menu_view implements ActionListener{
 		frame.getContentPane().add(panelPivot);
 		panelPivot.setLayout(new CardLayout(0,0));
 		
-		panelCliente = new ClientesView();
+		//panelCliente = new ClientesView();
+		panelCliente = new AerolineasView();
 		panelPivot.add(panelCliente);
 		panelPivot.setVisible(true);
 		panelPivot.validate();

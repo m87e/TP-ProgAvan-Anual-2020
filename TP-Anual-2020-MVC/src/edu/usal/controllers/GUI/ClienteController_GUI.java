@@ -27,9 +27,9 @@ import edu.usal.tp.negocio.dao.interfaces.AerolineaDAO;
 import edu.usal.tp.negocio.dao.interfaces.ClienteDAO;
 import edu.usal.tp.negocio.dao.interfaces.PaisesDAO;
 import edu.usal.tp.negocio.dao.interfaces.ProvinciasDAO;
-import edu.usal.view.ClientesABM_view;
 import edu.usal.view.ClientesAltaView;
 import edu.usal.view.ClientesView;
+import edu.usal.view_old.ClientesABM_view;
 
 public class ClienteController_GUI {
 
@@ -97,6 +97,13 @@ public class ClienteController_GUI {
 	public List<Cliente> mostrarTodo() {
 		List<Cliente> listadoClientes = new ArrayList();
 		listadoClientes = this.manager.MostrarClientes();
+
+		return listadoClientes;
+	}
+	
+	public List<Cliente> mostrarTodoCompleto() {
+		List<Cliente> listadoClientes = new ArrayList();
+		listadoClientes = this.manager.MostrarClientesCompleto();
 
 		return listadoClientes;
 	}

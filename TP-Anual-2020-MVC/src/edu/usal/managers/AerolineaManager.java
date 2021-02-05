@@ -3,6 +3,7 @@ package edu.usal.managers;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.tp.negocio.dao.factory.AerolineaFactory;
@@ -145,5 +146,20 @@ public class AerolineaManager {
 
 		}
 	}
+	
+	public List<Aerolinea> MostrarLineasAereas (){
+		
+		List<Aerolinea> listadoAerolinea = null;
+		
+		try {
+			System.out.println("Generando listado de aerolineas...");
+			System.out.println("procesando... ");
+			listadoAerolinea = aerolineaDAODatabase.GetAll();
+			System.out.println("finalizado");
+		} catch (IOException e) {
+			System.out.println("No se pudo obtener listado de las lineas aereas");
+		}  
+		return listadoAerolinea;
+	} 
 
 }

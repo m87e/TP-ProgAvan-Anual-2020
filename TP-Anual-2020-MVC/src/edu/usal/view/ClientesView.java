@@ -83,8 +83,9 @@ public class ClientesView extends JPanel{
 		// Declaramos datos de tabla y el header
 		ArrayList<Object[]> data = new ArrayList<>();
 		
-		ArrayList<Cliente> datosCargar = (ArrayList<Cliente>) clienteController.mostrarTodo();
-		ArrayList<Pais> listPaises = (ArrayList<Pais>) clienteController.mostrarPaises();
+		ArrayList<Cliente> datosCargar = (ArrayList<Cliente>) clienteController.mostrarTodoCompleto();
+		
+		/*ArrayList<Pais> listPaises = (ArrayList<Pais>) clienteController.mostrarPaises();
 		ArrayList<Provincia> listProv = (ArrayList<Provincia>) clienteController.mostrarProvincias();
 		ArrayList<Aerolinea> listAerolinea = (ArrayList<Aerolinea>) clienteController.mostrarAerolinea();
 		
@@ -109,6 +110,7 @@ public class ClientesView extends JPanel{
 				}	
 			}
 		}
+		*/
 	
 		for (int i = 0; i < datosCargar.size(); i++) {
 			
@@ -121,9 +123,32 @@ public class ClientesView extends JPanel{
 					datosCargar.get(i).getCuit(), 
 					datosCargar.get(i).getFechaNac(), 
 					datosCargar.get(i).getEmail(),
+					
+					datosCargar.get(i).getDireccionCompleta().getCalle(),
+					datosCargar.get(i).getDireccionCompleta().getAltura(),
+					datosCargar.get(i).getDireccionCompleta().getCiudad(),
+					datosCargar.get(i).getDireccionCompleta().getPais().getNombre(),
+					datosCargar.get(i).getDireccionCompleta().getProvincia().getNombre(),
+					datosCargar.get(i).getDireccionCompleta().getCodigoPostal(),
+					
+					datosCargar.get(i).getTelefono().getNumPersonal(),
+					datosCargar.get(i).getTelefono().getNumCelular(),
+					datosCargar.get(i).getTelefono().getNumLaboral(),
+					
+					datosCargar.get(i).getPasaporte().getNumeroPasaporte(),
+					datosCargar.get(i).getPasaporte().getAutoridadEmision(),
+					datosCargar.get(i).getPasaporte().getFechaEmision(),
+					datosCargar.get(i).getPasaporte().getFechaVencimiento(),
+					datosCargar.get(i).getPasaporte().getPais().getNombre(),
+					
+					datosCargar.get(i).getPasajeroFrecuente().getAlianza().Oneworld,
+					datosCargar.get(i).getPasajeroFrecuente().getAerolinea().getNombre(),
+					datosCargar.get(i).getPasajeroFrecuente().getNumeroPF(),
+					datosCargar.get(i).getPasajeroFrecuente().getCategoria(),
+					
 					//DIR 7 to 13
 					//datosCargar.get(i).getDireccionCompleta().getId(),
-					datosCargar.get(i).getDireccionCompleta().getCalle(),
+					/*	datosCargar.get(i).getDireccionCompleta().getCalle(),
 					datosCargar.get(i).getDireccionCompleta().getAltura(),
 					datosCargar.get(i).getDireccionCompleta().getCiudad(),
 					datosCargar.get(i).getDireccionCompleta().getPais().getNombre(),
@@ -146,9 +171,8 @@ public class ClientesView extends JPanel{
 					datosCargar.get(i).getPasajeroFrecuente().getAlianza().Oneworld,
 					datosCargar.get(i).getPasajeroFrecuente().getAerolinea().getNombre(),
 					datosCargar.get(i).getPasajeroFrecuente().getNumeroPF(),
-					datosCargar.get(i).getPasajeroFrecuente().getCategoria(),
+					datosCargar.get(i).getPasajeroFrecuente().getCategoria(),*/
 			});
-		System.out.println(datosCargar.get(i).getDireccionCompleta().getPais().getNombre());
 		}
 		
 		String[] header = {
@@ -156,7 +180,7 @@ public class ClientesView extends JPanel{
 				  "Calle", "Altura", "Ciudad","Pais","Provincia", "C.P.",
 				  "Tel. Personal","Tel. Cellular","Tel. Laboral",
 				  "# Pasaporte", "Aut. Emision","Fecha emision", "Fecha vencimiento", "Pais ID pas",
-				  "Alianza","Aerolinea ID","# Pasajero frecuente","Categoria",
+				  "Alianza","Aerolinea ID","# Pasajero frecuente","Categoria", 
 		};
 		
 		//Llama a la clase para crear la jtable con AbstractModel
@@ -189,9 +213,9 @@ public class ClientesView extends JPanel{
 
 		btnAlta = new JButton("Nuevo Cliente");
 		panel.add(btnAlta);
-		System.out.println("Generando nuevo cliente...");
+		
 		btnAlta.addActionListener(new ClienteEvents(this));
-		System.out.println("... Procensando ...");
+		
 		panel.add(btnAlta);
 
 		btnModificar = new JButton("Modificar");

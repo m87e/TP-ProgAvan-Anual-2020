@@ -193,7 +193,7 @@ public class ClienteManager {
 		}
 	}
 
-	public List<Cliente> MostrarClientes() {
+	 public List<Cliente> MostrarClientes() {
 
 		List<Cliente> listadoClientes = null;
 		try {
@@ -243,7 +243,7 @@ public class ClienteManager {
 		}
 
 		return listadoClientes;
-	}
+	} 
 
 	public Cliente ObtenerCliente(String dni) {
 		Cliente cli = new Cliente();
@@ -306,5 +306,20 @@ public class ClienteManager {
 			e.printStackTrace();
 		}
 		return pasFre;
+	}
+	
+	public List<Cliente> MostrarClientesCompleto() {
+		
+		List<Cliente> listadoClientes = null;
+	
+			listadoClientes = clienteDAODatabase.GetAllComplete();
+			
+			for (int i = 0; i < listadoClientes.size(); i++) {
+			
+			System.out.println(listadoClientes.get(i).getNombre());
+			System.out.println(listadoClientes.get(i).getDireccionCompleta().getAltura());
+			}
+
+		return listadoClientes;
 	}
 }

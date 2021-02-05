@@ -11,8 +11,8 @@ import javax.swing.table.TableModel;
 
 import edu.usal.controllers.GUI.ClienteController_GUI;
 import edu.usal.tp.negocio.dao.dominio.Cliente;
-import edu.usal.view.ClientesABM_view;
 import edu.usal.view.ClientesView;
+import edu.usal.view_old.ClientesABM_view;
 
 public class ClienteEvents implements ActionListener {
 
@@ -29,6 +29,8 @@ public class ClienteEvents implements ActionListener {
 
 		// Este boton deberia ser el Submit del modal
 		if (e.getSource() == this.view.getBtnAlta()) {
+			System.out.println("Generando nuevo cliente...");
+			System.out.println("... Procensando ...");
 		}
 		if (e.getSource() == this.view.getBtnModificar()) {
 		//	tablaMouseClicked(e,this.view);
