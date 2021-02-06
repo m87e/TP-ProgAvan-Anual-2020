@@ -10,6 +10,7 @@ import javax.swing.table.TableModel;
 import edu.usal.controllers.GUI.AerolineaController_GUI;
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.view.AerolineaAlta_view;
+import edu.usal.view.AerolineaModificar_view;
 import edu.usal.view.AerolineasView;
 
 public class AerolineaEvents implements ActionListener {
@@ -31,6 +32,33 @@ public class AerolineaEvents implements ActionListener {
 				
 		}
 		
+		if (e.getSource() == this.view.getBtnModificar()) {
+			int filaSeleccionada = this.view.getTable().getSelectedRow();
+			System.out.println("fila seleccionada" + filaSeleccionada);
+			if (filaSeleccionada == -1) {
+				JOptionPane.showMessageDialog(null, "Seleccione una fila para eliminar");
+			}
+			else {
+				TableModel m = this.view.getTable().getModel();
+				
+				Object objectoSeleccionado = m.getValueAt(filaSeleccionada, 0); 
+				
+				int id = ((Integer) objectoSeleccionado).intValue();
+				System.out.println("ID a modificar: "+id);
+				
+				Aerolinea a = new Aerolinea();
+				
+				a = aerolineaController.BuscarAerolineaID(id);
+				System.out.println(a.getId());
+				System.out.println(a.getNombre());
+				
+				AerolineaModificar_view tV = new AerolineaModificar_view(a);
+				tV.setVisible(true);
+			
+			}
+			
+		}
+		
 		if (e.getSource() == this.view.getBtnBorrar()) {
 			
 			int filaSeleccionada = this.view.getTable().getSelectedRow();
@@ -44,7 +72,7 @@ public class AerolineaEvents implements ActionListener {
 				Object objectoSeleccionado = m.getValueAt(filaSeleccionada, 0); 
 				
 				int id = ((Integer) objectoSeleccionado).intValue();
-				System.out.println("ID a borrar"+id);
+				System.out.println("ID a borrar: "+id);
 				
 				Aerolinea a = new Aerolinea();
 				a.setId(id);
@@ -52,6 +80,7 @@ public class AerolineaEvents implements ActionListener {
 				JOptionPane.showMessageDialog(null, "La aerolinea con ID: "+id+" ha sido borrada." );
 			}
 		}
+		 
 		
 
 	}

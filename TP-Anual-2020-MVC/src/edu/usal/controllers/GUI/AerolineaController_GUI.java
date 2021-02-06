@@ -52,6 +52,9 @@ public class AerolineaController_GUI {
 		
 		return listadoAerolinea;
 	}
-
+	
+	public Aerolinea BuscarAerolineaID(int id) {
+		return this.manager.BuscarAerolineaID(id);
+	}
 
 }

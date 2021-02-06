@@ -25,7 +25,7 @@ public class AerolineaAltaEvents implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		// Este boton deberia ser el Submit del modal
+		// Este boton es el Submit del modal
 		if (e.getSource() == this.viewAltaAerolinea.getBtnSubmit()) {
 			System.out.println("... Procensando alta de Aerolinea...");
 			Aerolinea aerolinea = CargarAerolinea();

@@ -19,7 +19,4 @@ public class AerolineaAltaController_GUI {
 		this.manager.AltaAerolinea(a);
 	}
 	
-	public void bajaAerolinea (Aerolinea a) {
-		this.manager.BajaAerolinea(a);
-	}
 }

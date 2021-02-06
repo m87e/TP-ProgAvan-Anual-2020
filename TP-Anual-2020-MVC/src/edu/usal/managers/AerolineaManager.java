@@ -162,5 +162,17 @@ public class AerolineaManager {
 		return listadoAerolinea;
 	} 
 
+	public Aerolinea BuscarAerolineaID (int id) {
+		Aerolinea a = new Aerolinea();
+		try {
+			a = aerolineaDAODatabase.ObtenerAerolineaPorID(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return a;
+		
+	}
 
 }

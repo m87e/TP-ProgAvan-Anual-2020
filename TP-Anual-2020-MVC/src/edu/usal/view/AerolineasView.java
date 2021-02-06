@@ -126,7 +126,7 @@ public class AerolineasView extends JPanel{
 		btnModificar.setName("m");
 		panel.add(btnModificar);
 		btnModificar.getMouseListeners();
-		//btnModificar.addActionListener(this);
+		btnModificar.addActionListener(new AerolineaEvents(this));
 		panel.add(btnModificar);
 
 		//ELIMINAR
