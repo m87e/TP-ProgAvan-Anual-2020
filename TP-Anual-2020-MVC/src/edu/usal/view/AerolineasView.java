@@ -115,7 +115,7 @@ public class AerolineasView extends JPanel{
 		
 		
 		//ALTA 
-		btnAlta = new JButton("Nuevo Cliente");
+		btnAlta = new JButton("Nueva aerolinea");
 		panel.add(btnAlta);
 		btnAlta.addActionListener(new AerolineaEvents(this));
 		

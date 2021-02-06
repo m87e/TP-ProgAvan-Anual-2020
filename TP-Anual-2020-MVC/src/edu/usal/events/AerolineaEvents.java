@@ -28,34 +28,32 @@ public class AerolineaEvents implements ActionListener {
 			
 			AerolineaAlta_view tV = new AerolineaAlta_view();
 			tV.setVisible(true);
-			
+				
 		}
 		
 		if (e.getSource() == this.view.getBtnBorrar()) {
-			int filaSeleccionada = this.view.getTable().getRowCount();
 			
+			int filaSeleccionada = this.view.getTable().getSelectedRow();
+			System.out.println("fila seleccionada" + filaSeleccionada);
 			if (filaSeleccionada == -1) {
 				JOptionPane.showMessageDialog(null, "Seleccione una fila para eliminar");
 			}
 			else {
 				TableModel m = this.view.getTable().getModel();
-				Object id = m.getValueAt(filaSeleccionada, 0); 
-				//Integer id = (Integer) m.getValueAt(filaSeleccionada, 0);
 				
-				System.out.println(id);
-			//	aerolineaController.BajaAerolinea(BuscarAerolinea(id));
+				Object objectoSeleccionado = m.getValueAt(filaSeleccionada, 0); 
 				
+				int id = ((Integer) objectoSeleccionado).intValue();
+				System.out.println("ID a borrar"+id);
+				
+				Aerolinea a = new Aerolinea();
+				a.setId(id);
+				aerolineaController.BajaAerolinea(a);
+				JOptionPane.showMessageDialog(null, "La aerolinea con ID: "+id+" ha sido borrada." );
 			}
-			
-			
 		}
+		
 
-	}
-
-	private Aerolinea BuscarAerolinea(int id) {
-		Aerolinea a = new Aerolinea();
-		a.setId(129);
-		return a;
 	}
 
 }
