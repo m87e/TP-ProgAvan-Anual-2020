@@ -221,6 +221,5 @@ public class VueloManager {
 		}
 
 		return vuelo;
-
 	}
 }
