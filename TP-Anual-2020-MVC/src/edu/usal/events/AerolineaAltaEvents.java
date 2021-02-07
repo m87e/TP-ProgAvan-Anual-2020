@@ -34,6 +34,7 @@ public class AerolineaAltaEvents implements ActionListener{
 			
 			JOptionPane.showMessageDialog(null, "Aerolinea agregada exitosamente");
 			this.viewAltaAerolinea.setVisible(false);
+			
 		}
 		if (e.getSource() == this.viewAltaAerolinea.getBtnCancel()) {
 		
@@ -45,8 +46,9 @@ public class AerolineaAltaEvents implements ActionListener{
 	private Aerolinea CargarAerolinea() {
 		// TODO Auto-generated method stub
 		Aerolinea aerolinea = new Aerolinea();
-		String alianza = this.viewAltaAerolinea.getTextAlianza().getText();
-
+		String alianza = (String) this.viewAltaAerolinea.getComboBoxAlianza().getSelectedItem();
+				//.getTextAlianza().getText();
+		System.out.println(alianza);
 		aerolinea.setNombre(this.viewAltaAerolinea.getTextNombre().getText());
 
 		aerolinea.setAlianza(Alianza.valueOf(alianza));

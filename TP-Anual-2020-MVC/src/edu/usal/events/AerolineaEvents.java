@@ -29,14 +29,14 @@ public class AerolineaEvents implements ActionListener {
 			
 			AerolineaAlta_view tV = new AerolineaAlta_view();
 			tV.setVisible(true);
-				
+							
 		}
 		
 		if (e.getSource() == this.view.getBtnModificar()) {
 			int filaSeleccionada = this.view.getTable().getSelectedRow();
 			System.out.println("fila seleccionada" + filaSeleccionada);
 			if (filaSeleccionada == -1) {
-				JOptionPane.showMessageDialog(null, "Seleccione una fila para eliminar");
+				JOptionPane.showMessageDialog(null, "Seleccione una fila para modificar");
 			}
 			else {
 				TableModel m = this.view.getTable().getModel();
