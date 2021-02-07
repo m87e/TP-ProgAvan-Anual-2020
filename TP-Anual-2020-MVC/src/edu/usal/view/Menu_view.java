@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import edu.usal.view_old.ClientesABM_view;
@@ -23,18 +24,22 @@ public class Menu_view implements ActionListener{
 	private JMenuItem mntmSalir, mntmVersion;
 	
 	private JMenu mnCliente;
-	private JMenuItem mntmABMCliente;
+	private JMenuItem mntmCliente;
 	private JMenuItem mntmAltaCliente;
-	private JMenuItem mntmListadoCliente;
 	
 	private JMenu mnVuelos;
-	private JMenuItem mntmABMVuelos;
+	private JMenuItem mntmVuelo;
+	private JMenuItem mntmAltaVuelo;
 
 	private JMenu mnVentas;
-	private JMenuItem mntmABMVenta;
+	private JMenuItem mntmVenta;
+	
+	private JMenu mnAerolineas;
+	private JMenuItem mntmAerolinea;
+	private JMenuItem mntmAltaAerolinea;
 	
 	static JPanel panelPivot;
-	private JPanel panelCliente , panelVenta , panelVuelo;
+	private JPanel panelCliente , panelVenta , panelVuelo , panelAerolinea;
 
 	/**
 	 * Launch the application.
@@ -73,32 +78,41 @@ public class Menu_view implements ActionListener{
 		mnCliente = new JMenu("Cliente");
 		menuBar.add(mnCliente);
 		
-		mntmABMCliente = new JMenuItem("Gestion cliente");
-		mnCliente.add(mntmABMCliente);
-		mntmABMCliente.addActionListener(this);
-		
-		mntmListadoCliente = new JMenuItem("Consulta de Clientes");
-		mnCliente.add(mntmListadoCliente);
-		mntmListadoCliente.addActionListener(this);
-		
-		mntmAltaCliente = new JMenuItem("Nuevo Cliente");
-		mnCliente.add(mntmAltaCliente);
-		mntmAltaCliente.addActionListener(this);
+			mntmCliente = new JMenuItem("Gestion de clientes");
+			mnCliente.add(mntmCliente);
+			mntmCliente.addActionListener(this);
+			
+			mntmAltaCliente = new JMenuItem("Nuevo cliente");
+			mnCliente.add(mntmAltaCliente);
+			mntmAltaCliente.addActionListener(this);
 		
 		mnVentas = new JMenu("Ventas");
 		menuBar.add(mnVentas);
 		
-		mntmABMVenta = new JMenuItem("Gestion venta");
-		mnVentas.add(mntmABMVenta);
-		mntmABMVenta.addActionListener(this);
+			mntmVenta = new JMenuItem("Gestion de ventas");
+			mnVentas.add(mntmVenta);
+			mntmVenta.addActionListener(this);
 		
 		
 		mnVuelos = new JMenu("Vuelos");
 		menuBar.add(mnVuelos);
 		
-		mntmABMVuelos = new JMenuItem("Gestion vuelo");
-		mnVuelos.add(mntmABMVuelos);
-		mntmABMVuelos.addActionListener(this);
+			mntmVuelo = new JMenuItem("Gestion de vuelos");
+			mnVuelos.add(mntmVuelo);
+			
+			mntmAltaVuelo = new JMenuItem("Nuevo vuelo");
+			mnVuelos.add(mntmAltaVuelo);
+			mntmVuelo.addActionListener(this);
+		
+		mnAerolineas = new JMenu("Aerolineas");
+		menuBar.add(mnAerolineas);
+		
+			mntmAerolinea = new JMenuItem("Gestion de aerolineas");
+			mnAerolineas.add(mntmAerolinea);
+			mntmAerolinea.addActionListener(this);
+			
+			mntmAltaAerolinea = new JMenuItem("Nueva aerolinea");
+			mnAerolineas.add(mntmAltaAerolinea);
 		
 
 		
@@ -121,8 +135,8 @@ public class Menu_view implements ActionListener{
 		frame.getContentPane().add(panelPivot);
 		panelPivot.setLayout(new CardLayout(0,0));
 		
-		panelCliente = new ClientesView();
-		//panelCliente = new AerolineasView();
+		
+		panelCliente = new AerolineasView();
 		panelPivot.add(panelCliente);
 		panelPivot.setVisible(true);
 		panelPivot.validate();
@@ -155,15 +169,15 @@ public class Menu_view implements ActionListener{
 			System.exit(0);
 		}
 		
-		if(e.getSource() == mntmABMCliente) {
-			panelCliente = new ClientesABM_view();
+		if(e.getSource() == mntmCliente) {
+			panelCliente = new ClientesView();
 			panelPivot.removeAll();
 			panelPivot.add(panelCliente);
 			panelPivot.setVisible(true);
 			panelPivot.validate();
 		}
 		
-		if(e.getSource() == mntmABMVenta) {
+		if(e.getSource() == mntmVenta) {
 			panelVenta = new VentasABM_view();
 			panelPivot.removeAll();
 			panelPivot.add(panelVenta);
@@ -171,14 +185,24 @@ public class Menu_view implements ActionListener{
 			panelPivot.validate();	
 		}
 		
-		if(e.getSource() == mntmABMVuelos) {
+		if(e.getSource() == mntmVuelo) {
 			panelVuelo = new VuelosABM_view();
 			panelPivot.removeAll();
 			panelPivot.add(panelVuelo);
 			panelPivot.setVisible(true);
 			panelPivot.validate();
 		}
+		if(e.getSource()== mntmAerolinea) {
+			panelAerolinea = new AerolineasView();
+			panelPivot.removeAll();
+			panelPivot.add(panelAerolinea);
+			panelPivot.setVisible(true);
+			panelPivot.validate();
+			
+		}
+		if(e.getSource()== mntmVersion) {
+			JOptionPane.showMessageDialog(null, "Sistema de gestion de viajes V2.0");
+		}
 		
 	}
-
 }
