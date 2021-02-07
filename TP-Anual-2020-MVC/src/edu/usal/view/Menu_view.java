@@ -203,6 +203,9 @@ public class Menu_view implements ActionListener{
 		if(e.getSource()== mntmVersion) {
 			JOptionPane.showMessageDialog(null, "Sistema de gestion de viajes V2.0");
 		}
+		if (e.getSource() == mntmSalir) {
+			System.exit(0);
+		}
 		
 	}
 }
