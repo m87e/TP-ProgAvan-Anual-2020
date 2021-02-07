@@ -149,4 +149,18 @@ public class ClienteController_GUI {
 		
 		return this.manager.ObtenerCliente(dni);
 	}
+	
+	public DireccionCompleta ObtenerDirCompleta(int id) {
+		return this.manager.ObtenerDirCompleta(id);
+	}
+	public Telefono ObtenerTelefono(int id) {
+		return this.manager.ObtenerTelefono(id);
+	}
+	public Pasaporte ObtenerPasaporte (int id) {
+		return this.manager.ObtenerPasaporte(id);
+	}
+	public PasajeroFrecuente ObtenerPasFrecuente (int id) {
+		return this.manager.ObtenerPasFrecuente(id);
+	}
+	
 }

@@ -298,7 +298,7 @@ public class ClienteManager {
 		return pas;
 	}
 
-	private PasajeroFrecuente ObtenerPasFrecuente(int id) {
+	public PasajeroFrecuente ObtenerPasFrecuente(int id) {
 		PasajeroFrecuente pasFre = new PasajeroFrecuente();
 		try {
 			pasFre = this.pasajeroFrecuenteDAODatabase.ObtenerPasajeroFrecuentePorID(id);

@@ -8,8 +8,13 @@ import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
 import edu.usal.controllers.GUI.ClienteController_GUI;
+import edu.usal.managers.ClienteManager;
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.tp.negocio.dao.dominio.Cliente;
+import edu.usal.tp.negocio.dao.dominio.DireccionCompleta;
+import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
+import edu.usal.tp.negocio.dao.dominio.Pasaporte;
+import edu.usal.tp.negocio.dao.dominio.Telefono;
 import edu.usal.view.AerolineaModificar_view;
 import edu.usal.view.ClienteModificar_view;
 import edu.usal.view.ClientesAltaView;
@@ -19,6 +24,7 @@ public class ClienteEvents implements ActionListener {
 
 	private ClientesView view;
 	private ClienteController_GUI clienteController = new ClienteController_GUI();
+
 
 	public ClienteEvents(ClientesView view) {
 		this.view = view;
@@ -43,7 +49,7 @@ public class ClienteEvents implements ActionListener {
 			else {
 				TableModel m = this.view.getTable().getModel();
 				
-				Object objectoSeleccionado = m.getValueAt(filaSeleccionada, 0); 
+				Object objectoSeleccionado = m.getValueAt(filaSeleccionada, 3); 
 				
 				String dni = objectoSeleccionado.toString();
 				System.out.println("Cliente con DNI a modificar: "+dni);
@@ -51,11 +57,17 @@ public class ClienteEvents implements ActionListener {
 				Cliente c = new Cliente();
 				
 				c = clienteController.BuscarClienteDNI(dni);
+				
+				DireccionCompleta d = clienteController.ObtenerDirCompleta(c.getDireccionCompleta().getId());
+				Pasaporte p = clienteController.ObtenerPasaporte(c.getPasaporte().getId());
+				PasajeroFrecuente pasFre = clienteController.ObtenerPasFrecuente(c.getPasajeroFrecuente().getId());
+				Telefono t = clienteController.ObtenerTelefono(c.getTelefono().getId());
+				
 				System.out.println(c.getId());
 				System.out.println(c.getNombre());
 				
-			//	ClienteModificar_view cV = new ClienteModificar_view(c);
-			//	cV.setVisible(true);
+				ClienteModificar_view cV = new ClienteModificar_view(c,d,p,pasFre,t);
+				cV.setVisible(true);
 			
 			}
 		}
@@ -81,4 +93,5 @@ public class ClienteEvents implements ActionListener {
 		}
 
 	} 	
+
 }

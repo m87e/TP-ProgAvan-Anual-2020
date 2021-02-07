@@ -20,8 +20,13 @@ import edu.usal.controllers.GUI.ClienteModificarController_GUI;
 import edu.usal.events.ClienteAltaEvents;
 import edu.usal.events.ClienteModificarEvents;
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
+import edu.usal.tp.negocio.dao.dominio.Cliente;
+import edu.usal.tp.negocio.dao.dominio.DireccionCompleta;
 import edu.usal.tp.negocio.dao.dominio.Pais;
+import edu.usal.tp.negocio.dao.dominio.PasajeroFrecuente;
+import edu.usal.tp.negocio.dao.dominio.Pasaporte;
 import edu.usal.tp.negocio.dao.dominio.Provincia;
+import edu.usal.tp.negocio.dao.dominio.Telefono;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -71,7 +76,7 @@ public class ClienteModificar_view extends JFrame{
 	private JTextField textField_idPasaporte;
 	private JTextField textField_idPasFre;
 
-	public ClienteModificar_view() {
+	public ClienteModificar_view(Cliente c, DireccionCompleta d, Pasaporte p, PasajeroFrecuente pasFre, Telefono t) {
 		setTitle("Modifcar cliente");
 		
 		//Panel Datos Personales
@@ -95,6 +100,7 @@ public class ClienteModificar_view extends JFrame{
 		textField_idCliente.setEditable(false);
 		panel_datosPersonales.add(textField_idCliente);
 		textField_idCliente.setColumns(10);
+		textField_idCliente.setText(String.valueOf(c.getId()));
 		
 		JLabel varDPnombre = new JLabel("Nombre");
 		panel_datosPersonales.add(varDPnombre);
@@ -102,6 +108,7 @@ public class ClienteModificar_view extends JFrame{
 		textField_nombre = new JTextField();
 		textField_nombre.setColumns(10);
 		panel_datosPersonales.add(textField_nombre);
+		textField_nombre.setText(c.getNombre());
 
 		JLabel varDPapellido = new JLabel("Apellido");
 		panel_datosPersonales.add(varDPapellido);
@@ -109,6 +116,7 @@ public class ClienteModificar_view extends JFrame{
 		textField_apellido = new JTextField();
 		textField_apellido.setColumns(10);
 		panel_datosPersonales.add(textField_apellido);
+		textField_apellido.setText(c.getApellido());
 
 		JLabel varDPDNI = new JLabel("DNI");
 		panel_datosPersonales.add(varDPDNI);
@@ -116,6 +124,7 @@ public class ClienteModificar_view extends JFrame{
 		textField_DNI = new JTextField();
 		textField_DNI.setColumns(10);
 		panel_datosPersonales.add(textField_DNI);
+		textField_DNI.setText(c.getDni());
 
 		JLabel varDPCuit = new JLabel("CUIT");
 		panel_datosPersonales.add(varDPCuit);
@@ -123,6 +132,7 @@ public class ClienteModificar_view extends JFrame{
 		textField_cuit = new JTextField();
 		panel_datosPersonales.add(textField_cuit);
 		textField_cuit.setColumns(10);
+		textField_cuit.setText(c.getCuit());
 
 		JLabel varDPfechaNacimiento = new JLabel("Fecha de Nacimiento");
 		panel_datosPersonales.add(varDPfechaNacimiento);
@@ -137,6 +147,7 @@ public class ClienteModificar_view extends JFrame{
 		textField_email.setColumns(10);
 		panel_datosPersonales.add(textField_email);
 		getContentPane().setLayout(new GridLayout(2, 3, 0, 0));
+		textField_email.setText(c.getEmail());
 		
 		//Panel Direccion
 		JPanel panel_direccion = new JPanel();
@@ -161,6 +172,7 @@ public class ClienteModificar_view extends JFrame{
 		textField_idDireccion.setEditable(false);
 		panel_direccion.add(textField_idDireccion);
 		textField_idDireccion.setColumns(10);
+		textField_idDireccion.setText(String.valueOf(d.getId()));
 
 		
 		JLabel varDcalle = new JLabel("Calle");
@@ -169,6 +181,7 @@ public class ClienteModificar_view extends JFrame{
 		textField_calle = new JTextField();
 		textField_calle.setColumns(10);
 		panel_direccion.add(textField_calle);
+		textField_calle.setText(d.getCalle());
 
 		JLabel varDaltura = new JLabel("Altura");
 		panel_direccion.add(varDaltura);
@@ -176,6 +189,7 @@ public class ClienteModificar_view extends JFrame{
 		textField_altura = new JTextField();
 		textField_altura.setColumns(10);
 		panel_direccion.add(textField_altura);
+		textField_altura.setText(d.getAltura());
 
 		JLabel varDciudad = new JLabel("Ciudad");
 		panel_direccion.add(varDciudad);
@@ -183,6 +197,7 @@ public class ClienteModificar_view extends JFrame{
 		textField_ciudad = new JTextField();
 		textField_ciudad.setColumns(10);
 		panel_direccion.add(textField_ciudad);
+		textField_ciudad.setText(d.getCiudad());
 
 		JLabel varDcp = new JLabel("C.P.");
 		panel_direccion.add(varDcp);
@@ -190,6 +205,7 @@ public class ClienteModificar_view extends JFrame{
 		textField_CP = new JTextField();
 		textField_CP.setColumns(10);
 		panel_direccion.add(textField_CP);
+		textField_CP.setText(d.getCodigoPostal());
 
 		JLabel varDpais = new JLabel("Pais");
 		panel_direccion.add(varDpais);
@@ -197,7 +213,7 @@ public class ClienteModificar_view extends JFrame{
 		comboBox_Dpais = new JComboBox();
 		panel_direccion.add(comboBox_Dpais);
 		comboBox_Dpais.setVisible(true);
-		
+				
 		ArrayList<Pais> listPaises = (ArrayList<Pais>) clienteModificarController.mostrarPaises();
 		for (int i = 0; i < listPaises.size(); i++) {
 			comboBox_Dpais.addItem(listPaises.get(i).getNombre());
@@ -279,7 +295,7 @@ public class ClienteModificar_view extends JFrame{
 		textField_idTelefono.setEditable(false);
 		panel_telefono.add(textField_idTelefono);
 		textField_idTelefono.setColumns(10);
-
+		textField_idTelefono.setText(String.valueOf(t.getId()));
 		
 		JLabel varTpersonal = new JLabel("Nro. Personal");
 		panel_telefono.add(varTpersonal);
@@ -287,13 +303,15 @@ public class ClienteModificar_view extends JFrame{
 		textField_nroPersonal = new JTextField();
 		textField_nroPersonal.setColumns(10);
 		panel_telefono.add(textField_nroPersonal);
-
+		textField_nroPersonal.setText(t.getNumPersonal());
+		
 		JLabel varTcelular = new JLabel("Nro. Celular");
 		panel_telefono.add(varTcelular);
 
 		textField_nroCelular = new JTextField();
 		textField_nroCelular.setColumns(10);
 		panel_telefono.add(textField_nroCelular);
+		textField_nroCelular.setText(t.getNumCelular());
 
 		JLabel varTlaboral = new JLabel("Nro. Laboral");
 		panel_telefono.add(varTlaboral);
@@ -301,6 +319,7 @@ public class ClienteModificar_view extends JFrame{
 		textField_nroLaboral = new JTextField();
 		textField_nroLaboral.setColumns(10);
 		panel_telefono.add(textField_nroLaboral);
+		textField_nroLaboral.setText(t.getNumLaboral());
 		
 		//Panel Pasaporte
 		
@@ -326,7 +345,7 @@ public class ClienteModificar_view extends JFrame{
 		textField_idPasaporte.setEditable(false);
 		panel_pasaporte.add(textField_idPasaporte);
 		textField_idPasaporte.setColumns(10);
-
+		textField_idPasaporte.setText(String.valueOf(p.getId()));
 
 		JLabel varPnroPasaporte = new JLabel("Nro. Pasaporte");
 		panel_pasaporte.add(varPnroPasaporte);
@@ -334,6 +353,7 @@ public class ClienteModificar_view extends JFrame{
 		textField_nroPasaporte = new JTextField();
 		textField_nroPasaporte.setColumns(10);
 		panel_pasaporte.add(textField_nroPasaporte);
+		textField_nroPasaporte.setText(p.getNumeroPasaporte());
 
 		JLabel varPfechaVecimiento = new JLabel("Fecha vecimiento");
 		panel_pasaporte.add(varPfechaVecimiento);
@@ -363,7 +383,7 @@ public class ClienteModificar_view extends JFrame{
 		textField_autEmision = new JTextField();
 		panel_pasaporte.add(textField_autEmision);
 		textField_autEmision.setColumns(10);
-	
+		textField_autEmision.setText(p.getAutoridadEmision());
 		
 		//Panel pasajero Frecuente
 		JPanel panel_pasajeroFrecuente = new JPanel();
@@ -388,6 +408,7 @@ public class ClienteModificar_view extends JFrame{
 		textField_idPasFre.setEnabled(false);
 		panel_pasajeroFrecuente.add(textField_idPasFre);
 		textField_idPasFre.setColumns(10);
+		textField_idPasFre.setText(String.valueOf(pasFre.getId()));
 		
 		JLabel varPFnumero = new JLabel("Numero");
 		panel_pasajeroFrecuente.add(varPFnumero);
@@ -395,6 +416,7 @@ public class ClienteModificar_view extends JFrame{
 		textField_numeroPasaFrec = new JTextField();
 		panel_pasajeroFrecuente.add(textField_numeroPasaFrec);
 		textField_numeroPasaFrec.setColumns(10);
+		textField_numeroPasaFrec.setText(pasFre.getNumeroPF());
 		
 		JLabel varPFaerolinea = new JLabel("Aerolinea");
 		panel_pasajeroFrecuente.add(varPFaerolinea);
@@ -427,9 +449,15 @@ public class ClienteModificar_view extends JFrame{
 		textField_alianza.setEditable(false);
 		panel_pasajeroFrecuente.add(textField_alianza);
 		textField_alianza.setColumns(10);
+		
 
 		JLabel varPFcategoria = new JLabel("Categoria");
 		panel_pasajeroFrecuente.add(varPFcategoria);
+		
+		textField_categoria = new JTextField();
+		panel_pasajeroFrecuente.add(textField_categoria);
+		textField_categoria.setColumns(10);
+		textField_categoria.setText(pasFre.getCategoria());
 		
 		JPanel panel_botones = new JPanel();
 
@@ -456,9 +484,7 @@ public class ClienteModificar_view extends JFrame{
 		panel_botones.add(btnCancelar);
 		getBtnCancelar().addActionListener(new ClienteModificarEvents(this));
 		
-		textField_categoria = new JTextField();
-		panel_pasajeroFrecuente.add(textField_categoria);
-		textField_categoria.setColumns(10);
+		
 	}
 
 	public JComboBox getComboBox_Dpais() {
