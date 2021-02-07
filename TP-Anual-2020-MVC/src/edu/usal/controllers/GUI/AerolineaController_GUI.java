@@ -7,8 +7,8 @@ import edu.usal.events.AerolineaEvents;
 import edu.usal.managers.AerolineaManager;
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.view.AerolineaAlta_view;
-import edu.usal.view.AerolineasABM_View;
 import edu.usal.view.AerolineasView;
+import edu.usal.view_old.AerolineasABM_View;
 
 public class AerolineaController_GUI {
 

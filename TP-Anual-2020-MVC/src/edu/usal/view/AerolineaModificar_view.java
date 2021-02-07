@@ -37,21 +37,21 @@ public class AerolineaModificar_view extends JFrame {
 		getContentPane().setLayout(null);
 
 		lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(32, 31, 106, 14);
+		lblNombre.setBounds(32, 45, 106, 14);
 		getContentPane().add(lblNombre);
 
 		textNombre = new JTextField();
-		textNombre.setBounds(161, 28, 206, 20);
+		textNombre.setBounds(161, 42, 206, 20);
 		getContentPane().add(textNombre);
 		textNombre.setColumns(10);
 		textNombre.setText(a.getNombre());
 		
 		lblAlianza = new JLabel("Alianza");
-		lblAlianza.setBounds(32, 56, 106, 14);
+		lblAlianza.setBounds(32, 70, 106, 14);
 		getContentPane().add(lblAlianza);
 
 		textAlianza = new JTextField();
-		textAlianza.setBounds(161, 54, 206, 20);
+		textAlianza.setBounds(161, 68, 206, 20);
 		getContentPane().add(textAlianza);
 		textAlianza.setColumns(10);
 		String alianza = a.getAlianza().toString();
@@ -74,6 +74,10 @@ public class AerolineaModificar_view extends JFrame {
 		textID.setColumns(10);
 		getBtnSubmit().addActionListener(new AerolineaModificarEvents(this));
 		textID.setText(String.valueOf((a.getId())));
+		
+		JLabel lbl_id = new JLabel("ID");
+		lbl_id.setBounds(32, 11, 122, 23);
+		getContentPane().add(lbl_id);
 		
 	}
 
@@ -120,6 +124,4 @@ public class AerolineaModificar_view extends JFrame {
 	public void setTextID(JTextField textID) {
 		this.textID = textID;
 	}
-	
-	
 }

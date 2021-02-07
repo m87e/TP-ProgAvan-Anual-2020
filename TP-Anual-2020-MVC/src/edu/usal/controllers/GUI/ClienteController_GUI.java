@@ -144,4 +144,9 @@ public class ClienteController_GUI {
 		
 		return listadoAerolinea;
 	}
+
+	public Cliente BuscarClienteDNI(String dni) {
+		
+		return this.manager.ObtenerCliente(dni);
+	}
 }

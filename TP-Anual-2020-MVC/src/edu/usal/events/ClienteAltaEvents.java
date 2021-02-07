@@ -57,23 +57,17 @@ public class ClienteAltaEvents implements ActionListener{
 					this.viewAltaCliente.getLblMensajeExito().setVisible(true);
 					clienteAltaController.altaCliente(c, p, tel, dir, pasFrec);
 					this.viewAltaCliente.getLblMensajeExito().setVisible(false);
-					Menu_view.RecargarPanelCambiante(this.viewAltaCliente);
+				//	Menu_view.RecargarPanelCambiante(this.viewAltaCliente);
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
-				
-
+			this.viewAltaCliente.setVisible(false);
 		}
 		if (e.getSource() == this.viewAltaCliente.getBtnCancelar()) {
-			this.viewAltaCliente.getLblMensajeCancelado().setVisible(true);
-			Menu_view.RecargarPanelCambiante(this.viewAltaCliente);
+			this.viewAltaCliente.setVisible(false);
 		}
-		if(e.getSource() == this.viewAltaCliente.getBtn_GoConsultaCliente()) {
-			//Menu_view.RecargarPanelCambiante(new ClientesView());
-		}
-		
+
 	}
 	private Cliente CargarCliente() {
 		// TODO Auto-generated method stub

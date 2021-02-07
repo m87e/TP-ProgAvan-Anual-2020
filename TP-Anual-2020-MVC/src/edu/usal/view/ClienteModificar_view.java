@@ -16,7 +16,9 @@ import com.toedter.calendar.JDateChooser;
 import java.util.ArrayList;
 
 import edu.usal.controllers.GUI.ClienteAltaController_GUI;
+import edu.usal.controllers.GUI.ClienteModificarController_GUI;
 import edu.usal.events.ClienteAltaEvents;
+import edu.usal.events.ClienteModificarEvents;
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.tp.negocio.dao.dominio.Pais;
 import edu.usal.tp.negocio.dao.dominio.Provincia;
@@ -26,7 +28,7 @@ import java.awt.event.ItemListener;
 
 import javax.swing.SwingConstants;
 
-public class ClientesAltaView extends JFrame{
+public class ClienteModificar_view extends JFrame{
 
 	/**
 	 * 
@@ -62,10 +64,15 @@ public class ClientesAltaView extends JFrame{
 	private JDateChooser dateChooser_fechaNac, dateChooser_fechaVencimiento, dateChooser_fechaEmision;
 	private JButton btn_Guardar,btnCancelar;
 	
-	private ClienteAltaController_GUI clienteAltaController = new ClienteAltaController_GUI(this);
+	private ClienteModificarController_GUI clienteModificarController = new ClienteModificarController_GUI(this);
+	private JTextField textField_idCliente;
+	private JTextField textField_idDireccion;
+	private JTextField textField_idTelefono;
+	private JTextField textField_idPasaporte;
+	private JTextField textField_idPasFre;
 
-	public ClientesAltaView() {
-		setTitle("Nuevo Cliente");
+	public ClienteModificar_view() {
+		setTitle("Modifcar cliente");
 		
 		//Panel Datos Personales
 		JPanel panel_datosPersonales = new JPanel(new GridLayout(8,2,0,0));
@@ -79,6 +86,15 @@ public class ClientesAltaView extends JFrame{
 		JLabel dosPuntos = new JLabel("");
 		dosPuntos.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		panel_datosPersonales.add(dosPuntos);
+		
+		JLabel lbl_idCliente = new JLabel("ID Cliente");
+		panel_datosPersonales.add(lbl_idCliente);
+		
+		textField_idCliente = new JTextField();
+		textField_idCliente.setEnabled(false);
+		textField_idCliente.setEditable(false);
+		panel_datosPersonales.add(textField_idCliente);
+		textField_idCliente.setColumns(10);
 		
 		JLabel varDPnombre = new JLabel("Nombre");
 		panel_datosPersonales.add(varDPnombre);
@@ -125,7 +141,7 @@ public class ClientesAltaView extends JFrame{
 		//Panel Direccion
 		JPanel panel_direccion = new JPanel();
 		getContentPane().add(panel_direccion);
-		panel_direccion.setLayout(new GridLayout(8, 2, 0, 0));
+		panel_direccion.setLayout(new GridLayout(9, 2, 0, 0));
 
 		JLabel lblDireccion = new JLabel("Direccion");
 		lblDireccion.setVerticalAlignment(SwingConstants.TOP);
@@ -136,6 +152,15 @@ public class ClientesAltaView extends JFrame{
 		dosPuntos = new JLabel("");
 		dosPuntos.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		panel_direccion.add(dosPuntos);
+		
+		JLabel lbl_idDireccion = new JLabel("ID Direccion");
+		panel_direccion.add(lbl_idDireccion);
+		
+		textField_idDireccion = new JTextField();
+		textField_idDireccion.setEnabled(false);
+		textField_idDireccion.setEditable(false);
+		panel_direccion.add(textField_idDireccion);
+		textField_idDireccion.setColumns(10);
 
 		
 		JLabel varDcalle = new JLabel("Calle");
@@ -173,7 +198,7 @@ public class ClientesAltaView extends JFrame{
 		panel_direccion.add(comboBox_Dpais);
 		comboBox_Dpais.setVisible(true);
 		
-		ArrayList<Pais> listPaises = (ArrayList<Pais>) clienteAltaController.mostrarPaises();
+		ArrayList<Pais> listPaises = (ArrayList<Pais>) clienteModificarController.mostrarPaises();
 		for (int i = 0; i < listPaises.size(); i++) {
 			comboBox_Dpais.addItem(listPaises.get(i).getNombre());
 		}
@@ -212,7 +237,7 @@ public class ClientesAltaView extends JFrame{
 		varDprovincia.setVisible(false);
 		
 			
-		ArrayList<Provincia> listProv = (ArrayList<Provincia>) clienteAltaController.mostrarProvincias();
+		ArrayList<Provincia> listProv = (ArrayList<Provincia>) clienteModificarController.mostrarProvincias();
 		
 		comboBox_provincia = new JComboBox();
 		for (int i = 0; i < listProv.size(); i++) {
@@ -245,6 +270,15 @@ public class ClientesAltaView extends JFrame{
 		dosPuntos = new JLabel("");
 		dosPuntos.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		panel_telefono.add(dosPuntos);
+		
+		JLabel lbl_idTelefono = new JLabel("ID Telefono");
+		panel_telefono.add(lbl_idTelefono);
+		
+		textField_idTelefono = new JTextField();
+		textField_idTelefono.setEnabled(false);
+		textField_idTelefono.setEditable(false);
+		panel_telefono.add(textField_idTelefono);
+		textField_idTelefono.setColumns(10);
 
 		
 		JLabel varTpersonal = new JLabel("Nro. Personal");
@@ -283,6 +317,15 @@ public class ClientesAltaView extends JFrame{
 		dosPuntos = new JLabel("");
 		dosPuntos.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		panel_pasaporte.add(dosPuntos);
+		
+		JLabel lbl_idPasaporte = new JLabel("ID Pasaporte");
+		panel_pasaporte.add(lbl_idPasaporte);
+		
+		textField_idPasaporte = new JTextField();
+		textField_idPasaporte.setEnabled(false);
+		textField_idPasaporte.setEditable(false);
+		panel_pasaporte.add(textField_idPasaporte);
+		textField_idPasaporte.setColumns(10);
 
 
 		JLabel varPnroPasaporte = new JLabel("Nro. Pasaporte");
@@ -337,6 +380,15 @@ public class ClientesAltaView extends JFrame{
 		dosPuntos.setFont(new Font("Lucida Sans", Font.BOLD, 13));
 		panel_pasajeroFrecuente.add(dosPuntos);
 		
+		JLabel lbl_idPasFre = new JLabel("ID Pasajero Frecuente");
+		panel_pasajeroFrecuente.add(lbl_idPasFre);
+		
+		textField_idPasFre = new JTextField();
+		textField_idPasFre.setEditable(false);
+		textField_idPasFre.setEnabled(false);
+		panel_pasajeroFrecuente.add(textField_idPasFre);
+		textField_idPasFre.setColumns(10);
+		
 		JLabel varPFnumero = new JLabel("Numero");
 		panel_pasajeroFrecuente.add(varPFnumero);
 
@@ -347,7 +399,7 @@ public class ClientesAltaView extends JFrame{
 		JLabel varPFaerolinea = new JLabel("Aerolinea");
 		panel_pasajeroFrecuente.add(varPFaerolinea);
 		
-		ArrayList<Aerolinea> listAerolinea = (ArrayList<Aerolinea>) clienteAltaController.mostrarAerolinea();
+		ArrayList<Aerolinea> listAerolinea = (ArrayList<Aerolinea>) clienteModificarController.mostrarAerolinea();
 		
 		comboBox_aerolinea = new JComboBox();
 		panel_pasajeroFrecuente.add(comboBox_aerolinea);
@@ -386,23 +438,23 @@ public class ClientesAltaView extends JFrame{
 		panel_botones.setLayout(sl_panel_botones);
 		
 		btn_Guardar = new JButton("Guardar");
-		sl_panel_botones.putConstraint(SpringLayout.SOUTH, btn_Guardar, -61, SpringLayout.SOUTH, panel_botones);
+		sl_panel_botones.putConstraint(SpringLayout.WEST, btn_Guardar, 64, SpringLayout.WEST, panel_botones);
+		sl_panel_botones.putConstraint(SpringLayout.SOUTH, btn_Guardar, -51, SpringLayout.SOUTH, panel_botones);
 		sl_panel_botones.putConstraint(SpringLayout.EAST, btn_Guardar, -71, SpringLayout.EAST, panel_botones);
 		btn_Guardar.setFont(new Font("Lucida Sans", Font.PLAIN, 13));
 		panel_botones.add(btn_Guardar);
-		getBtn_Guardar().addActionListener(new ClienteAltaEvents(this));
+		getBtn_Guardar().addActionListener(new ClienteModificarEvents(this));
 		
 		
 		btnCancelar = new JButton("Cancelar");
-		sl_panel_botones.putConstraint(SpringLayout.NORTH, btnCancelar, 51, SpringLayout.NORTH, panel_botones);
-		sl_panel_botones.putConstraint(SpringLayout.SOUTH, btnCancelar, -141, SpringLayout.SOUTH, panel_botones);
-		sl_panel_botones.putConstraint(SpringLayout.NORTH, btn_Guardar, 26, SpringLayout.SOUTH, btnCancelar);
-		sl_panel_botones.putConstraint(SpringLayout.WEST, btn_Guardar, 0, SpringLayout.WEST, btnCancelar);
+		sl_panel_botones.putConstraint(SpringLayout.NORTH, btnCancelar, 45, SpringLayout.NORTH, panel_botones);
 		sl_panel_botones.putConstraint(SpringLayout.WEST, btnCancelar, 64, SpringLayout.WEST, panel_botones);
+		sl_panel_botones.putConstraint(SpringLayout.SOUTH, btnCancelar, -121, SpringLayout.SOUTH, panel_botones);
 		sl_panel_botones.putConstraint(SpringLayout.EAST, btnCancelar, -71, SpringLayout.EAST, panel_botones);
+		sl_panel_botones.putConstraint(SpringLayout.NORTH, btn_Guardar, 26, SpringLayout.SOUTH, btnCancelar);
 		btnCancelar.setFont(new Font("Lucida Sans", Font.PLAIN, 13));
 		panel_botones.add(btnCancelar);
-		getBtnCancelar().addActionListener(new ClienteAltaEvents(this));
+		getBtnCancelar().addActionListener(new ClienteModificarEvents(this));
 		
 		textField_categoria = new JTextField();
 		panel_pasajeroFrecuente.add(textField_categoria);
@@ -625,12 +677,12 @@ public class ClientesAltaView extends JFrame{
 		this.btnCancelar = btnCancelar;
 	}
 
-	public ClienteAltaController_GUI getClienteAltaController() {
-		return clienteAltaController;
+	public ClienteModificarController_GUI getClienteAltaController() {
+		return clienteModificarController;
 	}
 
-	public void setClienteAltaController(ClienteAltaController_GUI clienteAltaController) {
-		this.clienteAltaController = clienteAltaController;
+	public void setClienteModificarController(ClienteModificarController_GUI clienteModificarController) {
+		this.clienteModificarController = clienteModificarController;
 	}
 
 	public static long getSerialversionuid() {
@@ -668,5 +720,44 @@ public class ClientesAltaView extends JFrame{
 	public void setLblMensajeExito(JLabel lblMensajeExito) {
 		this.lblMensajeExito = lblMensajeExito;
 	}
-	
+
+	public JTextField getTextField_idCliente() {
+		return textField_idCliente;
+	}
+
+	public void setTextField_idCliente(JTextField textField_idCliente) {
+		this.textField_idCliente = textField_idCliente;
+	}
+
+	public JTextField getTextField_idDireccion() {
+		return textField_idDireccion;
+	}
+
+	public void setTextField_idDireccion(JTextField textField_idDireccion) {
+		this.textField_idDireccion = textField_idDireccion;
+	}
+
+	public JTextField getTextField_idTelefono() {
+		return textField_idTelefono;
+	}
+
+	public void setTextField_idTelefono(JTextField textField_idTelefono) {
+		this.textField_idTelefono = textField_idTelefono;
+	}
+
+	public JTextField getTextField_idPasaporte() {
+		return textField_idPasaporte;
+	}
+
+	public void setTextField_idPasaporte(JTextField textField_idPasaporte) {
+		this.textField_idPasaporte = textField_idPasaporte;
+	}
+
+	public JTextField getTextField_idPasFre() {
+		return textField_idPasFre;
+	}
+
+	public void setTextField_idPasFre(JTextField textField_idPasFre) {
+		this.textField_idPasFre = textField_idPasFre;
+	}
 }

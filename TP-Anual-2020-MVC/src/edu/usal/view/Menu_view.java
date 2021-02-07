@@ -121,8 +121,8 @@ public class Menu_view implements ActionListener{
 		frame.getContentPane().add(panelPivot);
 		panelPivot.setLayout(new CardLayout(0,0));
 		
-		//panelCliente = new ClientesView();
-		panelCliente = new AerolineasView();
+		panelCliente = new ClientesView();
+		//panelCliente = new AerolineasView();
 		panelPivot.add(panelCliente);
 		panelPivot.setVisible(true);
 		panelPivot.validate();
@@ -157,21 +157,6 @@ public class Menu_view implements ActionListener{
 		
 		if(e.getSource() == mntmABMCliente) {
 			panelCliente = new ClientesABM_view();
-			panelPivot.removeAll();
-			panelPivot.add(panelCliente);
-			panelPivot.setVisible(true);
-			panelPivot.validate();
-		}
-		
-		if(e.getSource() == mntmListadoCliente) {
-			panelCliente = new ClientesView();
-			panelPivot.removeAll();
-			panelPivot.add(panelCliente);
-			panelPivot.setVisible(true);
-			panelPivot.validate();
-		}
-		if(e.getSource() == mntmAltaCliente) {
-			panelCliente = new ClientesAltaView();
 			panelPivot.removeAll();
 			panelPivot.add(panelCliente);
 			panelPivot.setVisible(true);

@@ -1,4 +1,4 @@
-package edu.usal.view;
+package edu.usal.view_old;
 
 import javax.swing.JPanel;
 

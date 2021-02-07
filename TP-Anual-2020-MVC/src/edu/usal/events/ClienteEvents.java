@@ -1,18 +1,19 @@
 package edu.usal.events;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
 
-import javax.swing.JButton;
-import javax.swing.JTable;
+
+import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
 import edu.usal.controllers.GUI.ClienteController_GUI;
+import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.tp.negocio.dao.dominio.Cliente;
+import edu.usal.view.AerolineaModificar_view;
+import edu.usal.view.ClienteModificar_view;
+import edu.usal.view.ClientesAltaView;
 import edu.usal.view.ClientesView;
-import edu.usal.view_old.ClientesABM_view;
 
 public class ClienteEvents implements ActionListener {
 
@@ -25,41 +26,59 @@ public class ClienteEvents implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
-		// Este boton deberia ser el Submit del modal
+		
 		if (e.getSource() == this.view.getBtnAlta()) {
 			System.out.println("Generando nuevo cliente...");
 			System.out.println("... Procensando ...");
+			
+			ClientesAltaView cV = new ClientesAltaView();
+			cV.setVisible(true);
 		}
 		if (e.getSource() == this.view.getBtnModificar()) {
-		//	tablaMouseClicked(e,this.view);
-		}
-		if (e.getSource() == this.view.getBtnBorrar()) {
-
-		}
-
-	}
-	
-	private void tablaMouseClicked (java.awt.event.MouseEvent e, JTable table) {
-		
-		int column = table.getColumnModel().getColumnIndexAtX(e.getX());
-		int row = e.getY()/table.getRowHeight();
-		
-		if(row < table.getRowCount() && row >= 0 && column < table.getColumnCount() && column>=0) {
-			Object value = table.getValueAt(row, column);
-			if(value instanceof JButton) {
-				((JButton)value).doClick();
-				JButton boton = (JButton) value;
-				System.out.println("boton");
-				if(boton.getName().equals("m")) {
-					System.out.println("Modificar");
-				}
-				if(boton.getName().equals("e")) {
-					System.out.println("Eliminar");
-				}
+			int filaSeleccionada = this.view.getTable().getSelectedRow();
+			System.out.println("fila seleccionada" + filaSeleccionada);
+			if (filaSeleccionada == -1) {
+				JOptionPane.showMessageDialog(null, "Seleccione una fila para modificar");
+			}
+			else {
+				TableModel m = this.view.getTable().getModel();
+				
+				Object objectoSeleccionado = m.getValueAt(filaSeleccionada, 0); 
+				
+				String dni = objectoSeleccionado.toString();
+				System.out.println("Cliente con DNI a modificar: "+dni);
+				
+				Cliente c = new Cliente();
+				
+				c = clienteController.BuscarClienteDNI(dni);
+				System.out.println(c.getId());
+				System.out.println(c.getNombre());
+				
+			//	ClienteModificar_view cV = new ClienteModificar_view(c);
+			//	cV.setVisible(true);
+			
 			}
 		}
-		
-	}
+		if (e.getSource() == this.view.getBtnBorrar()) {
+			int filaSeleccionada = this.view.getTable().getSelectedRow();
+			System.out.println("fila seleccionada" + filaSeleccionada);
+			if (filaSeleccionada == -1) {
+				JOptionPane.showMessageDialog(null, "Seleccione una fila para eliminar");
+			}
+			else {
+				TableModel m = this.view.getTable().getModel();
+				
+				Object objectoSeleccionado = m.getValueAt(filaSeleccionada, 0); 
+				System.out.println("Objeto a borrar"+objectoSeleccionado.toString());
+				int id = ((Integer) objectoSeleccionado).intValue();
+				System.out.println("ID a borrar: "+id);
+				
+				Cliente c = new Cliente();
+				c.setId(id);
+				clienteController.bajaCliente(c);
+				JOptionPane.showMessageDialog(null, "El cliente con ID: "+id+" ha sido borrado." );
+			}
+		}
+
+	} 	
 }

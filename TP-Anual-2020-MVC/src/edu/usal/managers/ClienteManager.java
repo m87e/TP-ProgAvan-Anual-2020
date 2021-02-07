@@ -198,7 +198,7 @@ public class ClienteManager {
 		List<Cliente> listadoClientes = null;
 		try {
 			listadoClientes = clienteDAODatabase.GetAll();
-			
+			/*
 			for (int i = 0; i < listadoClientes.size(); i++) {
 				//Dirreccion
 				int idDir = listadoClientes.get(i).getDireccionCompleta().getId();
@@ -234,6 +234,7 @@ public class ClienteManager {
 				listadoClientes.get(i).getPasajeroFrecuente().setCategoria(pasFreAux.getCategoria());
 				listadoClientes.get(i).getPasajeroFrecuente().setNumeroPF(pasFreAux.getNumeroPF());
 			}
+			*/
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
