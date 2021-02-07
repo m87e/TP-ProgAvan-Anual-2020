@@ -178,7 +178,7 @@ public class Menu_view implements ActionListener{
 		}
 		
 		if(e.getSource() == mntmVenta) {
-			panelVenta = new VentasABM_view();
+			panelVenta = new VentasView();
 			panelPivot.removeAll();
 			panelPivot.add(panelVenta);
 			panelPivot.setVisible(true);
@@ -186,7 +186,7 @@ public class Menu_view implements ActionListener{
 		}
 		
 		if(e.getSource() == mntmVuelo) {
-			panelVuelo = new VuelosABM_view();
+			panelVuelo = new VuelosView();
 			panelPivot.removeAll();
 			panelPivot.add(panelVuelo);
 			panelPivot.setVisible(true);

@@ -146,11 +146,11 @@ public class AerolineaManager {
 
 		}
 	}
-	
-	public List<Aerolinea> MostrarLineasAereas (){
-		
+
+	public List<Aerolinea> MostrarLineasAereas() {
+
 		List<Aerolinea> listadoAerolinea = null;
-		
+
 		try {
 			System.out.println("Generando listado de aerolineas...");
 			System.out.println("procesando... ");
@@ -158,21 +158,21 @@ public class AerolineaManager {
 			System.out.println("finalizado");
 		} catch (IOException e) {
 			System.out.println("No se pudo obtener listado de las lineas aereas");
-		}  
+		}
 		return listadoAerolinea;
-	} 
+	}
 
-	public Aerolinea BuscarAerolineaID (int id) {
+	public Aerolinea BuscarAerolineaID(int id) {
 		Aerolinea a = new Aerolinea();
 		try {
 			a = aerolineaDAODatabase.ObtenerAerolineaPorID(id);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("No se encontraron aerolineas con ese ID");
 		}
-		
+
 		return a;
-		
+
 	}
 
 }

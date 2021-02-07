@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.tp.negocio.dao.dominio.Aeropuerto;
@@ -26,7 +27,7 @@ public class VueloManager {
 	private AeropuertoDAO aeropuertoDAODatabase = AeropuertoFactory.GetImplementation("database");
 	private AerolineaDAO aerolineaDAODatabase = AerolineaFactory.GetImplementation("database");
 
-	public void AltaVuelo(Vuelo vuelo, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoLlegada, Aerolinea aerolinea) {
+	public void AltaVuelo(Vuelo vuelo) {
 
 		Connection con = null;
 
@@ -34,13 +35,14 @@ public class VueloManager {
 			con = SQLDatabaseConnection.conectar();
 			con.setAutoCommit(false);
 
-			Aeropuerto salida = this.aeropuertoDAODatabase.ObtenerAeropuertoPorID(aeropuertoSalida.getId());
+			Aeropuerto salida = this.aeropuertoDAODatabase.ObtenerAeropuertoPorID(vuelo.getAeropuertoSalida().getId());
 			vuelo.setAeropuertoSalida(salida);
 
-			Aeropuerto llegada = this.aeropuertoDAODatabase.ObtenerAeropuertoPorID(aeropuertoLlegada.getId());
+			Aeropuerto llegada = this.aeropuertoDAODatabase
+					.ObtenerAeropuertoPorID(vuelo.getAeropuertoLlegada().getId());
 			vuelo.setAeropuertoLlegada(llegada);
 
-			Aerolinea aero = this.aerolineaDAODatabase.ObtenerAerolineaPorID(aerolinea.getId());
+			Aerolinea aero = this.aerolineaDAODatabase.ObtenerAerolineaPorID(vuelo.getAerolinea().getId());
 			vuelo.setAerolinea(aero);
 
 			this.vueloDAODatabase.AgregarVuelo(vuelo, con);
@@ -185,6 +187,40 @@ public class VueloManager {
 			}
 
 		}
+
+	}
+
+	public List<Vuelo> MostrarVuelos() {
+
+		List<Vuelo> listadoVuelos = null;
+		try {
+			System.out.println("Generando listado de aerolineas...");
+			System.out.println("procesando... ");
+			listadoVuelos = vueloDAODatabase.GetAll();
+			System.out.println("finalizado");
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("No se pudo obtener listado de los vuelos");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			System.out.println("No se pudo obtener listado de los vuelos");
+		}
+
+		return listadoVuelos;
+	}
+
+	public Vuelo BuscarVueloID(int id) {
+		Vuelo vuelo = new Vuelo();
+
+		try {
+			vuelo = vueloDAODatabase.ObtenerVueloPorID(id);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("No se encontraron vuelos con ese ID");
+		}
+
+		return vuelo;
 
 	}
 }

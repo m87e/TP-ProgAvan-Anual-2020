@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JList;
 
-public class VentasABM_view extends JPanel implements ActionListener{
+public class VentasView extends JPanel implements ActionListener{
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -28,7 +28,7 @@ public class VentasABM_view extends JPanel implements ActionListener{
 	private JTextField textField_7;
 	private JTextField textField_8;
 	
-	public VentasABM_view() {
+	public VentasView() {
 		
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);

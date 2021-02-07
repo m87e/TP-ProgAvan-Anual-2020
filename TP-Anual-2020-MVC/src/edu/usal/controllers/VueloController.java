@@ -44,7 +44,7 @@ public class VueloController {
 		Aeropuerto aeropuertoLlegada = this.view.CargarAeropuerto();
 		Aerolinea aerolinea = this.view.CargarAerolinea();
 
-		this.manager.AltaVuelo(vuelo, aeropuertoSalida, aeropuertoLlegada, aerolinea);
+		this.manager.AltaVuelo(vuelo);
 	}
 
 	private void modificarVuelo() {
