@@ -40,8 +40,6 @@ public class ClientesAltaView extends JFrame{
 	private JTextField textField_provincia;
 	private JLabel varProvinciaAux = null;
 	private JLabel varDprovincia;
-	private JLabel lblMensajeCancelado = null;
-	private JLabel lblMensajeExito = null;
 	private JTextField textField_categoria;
 	private JTextField textField_alianza;
 	private JTextField textField_nombre;
@@ -651,22 +649,5 @@ public class ClientesAltaView extends JFrame{
 
 	public void setComboBox_aerolinea(JComboBox comboBox_aerolinea) {
 		this.comboBox_aerolinea = comboBox_aerolinea;
-	}
-
-	public JLabel getLblMensajeCancelado() {
-		return lblMensajeCancelado;
-	}
-
-	public void setLblMensajeCancelado(JLabel lblMensajeCancelado) {
-		this.lblMensajeCancelado = lblMensajeCancelado;
-	}
-
-	public JLabel getLblMensajeExito() {
-		return lblMensajeExito;
-	}
-
-	public void setLblMensajeExito(JLabel lblMensajeExito) {
-		this.lblMensajeExito = lblMensajeExito;
-	}
-	
+	}	
 }

@@ -34,6 +34,7 @@ public class AerolineaModificar_view extends JFrame {
 	private JTextField textID;
 
 	public AerolineaModificar_view(Aerolinea a) {
+		setTitle("Modifcar Aerolinea");
 		getContentPane().setLayout(null);
 
 		lblNombre = new JLabel("Nombre");

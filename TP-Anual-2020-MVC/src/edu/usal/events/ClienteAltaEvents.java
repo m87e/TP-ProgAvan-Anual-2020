@@ -54,9 +54,7 @@ public class ClienteAltaEvents implements ActionListener{
 			PasajeroFrecuente pasFrec = CargarPasFrecuente();
 			
 			try {
-					this.viewAltaCliente.getLblMensajeExito().setVisible(true);
 					clienteAltaController.altaCliente(c, p, tel, dir, pasFrec);
-					this.viewAltaCliente.getLblMensajeExito().setVisible(false);
 				//	Menu_view.RecargarPanelCambiante(this.viewAltaCliente);
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
