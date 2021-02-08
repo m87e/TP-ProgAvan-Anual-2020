@@ -97,7 +97,7 @@ public class AeropuertosDAOImplDatabase implements AeropuertoDAO {
 		Statement stm = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT_ALL";
+		String sql = SELECT_ALL;
 
 		try {
 			con = SQLDatabaseConnection.conectar();
