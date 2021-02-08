@@ -13,11 +13,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JList;
 
-public class VentasView extends JPanel implements ActionListener{
+public class VentasAlta_view extends JFrame implements ActionListener{
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -28,7 +29,7 @@ public class VentasView extends JPanel implements ActionListener{
 	private JTextField textField_7;
 	private JTextField textField_8;
 	
-	public VentasView() {
+	public VentasAlta_view() {
 		
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);

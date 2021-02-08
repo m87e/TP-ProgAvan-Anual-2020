@@ -43,8 +43,7 @@ public class ClientesView extends JPanel{
 	public ClientesView() {
 
 		// Instanciazion de objetos controllers
-		// ClienteController_GUI clienteController;
-
+		
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
 
