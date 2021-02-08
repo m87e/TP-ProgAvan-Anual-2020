@@ -46,7 +46,7 @@ public class AerolineaModificar_view extends JFrame {
 		getContentPane().add(textNombre);
 		textNombre.setColumns(10);
 		textNombre.setText(a.getNombre());
-		
+
 		lblAlianza = new JLabel("Alianza");
 		lblAlianza.setBounds(32, 70, 106, 14);
 		getContentPane().add(lblAlianza);
@@ -57,7 +57,7 @@ public class AerolineaModificar_view extends JFrame {
 		textAlianza.setColumns(10);
 		String alianza = a.getAlianza().toString();
 		textAlianza.setText(alianza);
-		
+
 		btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(0, 105, 161, 23);
 		getContentPane().add(btnCancel);
@@ -66,25 +66,23 @@ public class AerolineaModificar_view extends JFrame {
 		btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(161, 105, 206, 23);
 		getContentPane().add(btnSubmit);
-		
+		getBtnSubmit().addActionListener(new AerolineaModificarEvents(this));
+
 		textID = new JTextField();
 		textID.setEnabled(false);
 		textID.setEditable(false);
 		textID.setBounds(159, 11, 86, 20);
 		getContentPane().add(textID);
 		textID.setColumns(10);
-		getBtnSubmit().addActionListener(new AerolineaModificarEvents(this));
 		textID.setText(String.valueOf((a.getId())));
-		
+
 		JLabel lbl_id = new JLabel("ID");
 		lbl_id.setBounds(32, 11, 122, 23);
 		getContentPane().add(lbl_id);
-		
+
 	}
 
 	// Getter & setters
-
-	
 
 	public JTextField getTextNombre() {
 		return textNombre;

@@ -37,7 +37,7 @@ public class VuelosAltaView extends JFrame {
 	private VueloAltaController_GUI vueloAltaController = new VueloAltaController_GUI(this);
 
 	public VuelosAltaView() {
-		setTitle("Agregar vuelo");
+		setTitle("Agregar Vuelo");
 		getContentPane().setLayout(null);
 
 		lblNumVuelo = new JLabel("Numero Vuelo");
