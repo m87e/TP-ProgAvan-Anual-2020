@@ -2,11 +2,14 @@ package edu.usal.events;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+
+import javax.swing.JOptionPane;
 
 import edu.usal.controllers.GUI.ClienteModificarController_GUI;
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
@@ -32,11 +35,24 @@ public class ClienteModificarEvents implements ActionListener{
 		// TODO Auto-generated method stub
 		if (e.getSource() == this.viewModificarCliente.getBtn_Guardar()){
 			System.out.println("... Procensando modificacion de Cliente...");
-			Cliente cliente = CargarCliente();	
+			Cliente c = CargarCliente();
+			Pasaporte p = CargarPasaporte();
+			Telefono tel = CargarTelefono();
+			DireccionCompleta dir = CargarDirCompleta();
+			PasajeroFrecuente pasFrec = CargarPasFrecuente();
+			
+			try {
+				clienteModificarController.modificarCliente(c, p, tel, dir, pasFrec);
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			JOptionPane.showMessageDialog(null, "Cliente modificado exitosamente");
 		}
 		
 		if (e.getSource() == this.viewModificarCliente.getBtnCancelar()){
-			
+			this.viewModificarCliente.setVisible(false);
 		}
 	}
 

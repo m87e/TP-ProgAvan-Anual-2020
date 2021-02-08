@@ -55,7 +55,7 @@ public class ClienteAltaEvents implements ActionListener{
 			
 			try {
 					clienteAltaController.altaCliente(c, p, tel, dir, pasFrec);
-				//	Menu_view.RecargarPanelCambiante(this.viewAltaCliente);
+				// 	Menu_view.RecargarPanelCambiante(this.viewAltaCliente);
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -87,7 +87,7 @@ public class ClienteAltaEvents implements ActionListener{
 	}
 
 	private Pasaporte CargarPasaporte() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub 
 		Pasaporte pas = new Pasaporte();
 		pas.setNumeroPasaporte(this.viewAltaCliente.getTextField_nroPasaporte().getText());
 		
@@ -101,16 +101,18 @@ public class ClienteAltaEvents implements ActionListener{
 		}
 		pas.setPais(p);
 
-		Date date = this.viewAltaCliente.getDateChooser_fechaVencimiento().getDate();
+		Date date_fechaVen = this.viewAltaCliente.getDateChooser_fechaVencimiento().getDate();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		sdf.format(date);
-		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		sdf.format(date_fechaVen);
+		LocalDate localDate = date_fechaVen.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		pas.setFechaVencimiento(localDate);
 
-		date = this.viewAltaCliente.getDateChooser_fechaEmision().getDate();
-		sdf.format(date);
-		localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		
+		Date date_fechaEmi = this.viewAltaCliente.getDateChooser_fechaEmision().getDate();
+		sdf.format(date_fechaEmi);
+		localDate = date_fechaEmi.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		pas.setFechaEmision(localDate);
+		
 		pas.setAutoridadEmision(this.viewAltaCliente.getTextField_autEmision().getText());
 
 		return pas;	

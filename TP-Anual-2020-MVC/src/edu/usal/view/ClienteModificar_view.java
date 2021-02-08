@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 import java.util.ArrayList;
+import java.util.Date;
 
 import edu.usal.controllers.GUI.ClienteAltaController_GUI;
 import edu.usal.controllers.GUI.ClienteModificarController_GUI;
@@ -30,6 +31,8 @@ import edu.usal.tp.negocio.dao.dominio.Telefono;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 import javax.swing.SwingConstants;
 
@@ -139,6 +142,12 @@ public class ClienteModificar_view extends JFrame{
 
 		dateChooser_fechaNac = new JDateChooser();
 		panel_datosPersonales.add(dateChooser_fechaNac);
+		
+		ZoneId defaultZoneId = ZoneId.systemDefault();
+		LocalDate localDate_fechaNac = p.getFechaVencimiento();
+		Date date_fechaNac = Date.from(localDate_fechaNac.atStartOfDay(defaultZoneId).toInstant());
+		dateChooser_fechaNac.setDate(date_fechaNac);
+
 
 		JLabel varDPemail = new JLabel("Email");
 		panel_datosPersonales.add(varDPemail);
@@ -360,12 +369,22 @@ public class ClienteModificar_view extends JFrame{
 
 		dateChooser_fechaVencimiento = new JDateChooser();
 		panel_pasaporte.add(dateChooser_fechaVencimiento);
+		
+	
+		LocalDate localDate_fechaVen = p.getFechaVencimiento();
+		Date date_fechaVen = Date.from(localDate_fechaVen.atStartOfDay(defaultZoneId).toInstant());
+		dateChooser_fechaVencimiento.setDate(date_fechaVen);
 
 		JLabel varPfechaEmision = new JLabel("Fecha de emision");
 		panel_pasaporte.add(varPfechaEmision);
 
 		dateChooser_fechaEmision = new JDateChooser();
 		panel_pasaporte.add(dateChooser_fechaEmision);
+		
+	
+		LocalDate localDate_fechaEmi = p.getFechaEmision();
+		Date date_fechaEmi = Date.from(localDate_fechaEmi.atStartOfDay(defaultZoneId).toInstant());
+		dateChooser_fechaEmision.setDate(date_fechaEmi);
 
 		JLabel varPpais = new JLabel("Pais");
 		panel_pasaporte.add(varPpais);
@@ -426,6 +445,8 @@ public class ClienteModificar_view extends JFrame{
 		comboBox_aerolinea = new JComboBox();
 		panel_pasajeroFrecuente.add(comboBox_aerolinea);
 		comboBox_aerolinea.setVisible(true);
+		
+		comboBox_aerolinea.setSelectedItem(pasFre.getAerolinea().getNombre());
 		for (int i = 0; i < listAerolinea.size(); i++) {
 			comboBox_aerolinea.addItem(listAerolinea.get(i).getNombre());
 		}
