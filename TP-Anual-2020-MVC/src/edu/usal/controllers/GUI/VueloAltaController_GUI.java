@@ -20,7 +20,7 @@ public class VueloAltaController_GUI {
 	private VueloManager manager = new VueloManager();
 	private AerolineaDAO aerolineaDAODatabase = AerolineaFactory.GetImplementation("database");
 	private AeropuertoDAO aeropuertoDAODatabase = AeropuertoFactory.GetImplementation("database");
-	
+
 	public VueloAltaController_GUI() {
 
 	}
