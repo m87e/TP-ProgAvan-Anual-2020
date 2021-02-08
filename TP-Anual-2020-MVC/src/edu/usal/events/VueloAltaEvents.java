@@ -111,6 +111,7 @@ public class VueloAltaEvents implements ActionListener {
 			}
 		}
 
+		System.out.println("Aeropuerto ID: " + aeropuerto.getId());
 		return aeropuerto;
 
 	}

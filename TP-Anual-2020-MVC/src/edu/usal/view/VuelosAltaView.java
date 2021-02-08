@@ -33,8 +33,9 @@ public class VuelosAltaView extends JFrame {
 	private JComboBox comboBox_aeropuertosSalida, comboBox_aeropuertosLlegada, comboBox_aerolinea;
 
 	private JDateChooser dateChooser_fechaHoraSalida, dateChooser_fechaHoraLlegada;
-
+	
 	private VueloAltaController_GUI vueloAltaController = new VueloAltaController_GUI(this);
+	private JTextField textField_tiempoVuelo;
 
 	public VuelosAltaView() {
 		setTitle("Agregar Vuelo");
@@ -45,7 +46,7 @@ public class VuelosAltaView extends JFrame {
 		getContentPane().add(lblNumVuelo);
 
 		textNumVuelo = new JTextField();
-		textNumVuelo.setBounds(164, 27, 206, 20);
+		textNumVuelo.setBounds(214, 26, 206, 20);
 		getContentPane().add(textNumVuelo);
 		textNumVuelo.setColumns(10);
 
@@ -54,7 +55,7 @@ public class VuelosAltaView extends JFrame {
 		getContentPane().add(lblCantidadAsientos);
 
 		textCantidadAsientos = new JTextField();
-		textCantidadAsientos.setBounds(164, 59, 206, 20);
+		textCantidadAsientos.setBounds(214, 58, 206, 20);
 		getContentPane().add(textCantidadAsientos);
 		textCantidadAsientos.setColumns(10);
 
@@ -65,7 +66,7 @@ public class VuelosAltaView extends JFrame {
 		getContentPane().add(lblAeropuertoSalida);
 
 		comboBox_aeropuertosSalida = new JComboBox();
-		comboBox_aeropuertosSalida.setBounds(164, 91, 206, 21);
+		comboBox_aeropuertosSalida.setBounds(214, 90, 206, 21);
 		getContentPane().add(comboBox_aeropuertosSalida);
 		for (int i = 0; i < listAeropuertos.size(); i++) {
 			comboBox_aeropuertosSalida.addItem(listAeropuertos.get(i).getCodigo());
@@ -84,7 +85,7 @@ public class VuelosAltaView extends JFrame {
 		getContentPane().add(lblAeropuertoLlegada);
 
 		comboBox_aeropuertosLlegada = new JComboBox();
-		comboBox_aeropuertosLlegada.setBounds(164, 117, 206, 21);
+		comboBox_aeropuertosLlegada.setBounds(214, 116, 206, 21);
 		getContentPane().add(comboBox_aeropuertosLlegada);
 		for (int i = 0; i < listAeropuertos.size(); i++) {
 			comboBox_aeropuertosLlegada.addItem(listAeropuertos.get(i).getCodigo());
@@ -105,7 +106,7 @@ public class VuelosAltaView extends JFrame {
 		getContentPane().add(lblAerolinea);
 
 		comboBox_aerolinea = new JComboBox();
-		comboBox_aerolinea.setBounds(164, 143, 206, 21);
+		comboBox_aerolinea.setBounds(214, 142, 206, 21);
 		getContentPane().add(comboBox_aerolinea);
 		for (int i = 0; i < listAerolinea.size(); i++) {
 			comboBox_aerolinea.addItem(listAerolinea.get(i).getNombre());
@@ -120,21 +121,12 @@ public class VuelosAltaView extends JFrame {
 		});
 
 		lblFechaHoraSalida = new JLabel("Fecha/Hora Salida");
-		lblFechaHoraSalida.setBounds(46, 172, 72, 14);
+		lblFechaHoraSalida.setBounds(46, 172, 140, 14);
 		getContentPane().add(lblFechaHoraSalida);
 
-		dateChooser_fechaHoraSalida = new JDateChooser();
-		getContentPane().add(dateChooser_fechaHoraSalida);
-
-		lblFechaHoraLlegada = new JLabel("Fecha/Hora Llegada");
-		lblFechaHoraLlegada.setBounds(46, 198, 72, 14);
-		getContentPane().add(lblFechaHoraLlegada);
-
-		dateChooser_fechaHoraLlegada = new JDateChooser();
-		getContentPane().add(dateChooser_fechaHoraLlegada);
-
+		
 		lblTiempoVuelo = new JLabel("Tiempo de vuelo");
-		lblTiempoVuelo.setBounds(46, 217, 72, 14);
+		lblTiempoVuelo.setBounds(46, 232, 140, 14);
 		getContentPane().add(lblTiempoVuelo);
 
 		lblTiempoVueloCalculado = new JLabel();
@@ -142,13 +134,27 @@ public class VuelosAltaView extends JFrame {
 		getContentPane().add(lblTiempoVueloCalculado);
 
 		btnCancel = new JButton("Cancel");
-		btnCancel.setBounds(46, 243, 140, 23);
+		btnCancel.setBounds(46, 274, 183, 23);
 		getContentPane().add(btnCancel);
 		getBtnCancel().addActionListener(new VueloAltaEvents(this));
 
 		btnSubmit = new JButton("Submit");
-		btnSubmit.setBounds(198, 243, 189, 23);
+		btnSubmit.setBounds(247, 274, 189, 23);
 		getContentPane().add(btnSubmit);
+		
+		dateChooser_fechaHoraSalida = new JDateChooser();
+		dateChooser_fechaHoraSalida.setBounds(214, 166, 206, 23);
+		getContentPane().add(dateChooser_fechaHoraSalida);
+		
+		dateChooser_fechaHoraLlegada = new JDateChooser();
+		dateChooser_fechaHoraLlegada.setBounds(214, 198, 206, 20);
+		getContentPane().add(dateChooser_fechaHoraLlegada);
+		
+		textField_tiempoVuelo = new JTextField();
+		textField_tiempoVuelo.setEditable(false);
+		textField_tiempoVuelo.setBounds(214, 229, 206, 20);
+		getContentPane().add(textField_tiempoVuelo);
+		textField_tiempoVuelo.setColumns(10);
 		getBtnSubmit().addActionListener(new VueloAltaEvents(this));
 	}
 	// Getter & setters
@@ -232,5 +238,4 @@ public class VuelosAltaView extends JFrame {
 	public void setLblTiempoVueloCalculado(JLabel lblTiempoVueloCalculado) {
 		this.lblTiempoVueloCalculado = lblTiempoVueloCalculado;
 	}
-
 }

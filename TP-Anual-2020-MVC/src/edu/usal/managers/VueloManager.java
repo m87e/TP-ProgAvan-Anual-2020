@@ -35,6 +35,7 @@ public class VueloManager {
 			con = SQLDatabaseConnection.conectar();
 			con.setAutoCommit(false);
 
+			System.out.println(vuelo.getAeropuertoSalida().getId());
 			Aeropuerto salida = this.aeropuertoDAODatabase.ObtenerAeropuertoPorID(vuelo.getAeropuertoSalida().getId());
 			vuelo.setAeropuertoSalida(salida);
 

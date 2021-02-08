@@ -49,7 +49,7 @@ public class AeropuertosDAOImplDatabase implements AeropuertoDAO {
 		try {
 			con = SQLDatabaseConnection.conectar();
 
-			ps = con.prepareStatement("SELECT_BY_ID");
+			ps = con.prepareStatement(SELECT_BY_ID);
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
 
