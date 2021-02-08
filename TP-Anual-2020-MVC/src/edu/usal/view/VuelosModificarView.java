@@ -18,6 +18,7 @@ import com.toedter.calendar.JDateChooser;
 import edu.usal.controllers.GUI.VueloModificarController_GUI;
 import edu.usal.events.VueloModificarEvents;
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
+import edu.usal.tp.negocio.dao.dominio.Aeropuerto;
 import edu.usal.tp.negocio.dao.dominio.Vuelo;
 
 public class VuelosModificarView extends JFrame {
@@ -67,6 +68,46 @@ public class VuelosModificarView extends JFrame {
 		getContentPane().add(textCantidadAsientos);
 		textCantidadAsientos.setColumns(10);
 		textCantidadAsientos.setText(String.valueOf(vuelo.getCantAsientos()));
+
+		ArrayList<Aeropuerto> listAeropuertos = (ArrayList<Aeropuerto>) vueloModificarController.mostrarAeropuertos();
+
+		lblAeropuertoSalida = new JLabel("Aeropuerto salida");
+		lblAeropuertoSalida.setBounds(46, 93, 105, 14);
+		getContentPane().add(lblAeropuertoSalida);
+
+		comboBox_aeropuertosSalida = new JComboBox();
+		comboBox_aeropuertosSalida.setBounds(164, 91, 206, 21);
+		getContentPane().add(comboBox_aeropuertosSalida);
+		for (int i = 0; i < listAeropuertos.size(); i++) {
+			comboBox_aeropuertosSalida.addItem(listAeropuertos.get(i).getCodigo());
+		}
+
+		comboBox_aeropuertosSalida.addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent arg0) {
+				String codigo = comboBox_aeropuertosSalida.getSelectedItem().toString();
+			}
+		});
+
+		lblAeropuertoLlegada = new JLabel("Aeropuerto Llegada");
+		lblAeropuertoLlegada.setBounds(47, 119, 105, 14);
+		getContentPane().add(lblAeropuertoLlegada);
+
+		comboBox_aeropuertosLlegada = new JComboBox();
+		comboBox_aeropuertosLlegada.setBounds(164, 117, 206, 21);
+		getContentPane().add(comboBox_aeropuertosLlegada);
+		for (int i = 0; i < listAeropuertos.size(); i++) {
+			comboBox_aeropuertosLlegada.addItem(listAeropuertos.get(i).getCodigo());
+		}
+
+		comboBox_aeropuertosLlegada.addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent arg0) {
+				String codigo = comboBox_aeropuertosLlegada.getSelectedItem().toString();
+			}
+		});
 
 		ArrayList<Aerolinea> listAerolinea = (ArrayList<Aerolinea>) vueloModificarController.mostrarAerolinea();
 
@@ -140,6 +181,24 @@ public class VuelosModificarView extends JFrame {
 		this.textID = textID;
 	}
 
+	// Getter & setters
+
+	public JTextField getTextNumVuelo() {
+		return textNumVuelo;
+	}
+
+	public void setTextNumVuelo(JTextField textNumVuelo) {
+		this.textNumVuelo = textNumVuelo;
+	}
+
+	public JTextField getTextCantidadAsientos() {
+		return textCantidadAsientos;
+	}
+
+	public void setTextCantidadAsientos(JTextField textCantidadAsientos) {
+		this.textCantidadAsientos = textCantidadAsientos;
+	}
+
 	public JButton getBtnCancel() {
 		return btnCancel;
 	}
@@ -154,6 +213,54 @@ public class VuelosModificarView extends JFrame {
 
 	public void setBtnSubmit(JButton btnSubmit) {
 		this.btnSubmit = btnSubmit;
+	}
+
+	public JComboBox getComboBoxAeropuertoSalida() {
+		return comboBox_aeropuertosSalida;
+	}
+
+	public void setComboBoxAeropuertoSalida(JComboBox comboBox) {
+		this.comboBox_aeropuertosSalida = comboBox;
+	}
+
+	public JComboBox getComboBoxAeropuertoLlegada() {
+		return comboBox_aeropuertosLlegada;
+	}
+
+	public void setComboBoxAeropuertoLlegada(JComboBox comboBox) {
+		this.comboBox_aeropuertosLlegada = comboBox;
+	}
+
+	public JComboBox getComboBoxAerolinea() {
+		return comboBox_aerolinea;
+	}
+
+	public void setComboBoxAerolinea(JComboBox comboBox) {
+		this.comboBox_aerolinea = comboBox;
+	}
+
+	public JDateChooser getDateChooser_fechaHoraSalida() {
+		return dateChooser_fechaHoraSalida;
+	}
+
+	public void setDateChooser_fechaHoraSalida(JDateChooser dateChooser_fechaHoraSalida) {
+		this.dateChooser_fechaHoraSalida = dateChooser_fechaHoraSalida;
+	}
+
+	public JDateChooser getDateChooser_fechaHoraLlegada() {
+		return dateChooser_fechaHoraLlegada;
+	}
+
+	public void setDateChooser_fechaHoraLlegada(JDateChooser dateChooser_fechaHoraLlegada) {
+		this.dateChooser_fechaHoraLlegada = dateChooser_fechaHoraLlegada;
+	}
+
+	public JLabel getLblTiempoVueloCalculado() {
+		return lblTiempoVueloCalculado;
+	}
+
+	public void setLblTiempoVueloCalculado(JLabel lblTiempoVueloCalculado) {
+		this.lblTiempoVueloCalculado = lblTiempoVueloCalculado;
 	}
 
 }
