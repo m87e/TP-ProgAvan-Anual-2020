@@ -6,29 +6,35 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import com.toedter.calendar.JDateChooser;
+
+import edu.usal.controllers.GUI.VueloAltaController_GUI;
 import edu.usal.events.AerolineaAltaEvents;
 import edu.usal.events.VueloAltaEvents;
+import edu.usal.tp.negocio.dao.dominio.Aerolinea;
+import edu.usal.tp.negocio.dao.dominio.Aeropuerto;
+import edu.usal.tp.negocio.dao.dominio.Pais;
 
 import java.awt.BorderLayout;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
 
 public class VuelosAltaView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textNumVuelo;
-	private JTextField textCantidadAsientos;
+	private JTextField textNumVuelo, textCantidadAsientos;
 
-	private JLabel lblNumVuelo;
-	private JLabel lblCantidadAsientos;
-	private JLabel lblAeropuertoSalida;
-	private JLabel lblAeropuertoLlegada;
-	private JLabel lblAerolinea;
+	private JLabel lblNumVuelo, lblCantidadAsientos, lblAeropuertoSalida, lblAeropuertoLlegada, lblAerolinea,
+			lblFechaHoraSalida, lblFechaHoraLlegada, lblTiempoVuelo, lblTiempoVueloCalculado;
 
-	private JButton btnCancel;
-	private JButton btnSubmit;
+	private JButton btnCancel, btnSubmit;
 
-	private JComboBox comboBox_aeropuertosSalida;
-	private JComboBox comboBox_aeropuertosLlegada;
-	private JComboBox comboBox_aerolinea;
+	private JComboBox comboBox_aeropuertosSalida, comboBox_aeropuertosLlegada, comboBox_aerolinea;
+
+	private JDateChooser dateChooser_fechaHoraSalida, dateChooser_fechaHoraLlegada;
+
+	private VueloAltaController_GUI vueloAltaController = new VueloAltaController_GUI(this);
 
 	public VuelosAltaView() {
 		setTitle("Agregar vuelo");
@@ -44,54 +50,104 @@ public class VuelosAltaView extends JFrame {
 		textNumVuelo.setColumns(10);
 
 		lblCantidadAsientos = new JLabel("Cantidad Asientos");
-		lblCantidadAsientos.setBounds(46, 63, 106, 22);
+		lblCantidadAsientos.setBounds(46, 60, 106, 22);
 		getContentPane().add(lblCantidadAsientos);
 
 		textCantidadAsientos = new JTextField();
-		textCantidadAsientos.setBounds(163, 63, 206, 20);
+		textCantidadAsientos.setBounds(164, 59, 206, 20);
 		getContentPane().add(textCantidadAsientos);
 		textCantidadAsientos.setColumns(10);
 
+		ArrayList<Aeropuerto> listAeropuertos = (ArrayList<Aeropuerto>) vueloAltaController.mostrarAeropuertos();
+
 		lblAeropuertoSalida = new JLabel("Aeropuerto salida");
-		lblAeropuertoSalida.setBounds(46, 101, 105, 14);
+		lblAeropuertoSalida.setBounds(46, 93, 105, 14);
 		getContentPane().add(lblAeropuertoSalida);
 
 		comboBox_aeropuertosSalida = new JComboBox();
-		comboBox_aeropuertosSalida.setBounds(164, 99, 206, 21);
+		comboBox_aeropuertosSalida.setBounds(164, 91, 206, 21);
 		getContentPane().add(comboBox_aeropuertosSalida);
-		comboBox_aeropuertosSalida.addItem("San Pablo");
-		comboBox_aeropuertosSalida.addItem("Ezeiza");
-		comboBox_aeropuertosSalida.addItem("Houston");
+		for (int i = 0; i < listAeropuertos.size(); i++) {
+			comboBox_aeropuertosSalida.addItem(listAeropuertos.get(i).getCodigo());
+		}
+
+		comboBox_aeropuertosSalida.addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent arg0) {
+				String codigo = comboBox_aeropuertosSalida.getSelectedItem().toString();
+			}
+		});
 
 		lblAeropuertoLlegada = new JLabel("Aeropuerto Llegada");
-		lblAeropuertoLlegada.setBounds(46, 127, 105, 14);
+		lblAeropuertoLlegada.setBounds(47, 119, 105, 14);
 		getContentPane().add(lblAeropuertoLlegada);
 
 		comboBox_aeropuertosLlegada = new JComboBox();
-		comboBox_aeropuertosLlegada.setBounds(164, 125, 206, 21);
+		comboBox_aeropuertosLlegada.setBounds(164, 117, 206, 21);
 		getContentPane().add(comboBox_aeropuertosLlegada);
-		comboBox_aeropuertosLlegada.addItem("San Pablo");
-		comboBox_aeropuertosLlegada.addItem("Ezeiza");
-		comboBox_aeropuertosLlegada.addItem("Houston");
+		for (int i = 0; i < listAeropuertos.size(); i++) {
+			comboBox_aeropuertosLlegada.addItem(listAeropuertos.get(i).getCodigo());
+		}
+
+		comboBox_aeropuertosLlegada.addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent arg0) {
+				String codigo = comboBox_aeropuertosLlegada.getSelectedItem().toString();
+			}
+		});
+
+		ArrayList<Aerolinea> listAerolinea = (ArrayList<Aerolinea>) vueloAltaController.mostrarAerolinea();
 
 		lblAerolinea = new JLabel("Aerolinea");
-		lblAerolinea.setBounds(46, 153, 72, 14);
+		lblAerolinea.setBounds(46, 145, 72, 14);
 		getContentPane().add(lblAerolinea);
 
 		comboBox_aerolinea = new JComboBox();
-		comboBox_aerolinea.setBounds(164, 151, 206, 21);
+		comboBox_aerolinea.setBounds(164, 143, 206, 21);
 		getContentPane().add(comboBox_aerolinea);
-		comboBox_aerolinea.addItem("LATAM");
-		comboBox_aerolinea.addItem("United");
-		comboBox_aerolinea.addItem("American Airlines");
+		for (int i = 0; i < listAerolinea.size(); i++) {
+			comboBox_aerolinea.addItem(listAerolinea.get(i).getNombre());
+		}
+
+		comboBox_aerolinea.addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent arg0) {
+				String aerolinea = comboBox_aerolinea.getSelectedItem().toString();
+			}
+		});
+
+		lblFechaHoraSalida = new JLabel("Fecha/Hora Salida");
+		lblFechaHoraSalida.setBounds(46, 172, 72, 14);
+		getContentPane().add(lblFechaHoraSalida);
+
+		dateChooser_fechaHoraSalida = new JDateChooser();
+		getContentPane().add(dateChooser_fechaHoraSalida);
+
+		lblFechaHoraLlegada = new JLabel("Fecha/Hora Llegada");
+		lblFechaHoraLlegada.setBounds(46, 198, 72, 14);
+		getContentPane().add(lblFechaHoraLlegada);
+
+		dateChooser_fechaHoraLlegada = new JDateChooser();
+		getContentPane().add(dateChooser_fechaHoraLlegada);
+
+		lblTiempoVuelo = new JLabel("Tiempo de vuelo");
+		lblTiempoVuelo.setBounds(46, 217, 72, 14);
+		getContentPane().add(lblTiempoVuelo);
+
+		lblTiempoVueloCalculado = new JLabel();
+		lblTiempoVueloCalculado.setBounds(163, 217, 72, 14);
+		getContentPane().add(lblTiempoVueloCalculado);
 
 		btnCancel = new JButton("Cancel");
-		btnCancel.setBounds(46, 224, 140, 23);
+		btnCancel.setBounds(46, 243, 140, 23);
 		getContentPane().add(btnCancel);
 		getBtnCancel().addActionListener(new VueloAltaEvents(this));
 
 		btnSubmit = new JButton("Submit");
-		btnSubmit.setBounds(193, 224, 189, 23);
+		btnSubmit.setBounds(198, 243, 189, 23);
 		getContentPane().add(btnSubmit);
 		getBtnSubmit().addActionListener(new VueloAltaEvents(this));
 	}
@@ -152,4 +208,29 @@ public class VuelosAltaView extends JFrame {
 	public void setComboBoxAerolinea(JComboBox comboBox) {
 		this.comboBox_aerolinea = comboBox;
 	}
+
+	public JDateChooser getDateChooser_fechaHoraSalida() {
+		return dateChooser_fechaHoraSalida;
+	}
+
+	public void setDateChooser_fechaHoraSalida(JDateChooser dateChooser_fechaHoraSalida) {
+		this.dateChooser_fechaHoraSalida = dateChooser_fechaHoraSalida;
+	}
+
+	public JDateChooser getDateChooser_fechaHoraLlegada() {
+		return dateChooser_fechaHoraLlegada;
+	}
+
+	public void setDateChooser_fechaHoraLlegada(JDateChooser dateChooser_fechaHoraLlegada) {
+		this.dateChooser_fechaHoraLlegada = dateChooser_fechaHoraLlegada;
+	}
+
+	public JLabel getLblTiempoVueloCalculado() {
+		return lblTiempoVueloCalculado;
+	}
+
+	public void setLblTiempoVueloCalculado(JLabel lblTiempoVueloCalculado) {
+		this.lblTiempoVueloCalculado = lblTiempoVueloCalculado;
+	}
+
 }

@@ -29,37 +29,35 @@ import edu.usal.view.ClientesAltaView;
 import edu.usal.view.ClientesView;
 import edu.usal.view.Menu_view;
 
-public class ClienteAltaEvents implements ActionListener{
-
+public class ClienteAltaEvents implements ActionListener {
 
 	private final static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-	//private final static SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+	// private final static SimpleDateFormat sdf = new
+	// SimpleDateFormat("MM/dd/yyyy");
 
-	
 	private ClientesAltaView viewAltaCliente;
 	private ClienteAltaController_GUI clienteAltaController = new ClienteAltaController_GUI();
-	private AerolineaDAO aerolineaDAODatabase = AerolineaFactory.GetImplementation("database");
-	
+
 	public ClienteAltaEvents(ClientesAltaView viewAltaCliente) {
 		this.viewAltaCliente = viewAltaCliente;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == this.viewAltaCliente.getBtn_Guardar()){
+		if (e.getSource() == this.viewAltaCliente.getBtn_Guardar()) {
 			Cliente c = CargarCliente();
 			Pasaporte p = CargarPasaporte();
 			Telefono tel = CargarTelefono();
 			DireccionCompleta dir = CargarDirCompleta();
 			PasajeroFrecuente pasFrec = CargarPasFrecuente();
-			
+
 			try {
-					clienteAltaController.altaCliente(c, p, tel, dir, pasFrec);
-				// 	Menu_view.RecargarPanelCambiante(this.viewAltaCliente);
-				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				clienteAltaController.altaCliente(c, p, tel, dir, pasFrec);
+				// Menu_view.RecargarPanelCambiante(this.viewAltaCliente);
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			this.viewAltaCliente.setVisible(false);
 		}
 		if (e.getSource() == this.viewAltaCliente.getBtnCancelar()) {
@@ -67,6 +65,7 @@ public class ClienteAltaEvents implements ActionListener{
 		}
 
 	}
+
 	private Cliente CargarCliente() {
 		// TODO Auto-generated method stub
 		Cliente c = new Cliente();
@@ -87,10 +86,10 @@ public class ClienteAltaEvents implements ActionListener{
 	}
 
 	private Pasaporte CargarPasaporte() {
-		// TODO Auto-generated method stub 
+		// TODO Auto-generated method stub
 		Pasaporte pas = new Pasaporte();
 		pas.setNumeroPasaporte(this.viewAltaCliente.getTextField_nroPasaporte().getText());
-		
+
 		Pais p = new Pais();
 		ArrayList<Pais> listPaises = (ArrayList<Pais>) clienteAltaController.mostrarPaises();
 		for (int i = 0; i < listPaises.size(); i++) {
@@ -107,15 +106,14 @@ public class ClienteAltaEvents implements ActionListener{
 		LocalDate localDate = date_fechaVen.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		pas.setFechaVencimiento(localDate);
 
-		
 		Date date_fechaEmi = this.viewAltaCliente.getDateChooser_fechaEmision().getDate();
 		sdf.format(date_fechaEmi);
 		localDate = date_fechaEmi.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		pas.setFechaEmision(localDate);
-		
+
 		pas.setAutoridadEmision(this.viewAltaCliente.getTextField_autEmision().getText());
 
-		return pas;	
+		return pas;
 	}
 
 	private Telefono CargarTelefono() {
@@ -139,7 +137,8 @@ public class ClienteAltaEvents implements ActionListener{
 		ArrayList<Pais> listPaises = (ArrayList<Pais>) clienteAltaController.mostrarPaises();
 		ArrayList<Provincia> listProv = (ArrayList<Provincia>) clienteAltaController.mostrarProvincias();
 		for (int i = 0; i < listPaises.size(); i++) {
-			if (listPaises.get(i).getNombre().equals(this.viewAltaCliente.getComboBox_pasaportePais().getSelectedItem())) {
+			if (listPaises.get(i).getNombre()
+					.equals(this.viewAltaCliente.getComboBox_pasaportePais().getSelectedItem())) {
 				p.setId(listPaises.get(i).getId());
 				p.setNombre(listPaises.get(i).getNombre());
 			}
@@ -150,7 +149,7 @@ public class ClienteAltaEvents implements ActionListener{
 				prov.setNombre(listProv.get(i).getNombre());
 			}
 		}
-		
+
 		dir.setCalle(this.viewAltaCliente.getTextField_calle().getText());
 		dir.setAltura(this.viewAltaCliente.getTextField_altura().getText());
 		dir.setCiudad(this.viewAltaCliente.getTextField_ciudad().getText());
@@ -166,15 +165,16 @@ public class ClienteAltaEvents implements ActionListener{
 		Aerolinea aerolinea = new Aerolinea();
 		ArrayList<Aerolinea> listAerolinea = (ArrayList<Aerolinea>) clienteAltaController.mostrarAerolinea();
 		for (int i = 0; i < listAerolinea.size(); i++) {
-			if (listAerolinea.get(i).getNombre().equals(this.viewAltaCliente.getComboBox_aerolinea().getSelectedItem())) {
+			if (listAerolinea.get(i).getNombre()
+					.equals(this.viewAltaCliente.getComboBox_aerolinea().getSelectedItem())) {
 				aerolinea.setId(listAerolinea.get(i).getId());
 				aerolinea.setNombre(listAerolinea.get(i).getNombre());
 				aerolinea.setAlianza(listAerolinea.get(i).getAlianza());
 				pas.setAlianza(listAerolinea.get(i).getAlianza());
 			}
-		}		
-		
-	//	pas.setAlianza(Alianza.StarAlliance);
+		}
+
+		// pas.setAlianza(Alianza.StarAlliance);
 		pas.setAerolinea(aerolinea);
 		pas.setNumeroPF(this.viewAltaCliente.getTextField_numeroPasaFrec().getText());
 		pas.setCategoria(this.viewAltaCliente.getTextField_categoria().getText());

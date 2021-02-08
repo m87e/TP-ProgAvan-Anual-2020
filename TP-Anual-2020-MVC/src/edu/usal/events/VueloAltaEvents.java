@@ -2,6 +2,11 @@ package edu.usal.events;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
@@ -28,7 +33,6 @@ public class VueloAltaEvents implements ActionListener {
 			Vuelo vuelo = CargarVuelo();
 
 			vueloAltaController.AltaVuelo(vuelo);
-			;
 
 			JOptionPane.showMessageDialog(null, "vuelo agregado exitosamente");
 			this.viewAltaVuelo.setVisible(false);
@@ -44,11 +48,26 @@ public class VueloAltaEvents implements ActionListener {
 		// TODO Auto-generated method stub
 
 		Vuelo vuelo = new Vuelo();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
 		vuelo.setNumVuelo(this.viewAltaVuelo.getTextNumVuelo().getText());
 		vuelo.setCantAsientos(Integer.parseInt(this.viewAltaVuelo.getTextCantidadAsientos().getText()));
 		// vuelo.setAeropuertoSalida(this.viewAltaVuelo.getComboBoxAeropuertoSalida().getSelectedItem().toString());
 		// vuelo.setAeropuertoLlegada(this.viewAltaVuelo.getComboBoxAeropuertoLlegada().getSelectedItem().toString());
+
+		Date dateSalida = this.viewAltaVuelo.getDateChooser_fechaHoraSalida().getDate();
+		sdf.format(dateSalida);
+		LocalDate localDateSalida = dateSalida.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+		vuelo.setFechaHoraSalida(localDateSalida);
+
+		Date dateLlegada = this.viewAltaVuelo.getDateChooser_fechaHoraLlegada().getDate();
+		sdf.format(dateLlegada);
+		LocalDate localDateLlegada = dateLlegada.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+		vuelo.setFechaHoraSalida(localDateLlegada);
+
+		vuelo.setTiempoVuelo(this.viewAltaVuelo.getLblTiempoVueloCalculado().getText());
 
 		return vuelo;
 	}
