@@ -93,6 +93,7 @@ public class VuelosView extends JPanel {
 					datosCargar.get(i).getAeropuertoLlegada().getCodigo(), datosCargar.get(i).getFechaHoraSalida(),
 					datosCargar.get(i).getFechaHoraLlegada(), datosCargar.get(i).getTiempoVuelo() });
 		}
+		
 
 		String[] header = { "ID", "Num Vuelo", "Cantidad Asientos", "Aerolinea", "Aeropuerto Salida",
 				"Aeropuerto Llegada", "Fecha/Hora Salida", "Fecha/Hora Llegada", "Tiempo Vuelo" };
