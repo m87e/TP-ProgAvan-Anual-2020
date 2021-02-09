@@ -88,13 +88,13 @@ public class VuelosView extends JPanel {
 		for (int i = 0; i < datosCargar.size(); i++) {
 
 			data.add(new Object[] { datosCargar.get(i).getId(), datosCargar.get(i).getNumVuelo(),
-					datosCargar.get(i).getCantAsientos(), datosCargar.get(i).getAerolinea(),
-					datosCargar.get(i).getAeropuertoSalida(), datosCargar.get(i).getAeropuertoLlegada(),
-					datosCargar.get(i).getFechaHoraSalida(), datosCargar.get(i).getFechaHoraLlegada(),
-					datosCargar.get(i).getTiempoVuelo() });
+					datosCargar.get(i).getCantAsientos(), datosCargar.get(i).getAerolinea().getNombre(),
+					datosCargar.get(i).getAeropuertoSalida().getCodigo(),
+					datosCargar.get(i).getAeropuertoLlegada().getCodigo(), datosCargar.get(i).getFechaHoraSalida(),
+					datosCargar.get(i).getFechaHoraLlegada(), datosCargar.get(i).getTiempoVuelo() });
 		}
 
-		String[] header = { "ID Vuelo", "Num Vuelo", "Cantidad Asientos", "Aerolinea", "Aeropuerto Salida",
+		String[] header = { "ID", "Num Vuelo", "Cantidad Asientos", "Aerolinea", "Aeropuerto Salida",
 				"Aeropuerto Llegada", "Fecha/Hora Salida", "Fecha/Hora Llegada", "Tiempo Vuelo" };
 
 		// Llama a la clase para crear la jtable con AbstractModel

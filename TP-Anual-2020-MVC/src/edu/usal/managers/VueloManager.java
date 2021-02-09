@@ -195,7 +195,7 @@ public class VueloManager {
 
 		List<Vuelo> listadoVuelos = null;
 		try {
-			System.out.println("Generando listado de aerolineas...");
+			System.out.println("Generando listado de vuelos...");
 			System.out.println("procesando... ");
 			listadoVuelos = vueloDAODatabase.GetAll();
 			System.out.println("finalizado");
