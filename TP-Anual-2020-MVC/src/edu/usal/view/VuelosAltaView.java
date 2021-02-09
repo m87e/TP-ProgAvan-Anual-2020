@@ -18,7 +18,15 @@ import edu.usal.tp.negocio.dao.dominio.Pais;
 import java.awt.BorderLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class VuelosAltaView extends JFrame {
 
@@ -33,7 +41,7 @@ public class VuelosAltaView extends JFrame {
 	private JComboBox comboBox_aeropuertosSalida, comboBox_aeropuertosLlegada, comboBox_aerolinea;
 
 	private JDateChooser dateChooser_fechaHoraSalida, dateChooser_fechaHoraLlegada;
-	
+
 	private VueloAltaController_GUI vueloAltaController = new VueloAltaController_GUI(this);
 	private JTextField textField_tiempoVuelo;
 
@@ -124,7 +132,6 @@ public class VuelosAltaView extends JFrame {
 		lblFechaHoraSalida.setBounds(46, 172, 140, 14);
 		getContentPane().add(lblFechaHoraSalida);
 
-		
 		lblTiempoVuelo = new JLabel("Tiempo de vuelo");
 		lblTiempoVuelo.setBounds(46, 232, 140, 14);
 		getContentPane().add(lblTiempoVuelo);
@@ -141,22 +148,57 @@ public class VuelosAltaView extends JFrame {
 		btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(247, 274, 189, 23);
 		getContentPane().add(btnSubmit);
-		
+		getBtnSubmit().addActionListener(new VueloAltaEvents(this));
+
 		dateChooser_fechaHoraSalida = new JDateChooser();
 		dateChooser_fechaHoraSalida.setBounds(214, 166, 206, 23);
 		getContentPane().add(dateChooser_fechaHoraSalida);
-		
+
 		dateChooser_fechaHoraLlegada = new JDateChooser();
 		dateChooser_fechaHoraLlegada.setBounds(214, 198, 206, 20);
 		getContentPane().add(dateChooser_fechaHoraLlegada);
-		
+
+		dateChooser_fechaHoraLlegada.getDateEditor().addPropertyChangeListener(new PropertyChangeListener() {
+			@Override
+			public void propertyChange(PropertyChangeEvent e) {
+				if ("date".equals(e.getPropertyName())) {
+					System.out.println(e.getPropertyName() + ": " + (Date) e.getNewValue());
+					// Calculo de diferencia horas
+					System.out.println("###Fecha/hora salida: " + getDateChooser_fechaHoraSalida());
+					System.out.println("###Fecha/hora llegada: " + getDateChooser_fechaHoraLlegada());
+					String tiempoTotal = CalcularTiempoVueloTotal(getDateChooser_fechaHoraSalida(),
+							getDateChooser_fechaHoraLlegada());
+					textField_tiempoVuelo.setText(tiempoTotal);
+				}
+			}
+		});
+		// this.add(dateChooser_fechaHoraLlegada);
+
 		textField_tiempoVuelo = new JTextField();
 		textField_tiempoVuelo.setEditable(false);
 		textField_tiempoVuelo.setBounds(214, 229, 206, 20);
 		getContentPane().add(textField_tiempoVuelo);
 		textField_tiempoVuelo.setColumns(10);
-		getBtnSubmit().addActionListener(new VueloAltaEvents(this));
+
 	}
+
+	public String CalcularTiempoVueloTotal(JDateChooser salida, JDateChooser llegada) {
+
+		String tiempoTotal = null;
+
+		ZonedDateTime start = ZonedDateTime.ofInstant(salida.getDate().toInstant(), ZoneId.systemDefault());
+		ZonedDateTime end = ZonedDateTime.ofInstant(llegada.getDate().toInstant(), ZoneId.systemDefault());
+		Duration total = Duration.ofMinutes(ChronoUnit.MINUTES.between(start, end));
+
+		long hours = total.toHours();
+		long minutes = total.minusHours(hours).toMinutes();
+
+		tiempoTotal = String.valueOf(hours) + " horas " + String.valueOf(minutes) + " minutos";
+
+		return tiempoTotal;
+
+	}
+
 	// Getter & setters
 
 	public JTextField getTextNumVuelo() {
@@ -231,11 +273,12 @@ public class VuelosAltaView extends JFrame {
 		this.dateChooser_fechaHoraLlegada = dateChooser_fechaHoraLlegada;
 	}
 
-	public JLabel getLblTiempoVueloCalculado() {
-		return lblTiempoVueloCalculado;
+	public JTextField getTextField_tiempoVuelo() {
+		return textField_tiempoVuelo;
 	}
 
-	public void setLblTiempoVueloCalculado(JLabel lblTiempoVueloCalculado) {
-		this.lblTiempoVueloCalculado = lblTiempoVueloCalculado;
+	public void setTextField_tiempoVuelo(JTextField textField_tiempoVuelo) {
+		this.textField_tiempoVuelo = textField_tiempoVuelo;
 	}
+
 }

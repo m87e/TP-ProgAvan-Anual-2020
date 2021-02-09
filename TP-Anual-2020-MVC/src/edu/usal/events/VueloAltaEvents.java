@@ -4,9 +4,12 @@ import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -70,14 +73,12 @@ public class VueloAltaEvents implements ActionListener {
 		LocalDate localDateSalida = dateSalida.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
 		vuelo.setFechaHoraSalida(localDateSalida);
-
 		Date dateLlegada = this.viewAltaVuelo.getDateChooser_fechaHoraLlegada().getDate();
 		sdf.format(dateLlegada);
 		LocalDate localDateLlegada = dateLlegada.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
 		vuelo.setFechaHoraLlegada(localDateLlegada);
 
-		vuelo.setTiempoVuelo(this.viewAltaVuelo.getLblTiempoVueloCalculado().getText());
+		vuelo.setTiempoVuelo(this.viewAltaVuelo.getTextField_tiempoVuelo().getText());
 
 		return vuelo;
 	}

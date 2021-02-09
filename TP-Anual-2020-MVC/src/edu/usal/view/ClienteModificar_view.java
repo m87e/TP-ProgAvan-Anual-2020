@@ -807,4 +807,7 @@ public class ClienteModificar_view extends JFrame{
 	public void setTextField_idPasFre(JTextField textField_idPasFre) {
 		this.textField_idPasFre = textField_idPasFre;
 	}
+	
+	
+	
 }
