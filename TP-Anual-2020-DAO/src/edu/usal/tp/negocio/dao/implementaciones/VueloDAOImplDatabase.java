@@ -173,7 +173,9 @@ public class VueloDAOImplDatabase implements VueloDAO {
 				aeropuertoLlegada.setId(rs.getInt("vuelo_aeropuertoLlegadaID"));
 				vuelo.setAeropuertoLlegada(aeropuertoLlegada);
 
+				listado.add(vuelo);
 			}
+			
 			System.out.println("Vuelos encontrados: " + listado.size());
 
 		} catch (Exception e) {
