@@ -393,6 +393,7 @@ public class ClienteModificar_view extends JFrame{
 		for (int i = 0; i < listPaises.size(); i++) {
 			comboBox_pasaportePais.addItem(listPaises.get(i).getNombre());
 		}
+		comboBox_pasaportePais.setSelectedItem("Austria");
 		
 		panel_pasaporte.add(comboBox_pasaportePais);
 

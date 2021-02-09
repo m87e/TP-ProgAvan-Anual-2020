@@ -16,7 +16,7 @@ import edu.usal.view_old.ClientesABM_view;
 
 public class Menu_view implements ActionListener{
 
-	private JFrame frame;
+	private JFrame frmSis;
 	
 	private JMenuBar menuBar;
 	
@@ -49,7 +49,7 @@ public class Menu_view implements ActionListener{
 			public void run() {
 				try {
 					Menu_view window = new Menu_view();
-					window.frame.setVisible(true);
+					window.frmSis.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -68,12 +68,13 @@ public class Menu_view implements ActionListener{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 900, 700);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSis = new JFrame();
+		frmSis.setTitle("Sistema de gestion de Vuelos");
+		frmSis.setBounds(100, 100, 900, 700);
+		frmSis.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		menuBar = new JMenuBar();
-		frame.setJMenuBar(menuBar);
+		frmSis.setJMenuBar(menuBar);
 		
 		mnCliente = new JMenu("Cliente");
 		menuBar.add(mnCliente);
@@ -128,11 +129,11 @@ public class Menu_view implements ActionListener{
 		mntmSalir.addActionListener(this);
 		mnHelp.add(mntmSalir);
 		
-		frame.getContentPane().setLayout(null);
+		frmSis.getContentPane().setLayout(null);
 		
 		panelPivot = new JPanel();
 		panelPivot.setBounds(0,0,900,550);
-		frame.getContentPane().add(panelPivot);
+		frmSis.getContentPane().add(panelPivot);
 		panelPivot.setLayout(new CardLayout(0,0));
 		
 		
