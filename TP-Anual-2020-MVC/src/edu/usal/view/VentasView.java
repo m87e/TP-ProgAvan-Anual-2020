@@ -17,6 +17,7 @@ import javax.swing.border.SoftBevelBorder;
 
 import edu.usal.controllers.GUI.VentasController_GUI;
 import edu.usal.events.ClienteEvents;
+import edu.usal.events.VentaEvents;
 import edu.usal.tp.negocio.dao.dominio.Cliente;
 import edu.usal.tp.negocio.dao.dominio.Venta;
 import util.BuildTableModel;
@@ -42,26 +43,19 @@ public class VentasView extends JPanel {
 	private JButton btnBorrar;
 	
 	public VentasView() {
-		// Instanciazion de objetos controllers
-		
-				SpringLayout springLayout = new SpringLayout();
-				setLayout(springLayout);
+				setLayout(null);
 
 				JLabel lblVentas = new JLabel("Ventas");
+				lblVentas.setBounds(10, 10, 140, 48);
 				lblVentas.setFont(new Font("Lucida Sans", Font.BOLD, 40));
-				springLayout.putConstraint(SpringLayout.NORTH, lblVentas, 10, SpringLayout.NORTH, this);
-				springLayout.putConstraint(SpringLayout.WEST, lblVentas, 10, SpringLayout.WEST, this);
 				add(lblVentas);
 
 				scrollPaneVentas = new JScrollPane();
-				springLayout.putConstraint(SpringLayout.WEST, scrollPaneVentas, 10, SpringLayout.WEST, this);
-				springLayout.putConstraint(SpringLayout.SOUTH, scrollPaneVentas, -101, SpringLayout.SOUTH, this);
-				springLayout.putConstraint(SpringLayout.EAST, scrollPaneVentas, -23, SpringLayout.EAST, this);
+				scrollPaneVentas.setBounds(10, 64, 741, 348);
 				scrollPaneVentas.setViewportBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 				scrollPaneVentas.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 				scrollPaneVentas.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 				scrollPaneVentas.setToolTipText("");
-				springLayout.putConstraint(SpringLayout.NORTH, scrollPaneVentas, 6, SpringLayout.SOUTH, lblVentas);
 				add(scrollPaneVentas);
 				
 				// Declaramos datos de tabla y el header
@@ -99,24 +93,83 @@ public class VentasView extends JPanel {
 				scrollPaneVentas.setViewportView(table);
 				
 				JPanel panel = new JPanel();
-				springLayout.putConstraint(SpringLayout.NORTH, panel, 18, SpringLayout.SOUTH, scrollPaneVentas);
-				springLayout.putConstraint(SpringLayout.WEST, panel, -422, SpringLayout.EAST, this);
-				springLayout.putConstraint(SpringLayout.SOUTH, panel, 66, SpringLayout.SOUTH, scrollPaneVentas);
-				springLayout.putConstraint(SpringLayout.EAST, panel, -37, SpringLayout.EAST, this);
+				panel.setBounds(366, 423, 385, 48);
 				add(panel);
 				panel.setLayout(new GridLayout(0, 3, 0, 0));
 				
 				btnAlta = new JButton("Nueva Venta");
 				panel.add(btnAlta);
+				btnAlta.addActionListener(new VentaEvents(this));
 				
 				btnModificar = new JButton("Modificar");
 				btnModificar.setName("m");
 				panel.add(btnModificar);
+				btnModificar.addActionListener(new VentaEvents(this));
 				
 				btnBorrar = new JButton("Eliminar");
 				btnBorrar.setName("e");
 				panel.add(btnBorrar);
+				btnBorrar.addActionListener(new VentaEvents(this));
+				
 				
 				
 	}
+
+	public TableModel getModel() {
+		return model;
+	}
+
+	public void setModel(TableModel model) {
+		this.model = model;
+	}
+
+	public JScrollPane getScrollPaneVentas() {
+		return scrollPaneVentas;
+	}
+
+	public void setScrollPaneVentas(JScrollPane scrollPaneVentas) {
+		this.scrollPaneVentas = scrollPaneVentas;
+	}
+
+	public VentasController_GUI getVentaController() {
+		return ventaController;
+	}
+
+	public void setVentaController(VentasController_GUI ventaController) {
+		this.ventaController = ventaController;
+	}
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+
+	public JButton getBtnAlta() {
+		return btnAlta;
+	}
+
+	public void setBtnAlta(JButton btnAlta) {
+		this.btnAlta = btnAlta;
+	}
+
+	public JButton getBtnModificar() {
+		return btnModificar;
+	}
+
+	public void setBtnModificar(JButton btnModificar) {
+		this.btnModificar = btnModificar;
+	}
+
+	public JButton getBtnBorrar() {
+		return btnBorrar;
+	}
+
+	public void setBtnBorrar(JButton btnBorrar) {
+		this.btnBorrar = btnBorrar;
+	}
+	
+	
 }
