@@ -19,6 +19,8 @@ public interface VueloDAO {
 
 	Vuelo ObtenerVuelosPorNumero(String numVuelo) throws IOException;
 
+	Vuelo ObtenerUltimoVuelo() throws IOException;
+
 	List<Vuelo> GetAll() throws IOException, ParseException;
 
 }

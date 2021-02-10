@@ -46,6 +46,8 @@ public class VueloManager {
 			Aerolinea aero = this.aerolineaDAODatabase.ObtenerAerolineaPorID(vuelo.getAerolinea().getId());
 			vuelo.setAerolinea(aero);
 
+			vuelo.setNumVuelo(GenerarNumVuelo(aero.getNombre()));
+
 			this.vueloDAODatabase.AgregarVuelo(vuelo, con);
 
 			con.commit();
@@ -222,5 +224,77 @@ public class VueloManager {
 		}
 
 		return vuelo;
+	}
+
+	public String GenerarNumVuelo(String nombreAerolinea) {
+
+		String numVueloGenerado = null;
+		String aerolineaSplit;
+
+		int numeroVuelo = 0;
+		Vuelo vuelo = new Vuelo();
+
+		try {
+			vuelo = vueloDAODatabase.ObtenerUltimoVuelo();
+
+			if (vuelo != null) {
+
+				String[] arrayNumero = vuelo.getNumVuelo().trim().split("-");
+				System.out.println(arrayNumero.length);
+				if (arrayNumero.length > 1) {
+					System.out.println("### inside if");
+					numeroVuelo = Integer.parseInt(arrayNumero[1]) + 1;
+					System.out.println(numeroVuelo);
+				}
+
+				String[] array = nombreAerolinea.trim().split(" ");
+				System.out.println(array.length);
+				if (array.length > 1) {
+					System.out.println("### inside if");
+					aerolineaSplit = (Character.toString(array[0].charAt(0)) + Character.toString(array[1].charAt(0)))
+							.toUpperCase();
+					System.out.println(aerolineaSplit);
+
+				} else {
+
+					System.out.println("### inside else");
+					aerolineaSplit = (Character.toString(array[0].charAt(0)) + Character.toString(array[0].charAt(1)))
+							.toUpperCase();
+					System.out.println(aerolineaSplit);
+				}
+
+				numVueloGenerado = aerolineaSplit + "-" + String.valueOf(numeroVuelo);
+
+			} else {
+
+				numeroVuelo = 1111;
+
+				String[] array = nombreAerolinea.trim().split(" ");
+				System.out.println(array.length);
+				if (array.length > 1) {
+					System.out.println("### inside if");
+					aerolineaSplit = (Character.toString(array[0].charAt(0)) + Character.toString(array[1].charAt(0)))
+							.toUpperCase();
+					System.out.println(aerolineaSplit);
+
+				} else {
+
+					System.out.println("### inside else");
+					aerolineaSplit = (Character.toString(array[0].charAt(0)) + Character.toString(array[0].charAt(1)))
+							.toUpperCase();
+					System.out.println(aerolineaSplit);
+				}
+
+				numVueloGenerado = aerolineaSplit + "-" + String.valueOf(numeroVuelo);
+
+			}
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Ocurrio un error al buscar los datos");
+		}
+
+		return numVueloGenerado;
+
 	}
 }

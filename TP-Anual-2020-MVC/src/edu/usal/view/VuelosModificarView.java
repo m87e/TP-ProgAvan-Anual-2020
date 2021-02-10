@@ -58,6 +58,7 @@ public class VuelosModificarView extends JFrame {
 		getContentPane().add(textNumVuelo);
 		textNumVuelo.setColumns(10);
 		textNumVuelo.setText(vuelo.getNumVuelo());
+		textNumVuelo.setEnabled(false);
 
 		lblCantidadAsientos = new JLabel("Cantidad Asientos");
 		lblCantidadAsientos.setBounds(46, 60, 106, 22);
@@ -182,14 +183,6 @@ public class VuelosModificarView extends JFrame {
 	}
 
 	// Getter & setters
-
-	public JTextField getTextNumVuelo() {
-		return textNumVuelo;
-	}
-
-	public void setTextNumVuelo(JTextField textNumVuelo) {
-		this.textNumVuelo = textNumVuelo;
-	}
 
 	public JTextField getTextCantidadAsientos() {
 		return textCantidadAsientos;

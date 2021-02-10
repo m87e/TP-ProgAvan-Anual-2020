@@ -31,10 +31,10 @@ import java.util.Date;
 public class VuelosAltaView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textNumVuelo, textCantidadAsientos;
+	private JTextField textCantidadAsientos;
 
-	private JLabel lblNumVuelo, lblCantidadAsientos, lblAeropuertoSalida, lblAeropuertoLlegada, lblAerolinea,
-			lblFechaHoraSalida, lblFechaHoraLlegada, lblTiempoVuelo, lblTiempoVueloCalculado;
+	private JLabel lblCantidadAsientos, lblAeropuertoSalida, lblAeropuertoLlegada, lblAerolinea, lblFechaHoraSalida,
+			lblFechaHoraLlegada, lblTiempoVuelo, lblTiempoVueloCalculado;
 
 	private JButton btnCancel, btnSubmit;
 
@@ -48,15 +48,6 @@ public class VuelosAltaView extends JFrame {
 	public VuelosAltaView() {
 		setTitle("Agregar Vuelo");
 		getContentPane().setLayout(null);
-
-		lblNumVuelo = new JLabel("Numero Vuelo");
-		lblNumVuelo.setBounds(46, 26, 106, 22);
-		getContentPane().add(lblNumVuelo);
-
-		textNumVuelo = new JTextField();
-		textNumVuelo.setBounds(214, 26, 206, 20);
-		getContentPane().add(textNumVuelo);
-		textNumVuelo.setColumns(10);
 
 		lblCantidadAsientos = new JLabel("Cantidad Asientos");
 		lblCantidadAsientos.setBounds(46, 60, 106, 22);
@@ -200,14 +191,6 @@ public class VuelosAltaView extends JFrame {
 	}
 
 	// Getter & setters
-
-	public JTextField getTextNumVuelo() {
-		return textNumVuelo;
-	}
-
-	public void setTextNumVuelo(JTextField textNumVuelo) {
-		this.textNumVuelo = textNumVuelo;
-	}
 
 	public JTextField getTextCantidadAsientos() {
 		return textCantidadAsientos;

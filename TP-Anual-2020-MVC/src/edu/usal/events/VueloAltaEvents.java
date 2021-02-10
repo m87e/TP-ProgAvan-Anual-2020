@@ -56,7 +56,6 @@ public class VueloAltaEvents implements ActionListener {
 		Vuelo vuelo = new Vuelo();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
-		vuelo.setNumVuelo(this.viewAltaVuelo.getTextNumVuelo().getText());
 		vuelo.setCantAsientos(Integer.parseInt(this.viewAltaVuelo.getTextCantidadAsientos().getText()));
 
 		Aeropuerto aepSalida = CargarAeropuerto("salida");
