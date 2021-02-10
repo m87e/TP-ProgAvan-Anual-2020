@@ -3,7 +3,9 @@ package edu.usal.managers;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.List;
 
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.tp.negocio.dao.dominio.Cliente;
@@ -43,7 +45,7 @@ public class VentaManager {
 
 			Aerolinea a = this.aerolineaDAODatabase.ObtenerAerolineaPorID(aerolinea.getId());
 			venta.setAerolinea(a);
-
+			
 			venta.setFechaHoraVenta(fechaHoraVenta);
 			venta.setFormaPago(formaPago);
 
@@ -81,6 +83,27 @@ public class VentaManager {
 
 		}
 
+	}
+
+	public List<Venta> MostrarVentas() {
+		
+		List<Venta> listadoVentas = null;
+		
+		try {
+			System.out.println("Generando listado de ventas...");
+			System.out.println("procesando... ");
+			listadoVentas = ventaDAODatabase.GetAll();
+			System.out.println("finalizado");
+			
+		}  catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("No se pudo obtener listado de los ventas");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			System.out.println("No se pudo obtener listado de los ventas");
+		}
+		
+		return listadoVentas;
 	}
 
 }
