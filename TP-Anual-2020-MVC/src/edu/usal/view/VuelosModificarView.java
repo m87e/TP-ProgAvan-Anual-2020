@@ -2,8 +2,13 @@ package edu.usal.view;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -23,7 +28,8 @@ import edu.usal.tp.negocio.dao.dominio.Vuelo;
 
 public class VuelosModificarView extends JFrame {
 
-	private JTextField textID, textNumVuelo, textCantidadAsientos;
+	private JTextField textID, textNumVuelo, textCantidadAsientos, textField_tiempoVuelo;
+
 	private JLabel lblNumVuelo, lblCantidadAsientos, lblAeropuertoSalida, lblAeropuertoLlegada, lblAerolinea,
 			lblFechaHoraSalida, lblFechaHoraLlegada, lblTiempoVuelo, lblTiempoVueloCalculado;
 	private JComboBox comboBox_aeropuertosSalida, comboBox_aeropuertosLlegada, comboBox_aerolinea;
@@ -132,10 +138,11 @@ public class VuelosModificarView extends JFrame {
 		});
 
 		lblFechaHoraSalida = new JLabel("Fecha/Hora Salida");
-		lblFechaHoraSalida.setBounds(46, 172, 72, 14);
+		lblFechaHoraSalida.setBounds(46, 172, 140, 14);
 		getContentPane().add(lblFechaHoraSalida);
 
 		dateChooser_fechaHoraSalida = new JDateChooser();
+		dateChooser_fechaHoraSalida.setBounds(214, 166, 206, 23);
 		getContentPane().add(dateChooser_fechaHoraSalida);
 
 		ZoneId defaultZoneId = ZoneId.systemDefault();
@@ -143,24 +150,45 @@ public class VuelosModificarView extends JFrame {
 		Date date_fechaHoraSalida = Date.from(localDate_fechaHoraSalida.atStartOfDay(defaultZoneId).toInstant());
 		dateChooser_fechaHoraSalida.setDate(date_fechaHoraSalida);
 
-		lblFechaHoraLlegada = new JLabel("Fecha/Hora Llegada");
-		lblFechaHoraLlegada.setBounds(46, 198, 72, 14);
-		getContentPane().add(lblFechaHoraLlegada);
-
 		dateChooser_fechaHoraLlegada = new JDateChooser();
+		dateChooser_fechaHoraLlegada.setBounds(214, 198, 206, 20);
 		getContentPane().add(dateChooser_fechaHoraLlegada);
 
 		LocalDate localDate_fechaHoraLlegada = vuelo.getFechaHoraLlegada();
 		Date date_fechaHoraLlegada = Date.from(localDate_fechaHoraLlegada.atStartOfDay(defaultZoneId).toInstant());
 		dateChooser_fechaHoraLlegada.setDate(date_fechaHoraLlegada);
 
+		dateChooser_fechaHoraLlegada.getDateEditor().addPropertyChangeListener(new PropertyChangeListener() {
+			@Override
+			public void propertyChange(PropertyChangeEvent e) {
+				if ("date".equals(e.getPropertyName())) {
+					System.out.println(e.getPropertyName() + ": " + (Date) e.getNewValue());
+					// Calculo de diferencia horas
+					System.out.println("###Fecha/hora salida: " + getDateChooser_fechaHoraSalida());
+					System.out.println("###Fecha/hora llegada: " + getDateChooser_fechaHoraLlegada());
+					String tiempoTotal = CalcularTiempoVueloTotal(getDateChooser_fechaHoraSalida(),
+							getDateChooser_fechaHoraLlegada());
+					textField_tiempoVuelo.setText(tiempoTotal);
+				}
+			}
+		});
+		// this.add(dateChooser_fechaHoraLlegada);
+
 		lblTiempoVuelo = new JLabel("Tiempo de vuelo");
-		lblTiempoVuelo.setBounds(46, 217, 72, 14);
+		lblTiempoVuelo.setBounds(46, 232, 140, 14);
 		getContentPane().add(lblTiempoVuelo);
 
 		lblTiempoVueloCalculado = new JLabel();
 		lblTiempoVueloCalculado.setBounds(163, 217, 72, 14);
 		getContentPane().add(lblTiempoVueloCalculado);
+
+		textField_tiempoVuelo = new JTextField();
+		textField_tiempoVuelo.setEditable(false);
+		textField_tiempoVuelo.setBounds(214, 229, 206, 20);
+		getContentPane().add(textField_tiempoVuelo);
+		textField_tiempoVuelo.setColumns(10);
+		textField_tiempoVuelo.setText(vuelo.getTiempoVuelo());
+
 		// Botones submit y cancel
 		btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(0, 105, 161, 23);
@@ -174,6 +202,25 @@ public class VuelosModificarView extends JFrame {
 
 	}
 
+	public String CalcularTiempoVueloTotal(JDateChooser salida, JDateChooser llegada) {
+
+		String tiempoTotal = null;
+
+		ZonedDateTime start = ZonedDateTime.ofInstant(salida.getDate().toInstant(), ZoneId.systemDefault());
+		ZonedDateTime end = ZonedDateTime.ofInstant(llegada.getDate().toInstant(), ZoneId.systemDefault());
+		Duration total = Duration.ofMinutes(ChronoUnit.MINUTES.between(start, end));
+
+		long hours = total.toHours();
+		long minutes = total.minusHours(hours).toMinutes();
+
+		tiempoTotal = String.valueOf(hours) + " horas " + String.valueOf(minutes) + " minutos";
+
+		return tiempoTotal;
+
+	}
+
+	// Getter & setters
+
 	public JTextField getTextID() {
 		return textID;
 	}
@@ -181,8 +228,6 @@ public class VuelosModificarView extends JFrame {
 	public void setTextID(JTextField textID) {
 		this.textID = textID;
 	}
-
-	// Getter & setters
 
 	public JTextField getTextCantidadAsientos() {
 		return textCantidadAsientos;
@@ -248,12 +293,12 @@ public class VuelosModificarView extends JFrame {
 		this.dateChooser_fechaHoraLlegada = dateChooser_fechaHoraLlegada;
 	}
 
-	public JLabel getLblTiempoVueloCalculado() {
-		return lblTiempoVueloCalculado;
+	public JTextField getTextField_tiempoVuelo() {
+		return textField_tiempoVuelo;
 	}
 
-	public void setLblTiempoVueloCalculado(JLabel lblTiempoVueloCalculado) {
-		this.lblTiempoVueloCalculado = lblTiempoVueloCalculado;
+	public void setTextField_tiempoVuelo(JTextField textField_tiempoVuelo) {
+		this.textField_tiempoVuelo = textField_tiempoVuelo;
 	}
 
 }

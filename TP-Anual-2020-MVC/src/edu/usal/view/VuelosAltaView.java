@@ -123,24 +123,6 @@ public class VuelosAltaView extends JFrame {
 		lblFechaHoraSalida.setBounds(46, 172, 140, 14);
 		getContentPane().add(lblFechaHoraSalida);
 
-		lblTiempoVuelo = new JLabel("Tiempo de vuelo");
-		lblTiempoVuelo.setBounds(46, 232, 140, 14);
-		getContentPane().add(lblTiempoVuelo);
-
-		lblTiempoVueloCalculado = new JLabel();
-		lblTiempoVueloCalculado.setBounds(163, 217, 72, 14);
-		getContentPane().add(lblTiempoVueloCalculado);
-
-		btnCancel = new JButton("Cancel");
-		btnCancel.setBounds(46, 274, 183, 23);
-		getContentPane().add(btnCancel);
-		getBtnCancel().addActionListener(new VueloAltaEvents(this));
-
-		btnSubmit = new JButton("Submit");
-		btnSubmit.setBounds(247, 274, 189, 23);
-		getContentPane().add(btnSubmit);
-		getBtnSubmit().addActionListener(new VueloAltaEvents(this));
-
 		dateChooser_fechaHoraSalida = new JDateChooser();
 		dateChooser_fechaHoraSalida.setBounds(214, 166, 206, 23);
 		getContentPane().add(dateChooser_fechaHoraSalida);
@@ -165,11 +147,31 @@ public class VuelosAltaView extends JFrame {
 		});
 		// this.add(dateChooser_fechaHoraLlegada);
 
+		lblTiempoVuelo = new JLabel("Tiempo de vuelo");
+		lblTiempoVuelo.setBounds(46, 232, 140, 14);
+		getContentPane().add(lblTiempoVuelo);
+
+		lblTiempoVueloCalculado = new JLabel();
+		lblTiempoVueloCalculado.setBounds(163, 217, 72, 14);
+		getContentPane().add(lblTiempoVueloCalculado);
+
 		textField_tiempoVuelo = new JTextField();
 		textField_tiempoVuelo.setEditable(false);
 		textField_tiempoVuelo.setBounds(214, 229, 206, 20);
 		getContentPane().add(textField_tiempoVuelo);
 		textField_tiempoVuelo.setColumns(10);
+
+		// Botones submit y cancel
+
+		btnCancel = new JButton("Cancel");
+		btnCancel.setBounds(46, 274, 183, 23);
+		getContentPane().add(btnCancel);
+		getBtnCancel().addActionListener(new VueloAltaEvents(this));
+
+		btnSubmit = new JButton("Submit");
+		btnSubmit.setBounds(247, 274, 189, 23);
+		getContentPane().add(btnSubmit);
+		getBtnSubmit().addActionListener(new VueloAltaEvents(this));
 
 	}
 
