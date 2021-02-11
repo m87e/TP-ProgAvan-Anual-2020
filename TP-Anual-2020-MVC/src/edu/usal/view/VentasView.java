@@ -62,6 +62,11 @@ public class VentasView extends JPanel {
 				ArrayList<Object[]> data = new ArrayList<>();
 				
 				ArrayList<Venta> datosCargar = (ArrayList<Venta>) ventaController.mostrarTodo();
+				for (int i = 0; i < datosCargar.size(); i++) {
+					System.out.println(ventaController.mostrarTodo().get(i).getId());
+					System.out.println(ventaController.mostrarTodo().get(i).getAerolinea().getId());
+				}
+				
 				
 				for (int i = 0; i < datosCargar.size(); i++) {
 					data.add(new Object[] {

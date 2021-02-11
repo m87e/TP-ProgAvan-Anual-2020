@@ -150,6 +150,8 @@ public class VentaDAOImplDatabase implements VentaDAO {
 				venta.setVuelo(vuelo);
 				aerolinea.setId(rs.getInt("venta_aerolineaID"));
 				venta.setAerolinea(aerolinea);
+				
+				listado.add(venta);
 
 			}
 			System.out.println("Ventas encontrados: " + listado.size());

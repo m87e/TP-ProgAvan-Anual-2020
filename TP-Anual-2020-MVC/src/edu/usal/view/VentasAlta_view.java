@@ -26,6 +26,7 @@ import com.toedter.calendar.JDateChooser;
 import edu.usal.controllers.GUI.VentasAltaController_GUI;
 import edu.usal.controllers.GUI.VueloAltaController_GUI;
 import edu.usal.events.VentaAltaEvents;
+import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.tp.negocio.dao.dominio.Vuelo;
 
 import javax.swing.JList;
@@ -173,6 +174,7 @@ public class VentasAlta_view extends JFrame{
 		panel.add(comboBox_vuelo);
 		comboBox_vuelo.setVisible(true);
 		comboBox_vuelo.setBounds(107, 95, 173, 40);
+		comboBox_vuelo.addItem("Seleccionar");
 		for (int i = 0; i < listVuelos.size() ; i++) {
 			comboBox_vuelo.addItem(listVuelos.get(i).getNumVuelo());
 		}
@@ -182,7 +184,13 @@ public class VentasAlta_view extends JFrame{
 			public void itemStateChanged(ItemEvent arg0) {
 				
 				//Obtengo el vuelo ID
-				int vueloID = Integer.valueOf(comboBox_vuelo.getSelectedItem().toString().replace(" ",""));
+				String numeroVuelo = comboBox_vuelo.getSelectedItem().toString();
+				ArrayList<Aerolinea> listAerolinea = (ArrayList<Aerolinea>) ventaController.mostrarAerolinea();
+				for (int i = 0; i < listVuelos.size(); i++) {
+					if(textField_aerolinea.setText.get(i).getNombre().equals(numeroVuelo)) {
+						textField_aerolinea.setText(arg0);
+					}
+				}
 				
 				
 				for (int i = 0; i < listVuelos.size(); i++) {

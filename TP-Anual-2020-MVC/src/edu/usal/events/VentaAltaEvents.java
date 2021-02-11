@@ -8,6 +8,8 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import edu.usal.controllers.GUI.VentasAltaController_GUI;
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.tp.negocio.dao.dominio.Cliente;
@@ -34,6 +36,9 @@ public class VentaAltaEvents implements ActionListener {
 			String fP = CargaVenta().getFormaPago();
 		
 			ventaAltaController.altaVenta(vt, c, v, a, f, fP);
+			
+			JOptionPane.showMessageDialog(null, "Venta agregada exitosamente!");
+			this.viewAltaVenta.setVisible(false);
 		}
 	}
 	private Aerolinea CargarAerolinea() {
@@ -77,6 +82,7 @@ public class VentaAltaEvents implements ActionListener {
 			v.setFormaPago(this.viewAltaVenta.getComboBox_formaPago().getSelectedItem().toString());
 		}
 		else {
+			System.out.println("cuota: "+ this.viewAltaVenta.getComboBox_cuotas().getSelectedItem().toString());
 			v.setFormaPago(this.viewAltaVenta.getComboBox_cuotas().getSelectedItem().toString());
 		}
 		return v;
