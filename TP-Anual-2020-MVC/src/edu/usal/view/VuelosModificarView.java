@@ -84,6 +84,11 @@ public class VuelosModificarView extends JFrame {
 		ArrayList<Aeropuerto> listAeropuertos = (ArrayList<Aeropuerto>) vueloModificarController.mostrarAeropuertos();
 		for (int i = 0; i < listAeropuertos.size(); i++) {
 			comboBox_aeropuertosSalida.addItem(listAeropuertos.get(i).getCodigo());
+
+			if (listAeropuertos.get(i).getId() == vuelo.getAeropuertoSalida().getId()) {
+				comboBox_aeropuertosSalida.setSelectedItem(listAeropuertos.get(i).getCodigo());
+
+			}
 		}
 
 		comboBox_aeropuertosSalida.addItemListener(new ItemListener() {
@@ -99,9 +104,15 @@ public class VuelosModificarView extends JFrame {
 
 		comboBox_aeropuertosLlegada = new JComboBox();
 		panel.add(comboBox_aeropuertosLlegada);
+		comboBox_aeropuertosLlegada.getModel().setSelectedItem(vuelo.getAeropuertoLlegada().getCodigo());
 
 		for (int i = 0; i < listAeropuertos.size(); i++) {
 			comboBox_aeropuertosLlegada.addItem(listAeropuertos.get(i).getCodigo());
+
+			if (listAeropuertos.get(i).getId() == vuelo.getAeropuertoLlegada().getId()) {
+				comboBox_aeropuertosLlegada.setSelectedItem(listAeropuertos.get(i).getCodigo());
+
+			}
 		}
 
 		comboBox_aeropuertosLlegada.addItemListener(new ItemListener() {
@@ -121,6 +132,11 @@ public class VuelosModificarView extends JFrame {
 		ArrayList<Aerolinea> listAerolinea = (ArrayList<Aerolinea>) vueloModificarController.mostrarAerolinea();
 		for (int i = 0; i < listAerolinea.size(); i++) {
 			comboBox_aerolinea.addItem(listAerolinea.get(i).getNombre());
+
+			if (listAerolinea.get(i).getId() == vuelo.getAerolinea().getId()) {
+				comboBox_aerolinea.setSelectedItem(listAerolinea.get(i).getNombre());
+
+			}
 		}
 
 		comboBox_aerolinea.addItemListener(new ItemListener() {
