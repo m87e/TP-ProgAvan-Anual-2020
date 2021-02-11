@@ -2,8 +2,13 @@ package edu.usal.view;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -26,14 +31,11 @@ import java.awt.GridLayout;
 public class VuelosModificarView extends JFrame {
 
 	private VueloModificarController_GUI vueloModificarController = new VueloModificarController_GUI(this);
-	private JTextField textID;
-	private JTextField textField_1;
-	private JTextField textCantidadAsientos;
-	
-	private JComboBox comboBox_aeropuertosSalida,comboBox_aeropuertosLlegada,comboBox_aerolinea;
+	private JTextField textID, textField_NumVuelo, textCantidadAsientos, textField_tiempoVuelo;
+
+	private JComboBox comboBox_aeropuertosSalida, comboBox_aeropuertosLlegada, comboBox_aerolinea;
 	private JButton btnCancel, btnSubmit;
-	private JDateChooser dateChooser_fechaHoraSalida , dateChooser_fechaHoraLlegada;
-	private JLabel lblTiempoVueloCalculado;
+	private JDateChooser dateChooser_fechaHoraSalida, dateChooser_fechaHoraLlegada;
 
 	public VuelosModificarView(Vuelo vuelo) {
 
@@ -53,93 +55,128 @@ public class VuelosModificarView extends JFrame {
 			comboBox_aerolinea.addItem(listAerolinea.get(i).getNombre());
 		}
 
+		JPanel panel = new JPanel();
+		panel.setBounds(32, 24, 460, 321);
+		getContentPane().add(panel);
+		panel.setLayout(new GridLayout(0, 2, 0, 0));
+
+		JLabel lbl_id = new JLabel("ID");
+		panel.add(lbl_id);
+
+		textID = new JTextField();
+		textID.setText(String.valueOf(vuelo.getId()));
+		textID.setEnabled(false);
+		textID.setEditable(false);
+		textID.setColumns(10);
+		panel.add(textID);
+
+		JLabel lblNumVuelo = new JLabel("Numero Vuelo");
+		panel.add(lblNumVuelo);
+
+		textField_NumVuelo = new JTextField();
+		textField_NumVuelo.setText((String) null);
+		textField_NumVuelo.setEnabled(false);
+		textField_NumVuelo.setColumns(10);
+		panel.add(textField_NumVuelo);
+
+		JLabel lblCantidadAsientos = new JLabel("Cantidad Asientos");
+		panel.add(lblCantidadAsientos);
+
+		textCantidadAsientos = new JTextField();
+		textCantidadAsientos.setText("null");
+		textCantidadAsientos.setColumns(10);
+		panel.add(textCantidadAsientos);
+
+		JLabel lblAeropuertoSalida = new JLabel("Aeropuerto salida");
+		panel.add(lblAeropuertoSalida);
+
+		comboBox_aeropuertosSalida = new JComboBox();
+		panel.add(comboBox_aeropuertosSalida);
+
+		JLabel lblAeropuertoLlegada = new JLabel("Aeropuerto Llegada");
+		panel.add(lblAeropuertoLlegada);
+
+		comboBox_aeropuertosLlegada = new JComboBox();
+		panel.add(comboBox_aeropuertosLlegada);
+
+		JLabel lblAerolinea = new JLabel("Aerolinea");
+		panel.add(lblAerolinea);
+
+		comboBox_aerolinea = new JComboBox();
+		panel.add(comboBox_aerolinea);
+
 		ZoneId defaultZoneId = ZoneId.systemDefault();
 		LocalDate localDate_fechaHoraSalida = vuelo.getFechaHoraSalida();
 		Date date_fechaHoraSalida = Date.from(localDate_fechaHoraSalida.atStartOfDay(defaultZoneId).toInstant());
 
 		LocalDate localDate_fechaHoraLlegada = vuelo.getFechaHoraLlegada();
 		Date date_fechaHoraLlegada = Date.from(localDate_fechaHoraLlegada.atStartOfDay(defaultZoneId).toInstant());
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(32, 24, 460, 321);
-		getContentPane().add(panel);
-		panel.setLayout(new GridLayout(0, 2, 0, 0));
-		
-		JLabel lbl_id = new JLabel("ID");
-		panel.add(lbl_id);
-		
-		textID = new JTextField();
-		textID.setText("0");
-		textID.setEnabled(false);
-		textID.setEditable(false);
-		textID.setColumns(10);
-		panel.add(textID);
-		
-		JLabel lblNumVuelo = new JLabel("Numero Vuelo");
-		panel.add(lblNumVuelo);
-		
-		textField_1 = new JTextField();
-		textField_1.setText((String) null);
-		textField_1.setEnabled(false);
-		textField_1.setColumns(10);
-		panel.add(textField_1);
-		
-		JLabel lblCantidadAsientos = new JLabel("Cantidad Asientos");
-		panel.add(lblCantidadAsientos);
-		
-		textCantidadAsientos = new JTextField();
-		textCantidadAsientos.setText("null");
-		textCantidadAsientos.setColumns(10);
-		panel.add(textCantidadAsientos);
-		
-		JLabel lblAeropuertoSalida = new JLabel("Aeropuerto salida");
-		panel.add(lblAeropuertoSalida);
-		
-		comboBox_aeropuertosSalida = new JComboBox();
-		panel.add(comboBox_aeropuertosSalida);
-		
-		JLabel lblAeropuertoLlegada = new JLabel("Aeropuerto Llegada");
-		panel.add(lblAeropuertoLlegada);
-		
-		comboBox_aeropuertosLlegada = new JComboBox();
-		panel.add(comboBox_aeropuertosLlegada);
-		
-		JLabel lblAerolinea = new JLabel("Aerolinea");
-		panel.add(lblAerolinea);
-		
-		comboBox_aerolinea = new JComboBox();
-		panel.add(comboBox_aerolinea);
-		
+
 		JLabel lblFechaHoraSalida = new JLabel("Fecha/Hora Salida");
 		panel.add(lblFechaHoraSalida);
-		
+
 		dateChooser_fechaHoraSalida = new JDateChooser();
 		panel.add(dateChooser_fechaHoraSalida);
-		
+
 		JLabel lblFechaHoraLlegada = new JLabel("Fecha/Hora Llegada");
 		panel.add(lblFechaHoraLlegada);
-		
+
 		dateChooser_fechaHoraLlegada = new JDateChooser();
 		panel.add(dateChooser_fechaHoraLlegada);
-		
+
+		dateChooser_fechaHoraLlegada.getDateEditor().addPropertyChangeListener(new PropertyChangeListener() {
+			@Override
+			public void propertyChange(PropertyChangeEvent e) {
+				if ("date".equals(e.getPropertyName())) {
+					System.out.println(e.getPropertyName() + ": " + (Date) e.getNewValue());
+					// Calculo de diferencia horas
+					System.out.println("###Fecha/hora salida: " + getDateChooser_fechaHoraSalida());
+					System.out.println("###Fecha/hora llegada: " + getDateChooser_fechaHoraLlegada());
+					String tiempoTotal = CalcularTiempoVueloTotal(getDateChooser_fechaHoraSalida(),
+							getDateChooser_fechaHoraLlegada());
+					textField_tiempoVuelo.setText(tiempoTotal);
+				}
+			}
+		});
+		// this.add(dateChooser_fechaHoraLlegada);
+
 		JLabel lblTiempoVuelo = new JLabel("Tiempo de vuelo");
 		panel.add(lblTiempoVuelo);
-		
-		lblTiempoVueloCalculado = new JLabel();
-		panel.add(lblTiempoVueloCalculado);
-		
+
+		textField_tiempoVuelo = new JTextField();
+		panel.add(textField_tiempoVuelo);
+
 		JPanel panel_btns = new JPanel();
 		panel_btns.setBounds(146, 361, 346, 51);
 		getContentPane().add(panel_btns);
 		panel_btns.setLayout(new GridLayout(0, 2, 0, 0));
-		
+
 		btnCancel = new JButton("Cancel");
 		panel_btns.add(btnCancel);
-		
+
 		btnSubmit = new JButton("Submit");
 		panel_btns.add(btnSubmit);
-	
+
 	}
+
+	public String CalcularTiempoVueloTotal(JDateChooser salida, JDateChooser llegada) {
+
+		String tiempoTotal = null;
+
+		ZonedDateTime start = ZonedDateTime.ofInstant(salida.getDate().toInstant(), ZoneId.systemDefault());
+		ZonedDateTime end = ZonedDateTime.ofInstant(llegada.getDate().toInstant(), ZoneId.systemDefault());
+		Duration total = Duration.ofMinutes(ChronoUnit.MINUTES.between(start, end));
+
+		long hours = total.toHours();
+		long minutes = total.minusHours(hours).toMinutes();
+
+		tiempoTotal = String.valueOf(hours) + " horas " + String.valueOf(minutes) + " minutos";
+
+		return tiempoTotal;
+
+	}
+
+	// Getter & setters
 
 	public JTextField getTextID() {
 		return textID;
@@ -148,8 +185,6 @@ public class VuelosModificarView extends JFrame {
 	public void setTextID(JTextField textID) {
 		this.textID = textID;
 	}
-
-	// Getter & setters
 
 	public JTextField getTextCantidadAsientos() {
 		return textCantidadAsientos;
@@ -206,6 +241,7 @@ public class VuelosModificarView extends JFrame {
 	public void setDateChooser_fechaHoraLlegada(JDateChooser dateChooser_fechaHoraLlegada) {
 		this.dateChooser_fechaHoraLlegada = dateChooser_fechaHoraLlegada;
 	}
+
 	public JButton getBtnCancel() {
 		return btnCancel;
 	}
@@ -214,13 +250,20 @@ public class VuelosModificarView extends JFrame {
 		return btnSubmit;
 	}
 
-	public JLabel getLblTiempoVueloCalculado() {
-		return lblTiempoVueloCalculado;
+	public JTextField getTextField_tiempoVuelo() {
+		return textField_tiempoVuelo;
 	}
 
-	public void setLblTiempoVueloCalculado(JLabel lblTiempoVueloCalculado) {
-		this.lblTiempoVueloCalculado = lblTiempoVueloCalculado;
+	public void setTextField_tiempoVuelo(JTextField textField_tiempoVuelo) {
+		this.textField_tiempoVuelo = textField_tiempoVuelo;
 	}
-	
-	
+
+	public JTextField getTextField_NumVuelo() {
+		return textField_NumVuelo;
+	}
+
+	public void setTextField_NumVuelo(JTextField textField_NumVuelo) {
+		this.textField_NumVuelo = textField_NumVuelo;
+	}
+
 }
