@@ -70,8 +70,6 @@ public class VueloModificarEvents implements ActionListener {
 		LocalDate localDateLlegada = dateLlegada.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		vuelo.setFechaHoraLlegada(localDateLlegada);
 
-		vuelo.setTiempoVuelo(this.viewModificarVuelo.getTextField_tiempoVuelo().getText());
-
 		return vuelo;
 	}
 

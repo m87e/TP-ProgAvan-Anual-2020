@@ -77,8 +77,6 @@ public class VueloAltaEvents implements ActionListener {
 		LocalDate localDateLlegada = dateLlegada.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		vuelo.setFechaHoraLlegada(localDateLlegada);
 
-		vuelo.setTiempoVuelo(this.viewAltaVuelo.getTextField_tiempoVuelo().getText());
-
 		return vuelo;
 	}
 

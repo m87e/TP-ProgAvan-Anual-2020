@@ -91,12 +91,12 @@ public class VuelosView extends JPanel {
 					datosCargar.get(i).getCantAsientos(), datosCargar.get(i).getAerolinea().getNombre(),
 					datosCargar.get(i).getAeropuertoSalida().getCodigo(),
 					datosCargar.get(i).getAeropuertoLlegada().getCodigo(), datosCargar.get(i).getFechaHoraSalida(),
-					datosCargar.get(i).getFechaHoraLlegada(), datosCargar.get(i).getTiempoVuelo() });
+					datosCargar.get(i).getFechaHoraLlegada()});
 		}
 		
 
 		String[] header = { "ID", "Num Vuelo", "Cantidad Asientos", "Aerolinea", "Aeropuerto Salida",
-				"Aeropuerto Llegada", "Fecha/Hora Salida", "Fecha/Hora Llegada", "Tiempo Vuelo" };
+				"Aeropuerto Llegada", "Fecha/Hora Salida", "Fecha/Hora Llegada" };
 
 		// Llama a la clase para crear la jtable con AbstractModel
 		model = new BuildTableModel(data, header) {
