@@ -173,6 +173,9 @@ public class VuelosModificarView extends JFrame {
 
 		textField_tiempoVuelo = new JTextField();
 		panel.add(textField_tiempoVuelo);
+		String tiempoTotal = CalcularTiempoVueloTotal(getDateChooser_fechaHoraSalida(),
+				getDateChooser_fechaHoraLlegada());
+		textField_tiempoVuelo.setText(tiempoTotal);
 
 		JPanel panel_btns = new JPanel();
 		panel_btns.setBounds(146, 361, 346, 51);
