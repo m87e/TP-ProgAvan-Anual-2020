@@ -42,11 +42,6 @@ public class VuelosModificarView extends JFrame {
 		setTitle("Modifcar Vuelo");
 		getContentPane().setLayout(null);
 
-		ArrayList<Aerolinea> listAerolinea = (ArrayList<Aerolinea>) vueloModificarController.mostrarAerolinea();
-		for (int i = 0; i < listAerolinea.size(); i++) {
-			comboBox_aerolinea.addItem(listAerolinea.get(i).getNombre());
-		}
-
 		JPanel panel = new JPanel();
 		panel.setBounds(32, 24, 460, 321);
 		getContentPane().add(panel);
@@ -121,6 +116,19 @@ public class VuelosModificarView extends JFrame {
 
 		comboBox_aerolinea = new JComboBox();
 		panel.add(comboBox_aerolinea);
+
+		ArrayList<Aerolinea> listAerolinea = (ArrayList<Aerolinea>) vueloModificarController.mostrarAerolinea();
+		for (int i = 0; i < listAerolinea.size(); i++) {
+			comboBox_aerolinea.addItem(listAerolinea.get(i).getNombre());
+		}
+
+		comboBox_aerolinea.addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent arg0) {
+				String aerolinea = comboBox_aerolinea.getSelectedItem().toString();
+			}
+		});
 
 		ZoneId defaultZoneId = ZoneId.systemDefault();
 		LocalDate localDate_fechaHoraSalida = vuelo.getFechaHoraSalida();
