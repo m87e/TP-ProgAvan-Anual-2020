@@ -35,10 +35,21 @@ public class VentaAltaEvents implements ActionListener {
 			LocalDate f = CargaVenta().getFechaHoraVenta();
 			String fP = CargaVenta().getFormaPago();
 		
-			ventaAltaController.altaVenta(vt, c, v, a, f, fP);
+			Boolean validacion = false;
+		/*	
+			if(c.getFechaNac() - fecha hoy <18) {
+				this.viewAltaVenta.setLblClienteMenor(true);
+			}else {
+				validacion = true;
+			}
 			
-			JOptionPane.showMessageDialog(null, "Venta agregada exitosamente!");
-			this.viewAltaVenta.setVisible(false);
+			
+			if(validacionFecha && validacionPasaporte ) {
+				ventaAltaController.altaVenta(vt, c, v, a, f, fP);
+				JOptionPane.showMessageDialog(null, "Venta agregada exitosamente!");
+				this.viewAltaVenta.setVisible(false);
+			}
+			*/
 		}
 	}
 	private Aerolinea CargarAerolinea() {

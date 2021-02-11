@@ -16,10 +16,16 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
 import edu.usal.controllers.GUI.VentasController_GUI;
+import edu.usal.controllers.GUI.VueloController_GUI;
 import edu.usal.events.ClienteEvents;
 import edu.usal.events.VentaEvents;
+import edu.usal.managers.AerolineaManager;
+import edu.usal.managers.ClienteManager;
+import edu.usal.managers.VueloManager;
+import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.tp.negocio.dao.dominio.Cliente;
 import edu.usal.tp.negocio.dao.dominio.Venta;
+import edu.usal.tp.negocio.dao.dominio.Vuelo;
 import util.BuildTableModel;
 import util.CeldaRenderer;
 
@@ -36,6 +42,9 @@ public class VentasView extends JPanel {
 	private JScrollPane scrollPaneVentas;
 	
 	private VentasController_GUI ventaController = new VentasController_GUI();
+	private VueloManager managerVuelo = new VueloManager();
+	private AerolineaManager managerAerolinea = new AerolineaManager();
+	private ClienteManager managerCliente = new ClienteManager();
 	
 	private JTable table;
 	private JButton btnAlta;
@@ -62,24 +71,41 @@ public class VentasView extends JPanel {
 				ArrayList<Object[]> data = new ArrayList<>();
 				
 				ArrayList<Venta> datosCargar = (ArrayList<Venta>) ventaController.mostrarTodo();
-				for (int i = 0; i < datosCargar.size(); i++) {
-					System.out.println(ventaController.mostrarTodo().get(i).getId());
-					System.out.println(ventaController.mostrarTodo().get(i).getAerolinea().getId());
-				}
 				
+				ArrayList<Vuelo> listVuelo = (ArrayList<Vuelo>) managerVuelo.MostrarVuelos();
+				ArrayList<Aerolinea> listAerolinea = (ArrayList<Aerolinea>) managerAerolinea.MostrarLineasAereas();
+				ArrayList<Cliente> listCliente = (ArrayList<Cliente>) managerCliente.MostrarClientes();
+				
+				for (int i = 0; i < datosCargar.size(); i++) {
+					for (int j = 0; j < listVuelo.size(); j++) {
+						if(datosCargar.get(i).getVuelo().getId() == listVuelo.get(j).getId()) {
+							datosCargar.get(i).getVuelo().setNumVuelo(listVuelo.get(j).getNumVuelo());
+						}
+					}
+					for (int j = 0; j < listAerolinea.size(); j++) {
+						if (datosCargar.get(i).getAerolinea().getId() == listAerolinea.get(j).getId() ) {
+							datosCargar.get(i).getAerolinea().setNombre(listAerolinea.get(j).getNombre());
+						}
+					}
+					for (int j = 0; j < listCliente.size(); j++) {
+						if (datosCargar.get(i).getCliente().getId() == listCliente.get(j).getId()) {
+							datosCargar.get(i).getCliente().setDni(listCliente.get(j).getDni());
+						}
+					}
+				}
 				
 				for (int i = 0; i < datosCargar.size(); i++) {
 					data.add(new Object[] {
 						datosCargar.get(i).getId(),
-						datosCargar.get(i).getCliente().getId(),
-						datosCargar.get(i).getVuelo().getId(),
-						datosCargar.get(i).getAerolinea().getId(),
+						datosCargar.get(i).getCliente().getDni(),
+						datosCargar.get(i).getVuelo().getNumVuelo(),
+						datosCargar.get(i).getAerolinea().getNombre(),
 						datosCargar.get(i).getFormaPago(),
 						datosCargar.get(i).getFechaHoraVenta(),
 					});
 				}	
 				
-				String[] header = {"Venta ID", "Cliente ID", "Vuelo ID", "Aerolinea ID", "Forma de pago", "Fecha de venta"};
+				String[] header = {"Venta ID", "Cliente DNI", "# Vuelo", "Aerolinea", "Forma de pago", "Fecha de venta"};
 				
 				model = new BuildTableModel(data, header) {
 					public boolean isCellEditable(int row, int column) {
