@@ -32,7 +32,6 @@ public class VueloModificarEvents implements ActionListener {
 		if (e.getSource() == this.viewModificarVuelo.getBtnSubmit()) {
 			System.out.println("... Procensando modificacion de Vuelo...");
 			Vuelo vuelo = CargarVuelo();
-			System.out.println("#####Aeropuerto a modificar Salida:" + vuelo.getAeropuertoSalida().getCodigo());
 			vueloModificarController.modificarVuelo(vuelo);
 
 			JOptionPane.showMessageDialog(null, "Vuelo modificado exitosamente");
