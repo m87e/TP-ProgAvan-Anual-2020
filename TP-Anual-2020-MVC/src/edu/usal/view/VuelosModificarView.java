@@ -42,14 +42,6 @@ public class VuelosModificarView extends JFrame {
 		setTitle("Modifcar Vuelo");
 		getContentPane().setLayout(null);
 
-		ArrayList<Aeropuerto> listAeropuertos = (ArrayList<Aeropuerto>) vueloModificarController.mostrarAeropuertos();
-		for (int i = 0; i < listAeropuertos.size(); i++) {
-			comboBox_aeropuertosSalida.addItem(listAeropuertos.get(i).getCodigo());
-		}
-		for (int i = 0; i < listAeropuertos.size(); i++) {
-			comboBox_aeropuertosLlegada.addItem(listAeropuertos.get(i).getCodigo());
-		}
-
 		ArrayList<Aerolinea> listAerolinea = (ArrayList<Aerolinea>) vueloModificarController.mostrarAerolinea();
 		for (int i = 0; i < listAerolinea.size(); i++) {
 			comboBox_aerolinea.addItem(listAerolinea.get(i).getNombre());
@@ -88,16 +80,41 @@ public class VuelosModificarView extends JFrame {
 		panel.add(textCantidadAsientos);
 
 		JLabel lblAeropuertoSalida = new JLabel("Aeropuerto salida");
-		panel.add(lblAeropuertoSalida);
+		getContentPane().add(lblAeropuertoSalida);
 
 		comboBox_aeropuertosSalida = new JComboBox();
-		panel.add(comboBox_aeropuertosSalida);
+		getContentPane().add(comboBox_aeropuertosSalida);
+
+		ArrayList<Aeropuerto> listAeropuertos = (ArrayList<Aeropuerto>) vueloModificarController.mostrarAeropuertos();
+		for (int i = 0; i < listAeropuertos.size(); i++) {
+			comboBox_aeropuertosSalida.addItem(listAeropuertos.get(i).getCodigo());
+		}
+
+		comboBox_aeropuertosSalida.addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent arg0) {
+				String codigo = comboBox_aeropuertosSalida.getSelectedItem().toString();
+			}
+		});
 
 		JLabel lblAeropuertoLlegada = new JLabel("Aeropuerto Llegada");
-		panel.add(lblAeropuertoLlegada);
+		getContentPane().add(lblAeropuertoLlegada);
 
 		comboBox_aeropuertosLlegada = new JComboBox();
-		panel.add(comboBox_aeropuertosLlegada);
+		getContentPane().add(comboBox_aeropuertosLlegada);
+
+		for (int i = 0; i < listAeropuertos.size(); i++) {
+			comboBox_aeropuertosLlegada.addItem(listAeropuertos.get(i).getCodigo());
+		}
+
+		comboBox_aeropuertosLlegada.addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent arg0) {
+				String codigo = comboBox_aeropuertosLlegada.getSelectedItem().toString();
+			}
+		});
 
 		JLabel lblAerolinea = new JLabel("Aerolinea");
 		panel.add(lblAerolinea);
