@@ -74,7 +74,7 @@ public class VuelosModificarView extends JFrame {
 		panel.add(lblNumVuelo);
 
 		textField_NumVuelo = new JTextField();
-		textField_NumVuelo.setText((String) null);
+		textField_NumVuelo.setText((vuelo.getNumVuelo()));
 		textField_NumVuelo.setEnabled(false);
 		textField_NumVuelo.setColumns(10);
 		panel.add(textField_NumVuelo);
@@ -83,7 +83,7 @@ public class VuelosModificarView extends JFrame {
 		panel.add(lblCantidadAsientos);
 
 		textCantidadAsientos = new JTextField();
-		textCantidadAsientos.setText("null");
+		textCantidadAsientos.setText(String.valueOf(vuelo.getCantAsientos()));
 		textCantidadAsientos.setColumns(10);
 		panel.add(textCantidadAsientos);
 
@@ -117,12 +117,14 @@ public class VuelosModificarView extends JFrame {
 
 		dateChooser_fechaHoraSalida = new JDateChooser();
 		panel.add(dateChooser_fechaHoraSalida);
+		dateChooser_fechaHoraSalida.setDate(date_fechaHoraSalida);
 
 		JLabel lblFechaHoraLlegada = new JLabel("Fecha/Hora Llegada");
 		panel.add(lblFechaHoraLlegada);
 
 		dateChooser_fechaHoraLlegada = new JDateChooser();
 		panel.add(dateChooser_fechaHoraLlegada);
+		dateChooser_fechaHoraLlegada.setDate(date_fechaHoraLlegada);
 
 		dateChooser_fechaHoraLlegada.getDateEditor().addPropertyChangeListener(new PropertyChangeListener() {
 			@Override

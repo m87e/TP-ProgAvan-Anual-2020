@@ -30,6 +30,7 @@ import edu.usal.events.AerolineaEvents;
 import edu.usal.events.ClienteEvents;
 import edu.usal.events.VueloEvents;
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
+import edu.usal.tp.negocio.dao.dominio.Aeropuerto;
 import edu.usal.tp.negocio.dao.dominio.Vuelo;
 import util.BuildTableModel;
 import util.CeldaRenderer;
@@ -84,16 +85,43 @@ public class VuelosView extends JPanel {
 		ArrayList<Object[]> data = new ArrayList<>();
 
 		ArrayList<Vuelo> datosCargar = (ArrayList<Vuelo>) vueloController.MostrarTodo();
+		ArrayList<Aeropuerto> listAeropuertos = (ArrayList<Aeropuerto>) vueloController.mostrarAeropuertos();
+		ArrayList<Aerolinea> listAerolineas = (ArrayList<Aerolinea>) vueloController.mostrarAerolinea();
 
 		for (int i = 0; i < datosCargar.size(); i++) {
+
+			for (int j = 0; j < listAerolineas.size(); j++) {
+				if (datosCargar.get(i).getAerolinea().getId() == listAerolineas.get(j).getId()) {
+					datosCargar.get(i).setAerolinea(listAerolineas.get(j));
+					System.out.println("### aerolinea nombre: " + datosCargar.get(i).getAerolinea().getNombre());
+				}
+			}
+
+			for (int j = 0; j < listAeropuertos.size(); j++) {
+				if (datosCargar.get(i).getAeropuertoSalida().getId() == listAeropuertos.get(j).getId()) {
+					datosCargar.get(i).setAeropuertoSalida((listAeropuertos.get(j)));
+					System.out
+							.println("### aeropuerto salida: " + datosCargar.get(i).getAeropuertoSalida().getCodigo());
+				}
+			}
+
+			for (int j = 0; j < listAeropuertos.size(); j++) {
+				if (datosCargar.get(i).getAeropuertoLlegada().getId() == listAeropuertos.get(j).getId()) {
+					datosCargar.get(i).setAeropuertoLlegada((listAeropuertos.get(j)));
+					System.out.println(
+							"### aeropuerto llegada: " + datosCargar.get(i).getAeropuertoLlegada().getCodigo());
+				}
+			}
 
 			data.add(new Object[] { datosCargar.get(i).getId(), datosCargar.get(i).getNumVuelo(),
 					datosCargar.get(i).getCantAsientos(), datosCargar.get(i).getAerolinea().getNombre(),
 					datosCargar.get(i).getAeropuertoSalida().getCodigo(),
 					datosCargar.get(i).getAeropuertoLlegada().getCodigo(), datosCargar.get(i).getFechaHoraSalida(),
-					datosCargar.get(i).getFechaHoraLlegada()});
+					datosCargar.get(i).getFechaHoraLlegada()
+
+			});
+
 		}
-		
 
 		String[] header = { "ID", "Num Vuelo", "Cantidad Asientos", "Aerolinea", "Aeropuerto Salida",
 				"Aeropuerto Llegada", "Fecha/Hora Salida", "Fecha/Hora Llegada" };
