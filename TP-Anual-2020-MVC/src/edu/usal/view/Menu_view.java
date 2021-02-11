@@ -1,4 +1,5 @@
 package edu.usal.view;
+
 import java.awt.CardLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -13,33 +14,32 @@ import javax.swing.JPanel;
 
 import edu.usal.view_old.ClientesABM_view;
 
-
-public class Menu_view implements ActionListener{
+public class Menu_view implements ActionListener {
 
 	private JFrame frmSis;
-	
+
 	private JMenuBar menuBar;
-	
+
 	private JMenu mnHelp;
 	private JMenuItem mntmSalir, mntmVersion;
-	
+
 	private JMenu mnCliente;
 	private JMenuItem mntmCliente;
 	private JMenuItem mntmAltaCliente;
-	
+
 	private JMenu mnVuelos;
 	private JMenuItem mntmVuelo;
 	private JMenuItem mntmAltaVuelo;
 
 	private JMenu mnVentas;
 	private JMenuItem mntmVenta;
-	
+
 	private JMenu mnAerolineas;
 	private JMenuItem mntmAerolinea;
 	private JMenuItem mntmAltaAerolinea;
-	
+
 	static JPanel panelPivot;
-	private JPanel panelCliente , panelVenta , panelVuelo , panelAerolinea;
+	private JPanel panelCliente, panelVenta, panelVuelo, panelAerolinea;
 
 	/**
 	 * Launch the application.
@@ -72,84 +72,78 @@ public class Menu_view implements ActionListener{
 		frmSis.setTitle("Sistema de gestion de Vuelos");
 		frmSis.setBounds(100, 100, 900, 700);
 		frmSis.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		menuBar = new JMenuBar();
 		frmSis.setJMenuBar(menuBar);
-		
+
 		mnCliente = new JMenu("Cliente");
 		menuBar.add(mnCliente);
-		
-			mntmCliente = new JMenuItem("Gestion de clientes");
-			mnCliente.add(mntmCliente);
-			mntmCliente.addActionListener(this);
-			
-			mntmAltaCliente = new JMenuItem("Nuevo cliente");
-			mnCliente.add(mntmAltaCliente);
-			mntmAltaCliente.addActionListener(this);
-		
+
+		mntmCliente = new JMenuItem("Gestion de clientes");
+		mnCliente.add(mntmCliente);
+		mntmCliente.addActionListener(this);
+
+		mntmAltaCliente = new JMenuItem("Nuevo cliente");
+		mnCliente.add(mntmAltaCliente);
+		mntmAltaCliente.addActionListener(this);
+
 		mnVentas = new JMenu("Ventas");
 		menuBar.add(mnVentas);
-		
-			mntmVenta = new JMenuItem("Gestion de ventas");
-			mnVentas.add(mntmVenta);
-			mntmVenta.addActionListener(this);
-		
-		
+
+		mntmVenta = new JMenuItem("Gestion de ventas");
+		mnVentas.add(mntmVenta);
+		mntmVenta.addActionListener(this);
+
 		mnVuelos = new JMenu("Vuelos");
 		menuBar.add(mnVuelos);
-		
-			mntmVuelo = new JMenuItem("Gestion de vuelos");
-			mnVuelos.add(mntmVuelo);
-			
-			mntmAltaVuelo = new JMenuItem("Nuevo vuelo");
-			mnVuelos.add(mntmAltaVuelo);
-			mntmVuelo.addActionListener(this);
-		
+
+		mntmVuelo = new JMenuItem("Gestion de vuelos");
+		mnVuelos.add(mntmVuelo);
+
+		mntmAltaVuelo = new JMenuItem("Nuevo vuelo");
+		mnVuelos.add(mntmAltaVuelo);
+		mntmVuelo.addActionListener(this);
+
 		mnAerolineas = new JMenu("Aerolineas");
 		menuBar.add(mnAerolineas);
-		
-			mntmAerolinea = new JMenuItem("Gestion de aerolineas");
-			mnAerolineas.add(mntmAerolinea);
-			mntmAerolinea.addActionListener(this);
-			
-			mntmAltaAerolinea = new JMenuItem("Nueva aerolinea");
-			mnAerolineas.add(mntmAltaAerolinea);
-		
 
-		
+		mntmAerolinea = new JMenuItem("Gestion de aerolineas");
+		mnAerolineas.add(mntmAerolinea);
+		mntmAerolinea.addActionListener(this);
+
+		mntmAltaAerolinea = new JMenuItem("Nueva aerolinea");
+		mnAerolineas.add(mntmAltaAerolinea);
+
 		mnHelp = new JMenu("Help");
 		menuBar.add(mnHelp);
-		
+
 		mntmVersion = new JMenuItem("Version");
 		mnHelp.add(mntmVersion);
 		mntmVersion.addActionListener(this);
-		
-		
+
 		mntmSalir = new JMenuItem("Salir");
 		mntmSalir.addActionListener(this);
 		mnHelp.add(mntmSalir);
-		
+
 		frmSis.getContentPane().setLayout(null);
-		
+
 		panelPivot = new JPanel();
-		panelPivot.setBounds(0,0,900,550);
+		panelPivot.setBounds(0, 0, 900, 550);
 		frmSis.getContentPane().add(panelPivot);
-		panelPivot.setLayout(new CardLayout(0,0));
-		
-		
+		panelPivot.setLayout(new CardLayout(0, 0));
+
 		panelCliente = new AerolineasView();
 		panelPivot.add(panelCliente);
 		panelPivot.setVisible(true);
 		panelPivot.validate();
-		
-		
+
 	}
 
 	@SuppressWarnings("deprecation")
 	public static void RecargarPanelCambiante(JPanel jp) {
-		
+
 		panelPivot.removeAll();
-		
+
 		try {
 			panelPivot.add(jp.getClass().newInstance());
 		} catch (InstantiationException e) {
@@ -166,47 +160,47 @@ public class Menu_view implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource() == mntmSalir) {
+		if (e.getSource() == mntmSalir) {
 			System.exit(0);
 		}
-		
-		if(e.getSource() == mntmCliente) {
+
+		if (e.getSource() == mntmCliente) {
 			panelCliente = new ClientesView();
 			panelPivot.removeAll();
 			panelPivot.add(panelCliente);
 			panelPivot.setVisible(true);
 			panelPivot.validate();
 		}
-		
-		if(e.getSource() == mntmVenta) {
+
+		if (e.getSource() == mntmVenta) {
 			panelVenta = new VentasView();
 			panelPivot.removeAll();
 			panelPivot.add(panelVenta);
 			panelPivot.setVisible(true);
-			panelPivot.validate();	
+			panelPivot.validate();
 		}
-		
-		if(e.getSource() == mntmVuelo) {
+
+		if (e.getSource() == mntmVuelo) {
 			panelVuelo = new VuelosView();
 			panelPivot.removeAll();
 			panelPivot.add(panelVuelo);
 			panelPivot.setVisible(true);
 			panelPivot.validate();
 		}
-		if(e.getSource()== mntmAerolinea) {
+		if (e.getSource() == mntmAerolinea) {
 			panelAerolinea = new AerolineasView();
 			panelPivot.removeAll();
 			panelPivot.add(panelAerolinea);
 			panelPivot.setVisible(true);
 			panelPivot.validate();
-			
+
 		}
-		if(e.getSource()== mntmVersion) {
+		if (e.getSource() == mntmVersion) {
 			JOptionPane.showMessageDialog(null, "Sistema de gestion de viajes V2.0");
 		}
 		if (e.getSource() == mntmSalir) {
 			System.exit(0);
 		}
-		
+
 	}
 }

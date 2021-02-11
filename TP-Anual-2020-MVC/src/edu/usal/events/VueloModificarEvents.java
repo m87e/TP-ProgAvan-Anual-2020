@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -19,7 +20,7 @@ import edu.usal.view.VuelosModificarView;
 public class VueloModificarEvents implements ActionListener {
 
 	private VuelosModificarView viewModificarVuelo;
-	private VueloModificarController_GUI vueloModificarController;
+	private VueloModificarController_GUI vueloModificarController = new VueloModificarController_GUI();
 
 	public VueloModificarEvents(VuelosModificarView viewModificarVuelo) {
 		this.viewModificarVuelo = viewModificarVuelo;
@@ -31,7 +32,7 @@ public class VueloModificarEvents implements ActionListener {
 		if (e.getSource() == this.viewModificarVuelo.getBtnSubmit()) {
 			System.out.println("... Procensando modificacion de Vuelo...");
 			Vuelo vuelo = CargarVuelo();
-
+			System.out.println("#####Aeropuerto a modificar Salida:" + vuelo.getAeropuertoSalida().getCodigo());
 			vueloModificarController.modificarVuelo(vuelo);
 
 			JOptionPane.showMessageDialog(null, "Vuelo modificado exitosamente");
@@ -49,7 +50,10 @@ public class VueloModificarEvents implements ActionListener {
 		Vuelo vuelo = new Vuelo();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
+		String id = this.viewModificarVuelo.getTextID().getText();
+		vuelo.setId(Integer.parseInt(id));
 		vuelo.setCantAsientos(Integer.parseInt(this.viewModificarVuelo.getTextCantidadAsientos().getText()));
+		vuelo.setNumVuelo(this.viewModificarVuelo.getTextField_NumVuelo().getText());
 
 		Aeropuerto aepSalida = CargarAeropuerto("salida");
 		Aeropuerto aepLlegada = CargarAeropuerto("llegada");
@@ -77,13 +81,15 @@ public class VueloModificarEvents implements ActionListener {
 
 		Aeropuerto aeropuerto = new Aeropuerto();
 		ArrayList<Aeropuerto> listAeropuertos = (ArrayList<Aeropuerto>) vueloModificarController.mostrarAeropuertos();
+		System.out.println("### AEP encontrados: " + listAeropuertos.size());
 
 		if (salidaOLlegada.equals("salida")) {
 			for (int i = 0; i < listAeropuertos.size(); i++) {
-				System.out.println("Aeropuerto salida seleccionado: "
-						+ this.viewModificarVuelo.getComboBoxAeropuertoSalida().getSelectedItem());
+
 				if (listAeropuertos.get(i).getCodigo()
 						.equals(this.viewModificarVuelo.getComboBoxAeropuertoSalida().getSelectedItem())) {
+					System.out.println("Aeropuerto salida seleccionado: "
+							+ this.viewModificarVuelo.getComboBoxAeropuertoSalida().getSelectedItem());
 					aeropuerto.setId(listAeropuertos.get(i).getId());
 					aeropuerto.setCodigo(listAeropuertos.get(i).getCodigo());
 
@@ -91,10 +97,11 @@ public class VueloModificarEvents implements ActionListener {
 			}
 		} else {
 			for (int i = 0; i < listAeropuertos.size(); i++) {
-				System.out.println("Aeropuerto llegada seleccionado: "
-						+ this.viewModificarVuelo.getComboBoxAeropuertoLlegada().getSelectedItem());
+
 				if (listAeropuertos.get(i).getCodigo()
 						.equals(this.viewModificarVuelo.getComboBoxAeropuertoLlegada().getSelectedItem())) {
+					System.out.println("Aeropuerto llegada seleccionado: "
+							+ this.viewModificarVuelo.getComboBoxAeropuertoLlegada().getSelectedItem());
 					aeropuerto.setId(listAeropuertos.get(i).getId());
 					aeropuerto.setCodigo(listAeropuertos.get(i).getCodigo());
 
@@ -113,10 +120,11 @@ public class VueloModificarEvents implements ActionListener {
 		ArrayList<Aerolinea> listAerolinea = (ArrayList<Aerolinea>) vueloModificarController.mostrarAerolinea();
 
 		for (int i = 0; i < listAerolinea.size(); i++) {
-			System.out.println(
-					"Aerolinea seleccionada: " + this.viewModificarVuelo.getComboBoxAerolinea().getSelectedItem());
+
 			if (listAerolinea.get(i).getNombre()
 					.equals(this.viewModificarVuelo.getComboBoxAerolinea().getSelectedItem())) {
+				System.out.println(
+						"Aerolinea seleccionada: " + this.viewModificarVuelo.getComboBoxAerolinea().getSelectedItem());
 				aerolinea.setId(listAerolinea.get(i).getId());
 				aerolinea.setNombre(listAerolinea.get(i).getNombre());
 				aerolinea.setAlianza(listAerolinea.get(i).getAlianza());

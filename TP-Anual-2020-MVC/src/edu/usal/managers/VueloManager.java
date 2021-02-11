@@ -93,10 +93,13 @@ public class VueloManager {
 			con.setAutoCommit(false);
 
 			Aeropuerto salida = this.aeropuertoDAODatabase.ObtenerAeropuertoPorID(vuelo.getAeropuertoSalida().getId());
+			System.out.println("### Manager - AEP Salida: "+salida.getCodigo());
 			vuelo.setAeropuertoSalida(salida);
 
 			Aeropuerto llegada = this.aeropuertoDAODatabase
 					.ObtenerAeropuertoPorID(vuelo.getAeropuertoLlegada().getId());
+			System.out.println("### Manager - AEP llegada: "+llegada.getCodigo());
+
 			vuelo.setAeropuertoLlegada(llegada);
 
 			Aerolinea aero = this.aerolineaDAODatabase.ObtenerAerolineaPorID(vuelo.getAerolinea().getId());

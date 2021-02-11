@@ -19,7 +19,7 @@ import edu.usal.tp.negocio.dao.util.SQLDatabaseConnection;
 public class VueloDAOImplDatabase implements VueloDAO {
 
 	final String INSERT = "INSERT INTO Vuelos (vuelo_numero,vuelo_cantAsientos,vuelo_fechaHoraSalida,vuelo_fechaHoraLlegada,vuelo_aerolineaID,vuelo_aeropuertoSalidaID,vuelo_aeropuertoLlegadaID) values (?,?,?,?,?,?,?) ";
-	final String UPDATE = "UPDATE Vuelos SET vuelo_numero = ?,vuelo_cantAsientos = ?,vuelo_fechaHoraSalida=?,vuelo_fechaHoraLlegada=?,vuelo_aerolineaID=?,vuelo_aeropuertoSalidaID=?,vuelo_aeropuertoLlegadaID=? WHERE vuelo_id=?";
+	final String UPDATE = "UPDATE Vuelos SET vuelo_numero=?,vuelo_cantAsientos=?,vuelo_fechaHoraSalida=?,vuelo_fechaHoraLlegada=?,vuelo_aerolineaID=?,vuelo_aeropuertoSalidaID=?,vuelo_aeropuertoLlegadaID=? WHERE vuelo_id=?";
 	final String DELETE = "DELETE FROM Vuelos WHERE vuelo_id=?";
 	final String SELECT_BY_ID = "SELECT * FROM Vuelos WHERE vuelo_id=?";
 	final String SELECT_BY_NUMVUELO = "SELECT * FROM Vuelos WHERE vuelo_numero=?";
@@ -82,12 +82,20 @@ public class VueloDAOImplDatabase implements VueloDAO {
 		try {
 			ps = con.prepareStatement(UPDATE);
 
+			System.out.println("### DAO ID vuelo a modificar:" + vuelo.getId());
+			;
+
 			ps.setString(1, vuelo.getNumVuelo());
+			System.out.println("### DAO cant asientos:" + vuelo.getCantAsientos());
 			ps.setInt(2, vuelo.getCantAsientos());
 			ps.setDate(3, java.sql.Date.valueOf(vuelo.getFechaHoraSalida()));
 			ps.setDate(4, java.sql.Date.valueOf(vuelo.getFechaHoraLlegada()));
 			ps.setInt(5, vuelo.getAerolinea().getId());
+			System.out.println("### DAO AEP Salida:" + vuelo.getAeropuertoSalida().getId());
+
 			ps.setInt(6, vuelo.getAeropuertoSalida().getId());
+			System.out.println("### DAO AEP llegada:" + vuelo.getAeropuertoLlegada().getId());
+
 			ps.setInt(7, vuelo.getAeropuertoLlegada().getId());
 			ps.setInt(8, vuelo.getId());
 

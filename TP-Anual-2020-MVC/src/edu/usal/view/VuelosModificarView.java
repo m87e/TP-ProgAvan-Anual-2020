@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 
 import edu.usal.controllers.GUI.VueloModificarController_GUI;
+import edu.usal.events.VueloAltaEvents;
 import edu.usal.events.VueloModificarEvents;
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.tp.negocio.dao.dominio.Aeropuerto;
@@ -75,10 +76,10 @@ public class VuelosModificarView extends JFrame {
 		panel.add(textCantidadAsientos);
 
 		JLabel lblAeropuertoSalida = new JLabel("Aeropuerto salida");
-		getContentPane().add(lblAeropuertoSalida);
+		panel.add(lblAeropuertoSalida);
 
 		comboBox_aeropuertosSalida = new JComboBox();
-		getContentPane().add(comboBox_aeropuertosSalida);
+		panel.add(comboBox_aeropuertosSalida);
 
 		ArrayList<Aeropuerto> listAeropuertos = (ArrayList<Aeropuerto>) vueloModificarController.mostrarAeropuertos();
 		for (int i = 0; i < listAeropuertos.size(); i++) {
@@ -94,10 +95,10 @@ public class VuelosModificarView extends JFrame {
 		});
 
 		JLabel lblAeropuertoLlegada = new JLabel("Aeropuerto Llegada");
-		getContentPane().add(lblAeropuertoLlegada);
+		panel.add(lblAeropuertoLlegada);
 
 		comboBox_aeropuertosLlegada = new JComboBox();
-		getContentPane().add(comboBox_aeropuertosLlegada);
+		panel.add(comboBox_aeropuertosLlegada);
 
 		for (int i = 0; i < listAeropuertos.size(); i++) {
 			comboBox_aeropuertosLlegada.addItem(listAeropuertos.get(i).getCodigo());
@@ -180,9 +181,11 @@ public class VuelosModificarView extends JFrame {
 
 		btnCancel = new JButton("Cancel");
 		panel_btns.add(btnCancel);
+		getBtnCancel().addActionListener(new VueloModificarEvents(this));
 
 		btnSubmit = new JButton("Submit");
 		panel_btns.add(btnSubmit);
+		getBtnSubmit().addActionListener(new VueloModificarEvents(this));
 
 	}
 
