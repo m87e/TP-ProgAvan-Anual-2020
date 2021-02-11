@@ -264,6 +264,12 @@ public class VentasAlta_view extends JFrame {
 		this.lblClienteMenor = lblClienteMenor;
 	}
 
+	public void setLblClienteMenor(Boolean activar) {
+		if (activar) {
+			this.lblClienteMenor.setVisible(true);
+		}
+	}
+	
 	public JLabel getLblVueloCompleto() {
 		return lblVueloCompleto;
 	}
@@ -335,5 +341,6 @@ public class VentasAlta_view extends JFrame {
 	public void setComboBox_formaPago(JComboBox comboBox_formaPago) {
 		this.comboBox_formaPago = comboBox_formaPago;
 	}
+	
 
 }
