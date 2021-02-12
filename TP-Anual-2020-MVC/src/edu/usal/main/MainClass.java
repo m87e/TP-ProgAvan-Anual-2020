@@ -5,6 +5,7 @@ import java.text.ParseException;
 
 import edu.usal.controllers.ClienteController;
 import edu.usal.managers.ClienteManager;
+import edu.usal.view.Menu_view;
 import edu.usal.views.console.ClienteView;
 
 public class MainClass {
@@ -12,8 +13,7 @@ public class MainClass {
 	public static void main(String[] args) throws ClassNotFoundException, IOException, ParseException {
 		// TODO Auto-generated method stub
 
-		ClienteView vista = new ClienteView();
-		ClienteController controlador = new ClienteController(vista);
-		controlador.mostrarMenu();
+		Menu_view view = new Menu_view();
+		view.main(args);
 	}
 }

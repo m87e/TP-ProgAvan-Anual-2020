@@ -36,6 +36,7 @@ public class VueloModificarEvents implements ActionListener {
 
 			JOptionPane.showMessageDialog(null, "Vuelo modificado exitosamente");
 			this.viewModificarVuelo.setVisible(false);
+
 		}
 		if (e.getSource() == this.viewModificarVuelo.getBtnCancel()) {
 
