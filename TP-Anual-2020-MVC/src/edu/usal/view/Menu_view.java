@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import edu.usal.view_old.ClientesABM_view;
+import javax.swing.SwingConstants;
 
 public class Menu_view implements ActionListener {
 
@@ -25,21 +26,22 @@ public class Menu_view implements ActionListener {
 
 	private JMenu mnCliente;
 	private JMenuItem mntmCliente;
-	private JMenuItem mntmAltaCliente;
 
 	private JMenu mnVuelos;
 	private JMenuItem mntmVuelo;
-	private JMenuItem mntmAltaVuelo;
 
 	private JMenu mnVentas;
 	private JMenuItem mntmVenta;
 
 	private JMenu mnAerolineas;
 	private JMenuItem mntmAerolinea;
-	private JMenuItem mntmAltaAerolinea;
+	
+	private JMenuItem mntmActualizar;
 
 	static JPanel panelPivot;
 	private JPanel panelCliente, panelVenta, panelVuelo, panelAerolinea;
+	
+	private Boolean cliente=false, venta=false, vuelo=false, aerolinea=false;
 
 	/**
 	 * Launch the application.
@@ -83,10 +85,6 @@ public class Menu_view implements ActionListener {
 		mnCliente.add(mntmCliente);
 		mntmCliente.addActionListener(this);
 
-		mntmAltaCliente = new JMenuItem("Nuevo cliente");
-		mnCliente.add(mntmAltaCliente);
-		mntmAltaCliente.addActionListener(this);
-
 		mnVentas = new JMenu("Ventas");
 		menuBar.add(mnVentas);
 
@@ -99,20 +97,15 @@ public class Menu_view implements ActionListener {
 
 		mntmVuelo = new JMenuItem("Gestion de vuelos");
 		mnVuelos.add(mntmVuelo);
-
-		mntmAltaVuelo = new JMenuItem("Nuevo vuelo");
-		mnVuelos.add(mntmAltaVuelo);
 		mntmVuelo.addActionListener(this);
 
 		mnAerolineas = new JMenu("Aerolineas");
 		menuBar.add(mnAerolineas);
 
-		mntmAerolinea = new JMenuItem("Gestion de aerolineas");
+		mntmAerolinea = 
+				new JMenuItem("Gestion de aerolineas");
 		mnAerolineas.add(mntmAerolinea);
 		mntmAerolinea.addActionListener(this);
-
-		mntmAltaAerolinea = new JMenuItem("Nueva aerolinea");
-		mnAerolineas.add(mntmAltaAerolinea);
 
 		mnHelp = new JMenu("Help");
 		menuBar.add(mnHelp);
@@ -124,6 +117,11 @@ public class Menu_view implements ActionListener {
 		mntmSalir = new JMenuItem("Salir");
 		mntmSalir.addActionListener(this);
 		mnHelp.add(mntmSalir);
+		
+		mntmActualizar = new JMenuItem("Actualizar");
+		mntmActualizar.setHorizontalAlignment(SwingConstants.RIGHT);
+		mntmActualizar.addActionListener(this);
+		menuBar.add(mntmActualizar);
 
 		frmSis.getContentPane().setLayout(null);
 
@@ -132,7 +130,7 @@ public class Menu_view implements ActionListener {
 		frmSis.getContentPane().add(panelPivot);
 		panelPivot.setLayout(new CardLayout(0, 0));
 
-		panelCliente = new AerolineasView();
+		panelCliente = new ClientesView();
 		panelPivot.add(panelCliente);
 		panelPivot.setVisible(true);
 		panelPivot.validate();
@@ -170,6 +168,11 @@ public class Menu_view implements ActionListener {
 			panelPivot.add(panelCliente);
 			panelPivot.setVisible(true);
 			panelPivot.validate();
+			
+			cliente=true; 
+			venta=false; 
+			vuelo=false;
+			aerolinea=false;
 		}
 
 		if (e.getSource() == mntmVenta) {
@@ -178,6 +181,11 @@ public class Menu_view implements ActionListener {
 			panelPivot.add(panelVenta);
 			panelPivot.setVisible(true);
 			panelPivot.validate();
+			
+			cliente=false; 
+			venta=true; 
+			vuelo=false;
+			aerolinea=false;
 		}
 
 		if (e.getSource() == mntmVuelo) {
@@ -186,6 +194,11 @@ public class Menu_view implements ActionListener {
 			panelPivot.add(panelVuelo);
 			panelPivot.setVisible(true);
 			panelPivot.validate();
+			
+			cliente=false; 
+			venta=false; 
+			vuelo=true;
+			aerolinea=false;
 		}
 		if (e.getSource() == mntmAerolinea) {
 			panelAerolinea = new AerolineasView();
@@ -193,6 +206,11 @@ public class Menu_view implements ActionListener {
 			panelPivot.add(panelAerolinea);
 			panelPivot.setVisible(true);
 			panelPivot.validate();
+			
+			cliente=false; 
+			venta=false; 
+			vuelo=false;
+			aerolinea=true;
 
 		}
 		if (e.getSource() == mntmVersion) {
@@ -200,6 +218,38 @@ public class Menu_view implements ActionListener {
 		}
 		if (e.getSource() == mntmSalir) {
 			System.exit(0);
+		}
+		if (e.getSource() == mntmActualizar) {
+			if(cliente) {
+				panelCliente = new ClientesView();
+				panelPivot.removeAll();
+				panelPivot.add(panelCliente);
+				panelPivot.setVisible(true);
+				panelPivot.validate();
+			}
+			if(vuelo) {
+				panelVuelo = new VuelosView();
+				panelPivot.removeAll();
+				panelPivot.add(panelVuelo);
+				panelPivot.setVisible(true);
+				panelPivot.validate();		
+			}
+			if(venta) {
+				panelVenta = new VentasView();
+				panelPivot.removeAll();
+				panelPivot.add(panelVenta);
+				panelPivot.setVisible(true);
+				panelPivot.validate();
+			}
+			if(aerolinea) {
+				panelAerolinea = new AerolineasView();
+				panelPivot.removeAll();
+				panelPivot.add(panelAerolinea);
+				panelPivot.setVisible(true);
+				panelPivot.validate();		
+			}
+				
+				
 		}
 
 	}

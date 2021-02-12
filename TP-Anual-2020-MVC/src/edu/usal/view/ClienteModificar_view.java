@@ -226,6 +226,10 @@ public class ClienteModificar_view extends JFrame{
 		ArrayList<Pais> listPaises = (ArrayList<Pais>) clienteModificarController.mostrarPaises();
 		for (int i = 0; i < listPaises.size(); i++) {
 			comboBox_Dpais.addItem(listPaises.get(i).getNombre());
+			
+			if(listPaises.get(i).getId() == d.getPais().getId()) {
+				comboBox_Dpais.setSelectedItem(listPaises.get(i).getNombre());
+			}
 		}
 		
 		comboBox_Dpais.addItemListener(new ItemListener() {
@@ -267,6 +271,10 @@ public class ClienteModificar_view extends JFrame{
 		comboBox_provincia = new JComboBox();
 		for (int i = 0; i < listProv.size(); i++) {
 			comboBox_provincia.addItem(listProv.get(i).getNombre());
+			
+			if(listProv.get(i).getId() == d.getProvincia().getId()) {
+				comboBox_provincia.setSelectedItem(listProv.get(i).getNombre());
+			}
 		}
 		panel_direccion.add(comboBox_provincia);
 		comboBox_provincia.setVisible(false);
@@ -392,6 +400,10 @@ public class ClienteModificar_view extends JFrame{
 		comboBox_pasaportePais =  new JComboBox();
 		for (int i = 0; i < listPaises.size(); i++) {
 			comboBox_pasaportePais.addItem(listPaises.get(i).getNombre());
+			
+			if(listPaises.get(i).getId() == p.getPais().getId()){
+				comboBox_pasaportePais.setSelectedItem(listPaises.get(i).getNombre());
+			}
 		}
 		comboBox_pasaportePais.setSelectedItem("Austria");
 		
@@ -448,9 +460,16 @@ public class ClienteModificar_view extends JFrame{
 		comboBox_aerolinea.setVisible(true);
 		
 		comboBox_aerolinea.setSelectedItem(pasFre.getAerolinea().getNombre());
+		String aerolinea = null;
 		for (int i = 0; i < listAerolinea.size(); i++) {
 			comboBox_aerolinea.addItem(listAerolinea.get(i).getNombre());
+			
+			if(listAerolinea.get(i).getId() == pasFre.getAerolinea().getId())  {
+				comboBox_aerolinea.setSelectedItem(listAerolinea.get(i).getNombre());
+				aerolinea = comboBox_aerolinea.getSelectedItem().toString();
+			}
 		}
+		
 		comboBox_aerolinea.addItemListener(new ItemListener() {
 			
 			@Override
@@ -460,6 +479,7 @@ public class ClienteModificar_view extends JFrame{
 					if (listAerolinea.get(i).getNombre().equals(aerolinea)) {
 						textField_alianza.setText(listAerolinea.get(i).getAlianza().name());
 					}
+					
 				}
 			}
 		});
