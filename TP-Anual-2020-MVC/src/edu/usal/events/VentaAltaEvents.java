@@ -20,8 +20,10 @@ import com.toedter.calendar.JDateChooser;
 
 import edu.usal.controllers.GUI.VentasAltaController_GUI;
 import edu.usal.managers.ClienteManager;
+import edu.usal.managers.VueloManager;
 import edu.usal.tp.negocio.dao.dominio.Aerolinea;
 import edu.usal.tp.negocio.dao.dominio.Cliente;
+import edu.usal.tp.negocio.dao.dominio.Pasaporte;
 import edu.usal.tp.negocio.dao.dominio.Venta;
 import edu.usal.tp.negocio.dao.dominio.Vuelo;
 import edu.usal.view.VentasAlta_view;
@@ -31,6 +33,8 @@ public class VentaAltaEvents implements ActionListener {
 	private VentasAlta_view viewAltaVenta;
 	private VentasAltaController_GUI ventaAltaController = new VentasAltaController_GUI();
 	private ClienteManager managerCliente = new ClienteManager();
+	private VueloManager managerVuelo = new VueloManager();
+	
 	
 	public VentaAltaEvents(VentasAlta_view viewAltaVenta) {
 		this.viewAltaVenta = viewAltaVenta;
@@ -47,11 +51,29 @@ public class VentaAltaEvents implements ActionListener {
 			
 			ArrayList<Cliente> listCliente = (ArrayList<Cliente>) managerCliente.MostrarClientes();
 			
+			int idPas = 0;
 			for (int i = 0; i < listCliente.size(); i++) {
-				if (listCliente.get(i).getId() == c.getId()) {
-					c.getPasaporte().setId(listCliente.get(i).getPasaporte().getId());
+				if (listCliente.get(i).getDni().equals(c.getDni())) {
 					LocalDate fechaNac = listCliente.get(i).getFechaNac();
+					idPas = listCliente.get(i).getPasaporte().getId();
 					c.setFechaNac(fechaNac);
+				}
+			}
+			
+			ArrayList<Vuelo> listVuelo = (ArrayList<Vuelo>) managerVuelo.MostrarVuelos();
+			
+			for (int i = 0; i < listVuelo.size(); i++) {
+				if (listVuelo.get(i).getNumVuelo().equals(v.getNumVuelo())) {
+					LocalDate fechaSalida = listVuelo.get(i).getFechaHoraSalida();
+					LocalDate fechaLlegada = listVuelo.get(i).getFechaHoraLlegada();
+					
+					v.setCantAsientos(listVuelo.get(i).getCantAsientos());
+					v.setFechaHoraLlegada(fechaLlegada);
+					v.setFechaHoraSalida(fechaSalida);
+					v.setId(listVuelo.get(i).getId());
+					v.setAeropuertoLlegada(listVuelo.get(i).getAeropuertoLlegada());
+					v.setAeropuertoSalida(listVuelo.get(i).getAeropuertoSalida());
+					v.setAerolinea(listVuelo.get(i).getAerolinea());
 				}
 			}
 		
@@ -64,35 +86,74 @@ public class VentaAltaEvents implements ActionListener {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 			sdf.format(date);
 			LocalDate fechaVenta = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			fechaVenta = LocalDate.of(fechaVenta.getYear(), fechaVenta.getMonth(), fechaVenta.getDayOfMonth());
 			
-			System.out.println("CantDias: "+CalcularFecha(fechaVenta, c.getFechaNac()));
+			LocalDate fechaNacimiento = c.getFechaNac();
+			System.out.println(fechaNacimiento);
+			fechaNacimiento = LocalDate.of(fechaNacimiento.getYear(), fechaNacimiento.getMonth(), fechaNacimiento.getDayOfMonth());
 			
-			if((CalcularFecha(fechaVenta, c.getFechaNac())<18*365) ) {
+			//Validacion Edad
+			long diasValidarMenor = DAYS.between(fechaNacimiento,fechaVenta);
+			System.out.println(diasValidarMenor);
+			
+			if((diasValidarMenor)<18*365)  {
 				this.viewAltaVenta.setLblClienteMenor(true);
 			}else {
 				validarMenor = true;
 			}
 			
-			/*
-			if(validacionFecha && validacionPasaporte ) {
+			//ValidarPasaporteVencido
+			System.out.println("-----------------------------------------------------------------------------------");
+			System.out.println(idPas);
+			System.out.println(managerCliente.ObtenerPasaporte(idPas).getId());
+			System.out.println("-----------------------------------------------------------------------------------");
+			Pasaporte p = managerCliente.ObtenerPasaporte(idPas);
+			long diasValidarPasaporteVencido = DAYS.between(fechaVenta,p.getFechaVencimiento());
+			
+			if((diasValidarPasaporteVencido)<0)  {
+				this.viewAltaVenta.setLblPasaporteVencido(true);
+			}else {
+				validarPasaporteVencido = true;
+			}
+			
+			//Validar Pasaporte Por Vencer
+			
+			long diasValidarPasaportePorVencer = DAYS.between(v.getFechaHoraLlegada(),p.getFechaVencimiento());
+			if((diasValidarPasaportePorVencer)<(6*30))  {
+				this.viewAltaVenta.setLblPorVencer(true);
+			}else {
+				validarPasaportePorVencer = true;
+			}
+			
+			//Vuelo completo
+			
+			System.out.println("-----------------------------------------------------------------------------------");
+			System.out.println(v.getNumVuelo());
+			System.out.println(v.getCantAsientos());
+			System.out.println("-----------------------------------------------------------------------------------");
+			
+			if(v.getCantAsientos()==0)  {
+				this.viewAltaVenta.setLblVueloCompleto(true);
+			}else {
+				validarVueloLleno  = true;
+			}
+			
+			//Validacion completa
+			if(validarMenor && validarPasaporteVencido && validarPasaportePorVencer&&validarVueloLleno) {
 				ventaAltaController.altaVenta(vt, c, v, a, f, fP);
+				int asientos = v.getCantAsientos();
+				v.setCantAsientos(asientos-1);
+				managerVuelo.ModificacionVuelo(v);
 				JOptionPane.showMessageDialog(null, "Venta agregada exitosamente!");
 				this.viewAltaVenta.setVisible(false);
 			}
-			*/
+			
 		}
 	}
 	
-	public long CalcularFecha(LocalDate inicio, LocalDate fin) {
 
-		LocalDate start = LocalDate.of(inicio.getYear(), inicio.getMonth(), inicio.getDayOfMonth());
-		LocalDate end = LocalDate.of(fin.getYear(), fin.getMonth(), fin.getDayOfMonth());
-		
-		long dias = DAYS.between(start, end);
-
-		
-		return dias;
-
+	public long diasEntreLocalDate(LocalDate inicio, LocalDate fin){
+	    return DAYS.between(inicio, fin);
 	}
 	
 	private Aerolinea CargarAerolinea() {

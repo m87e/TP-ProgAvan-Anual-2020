@@ -128,28 +128,24 @@ public class VentasAlta_view extends JFrame {
 		panel_mensajes.setLayout(new GridLayout(4, 0, 0, 0));
 
 		lblClienteMenor = new JLabel("El cliente seleccionado tiene menos de 18 a\u00F1os.");
-		lblClienteMenor.setEnabled(false);
 		lblClienteMenor.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblClienteMenor.setForeground(Color.RED);
 		panel_mensajes.add(lblClienteMenor);
 		lblClienteMenor.setVisible(false);
 
 		lblVueloCompleto = new JLabel("El vuelo esta completo");
-		lblVueloCompleto.setEnabled(false);
 		lblVueloCompleto.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblVueloCompleto.setForeground(Color.RED);
 		panel_mensajes.add(lblVueloCompleto);
 		lblVueloCompleto.setVisible(false);
 
 		lblPasaporteVencido = new JLabel("El pasaporte del cliente esta vencido.");
-		lblPasaporteVencido.setEnabled(false);
 		lblPasaporteVencido.setForeground(Color.RED);
 		lblPasaporteVencido.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		panel_mensajes.add(lblPasaporteVencido);
 		lblPasaporteVencido.setVisible(false);
 
 		lblPorVencer = new JLabel("El pasaporte vence en menos de 6 meses.\r\n");
-		lblPorVencer.setEnabled(false);
 		lblPorVencer.setForeground(Color.RED);
 		lblPorVencer.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		panel_mensajes.add(lblPorVencer);
@@ -277,11 +273,23 @@ public class VentasAlta_view extends JFrame {
 	public void setLblVueloCompleto(JLabel lblVueloCompleto) {
 		this.lblVueloCompleto = lblVueloCompleto;
 	}
+	
+	public void setLblVueloCompleto(Boolean activar) {
+		if (activar) {
+			this.lblVueloCompleto.setVisible(true);
+		}
+	}
 
 	public JLabel getLblPasaporteVencido() {
 		return lblPasaporteVencido;
 	}
 
+	public void setLblPasaporteVencido(Boolean activar) {
+		if (activar) {
+			this.lblPasaporteVencido.setVisible(true);
+		}
+	}
+	
 	public void setLblPasaporteVencido(JLabel lblPasaporteVencido) {
 		this.lblPasaporteVencido = lblPasaporteVencido;
 	}
@@ -292,6 +300,12 @@ public class VentasAlta_view extends JFrame {
 
 	public void setLblPorVencer(JLabel lblPorVencer) {
 		this.lblPorVencer = lblPorVencer;
+	}
+	
+	public void setLblPorVencer(Boolean activar) {
+		if (activar) {
+			this.lblPorVencer.setVisible(true);
+		}
 	}
 
 	public JDateChooser getDateChooser_fechaVenta() {
