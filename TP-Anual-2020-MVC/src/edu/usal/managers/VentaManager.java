@@ -84,7 +84,52 @@ public class VentaManager {
 		}
 
 	}
-	
+	public void ModificarVenta (Venta v) {
+		Connection con = null;
+			try {
+				con = SQLDatabaseConnection.conectar();
+				con.setAutoCommit(false);
+				
+				this.ventaDAODatabase.ModificarVenta(v, con);
+				System.out.println("Venta modificada - Operacion completada");
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Ocurrio un error al cargar los datos en la base de datos");
+				if (con != null) {
+					SQLDatabaseConnection.rollback(con);
+					System.err.print("Se realizo un rollback de la transaccion");
+				}
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Ocurrio un error al cargar los datos");
+				if (con != null) {
+					SQLDatabaseConnection.rollback(con);
+					System.err.print("Se realizo un rollback de la transaccion");
+				}
+
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Ocurrio un error al cargar los datos");
+				if (con != null) {
+					SQLDatabaseConnection.rollback(con);
+					System.err.print("Se realizo un rollback de la transaccion");
+				}
+			} finally {
+
+				try {
+					con.close();
+
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+			
+	}
 	public void BajaVenta (Venta v) {
 		Connection con = null;
 
