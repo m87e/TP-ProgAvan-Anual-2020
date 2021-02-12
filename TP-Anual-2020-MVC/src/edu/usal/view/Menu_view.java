@@ -201,16 +201,35 @@ public class Menu_view implements ActionListener {
 			aerolinea=false;
 		}
 		if (e.getSource() == mntmAerolinea) {
-			panelAerolinea = new AerolineasView();
-			panelPivot.removeAll();
-			panelPivot.add(panelAerolinea);
-			panelPivot.setVisible(true);
-			panelPivot.validate();
+			String usuario = JOptionPane.showInputDialog(null,"Usuario");
+			String password = JOptionPane.showInputDialog(null,"Password");
+			if (usuario.equals("admin") && password.equals("admin")) {
+				panelAerolinea = new AerolineasView();
+				panelPivot.removeAll();
+				panelPivot.add(panelAerolinea);
+				panelPivot.setVisible(true);
+				panelPivot.validate();
+				
+				cliente=false; 
+				venta=false; 
+				vuelo=false;
+				aerolinea=true;
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Credenciales incorrectas");
+				panelCliente = new ClientesView();
+				panelPivot.removeAll();
+				panelPivot.add(panelCliente);
+				panelPivot.setVisible(true);
+				panelPivot.validate();
+				
+				cliente=true; 
+				venta=false; 
+				vuelo=false;
+				aerolinea=false;
+			}
 			
-			cliente=false; 
-			venta=false; 
-			vuelo=false;
-			aerolinea=true;
+
 
 		}
 		if (e.getSource() == mntmVersion) {
