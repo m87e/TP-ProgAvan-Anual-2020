@@ -24,5 +24,9 @@ public class VentasController_GUI {
 		
 		return listadoVentas;
 	}
+	
+	public void bajaVenta(Venta v) {
+		this.manager.BajaVenta(v);
+	}
 
 }
